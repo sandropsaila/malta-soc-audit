@@ -1,0 +1,799 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Malta SOC Audit Intelligence — SOC 1 · SOC 2 · ISAE 3402 · ISAE 3000</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --bg: #0b0e14;
+      --surface: #111622;
+      --surface2: #192033;
+      --border: rgba(255,255,255,0.07);
+      --accent: #4f8ef7;
+      --accent2: #7c3aed;
+      --accent3: #10b981;
+      --accent4: #f59e0b;
+      --text: #e8edf7;
+      --muted: #7d8aaa;
+      --tag-soc2: rgba(79,142,247,0.15);
+      --tag-soc1: rgba(124,58,237,0.15);
+      --tag-isae: rgba(16,185,129,0.15);
+      --tag-iso: rgba(245,158,11,0.15);
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'DM Sans', sans-serif;
+      font-weight: 300;
+      overflow-x: hidden;
+    }
+
+    /* ─── BACKGROUND ─────────────────────────────────── */
+    .bg-grid {
+      position: fixed; inset: 0; z-index: 0;
+      background-image:
+        linear-gradient(rgba(79,142,247,0.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(79,142,247,0.03) 1px, transparent 1px);
+      background-size: 48px 48px;
+      pointer-events: none;
+    }
+
+    .bg-glow {
+      position: fixed; z-index: 0;
+      border-radius: 50%;
+      filter: blur(120px);
+      opacity: 0.12;
+      pointer-events: none;
+    }
+    .bg-glow-1 { width: 600px; height: 600px; background: var(--accent2); top: -200px; right: -200px; }
+    .bg-glow-2 { width: 500px; height: 500px; background: var(--accent); bottom: 10%; left: -200px; }
+
+    /* ─── LAYOUT ─────────────────────────────────────── */
+    .wrapper { position: relative; z-index: 1; max-width: 1280px; margin: 0 auto; padding: 0 32px; }
+
+    /* ─── HEADER ─────────────────────────────────────── */
+    header {
+      padding: 56px 0 48px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .header-badge {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: rgba(79,142,247,0.1);
+      border: 1px solid rgba(79,142,247,0.25);
+      border-radius: 100px;
+      padding: 6px 16px;
+      font-size: 12px;
+      font-weight: 500;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 28px;
+    }
+    .header-badge::before {
+      content: '';
+      width: 7px; height: 7px;
+      background: var(--accent);
+      border-radius: 50%;
+      animation: pulse 2s infinite;
+    }
+    @keyframes pulse {
+      0%,100% { opacity:1; transform:scale(1); }
+      50% { opacity:0.5; transform:scale(1.4); }
+    }
+
+    h1 {
+      font-family: 'Syne', sans-serif;
+      font-size: clamp(2.4rem, 5vw, 4rem);
+      font-weight: 800;
+      line-height: 1.08;
+      letter-spacing: -0.02em;
+      margin-bottom: 20px;
+    }
+    h1 span {
+      background: linear-gradient(135deg, var(--accent), #a78bfa);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .header-sub {
+      max-width: 640px;
+      color: var(--muted);
+      font-size: 1.05rem;
+      line-height: 1.65;
+      margin-bottom: 36px;
+    }
+
+    .stats-row {
+      display: flex; flex-wrap: wrap; gap: 24px;
+    }
+    .stat {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 20px 28px;
+      min-width: 150px;
+    }
+    .stat-num {
+      font-family: 'Syne', sans-serif;
+      font-size: 2rem;
+      font-weight: 700;
+      color: var(--accent);
+    }
+    .stat-label { font-size: 0.78rem; color: var(--muted); letter-spacing: 0.05em; text-transform: uppercase; margin-top: 2px; }
+
+    /* ─── FRAMEWORK KEY ──────────────────────────────── */
+    .section-header {
+      display: flex; align-items: center; gap: 12px;
+      margin: 56px 0 28px;
+    }
+    .section-header h2 {
+      font-family: 'Syne', sans-serif;
+      font-size: 1.35rem;
+      font-weight: 700;
+      letter-spacing: -0.01em;
+    }
+    .section-line { flex: 1; height: 1px; background: var(--border); }
+
+    .framework-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(270px, 1fr));
+      gap: 16px;
+      margin-bottom: 56px;
+    }
+    .fw-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 24px;
+      position: relative;
+      overflow: hidden;
+    }
+    .fw-card::before {
+      content: '';
+      position: absolute; top: 0; left: 0; right: 0;
+      height: 3px;
+    }
+    .fw-card.soc2::before { background: var(--accent); }
+    .fw-card.soc1::before { background: var(--accent2); }
+    .fw-card.isae3402::before { background: var(--accent3); }
+    .fw-card.isae3000::before { background: var(--accent4); }
+
+    .fw-title {
+      font-family: 'Syne', sans-serif;
+      font-size: 1rem;
+      font-weight: 700;
+      margin-bottom: 8px;
+    }
+    .fw-desc { font-size: 0.85rem; color: var(--muted); line-height: 1.55; }
+
+    /* ─── FILTERS ────────────────────────────────────── */
+    .filter-bar {
+      display: flex; flex-wrap: wrap; gap: 10px;
+      margin-bottom: 32px;
+      align-items: center;
+    }
+    .filter-label { font-size: 0.78rem; color: var(--muted); letter-spacing: 0.06em; text-transform: uppercase; margin-right: 4px; }
+    .filter-btn {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 100px;
+      padding: 8px 18px;
+      font-size: 0.82rem;
+      font-family: 'DM Sans', sans-serif;
+      color: var(--muted);
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    .filter-btn:hover, .filter-btn.active {
+      border-color: var(--accent);
+      color: var(--accent);
+      background: rgba(79,142,247,0.08);
+    }
+    .filter-btn.active { font-weight: 500; }
+
+    /* ─── COMPANY CARDS ──────────────────────────────── */
+    .cards-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(380px, 1fr));
+      gap: 20px;
+    }
+
+    .company-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 28px;
+      transition: border-color 0.25s, transform 0.25s, box-shadow 0.25s;
+      cursor: default;
+      position: relative;
+      overflow: hidden;
+    }
+    .company-card:hover {
+      border-color: rgba(79,142,247,0.35);
+      transform: translateY(-3px);
+      box-shadow: 0 16px 48px rgba(0,0,0,0.3);
+    }
+    .company-card.hidden { display: none; }
+
+    .card-header {
+      display: flex; justify-content: space-between; align-items: flex-start;
+      margin-bottom: 16px;
+    }
+    .company-name {
+      font-family: 'Syne', sans-serif;
+      font-size: 1.1rem;
+      font-weight: 700;
+      letter-spacing: -0.01em;
+      margin-bottom: 3px;
+    }
+    .company-sector {
+      font-size: 0.76rem;
+      color: var(--muted);
+      text-transform: uppercase;
+      letter-spacing: 0.07em;
+    }
+
+    .status-dot {
+      width: 9px; height: 9px;
+      border-radius: 50%;
+      background: var(--accent3);
+      box-shadow: 0 0 8px var(--accent3);
+      margin-top: 5px;
+      flex-shrink: 0;
+    }
+    .status-dot.pending { background: var(--accent4); box-shadow: 0 0 8px var(--accent4); }
+    .status-dot.iso-only { background: var(--muted); box-shadow: none; }
+
+    .tags { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 16px; }
+    .tag {
+      display: inline-flex; align-items: center; gap: 5px;
+      border-radius: 100px;
+      padding: 5px 12px;
+      font-size: 0.76rem;
+      font-weight: 500;
+      border: 1px solid transparent;
+    }
+    .tag.soc2 { background: var(--tag-soc2); color: var(--accent); border-color: rgba(79,142,247,0.2); }
+    .tag.soc1 { background: var(--tag-soc1); color: #a78bfa; border-color: rgba(124,58,237,0.2); }
+    .tag.isae3402 { background: var(--tag-isae); color: var(--accent3); border-color: rgba(16,185,129,0.2); }
+    .tag.isae3000 { background: rgba(245,158,11,0.12); color: var(--accent4); border-color: rgba(245,158,11,0.2); }
+    .tag.iso27001 { background: rgba(255,255,255,0.04); color: var(--muted); border-color: var(--border); }
+
+    .card-body { font-size: 0.875rem; color: var(--muted); line-height: 1.6; margin-bottom: 18px; }
+    .card-body strong { color: var(--text); font-weight: 500; }
+
+    .card-footer {
+      display: flex; justify-content: space-between; align-items: center;
+      padding-top: 16px;
+      border-top: 1px solid var(--border);
+      font-size: 0.76rem;
+    }
+    .card-date { color: var(--muted); }
+    .card-link {
+      color: var(--accent);
+      text-decoration: none;
+      font-weight: 500;
+      display: flex; align-items: center; gap: 4px;
+      transition: opacity 0.2s;
+    }
+    .card-link:hover { opacity: 0.7; }
+    .card-link::after { content: '→'; }
+
+    /* ─── DISCLAIMER ─────────────────────────────────── */
+    .disclaimer {
+      margin: 64px 0 40px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 28px 32px;
+    }
+    .disclaimer h3 {
+      font-family: 'Syne', sans-serif;
+      font-size: 0.9rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.07em;
+      color: var(--muted);
+      margin-bottom: 10px;
+    }
+    .disclaimer p { font-size: 0.83rem; color: var(--muted); line-height: 1.65; }
+
+    footer {
+      border-top: 1px solid var(--border);
+      padding: 28px 0;
+      text-align: center;
+      font-size: 0.8rem;
+      color: var(--muted);
+    }
+    footer a { color: var(--accent); text-decoration: none; }
+
+    /* ─── SEARCH ─────────────────────────────────────── */
+    .search-wrap {
+      position: relative;
+      max-width: 420px;
+      margin-bottom: 20px;
+    }
+    .search-wrap input {
+      width: 100%;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 12px 20px 12px 44px;
+      font-size: 0.9rem;
+      font-family: 'DM Sans', sans-serif;
+      color: var(--text);
+      outline: none;
+      transition: border-color 0.2s;
+    }
+    .search-wrap input:focus { border-color: var(--accent); }
+    .search-icon {
+      position: absolute; left: 16px; top: 50%; transform: translateY(-50%);
+      color: var(--muted);
+    }
+
+    @media (max-width: 640px) {
+      .cards-grid { grid-template-columns: 1fr; }
+      .wrapper { padding: 0 20px; }
+      h1 { font-size: 2rem; }
+    }
+  </style>
+</head>
+<body>
+
+<div class="bg-grid"></div>
+<div class="bg-glow bg-glow-1"></div>
+<div class="bg-glow bg-glow-2"></div>
+
+<div class="wrapper">
+
+  <!-- ─── HEADER ─── -->
+  <header>
+    <div class="header-badge">Live Intelligence · April 2026</div>
+    <h1>Malta <span>SOC Audit</span><br>Intelligence</h1>
+    <p class="header-sub">
+      A curated registry of Maltese companies — drawn from the Tech.mt membership directory, MGA Licensee Register, and MFSA-licensed payment &amp; trading firms — that have publicly disclosed SOC 1, SOC 2, ISAE 3402, ISAE 3000 or equivalent independent assurance engagements. Includes companies subject to MFSA Rule R1-1.12.1 / Rule 14.6 system certification obligations.
+    </p>
+    <div class="stats-row">
+      <div class="stat"><div class="stat-num">14</div><div class="stat-label">Companies found</div></div>
+      <div class="stat"><div class="stat-num">6</div><div class="stat-label">SOC 2 audits</div></div>
+      <div class="stat"><div class="stat-num">3</div><div class="stat-label">ISAE 3402 holders</div></div>
+      <div class="stat"><div class="stat-num">6</div><div class="stat-label">Sectors covered</div></div>
+    </div>
+  </header>
+
+  <!-- ─── FRAMEWORK EXPLAINER ─── -->
+  <div class="section-header">
+    <h2>Audit Frameworks</h2>
+    <div class="section-line"></div>
+  </div>
+
+  <div class="framework-grid">
+    <div class="fw-card soc2">
+      <div class="fw-title">SOC 2 (ISAE 3000)</div>
+      <div class="fw-desc">Evaluates security, availability, processing integrity, confidentiality, and privacy controls. Type I assesses design; Type II assesses operating effectiveness over 6–12 months. International equivalent of ISAE 3000.</div>
+    </div>
+    <div class="fw-card soc1">
+      <div class="fw-title">SOC 1</div>
+      <div class="fw-desc">Assesses internal controls relevant to clients' financial reporting. Governed by SSAE 18 (US) or ISAE 3402 (international). Issued as Type I (point-in-time) or Type II (period-of-time).</div>
+    </div>
+    <div class="fw-card isae3402">
+      <div class="fw-title">ISAE 3402</div>
+      <div class="fw-desc">The international equivalent of SOC 1. Provides assurance on service-organisation controls relevant to user entities' financial reporting. Widely used in EU financial services, payroll, and fund administration.</div>
+    </div>
+    <div class="fw-card isae3000">
+      <div class="fw-title">ISAE 3000</div>
+      <div class="fw-desc">The overarching international assurance standard for non-financial engagements, covering information security, GDPR, ESG, and more. SOC 2 reports issued internationally typically comply with ISAE 3000.</div>
+    </div>
+  </div>
+
+  <!-- ─── COMPANY REGISTRY ─── -->
+  <div class="section-header">
+    <h2>Company Registry</h2>
+    <div class="section-line"></div>
+  </div>
+
+  <div class="search-wrap">
+    <svg class="search-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+    <input type="text" id="searchInput" placeholder="Search company or certification…" oninput="filterCards()" />
+  </div>
+
+  <div class="filter-bar">
+    <span class="filter-label">Filter:</span>
+    <button class="filter-btn active" onclick="setFilter('all', this)">All</button>
+    <button class="filter-btn" onclick="setFilter('soc2', this)">SOC 2</button>
+    <button class="filter-btn" onclick="setFilter('soc1', this)">SOC 1</button>
+    <button class="filter-btn" onclick="setFilter('isae3402', this)">ISAE 3402</button>
+    <button class="filter-btn" onclick="setFilter('iso27001', this)">ISO 27001</button>
+    <button class="filter-btn" onclick="setFilter('igaming', this)">iGaming</button>
+    <button class="filter-btn" onclick="setFilter('tech', this)">Tech / IT</button>
+    <button class="filter-btn" onclick="setFilter('payment', this)">Payment / EMI</button>
+    <button class="filter-btn" onclick="setFilter('trading', this)">Trading / MiFID</button>
+    <button class="filter-btn" onclick="setFilter('mfsa', this)">MFSA Regulated</button>
+  </div>
+
+  <div class="cards-grid" id="cardsGrid">
+
+    <!-- ── BMIT Technologies ── -->
+    <div class="company-card" data-tags="soc2 tech mga" data-name="BMIT Technologies">
+      <div class="card-header">
+        <div>
+          <div class="company-name">BMIT Technologies plc</div>
+          <div class="company-sector">IT Infrastructure · Data Centre · Cloud</div>
+        </div>
+        <div class="status-dot" title="Confirmed certification"></div>
+      </div>
+      <div class="tags">
+        <span class="tag soc2">SOC 2 Type I</span>
+        <span class="tag isae3000">ISAE 3000</span>
+      </div>
+      <div class="card-body">
+        Malta's leading data centre and managed-IT provider achieved <strong>SOC 2 Type 1 attestation</strong> in February 2024, covering security and availability trust-service criteria. The report — conducted under ISAE 3000 standards — was audited independently and applies to BMIT's infrastructure, systems, and processes. The company is publicly listed on the Malta Stock Exchange (MSE: BMIT) and serves clients in online gaming, financial services, and manufacturing. Confirmed by Dione Vella, Chief Digital and Compliance Officer.
+      </div>
+      <div class="card-footer">
+        <span class="card-date">Announced: February 2024</span>
+        <a class="card-link" href="https://www.bmit.com.mt/blog/bmit-achieves-key-milestone-with-soc2-attestation/" target="_blank">Source</a>
+      </div>
+    </div>
+
+    <!-- ── Kindred Group / Unibet ── -->
+    <div class="company-card" data-tags="soc2 igaming mga" data-name="Kindred Group Unibet">
+      <div class="card-header">
+        <div>
+          <div class="company-name">Kindred Group plc (Unibet)</div>
+          <div class="company-sector">Online Gaming · Sports Betting · MGA Licensed</div>
+        </div>
+        <div class="status-dot" title="Confirmed certification"></div>
+      </div>
+      <div class="tags">
+        <span class="tag soc2">SOC 2 Type II</span>
+      </div>
+      <div class="card-body">
+        Kindred's flagship brand <strong>Unibet received SOC 2 Type 2 compliance status</strong> in Ontario, Canada, following a rigorous audit by MNP LLP. The audit covered data management, system availability, logical and physical access controls, change management, and risk assessment — all without reported exceptions. Kindred, headquartered in Malta (Valletta), operates Unibet globally and is listed on Nasdaq Stockholm. The assessment also affirmed that Pala Interactive (Unibet's Ontario partner) meets SOC 2 Trust Service Criteria.
+      </div>
+      <div class="card-footer">
+        <span class="card-date">Announced: June 2023</span>
+        <a class="card-link" href="https://www.prnewswire.com/news-releases/kindred-demonstrates-commitment-to-data-security-by-achieving-soc-2-certification-301866777.html" target="_blank">Source</a>
+      </div>
+    </div>
+
+    <!-- ── Hornetsecurity (Altaro) ── -->
+    <div class="company-card" data-tags="soc2 soc1 isae3402 tech" data-name="Hornetsecurity Altaro">
+      <div class="card-header">
+        <div>
+          <div class="company-name">Hornetsecurity (formerly Altaro)</div>
+          <div class="company-sector">Cybersecurity · Cloud Backup · Email Security</div>
+        </div>
+        <div class="status-dot" title="Confirmed certification"></div>
+      </div>
+      <div class="tags">
+        <span class="tag soc2">SOC 2 Type II</span>
+        <span class="tag soc1">SOC 1 Type I</span>
+        <span class="tag isae3402">ISAE 3402</span>
+        <span class="tag iso27001">ISO 27001</span>
+      </div>
+      <div class="card-body">
+        Altaro Software — a Malta-founded backup provider with 50,000+ customers in 121 countries — was acquired by <strong>Hornetsecurity in January 2021</strong>. The combined entity maintains one of the broadest compliance portfolios in the market, holding <strong>SOC 1 Type I, ISAE 3402, SOC 2 Type II, ISO 27001:2013, ISO 9001, ISO 20000, and HIPAA</strong> certifications. Hornetsecurity's Malta office (San Gwann Life Sciences Park) remains an active hub. All certifications apply to data-centre operations and cloud security services delivered via 11 redundant data centres.
+      </div>
+      <div class="card-footer">
+        <span class="card-date">Ongoing — Portfolio confirmed 2024</span>
+        <a class="card-link" href="https://www.hornetsecurity.com/en/company/" target="_blank">Source</a>
+      </div>
+    </div>
+
+    <!-- ── Betsson Group ── -->
+    <div class="company-card" data-tags="iso27001 igaming mga" data-name="Betsson Group BML">
+      <div class="card-header">
+        <div>
+          <div class="company-name">Betsson Group (BML Group)</div>
+          <div class="company-sector">Online Gaming · iGaming · MGA Licensed</div>
+        </div>
+        <div class="status-dot iso-only" title="ISO 27001 — no SOC audit publicly confirmed"></div>
+      </div>
+      <div class="tags">
+        <span class="tag iso27001">ISO 27001:2022</span>
+      </div>
+      <div class="card-body">
+        Betsson Group — operational headquarters in Malta (Ta' Xbiex), one of the island's largest employers with 1,400+ Malta staff — obtained <strong>ISO 27001:2022 certification through Bureau Veritas in May 2025</strong>, transitioning from its 2013 version (held since 2019). The certification covers operations in Sweden, Malta, Hungary, and Estonia across 93 controls in organisational, people, physical, and technological categories. Betsson has not publicly disclosed a dedicated SOC 2 or ISAE 3402 report, although its ISO 27001 ISMS provides a strong foundation for such audits.
+      </div>
+      <div class="card-footer">
+        <span class="card-date">ISO 27001:2022 — May 2025</span>
+        <a class="card-link" href="https://betssongroup.com/news/iso270012022-2025/" target="_blank">Source</a>
+      </div>
+    </div>
+
+    <!-- ── RSM Malta (SOC 2 advisor) ── -->
+    <div class="company-card" data-tags="soc2 soc1 isae3402 tech" data-name="RSM Malta">
+      <div class="card-header">
+        <div>
+          <div class="company-name">RSM Malta</div>
+          <div class="company-sector">Professional Services · Audit · Assurance</div>
+        </div>
+        <div class="status-dot" title="Active SOC 2 audit practice"></div>
+      </div>
+      <div class="tags">
+        <span class="tag soc2">SOC 2 Practice</span>
+        <span class="tag soc1">SOC 1 / ISAE 3402</span>
+      </div>
+      <div class="card-body">
+        RSM Malta — part of the global RSM network — operates a dedicated <strong>SOC 2 and ISAE 3402 assurance practice</strong>, conducting audits for Maltese and international clients. Services include SOC 2 GAP Assessments, SOC 2 Audit Assistance (Type I and II), and full SOC 2 Outsourcing programmes. RSM Malta's practice specifically targets service organisations in cloud, SaaS, fintech, and igaming sectors seeking to comply with EU outsourcing requirements and client due diligence obligations. Listed as a Tech.mt member company.
+      </div>
+      <div class="card-footer">
+        <span class="card-date">Active 2024 / 2025</span>
+        <a class="card-link" href="https://www.rsm.global/malta/service/governance-and-compliance/standards-and-regulations/soc-2-compliance-services" target="_blank">Source</a>
+      </div>
+    </div>
+
+    <!-- ── BDO Malta ── -->
+    <div class="company-card" data-tags="soc2 soc1 isae3402 tech" data-name="BDO Malta">
+      <div class="card-header">
+        <div>
+          <div class="company-name">BDO Malta</div>
+          <div class="company-sector">Professional Services · Audit · SOC 2+</div>
+        </div>
+        <div class="status-dot" title="Active SOC 2+ audit practice"></div>
+      </div>
+      <div class="tags">
+        <span class="tag soc2">SOC 2+</span>
+        <span class="tag isae3402">ISAE 3402</span>
+      </div>
+      <div class="card-body">
+        BDO Malta has developed a leading <strong>SOC 2+ assurance practice</strong>, helping Malta-based service providers exceed standard Trust Services Criteria compliance by incorporating additional frameworks (NIST, ISO, GDPR/CSRD, DORA). BDO advises that Type 2 attestation can be achieved in a minimum of 9 months using a pragmatic risk-based approach. This is particularly relevant to Malta's igaming B2B suppliers and fintech companies facing EU regulatory obligations. BDO is also listed as an active ISAE 3402 auditor for Maltese clients.
+      </div>
+      <div class="card-footer">
+        <span class="card-date">Active 2024 / 2025</span>
+        <a class="card-link" href="https://www.bdo.com.mt/en-gb/insights/soc-2-enhancing-your-existing-controls-assurance-reporting" target="_blank">Source</a>
+      </div>
+    </div>
+
+    <!-- ── Kambi Group ── -->
+    <div class="company-card" data-tags="igaming mga" data-name="Kambi Group Malta">
+      <div class="card-header">
+        <div>
+          <div class="company-name">Kambi Group</div>
+          <div class="company-sector">Sports Betting Technology · B2B iGaming · MGA Licensed</div>
+        </div>
+        <div class="status-dot pending" title="No public SOC audit confirmed — monitoring"></div>
+      </div>
+      <div class="tags">
+        <span class="tag iso27001">ISO 27001 (likely)</span>
+      </div>
+      <div class="card-body">
+        Kambi Group — a leading B2B sports-betting supplier with operations in Malta — serves over 40 regulated operator customers globally. As a critical infrastructure supplier under the MGA framework, Kambi is subject to B2B compliance standards. While <strong>no public SOC 2 or ISAE 3402 report has been confirmed</strong>, Kambi's annual reports reference comprehensive IT security governance and third-party due diligence processes consistent with ISO 27001. Any formal SOC attestation would likely be disclosed to MGA-licensed B2C clients under the MGA B2B Critical Supply licence framework. Status: under active monitoring.
+      </div>
+      <div class="card-footer">
+        <span class="card-date">Status: Monitoring 2025</span>
+        <a class="card-link" href="https://www.kambi.com" target="_blank">Website</a>
+      </div>
+    </div>
+
+    <!-- ── Arrise Solutions / Pragmatic Play ── -->
+    <div class="company-card" data-tags="igaming mga" data-name="Arrise Solutions Malta Pragmatic Play">
+      <div class="card-header">
+        <div>
+          <div class="company-name">Arrise Solutions (Malta) Ltd.</div>
+          <div class="company-sector">Casino Content · B2B iGaming · MGA Licensed</div>
+        </div>
+        <div class="status-dot pending" title="No public SOC audit confirmed — monitoring"></div>
+      </div>
+      <div class="tags">
+        <span class="tag iso27001">ISO Compliance (operational)</span>
+      </div>
+      <div class="card-body">
+        Arrise Solutions operates as the infrastructure and technology arm behind the Pragmatic Play brand — one of the world's largest B2B casino content providers, headquartered in Sliema, Malta. With operations spanning live casino studios, slots, and virtual sports, Arrise is subject to multiple regulatory frameworks. <strong>No public SOC 2, ISAE 3402, or ISAE 3000 audit report has been identified</strong> for the Malta entity. Given the scale of its B2B operations and MGA B2B Critical Supply licensing, formal third-party assurance engagement is expected. Status: under active monitoring.
+      </div>
+      <div class="card-footer">
+        <span class="card-date">Status: Monitoring 2025</span>
+        <a class="card-link" href="https://www.pragmaticplay.com/en/company-information/" target="_blank">Website</a>
+      </div>
+    </div>
+
+    <!-- ── Greentube Malta ── -->
+    <div class="company-card" data-tags="isae3402 igaming mga" data-name="Greentube Malta NOVOMATIC">
+      <div class="card-header">
+        <div>
+          <div class="company-name">Greentube Malta</div>
+          <div class="company-sector">Online Casino · B2B &amp; B2C iGaming · NOVOMATIC Group · MGA Licensed</div>
+        </div>
+        <div class="status-dot" title="Confirmed — LinkedIn announcement"></div>
+      </div>
+      <div class="tags">
+        <span class="tag isae3402">ISAE 3402</span>
+      </div>
+      <div class="card-body">
+        Greentube Malta — the iGaming arm of the NOVOMATIC Group, operating in Malta since 2006 across both B2C and B2B spheres — publicly announced achieving <strong>ISAE 3402 certification</strong> via a LinkedIn post by Greentube Malta in early 2023. The certification demonstrates that Greentube's internal control system for outsourced financial and operational processes meets the international assurance standard. Greentube Malta is one of the Greentube Group's key hubs, benefiting from Malta's MGA regulatory framework. <em>Note: this announcement was made exclusively on LinkedIn and was not picked up by web-indexed news portals, which is why it was initially missed in the research.</em>
+      </div>
+      <div class="card-footer">
+        <span class="card-date">Announced: Early 2023 (LinkedIn)</span>
+        <a class="card-link" href="https://www.linkedin.com/posts/greentube-malta_activity-7027262585779404801-Kfm-/" target="_blank">Source</a>
+      </div>
+    </div>
+
+  </div><!-- /cards-grid -->
+
+  <!-- ─── DISCLAIMER ─── -->
+  <!-- ─── MFSA REGULATORY CONTEXT ─── -->
+  <div class="section-header" style="margin-top:64px;">
+    <h2>MFSA-Regulated: Payment &amp; Trading Platforms</h2>
+    <div class="section-line"></div>
+  </div>
+
+  <div style="background:rgba(124,58,237,0.08);border:1px solid rgba(124,58,237,0.25);border-radius:16px;padding:24px 28px;margin-bottom:32px;">
+    <div style="font-family:'Syne',sans-serif;font-size:0.85rem;font-weight:700;color:#a78bfa;text-transform:uppercase;letter-spacing:0.07em;margin-bottom:10px;">⚖️ Regulatory Requirement — MFSA Investment Services Rules</div>
+    <p style="font-size:0.875rem;color:var(--muted);line-height:1.65;">
+      Under <strong style="color:var(--text);">Rule R1-1.12 (System Certification)</strong> of Part BI of the MFSA Investment Services Rules for MiFID Firms, and <strong style="color:var(--text);">Rule R13-13.6</strong> (Supplementary Rules for CFD/Rolling Spot Forex Trading Organisations), licence holders operating electronic trading systems must ensure those systems undergo <strong style="color:var(--text);">independent assessment</strong> by a qualified third party. Acceptable formats include ISAE 3000, ISAE 3402, SOC 2, PCI DSS (for payment flows), ISO 27001 surveillance audits, and bespoke regulatory assurance engagements commissioned under the MFSA Guidance on Technology Arrangements &amp; ICT. For payment institutions licensed under the Financial Institutions Act (FIR/02, FIR/03), equivalent independent IT audit obligations apply. The rule broadly mirrors Rule 14.6 of Part A (Binary Options / Trading Organisations) which requires systems to be independently tested and certified prior to live operation and following material updates.
+    </p>
+    <p style="font-size:0.8rem;color:var(--muted);margin-top:10px;">
+      Source: <a href="https://www.mfsa.mt/wp-content/uploads/2024/12/MFSA-Part-BI-Rule-Appliable-to-Investment-Services-Licence-Holders-which-Qualify-as-MIFID-Firms.pdf" target="_blank" style="color:#a78bfa;">MFSA Part BI Rules (December 2024)</a> · <a href="https://www.mfsa.mt/wp-content/uploads/2025/10/Investment-Services-Rule-for-Investment-Service-Providers-Part-A-The-Application-Process.pdf" target="_blank" style="color:#a78bfa;">Part A: The Application Process (October 2025)</a>
+    </p>
+  </div>
+
+  <div class="cards-grid" style="margin-bottom:64px;">
+
+    <!-- ── Deriv Investments ── -->
+    <div class="company-card" data-tags="soc2 payment trading mfsa" data-name="Deriv Investments Europe Malta">
+      <div class="card-header">
+        <div>
+          <div class="company-name">Deriv Investments (Europe) Limited</div>
+          <div class="company-sector">CFD / Forex Trading · MiFID · MFSA Category 2 Licence</div>
+        </div>
+        <div class="status-dot pending" title="Independent system assessment required — no public report confirmed"></div>
+      </div>
+      <div class="tags">
+        <span class="tag iso27001">PCI DSS (platform)</span>
+        <span class="tag iso27001">System Certification Required</span>
+      </div>
+      <div class="card-body">
+        Deriv Investments (Europe) Limited, headquartered in Birkirkara, Malta (W Business Centre, Triq Dun Karm), holds an MFSA Category 2 investment services licence for CFD and rolling spot forex trading — activities directly subject to <strong>Rule R13-13.6 system certification</strong>. As a trading organisation, Deriv is required to independently certify its electronic systems before live operation and following material updates. <strong>No public ISAE 3402 or SOC 2 report has been identified</strong>; however, Deriv's platform infrastructure relies on PCI DSS-compliant payment processing. The MFSA Group holds 2.5M+ users globally and processes $650B monthly volume. Status: under regulatory obligation — independent assessment required.
+      </div>
+      <div class="card-footer">
+        <span class="card-date">MFSA Licence: C 70156 · Monitoring 2025</span>
+        <a class="card-link" href="https://deriv.com/why-choose-us" target="_blank">Website</a>
+      </div>
+    </div>
+
+    <!-- ── Nuvei ── -->
+    <div class="company-card" data-tags="soc2 payment mfsa" data-name="Nuvei Malta payment processing">
+      <div class="card-header">
+        <div>
+          <div class="company-name">Nuvei Technologies (Malta)</div>
+          <div class="company-sector">Payment Processing · EMI / PI · MFSA Licensed</div>
+        </div>
+        <div class="status-dot" title="PCI DSS confirmed + SOC reports likely held under NDA"></div>
+      </div>
+      <div class="tags">
+        <span class="tag soc2">PCI DSS Level 1</span>
+        <span class="tag iso27001">MiCAR CASP (Dec 2025)</span>
+        <span class="tag isae3402">Independent Assessment</span>
+      </div>
+      <div class="card-body">
+        Nuvei, a global payment technology company with a licensed Malta entity, holds <strong>PCI DSS Level 1 certification</strong> — the highest tier of the Payment Card Industry Data Security Standard, requiring an annual independent Qualified Security Assessor (QSA) audit. Nuvei received a <strong>CASP licence under MiCAR from the MFSA in December 2025</strong>, enabling EU-wide crypto-asset services. As an MFSA-licensed payment institution, Nuvei is subject to FIR/02 and FIR/03 IT audit obligations. SOC 1/SOC 2 reports are standard for payment processors at this scale but are shared only under NDA. Nuvei also migrated its core infrastructure to Microsoft Azure in 2025 under a multi-year compliance programme.
+      </div>
+      <div class="card-footer">
+        <span class="card-date">PCI DSS — Annual · MiCAR CASP — Dec 2025</span>
+        <a class="card-link" href="https://www.nuvei.com/legal/licences-and-certifications" target="_blank">Source</a>
+      </div>
+    </div>
+
+    <!-- ── Paysafe Malta ── -->
+    <div class="company-card" data-tags="soc2 payment mfsa" data-name="Paysafe Malta payment institution">
+      <div class="card-header">
+        <div>
+          <div class="company-name">Paysafe Malta (Skrill / NETELLER)</div>
+          <div class="company-sector">E-Wallet · Payment Institution · MFSA Licensed EMI</div>
+        </div>
+        <div class="status-dot" title="PCI DSS + independent audit framework confirmed"></div>
+      </div>
+      <div class="tags">
+        <span class="tag soc2">SOC 2 (Group level)</span>
+        <span class="tag soc1">PCI DSS Level 1</span>
+        <span class="tag isae3402">ISAE 3000 (FIR/03 obligation)</span>
+      </div>
+      <div class="card-body">
+        Paysafe's Malta entities — operating the Skrill and NETELLER digital wallets — are authorised as Electronic Money Institutions under the MFSA's Financial Institutions Act. As EMIs, they are subject to <strong>FIR/03 ongoing audit requirements</strong> including independent IT control assessments. Paysafe Group plc maintains <strong>SOC 2 Type II and PCI DSS Level 1</strong> compliance at the group level, with these controls applying to Malta-licensed operations. Paysafe is one of the largest payment processors serving Malta's iGaming sector, processing payments for most major MGA-licensed operators. The group's audit programme satisfies the MFSA's expectation for independent verification of outsourced financial processing controls.
+      </div>
+      <div class="card-footer">
+        <span class="card-date">Ongoing — Group audit cycle 2024/2025</span>
+        <a class="card-link" href="https://www.paysafe.com/en-us/about/regulatory-compliance/" target="_blank">Source</a>
+      </div>
+    </div>
+
+    <!-- ── SafeCharge / Nuvei legacy ── -->
+    <div class="company-card" data-tags="payment mfsa" data-name="SafeCharge Malta payment">
+      <div class="card-header">
+        <div>
+          <div class="company-name">eToro (Europe) Ltd — Malta</div>
+          <div class="company-sector">Social Trading · CFD / Forex · MFSA MiFID Licence</div>
+        </div>
+        <div class="status-dot pending" title="System certification required — no public report confirmed"></div>
+      </div>
+      <div class="tags">
+        <span class="tag iso27001">System Cert Required (R13-13.6)</span>
+        <span class="tag iso27001">ISO 27001 (Group)</span>
+      </div>
+      <div class="card-body">
+        eToro (Europe) Ltd holds an MFSA investment services licence as a MiFID-compliant CFD and forex trading organisation, making it subject to <strong>Rule R13-13.6 system certification</strong> requirements. eToro's parent group maintains ISO 27001 information security certification and undergoes independent penetration testing and control assessments as part of its multi-jurisdictional regulatory programme (FCA, CySEC, ASIC, MFSA). <strong>No standalone ISAE 3402 or SOC 2 report has been publicly confirmed</strong> for the Malta entity specifically. eToro is regulated by the MFSA as part of its EU trading operations and is required to independently certify material system changes.
+      </div>
+      <div class="card-footer">
+        <span class="card-date">MFSA Regulated · System Cert Obligation Active</span>
+        <a class="card-link" href="https://www.etoro.com/en-us/trading/eto-regulation/" target="_blank">Website</a>
+      </div>
+    </div>
+
+    <!-- ── Bitstamp Malta ── -->
+    <div class="company-card" data-tags="soc2 payment mfsa trading" data-name="Bitstamp Malta crypto MiFID MTF">
+      <div class="card-header">
+        <div>
+          <div class="company-name">Bitstamp Europe S.A. (Malta MTF)</div>
+          <div class="company-sector">Crypto Exchange · MiFID MTF Licence · MFSA</div>
+        </div>
+        <div class="status-dot" title="SOC 2 confirmed at group level; MTF licence triggers system cert obligation"></div>
+      </div>
+      <div class="tags">
+        <span class="tag soc2">SOC 2 (Group)</span>
+        <span class="tag isae3402">System Certification (MTF)</span>
+        <span class="tag iso27001">ISO 27001</span>
+      </div>
+      <div class="card-body">
+        Bitstamp secured a landmark <strong>MiFID Multilateral Trading Facility (MTF) licence from the MFSA in October 2024</strong>, enabling crypto derivatives trading for institutional and retail EU clients. As an MTF operator, Bitstamp is subject to the MFSA's most rigorous system certification requirements under Rule R1-1.12 — including independent pre-live assessment of trading systems. Bitstamp Group holds <strong>SOC 2 and ISO 27001 certifications</strong>, and as a regulated exchange processes independent assurance as part of its compliance programme. The MFSA MTF licence was described by Bitstamp as a milestone reinforcing the evolution of crypto into mainstream regulated finance.
+      </div>
+      <div class="card-footer">
+        <span class="card-date">MTF Licence — October 2024 · SOC 2 ongoing</span>
+        <a class="card-link" href="https://www.bitstamp.net/about-us/regulation/" target="_blank">Source</a>
+      </div>
+    </div>
+
+  </div><!-- /mfsa cards-grid -->
+
+  <div class="disclaimer">
+    <h3>Data Sources &amp; Methodology</h3>
+    <p>
+      Company data was cross-referenced against the <strong>Tech.mt Members Directory</strong> (556 companies), the <strong>MGA Licensee Register</strong> (575 licensees), and the <strong>MFSA Investment Services Licence Holders</strong> register. MFSA regulatory context is drawn from the Investment Services Rules Part BI (December 2024) and Part A (October 2025), specifically Sections 12, 13, and 14 covering System Certification, CFD/Forex Trading Organisations, and Binary Options providers. SOC 2 and ISAE 3402 reports are confidential by nature and are typically shared only under NDA; this registry reflects only publicly disclosed information. Companies listed as "Monitoring" or "System Cert Required" have obligations but have not publicly confirmed the format of their independent assessments. PCI DSS Level 1 QSA audits are treated as equivalent to ISAE 3402 for payment processing control assurance. This page was last updated on 26 April 2026 and should not be relied upon for vendor due-diligence without independent verification.
+    </p>
+  </div>
+
+</div><!-- /wrapper -->
+
+<footer>
+  <div class="wrapper">
+    Built with public sources · Tech.mt &amp; MGA Licensee data · Last updated April 2026 ·
+    <a href="https://www.mga.org.mt/licensee-hub/licensee-register/" target="_blank">MGA Register</a> ·
+    <a href="https://tech.mt/members/" target="_blank">Tech.mt Members</a>
+  </div>
+</footer>
+
+<script>
+  let currentFilter = 'all';
+
+  function setFilter(tag, btn) {
+    currentFilter = tag;
+    document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    filterCards();
+  }
+
+  function filterCards() {
+    const query = document.getElementById('searchInput').value.toLowerCase();
+    document.querySelectorAll('.company-card').forEach(card => {
+      const tags = card.dataset.tags || '';
+      const name = (card.dataset.name || '').toLowerCase();
+      const content = card.innerText.toLowerCase();
+
+      const matchesFilter = currentFilter === 'all' || tags.includes(currentFilter);
+      const matchesSearch = !query || name.includes(query) || content.includes(query);
+
+      card.classList.toggle('hidden', !(matchesFilter && matchesSearch));
+    });
+  }
+</script>
+
+</body>
+</html>
