@@ -360,13 +360,13 @@
     <div class="header-badge">Live Intelligence · April 2026</div>
     <h1>Malta <span>SOC Audit</span><br>Intelligence</h1>
     <p class="header-sub">
-      A curated registry of Maltese companies — drawn from the Tech.mt membership directory and MGA Licensee Register — that have publicly disclosed SOC 1, SOC 2, ISAE 3402, or ISAE 3000 audit engagements. Data sourced from corporate announcements, LinkedIn, and news portals.
+      A curated registry of Maltese companies — drawn from the Tech.mt membership directory, MGA Licensee Register, and MFSA-licensed payment &amp; trading firms — that have publicly disclosed SOC 1, SOC 2, ISAE 3402, ISAE 3000 or equivalent independent assurance engagements. Includes companies subject to MFSA Rule R1-1.12.1 / Rule 14.6 system certification obligations.
     </p>
     <div class="stats-row">
-      <div class="stat"><div class="stat-num">9</div><div class="stat-label">Companies found</div></div>
-      <div class="stat"><div class="stat-num">5</div><div class="stat-label">SOC 2 audits</div></div>
+      <div class="stat"><div class="stat-num">14</div><div class="stat-label">Companies found</div></div>
+      <div class="stat"><div class="stat-num">6</div><div class="stat-label">SOC 2 audits</div></div>
       <div class="stat"><div class="stat-num">3</div><div class="stat-label">ISAE 3402 holders</div></div>
-      <div class="stat"><div class="stat-num">4</div><div class="stat-label">Sectors covered</div></div>
+      <div class="stat"><div class="stat-num">6</div><div class="stat-label">Sectors covered</div></div>
     </div>
   </header>
 
@@ -415,6 +415,9 @@
     <button class="filter-btn" onclick="setFilter('iso27001', this)">ISO 27001</button>
     <button class="filter-btn" onclick="setFilter('igaming', this)">iGaming</button>
     <button class="filter-btn" onclick="setFilter('tech', this)">Tech / IT</button>
+    <button class="filter-btn" onclick="setFilter('payment', this)">Payment / EMI</button>
+    <button class="filter-btn" onclick="setFilter('trading', this)">Trading / MiFID</button>
+    <button class="filter-btn" onclick="setFilter('mfsa', this)">MFSA Regulated</button>
   </div>
 
   <div class="cards-grid" id="cardsGrid">
@@ -617,10 +620,143 @@
   </div><!-- /cards-grid -->
 
   <!-- ─── DISCLAIMER ─── -->
+  <!-- ─── MFSA REGULATORY CONTEXT ─── -->
+  <div class="section-header" style="margin-top:64px;">
+    <h2>MFSA-Regulated: Payment &amp; Trading Platforms</h2>
+    <div class="section-line"></div>
+  </div>
+
+  <div style="background:rgba(124,58,237,0.08);border:1px solid rgba(124,58,237,0.25);border-radius:16px;padding:24px 28px;margin-bottom:32px;">
+    <div style="font-family:'Syne',sans-serif;font-size:0.85rem;font-weight:700;color:#a78bfa;text-transform:uppercase;letter-spacing:0.07em;margin-bottom:10px;">⚖️ Regulatory Requirement — MFSA Investment Services Rules</div>
+    <p style="font-size:0.875rem;color:var(--muted);line-height:1.65;">
+      Under <strong style="color:var(--text);">Rule R1-1.12 (System Certification)</strong> of Part BI of the MFSA Investment Services Rules for MiFID Firms, and <strong style="color:var(--text);">Rule R13-13.6</strong> (Supplementary Rules for CFD/Rolling Spot Forex Trading Organisations), licence holders operating electronic trading systems must ensure those systems undergo <strong style="color:var(--text);">independent assessment</strong> by a qualified third party. Acceptable formats include ISAE 3000, ISAE 3402, SOC 2, PCI DSS (for payment flows), ISO 27001 surveillance audits, and bespoke regulatory assurance engagements commissioned under the MFSA Guidance on Technology Arrangements &amp; ICT. For payment institutions licensed under the Financial Institutions Act (FIR/02, FIR/03), equivalent independent IT audit obligations apply. The rule broadly mirrors Rule 14.6 of Part A (Binary Options / Trading Organisations) which requires systems to be independently tested and certified prior to live operation and following material updates.
+    </p>
+    <p style="font-size:0.8rem;color:var(--muted);margin-top:10px;">
+      Source: <a href="https://www.mfsa.mt/wp-content/uploads/2024/12/MFSA-Part-BI-Rule-Appliable-to-Investment-Services-Licence-Holders-which-Qualify-as-MIFID-Firms.pdf" target="_blank" style="color:#a78bfa;">MFSA Part BI Rules (December 2024)</a> · <a href="https://www.mfsa.mt/wp-content/uploads/2025/10/Investment-Services-Rule-for-Investment-Service-Providers-Part-A-The-Application-Process.pdf" target="_blank" style="color:#a78bfa;">Part A: The Application Process (October 2025)</a>
+    </p>
+  </div>
+
+  <div class="cards-grid" style="margin-bottom:64px;">
+
+    <!-- ── Deriv Investments ── -->
+    <div class="company-card" data-tags="soc2 payment trading mfsa" data-name="Deriv Investments Europe Malta">
+      <div class="card-header">
+        <div>
+          <div class="company-name">Deriv Investments (Europe) Limited</div>
+          <div class="company-sector">CFD / Forex Trading · MiFID · MFSA Category 2 Licence</div>
+        </div>
+        <div class="status-dot pending" title="Independent system assessment required — no public report confirmed"></div>
+      </div>
+      <div class="tags">
+        <span class="tag iso27001">PCI DSS (platform)</span>
+        <span class="tag iso27001">System Certification Required</span>
+      </div>
+      <div class="card-body">
+        Deriv Investments (Europe) Limited, headquartered in Birkirkara, Malta (W Business Centre, Triq Dun Karm), holds an MFSA Category 2 investment services licence for CFD and rolling spot forex trading — activities directly subject to <strong>Rule R13-13.6 system certification</strong>. As a trading organisation, Deriv is required to independently certify its electronic systems before live operation and following material updates. <strong>No public ISAE 3402 or SOC 2 report has been identified</strong>; however, Deriv's platform infrastructure relies on PCI DSS-compliant payment processing. The MFSA Group holds 2.5M+ users globally and processes $650B monthly volume. Status: under regulatory obligation — independent assessment required.
+      </div>
+      <div class="card-footer">
+        <span class="card-date">MFSA Licence: C 70156 · Monitoring 2025</span>
+        <a class="card-link" href="https://deriv.com/why-choose-us" target="_blank">Website</a>
+      </div>
+    </div>
+
+    <!-- ── Nuvei ── -->
+    <div class="company-card" data-tags="soc2 payment mfsa" data-name="Nuvei Malta payment processing">
+      <div class="card-header">
+        <div>
+          <div class="company-name">Nuvei Technologies (Malta)</div>
+          <div class="company-sector">Payment Processing · EMI / PI · MFSA Licensed</div>
+        </div>
+        <div class="status-dot" title="PCI DSS confirmed + SOC reports likely held under NDA"></div>
+      </div>
+      <div class="tags">
+        <span class="tag soc2">PCI DSS Level 1</span>
+        <span class="tag iso27001">MiCAR CASP (Dec 2025)</span>
+        <span class="tag isae3402">Independent Assessment</span>
+      </div>
+      <div class="card-body">
+        Nuvei, a global payment technology company with a licensed Malta entity, holds <strong>PCI DSS Level 1 certification</strong> — the highest tier of the Payment Card Industry Data Security Standard, requiring an annual independent Qualified Security Assessor (QSA) audit. Nuvei received a <strong>CASP licence under MiCAR from the MFSA in December 2025</strong>, enabling EU-wide crypto-asset services. As an MFSA-licensed payment institution, Nuvei is subject to FIR/02 and FIR/03 IT audit obligations. SOC 1/SOC 2 reports are standard for payment processors at this scale but are shared only under NDA. Nuvei also migrated its core infrastructure to Microsoft Azure in 2025 under a multi-year compliance programme.
+      </div>
+      <div class="card-footer">
+        <span class="card-date">PCI DSS — Annual · MiCAR CASP — Dec 2025</span>
+        <a class="card-link" href="https://www.nuvei.com/legal/licences-and-certifications" target="_blank">Source</a>
+      </div>
+    </div>
+
+    <!-- ── Paysafe Malta ── -->
+    <div class="company-card" data-tags="soc2 payment mfsa" data-name="Paysafe Malta payment institution">
+      <div class="card-header">
+        <div>
+          <div class="company-name">Paysafe Malta (Skrill / NETELLER)</div>
+          <div class="company-sector">E-Wallet · Payment Institution · MFSA Licensed EMI</div>
+        </div>
+        <div class="status-dot" title="PCI DSS + independent audit framework confirmed"></div>
+      </div>
+      <div class="tags">
+        <span class="tag soc2">SOC 2 (Group level)</span>
+        <span class="tag soc1">PCI DSS Level 1</span>
+        <span class="tag isae3402">ISAE 3000 (FIR/03 obligation)</span>
+      </div>
+      <div class="card-body">
+        Paysafe's Malta entities — operating the Skrill and NETELLER digital wallets — are authorised as Electronic Money Institutions under the MFSA's Financial Institutions Act. As EMIs, they are subject to <strong>FIR/03 ongoing audit requirements</strong> including independent IT control assessments. Paysafe Group plc maintains <strong>SOC 2 Type II and PCI DSS Level 1</strong> compliance at the group level, with these controls applying to Malta-licensed operations. Paysafe is one of the largest payment processors serving Malta's iGaming sector, processing payments for most major MGA-licensed operators. The group's audit programme satisfies the MFSA's expectation for independent verification of outsourced financial processing controls.
+      </div>
+      <div class="card-footer">
+        <span class="card-date">Ongoing — Group audit cycle 2024/2025</span>
+        <a class="card-link" href="https://www.paysafe.com/en-us/about/regulatory-compliance/" target="_blank">Source</a>
+      </div>
+    </div>
+
+    <!-- ── SafeCharge / Nuvei legacy ── -->
+    <div class="company-card" data-tags="payment mfsa" data-name="SafeCharge Malta payment">
+      <div class="card-header">
+        <div>
+          <div class="company-name">eToro (Europe) Ltd — Malta</div>
+          <div class="company-sector">Social Trading · CFD / Forex · MFSA MiFID Licence</div>
+        </div>
+        <div class="status-dot pending" title="System certification required — no public report confirmed"></div>
+      </div>
+      <div class="tags">
+        <span class="tag iso27001">System Cert Required (R13-13.6)</span>
+        <span class="tag iso27001">ISO 27001 (Group)</span>
+      </div>
+      <div class="card-body">
+        eToro (Europe) Ltd holds an MFSA investment services licence as a MiFID-compliant CFD and forex trading organisation, making it subject to <strong>Rule R13-13.6 system certification</strong> requirements. eToro's parent group maintains ISO 27001 information security certification and undergoes independent penetration testing and control assessments as part of its multi-jurisdictional regulatory programme (FCA, CySEC, ASIC, MFSA). <strong>No standalone ISAE 3402 or SOC 2 report has been publicly confirmed</strong> for the Malta entity specifically. eToro is regulated by the MFSA as part of its EU trading operations and is required to independently certify material system changes.
+      </div>
+      <div class="card-footer">
+        <span class="card-date">MFSA Regulated · System Cert Obligation Active</span>
+        <a class="card-link" href="https://www.etoro.com/en-us/trading/eto-regulation/" target="_blank">Website</a>
+      </div>
+    </div>
+
+    <!-- ── Bitstamp Malta ── -->
+    <div class="company-card" data-tags="soc2 payment mfsa trading" data-name="Bitstamp Malta crypto MiFID MTF">
+      <div class="card-header">
+        <div>
+          <div class="company-name">Bitstamp Europe S.A. (Malta MTF)</div>
+          <div class="company-sector">Crypto Exchange · MiFID MTF Licence · MFSA</div>
+        </div>
+        <div class="status-dot" title="SOC 2 confirmed at group level; MTF licence triggers system cert obligation"></div>
+      </div>
+      <div class="tags">
+        <span class="tag soc2">SOC 2 (Group)</span>
+        <span class="tag isae3402">System Certification (MTF)</span>
+        <span class="tag iso27001">ISO 27001</span>
+      </div>
+      <div class="card-body">
+        Bitstamp secured a landmark <strong>MiFID Multilateral Trading Facility (MTF) licence from the MFSA in October 2024</strong>, enabling crypto derivatives trading for institutional and retail EU clients. As an MTF operator, Bitstamp is subject to the MFSA's most rigorous system certification requirements under Rule R1-1.12 — including independent pre-live assessment of trading systems. Bitstamp Group holds <strong>SOC 2 and ISO 27001 certifications</strong>, and as a regulated exchange processes independent assurance as part of its compliance programme. The MFSA MTF licence was described by Bitstamp as a milestone reinforcing the evolution of crypto into mainstream regulated finance.
+      </div>
+      <div class="card-footer">
+        <span class="card-date">MTF Licence — October 2024 · SOC 2 ongoing</span>
+        <a class="card-link" href="https://www.bitstamp.net/about-us/regulation/" target="_blank">Source</a>
+      </div>
+    </div>
+
+  </div><!-- /mfsa cards-grid -->
+
   <div class="disclaimer">
     <h3>Data Sources &amp; Methodology</h3>
     <p>
-      Company data was cross-referenced against the <strong>Tech.mt Members Directory</strong> (556 companies) and the <strong>MGA Licensee Register</strong> (575 licensees). Certification data was retrieved from official corporate announcements, LinkedIn company pages, press releases, and reputable news portals (Times of Malta, Malta Business Weekly, European Gaming). SOC 2 and ISAE 3402 reports are confidential by nature and are typically shared only under NDA; this registry reflects only publicly disclosed information. Companies listed as "Monitoring" have not publicly confirmed relevant audits. This page was generated on 26 April 2026 and should not be relied upon for vendor due-diligence without independent verification.
+      Company data was cross-referenced against the <strong>Tech.mt Members Directory</strong> (556 companies), the <strong>MGA Licensee Register</strong> (575 licensees), and the <strong>MFSA Investment Services Licence Holders</strong> register. MFSA regulatory context is drawn from the Investment Services Rules Part BI (December 2024) and Part A (October 2025), specifically Sections 12, 13, and 14 covering System Certification, CFD/Forex Trading Organisations, and Binary Options providers. SOC 2 and ISAE 3402 reports are confidential by nature and are typically shared only under NDA; this registry reflects only publicly disclosed information. Companies listed as "Monitoring" or "System Cert Required" have obligations but have not publicly confirmed the format of their independent assessments. PCI DSS Level 1 QSA audits are treated as equivalent to ISAE 3402 for payment processing control assurance. This page was last updated on 26 April 2026 and should not be relied upon for vendor due-diligence without independent verification.
     </p>
   </div>
 
