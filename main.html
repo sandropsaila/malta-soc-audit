@@ -493,6 +493,7 @@
     <a class="nav-link" href="#mfsa">MFSA Rules</a>
     <a class="nav-link" href="#methodology">Methodology</a>
     <a class="nav-link" href="./providers.html" style="color:var(--red);border-bottom-color:transparent;">SOC Providers →</a>
+    <a class="nav-link" href="./analytics.html" style="color:var(--blue);border-bottom-color:transparent;">Sector Analytics →</a>
   </div>
 </nav>
 
@@ -547,7 +548,7 @@
     <div class="toolbar">
       <div class="search-wrap">
         <svg class="search-icon" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
-        <input type="text" id="searchInput" placeholder="Search company, sector or certification…" oninput="filterTable()"/>
+        <input type="text" id="searchInput" placeholder="Search by name, sector, cert, auditor, licence type…" oninput="filterTable()"/>
       </div>
       <div class="filter-pills">
         <span class="filter-label">Filter:</span>
@@ -811,23 +812,98 @@ CO.forEach((c,i)=>{
   tbody.appendChild(tr);
 });
 
+/* ── SEARCH ALIASES & SYNONYMS ───────────────────────────────── */
+const ALIASES = {
+  'crypto exchange': ['crypto','exchange','defi','web3','digital asset','bitcoin','blockchain'],
+  'soc2': ['soc 2','soc2','service organization control 2','isae 3000'],
+  'soc1': ['soc 1','soc1','isae 3402','isae3402'],
+  'igaming': ['igaming','i-gaming','online gaming','casino','sports betting','gambling','mga'],
+  'payment': ['payment','psp','emi','e-money','electronic money','fintech','wallet'],
+  'mifid': ['mifid','mifi','mifidii','investment services','cfd','forex','derivatives','mtf','trading'],
+  'mfsa': ['mfsa','malta financial','investment services','casp','vasp','vfa','mica','micar'],
+  'confirmed': ['confirmed','certified','attested','achieved','completed'],
+  'monitoring': ['monitoring','pending','obligation','expected'],
+  'deloitte': ['deloitte'],
+  'tech': ['technology','software','cloud','data centre','datacenter','backup','cyber','saas'],
+  'unibet': ['unibet','kindred'],
+  'crypto.com': ['foris','foris dax','crypto.com','cryptocom'],
+  'greentube': ['greentube','novomatic'],
+  'bitstamp': ['bitstamp'],
+};
+
+function buildSearchIndex(c) {
+  // Rich token set: name, sector, body text, cert labels, kicker, tags, date
+  const raw = [
+    c.name, c.sector, c.body.replace(/<[^>]+>/g,''), c.kicker, c.date,
+    c.tags.join(' '),
+    c.certs.map(x=>x.l).join(' '),
+    c.statusLabel
+  ].join(' ').toLowerCase();
+  return raw;
+}
+
 /* ── FILTER / SEARCH ─────────────────────────────────────────── */
 let cur='all';
+// Pre-build search index
+const SEARCH_IDX = CO.map(buildSearchIndex);
+
+function expandQuery(q) {
+  // Tokenise and expand with aliases
+  const tokens = q.toLowerCase().trim().split(/\s+/).filter(Boolean);
+  const expanded = new Set(tokens);
+  tokens.forEach(tok => {
+    Object.entries(ALIASES).forEach(([key, syns]) => {
+      if (key.includes(tok) || tok.includes(key) || syns.some(s=>s.includes(tok)||tok.includes(s))) {
+        expanded.add(key);
+        syns.forEach(s=>expanded.add(s));
+      }
+    });
+  });
+  return [...expanded];
+}
+
+function scoreMatch(idx, tokens) {
+  // Returns number of matching tokens (higher = better match)
+  return tokens.filter(t => idx.includes(t)).length;
+}
+
 function setFilter(t,btn){
   cur=t;
   document.querySelectorAll('.fpill').forEach(b=>b.classList.remove('active'));
   btn.classList.add('active');
   filterTable();
 }
+
 function filterTable(){
-  const q=document.getElementById('searchInput').value.toLowerCase();
-  document.querySelectorAll('#tBody tr').forEach(tr=>{
-    const c=CO[+tr.dataset.i];
-    const text=(c.name+' '+c.sector+' '+c.certs.map(x=>x.l).join(' ')).toLowerCase();
-    const mf=cur==='all'||tr.dataset.tags.includes(cur);
-    const ms=!q||text.includes(q);
-    tr.classList.toggle('hr',!(mf&&ms));
+  const raw = document.getElementById('searchInput').value.trim();
+  const tokens = raw.length > 0 ? expandQuery(raw) : [];
+  const rows = document.querySelectorAll('#tBody tr');
+
+  rows.forEach(tr=>{
+    const i = +tr.dataset.i;
+    const c = CO[i];
+    const idx = SEARCH_IDX[i];
+    const tags = tr.dataset.tags;
+
+    // Filter pill must match
+    const mf = cur==='all' || tags.includes(cur);
+
+    // Search: show if any expanded token matches (OR logic), hide if no match at all
+    const ms = tokens.length===0 || scoreMatch(idx, tokens) > 0;
+
+    tr.classList.toggle('hr', !(mf && ms));
   });
+
+  // Show "no results" hint if all hidden
+  const visible = [...rows].filter(r=>!r.classList.contains('hr'));
+  let hint = document.getElementById('noResults');
+  if (!hint) {
+    hint = document.createElement('tr');
+    hint.id='noResults';
+    hint.innerHTML=`<td colspan="5" style="text-align:center;padding:28px;color:var(--grey-3);font-size:.85rem;">No companies match your search. Try a different term or clear the filter.</td>`;
+    document.getElementById('tBody').appendChild(hint);
+  }
+  hint.style.display = visible.length===0 ? '' : 'none';
 }
 
 /* ── MODAL ───────────────────────────────────────────────────── */

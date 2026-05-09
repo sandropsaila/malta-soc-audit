@@ -1,8 +1,9 @@
 {
   "version": 2,
   "builds": [
-    { "src": "index.html",    "use": "@vercel/static" },
-    { "src": "main.html",     "use": "@vercel/static" },
-    { "src": "providers.html","use": "@vercel/static" }
+    { "src": "index.html",     "use": "@vercel/static" },
+    { "src": "main.html",      "use": "@vercel/static" },
+    { "src": "providers.html", "use": "@vercel/static" },
+    { "src": "analytics.html", "use": "@vercel/static" }
   ]
 }

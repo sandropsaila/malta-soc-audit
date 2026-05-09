@@ -1,0 +1,482 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+  <title>Malta SOC Sector Analytics · Independent Assurance Intelligence</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;800&family=Source+Sans+3:ital,wght@0,300;0,400;0,600;0,700;1,400&display=swap" rel="stylesheet"/>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
+  <style>
+    :root{
+      --red:#BB1919;--red-dark:#8B1010;
+      --black:#0d0d0d;--ink:#1a1a1a;
+      --grey-1:#f5f5f5;--grey-2:#e0e0e0;--grey-3:#9a9a9a;--grey-4:#6d6d6d;
+      --white:#ffffff;--border:#d0d0d0;
+      --green:#1a7a3f;--blue:#0a5eb0;--amber:#b35a00;
+      --max:1140px;--pad:20px;
+    }
+    *,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
+    html{scroll-behavior:smooth;}
+    body{background:var(--grey-1);color:var(--ink);font-family:'Source Sans 3',sans-serif;font-size:16px;line-height:1.6;}
+
+    /* TOP BAR */
+    .topbar{background:var(--black);position:sticky;top:0;z-index:200;}
+    .topbar-inner{max-width:var(--max);margin:0 auto;padding:0 var(--pad);height:52px;display:flex;align-items:center;}
+    .logo-blocks{display:flex;gap:3px;flex-shrink:0;}
+    .logo-block{width:28px;height:28px;background:var(--white);display:flex;align-items:center;justify-content:center;font-weight:700;font-size:14px;letter-spacing:-.5px;color:var(--black);}
+    .topbar-divider{width:1px;height:28px;background:#3a3a3a;margin:0 16px;}
+    .topbar-label{color:#9a9a9a;font-size:.75rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;}
+    .topbar-right{margin-left:auto;display:flex;align-items:center;gap:20px;}
+    .topbar-date{color:#666;font-size:.72rem;font-weight:300;}
+    .topbar-badge{background:var(--blue);color:var(--white);font-size:.65rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;padding:3px 8px;border-radius:1px;}
+    .red-strip{background:var(--red);height:3px;}
+
+    /* NAV */
+    nav{background:var(--white);border-bottom:1px solid var(--border);}
+    .nav-inner{max-width:var(--max);margin:0 auto;padding:0 var(--pad);display:flex;align-items:center;overflow-x:auto;scrollbar-width:none;}
+    .nav-inner::-webkit-scrollbar{display:none;}
+    .nav-link{display:block;padding:14px 16px;font-size:.82rem;font-weight:600;color:var(--grey-4);text-decoration:none;white-space:nowrap;border-bottom:3px solid transparent;transition:color .15s,border-color .15s;}
+    .nav-link:hover{color:var(--ink);}
+    .nav-link.active{color:var(--blue);border-bottom-color:var(--blue);}
+
+    /* LAYOUT */
+    .page{max-width:var(--max);margin:0 auto;padding:0 var(--pad);}
+
+    /* HERO */
+    .hero{background:var(--white);border-bottom:1px solid var(--border);padding:40px 0 36px;margin-bottom:32px;}
+    .hero-inner{max-width:var(--max);margin:0 auto;padding:0 var(--pad);}
+    .hero-kicker{display:inline-flex;align-items:center;gap:8px;font-size:.72rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--blue);margin-bottom:14px;}
+    .hero-kicker::before{content:'';display:block;width:18px;height:2px;background:var(--blue);}
+    h1{font-family:'Playfair Display',serif;font-size:clamp(1.9rem,4vw,3rem);font-weight:800;line-height:1.1;color:var(--black);margin-bottom:12px;letter-spacing:-.02em;}
+    .hero-sub{font-size:1rem;color:var(--grey-4);font-weight:300;max-width:680px;line-height:1.65;margin-bottom:28px;}
+    .back-link{display:inline-flex;align-items:center;gap:6px;color:var(--red);font-size:.82rem;font-weight:600;text-decoration:none;border-bottom:1px solid transparent;transition:border-color .15s;}
+    .back-link:hover{border-bottom-color:var(--red);}
+    .back-link::before{content:'←';}
+
+    /* STATS */
+    .stats-row{display:flex;flex-wrap:wrap;gap:1px;background:var(--border);}
+    .stat{background:var(--white);padding:18px 28px;flex:1;min-width:130px;}
+    .stat-num{font-family:'Playfair Display',serif;font-size:2.2rem;font-weight:700;color:var(--blue);line-height:1;}
+    .stat-label{font-size:.72rem;font-weight:600;color:var(--grey-4);letter-spacing:.06em;text-transform:uppercase;margin-top:4px;}
+
+    /* SECTION HEAD */
+    .sec-head{display:flex;align-items:center;gap:14px;margin:36px 0 20px;}
+    .sec-head h2{font-family:'Playfair Display',serif;font-size:1.35rem;font-weight:700;color:var(--black);padding-left:14px;border-left:4px solid var(--blue);line-height:1.2;}
+    .sec-line{flex:1;height:1px;background:var(--border);}
+
+    /* CHART GRID */
+    .chart-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(480px,1fr));gap:24px;margin-bottom:40px;}
+    .chart-card{background:var(--white);border:1px solid var(--border);border-top:3px solid var(--blue);border-radius:2px;padding:28px;}
+    .chart-card.full{grid-column:1/-1;}
+    .chart-title{font-family:'Playfair Display',serif;font-size:1.05rem;font-weight:700;color:var(--black);margin-bottom:4px;}
+    .chart-sub{font-size:.78rem;color:var(--grey-3);margin-bottom:20px;}
+    .chart-wrap{position:relative;width:100%;height:280px;}
+    .chart-wrap.tall{height:340px;}
+    .chart-wrap.pie{height:300px;max-width:400px;margin:0 auto;}
+
+    /* KEY FINDINGS */
+    .findings-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:16px;margin-bottom:40px;}
+    .finding{background:var(--white);border:1px solid var(--border);border-left:4px solid var(--blue);border-radius:2px;padding:18px 20px;}
+    .finding-num{font-family:'Playfair Display',serif;font-size:2rem;font-weight:800;color:var(--blue);line-height:1;margin-bottom:4px;}
+    .finding-label{font-size:.78rem;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--black);margin-bottom:6px;}
+    .finding-desc{font-size:.82rem;color:var(--grey-4);line-height:1.55;}
+
+    /* DISCLAIMER */
+    .disclaimer{background:var(--grey-1);border:1px solid var(--border);border-radius:2px;padding:22px 24px;margin-bottom:40px;}
+    .disclaimer h3{font-size:.72rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--grey-3);margin-bottom:8px;}
+    .disclaimer p{font-size:.82rem;color:var(--grey-4);line-height:1.65;}
+
+    /* FOOTER */
+    .site-footer{background:var(--black);color:#555;padding:28px var(--pad);}
+    .footer-inner{max-width:var(--max);margin:0 auto;display:flex;flex-wrap:wrap;gap:20px;align-items:center;justify-content:space-between;}
+    .footer-copy{font-size:.75rem;line-height:1.6;}
+    .footer-links{display:flex;gap:20px;flex-wrap:wrap;}
+    .footer-links a{color:#666;font-size:.75rem;text-decoration:none;transition:color .15s;}
+    .footer-links a:hover{color:#9a9a9a;}
+
+    @media(max-width:640px){
+      .chart-grid{grid-template-columns:1fr;}
+      .chart-card.full{grid-column:auto;}
+      .chart-wrap{height:220px;}
+      .chart-wrap.tall{height:280px;}
+    }
+  </style>
+</head>
+<body>
+
+<!-- TOP BAR -->
+<div class="topbar">
+  <div class="topbar-inner">
+    <div class="logo-blocks">
+      <div class="logo-block">M</div>
+      <div class="logo-block">S</div>
+      <div class="logo-block">I</div>
+    </div>
+    <div class="topbar-divider"></div>
+    <span class="topbar-label">Malta SOC Intelligence</span>
+    <div class="topbar-right">
+      <span class="topbar-date">Updated May 2026</span>
+      <span class="topbar-badge">Analytics</span>
+    </div>
+  </div>
+</div>
+<div class="red-strip"></div>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-inner">
+    <a class="nav-link" href="./main.html">← Registry</a>
+    <a class="nav-link active" href="#">Sector Analytics</a>
+    <a class="nav-link" href="#findings">Key Findings</a>
+    <a class="nav-link" href="#charts">Charts</a>
+    <a class="nav-link" href="./providers.html" style="color:var(--red);">SOC Providers →</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-inner">
+    <div style="margin-bottom:16px;"><a class="back-link" href="./main.html">Back to Company Registry</a></div>
+    <div class="hero-kicker">Malta · SOC &amp; ISAE · Sector Intelligence</div>
+    <h1>Sector Analytics &amp;<br>Audit Trends</h1>
+    <p class="hero-sub">
+      Visual analysis of which Malta sectors are adopting SOC 1, SOC 2, ISAE 3402 and ISAE 3000 independent assurance reports, which frameworks dominate, and how the regulatory landscape shapes audit obligations across iGaming, fintech, crypto, and IT infrastructure.
+    </p>
+    <div class="stats-row">
+      <div class="stat"><div class="stat-num">14</div><div class="stat-label">Companies Analysed</div></div>
+      <div class="stat"><div class="stat-num">6</div><div class="stat-label">Sectors Mapped</div></div>
+      <div class="stat"><div class="stat-num">4</div><div class="stat-label">Frameworks Tracked</div></div>
+      <div class="stat"><div class="stat-num">8</div><div class="stat-label">SOC 2 Holders</div></div>
+    </div>
+  </div>
+</div>
+
+<div class="page">
+
+  <!-- KEY FINDINGS -->
+  <div id="findings">
+    <div class="sec-head"><h2>Key Findings</h2><div class="sec-line"></div></div>
+    <div class="findings-grid">
+      <div class="finding">
+        <div class="finding-num">57%</div>
+        <div class="finding-label">SOC 2 Dominance</div>
+        <div class="finding-desc">8 of 14 companies hold or are working toward SOC 2, making it the most prevalent framework across Malta's regulated sectors — driven by crypto exchange MiCA requirements and iGaming B2B supplier due diligence.</div>
+      </div>
+      <div class="finding">
+        <div class="finding-num">5</div>
+        <div class="finding-label">Crypto / MiCA Entities</div>
+        <div class="finding-desc">Crypto &amp; trading is the fastest-growing sector — Gemini, Crypto.com, Bitstamp and Nuvei all hold MFSA MiCA or MiFID licences that directly trigger DORA and system certification obligations.</div>
+      </div>
+      <div class="finding" style="border-left-color:var(--green);">
+        <div class="finding-num" style="color:var(--green);">3</div>
+        <div class="finding-label">ISAE 3402 Holders</div>
+        <div class="finding-desc">ISAE 3402 remains the standard of choice for iGaming operators (Greentube) and IT infrastructure providers (Hornetsecurity) that need to demonstrate financial control assurance to B2B clients and fund administrators.</div>
+      </div>
+      <div class="finding" style="border-left-color:var(--amber);">
+        <div class="finding-num" style="color:var(--amber);">4</div>
+        <div class="finding-label">Obligation — No Public Report</div>
+        <div class="finding-desc">4 MFSA-licensed firms (Deriv, eToro, Kambi, Arrise) have clear regulatory obligations under R13-13.6 or MGA B2B rules but have not publicly disclosed independent assurance reports — a notable gap.</div>
+      </div>
+      <div class="finding" style="border-left-color:var(--red);">
+        <div class="finding-num" style="color:var(--red);">100%</div>
+        <div class="finding-label">Deloitte in Crypto</div>
+        <div class="finding-desc">Every confirmed SOC audit in the crypto/exchange sector was conducted by Deloitte — reflecting the Big-4 firm's dominant position in crypto-native assurance for AICPA and IAASB standards globally.</div>
+      </div>
+      <div class="finding" style="border-left-color:#6b3a9e;">
+        <div class="finding-num" style="color:#6b3a9e;">2025</div>
+        <div class="finding-label">DORA Inflection Point</div>
+        <div class="finding-desc">The EU's Digital Operational Resilience Act (DORA) — in force January 2025 — is expected to drive a wave of new ISAE 3000 and SOC 2 engagements from MFSA-licensed payment institutions and investment firms in 2026.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- CHARTS -->
+  <div id="charts">
+    <div class="sec-head"><h2>Charts &amp; Visualisations</h2><div class="sec-line"></div></div>
+
+    <div class="chart-grid">
+
+      <!-- 1. Companies by sector (bar) -->
+      <div class="chart-card">
+        <div class="chart-title">Companies by Sector</div>
+        <div class="chart-sub">Distribution of the 14 identified companies across Malta's key regulated sectors</div>
+        <div class="chart-wrap">
+          <canvas id="chartSector"></canvas>
+        </div>
+      </div>
+
+      <!-- 2. Framework breakdown (doughnut) -->
+      <div class="chart-card">
+        <div class="chart-title">Audit Framework Breakdown</div>
+        <div class="chart-sub">Which SOC/ISAE frameworks are held by Malta companies (companies may hold multiple)</div>
+        <div class="chart-wrap pie">
+          <canvas id="chartFramework"></canvas>
+        </div>
+      </div>
+
+      <!-- 3. Certification status by company (horizontal bar) — full width -->
+      <div class="chart-card full">
+        <div class="chart-title">Certification Status by Company</div>
+        <div class="chart-sub">Number of distinct audit frameworks held per company — confirmed engagements only</div>
+        <div class="chart-wrap tall">
+          <canvas id="chartCompany"></canvas>
+        </div>
+      </div>
+
+      <!-- 4. SOC adoption by sector (grouped bar) -->
+      <div class="chart-card">
+        <div class="chart-title">SOC 2 vs ISAE 3402 by Sector</div>
+        <div class="chart-sub">Which frameworks each sector tends to adopt in Malta</div>
+        <div class="chart-wrap">
+          <canvas id="chartSectorFramework"></canvas>
+        </div>
+      </div>
+
+      <!-- 5. Regulatory driver (pie) -->
+      <div class="chart-card">
+        <div class="chart-title">Primary Regulatory Driver</div>
+        <div class="chart-sub">What is pushing Malta companies to obtain independent assurance reports</div>
+        <div class="chart-wrap pie">
+          <canvas id="chartDriver"></canvas>
+        </div>
+      </div>
+
+      <!-- 6. Timeline of confirmed engagements (line) — full width -->
+      <div class="chart-card full">
+        <div class="chart-title">Confirmed Engagements Timeline</div>
+        <div class="chart-sub">Year of first publicly confirmed SOC / ISAE engagement for each company in the registry</div>
+        <div class="chart-wrap">
+          <canvas id="chartTimeline"></canvas>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="disclaimer">
+    <h3>Notes on Methodology</h3>
+    <p>Analysis is based on 14 companies identified across the Tech.mt Members Directory, MGA Licensee Register, and MFSA Investment Services register. Companies holding multiple certifications are counted in each applicable framework category. "Monitoring" companies (no public report confirmed) are excluded from confirmed counts but included in sector totals. Timeline dates reflect the year of first publicly confirmed or announced engagement. Data correct as of May 2026.</p>
+  </div>
+
+  <div style="margin-bottom:40px;">
+    <a class="back-link" href="./main.html">Return to Company Registry</a>
+  </div>
+
+</div>
+
+<footer class="site-footer">
+  <div class="footer-inner">
+    <div class="footer-copy">Malta SOC Audit Intelligence · Sector Analytics · &copy; 2026</div>
+    <div class="footer-links">
+      <a href="./main.html">Company Registry</a>
+      <a href="./providers.html">SOC Providers</a>
+      <a href="https://www.mfsa.mt" target="_blank">MFSA</a>
+    </div>
+  </div>
+</footer>
+
+<script>
+// ── CHART DEFAULTS ────────────────────────────────────────────
+Chart.defaults.font.family = "'Source Sans 3', sans-serif";
+Chart.defaults.font.size = 12;
+Chart.defaults.color = '#6d6d6d';
+Chart.defaults.plugins.legend.labels.boxWidth = 14;
+Chart.defaults.plugins.legend.labels.padding = 16;
+
+const RED    = '#BB1919';
+const BLUE   = '#0a5eb0';
+const GREEN  = '#1a7a3f';
+const AMBER  = '#b35a00';
+const PURPLE = '#6b3a9e';
+const TEAL   = '#0e7490';
+const GREY   = '#9a9a9a';
+
+// ── 1. SECTOR BAR ────────────────────────────────────────────
+new Chart(document.getElementById('chartSector'), {
+  type: 'bar',
+  data: {
+    labels: ['iGaming / MGA', 'Crypto / MiCA', 'Payment / EMI', 'IT / Cloud / Cyber', 'Trading / MiFID', 'Professional Svcs'],
+    datasets: [{
+      label: 'Companies',
+      data: [4, 3, 3, 2, 2, 0],
+      backgroundColor: [RED, BLUE, GREEN, AMBER, PURPLE, GREY],
+      borderRadius: 3,
+      borderSkipped: false,
+    }]
+  },
+  options: {
+    responsive: true, maintainAspectRatio: false,
+    plugins: { legend: { display: false }, tooltip: { callbacks: { label: ctx => ` ${ctx.parsed.y} companies` } } },
+    scales: {
+      y: { beginAtZero: true, ticks: { stepSize: 1 }, grid: { color: '#f0f0f0' } },
+      x: { grid: { display: false } }
+    }
+  }
+});
+
+// ── 2. FRAMEWORK DOUGHNUT ────────────────────────────────────
+new Chart(document.getElementById('chartFramework'), {
+  type: 'doughnut',
+  data: {
+    labels: ['SOC 2 / ISAE 3000', 'SOC 1', 'ISAE 3402', 'PCI DSS Level 1', 'ISO 27001 only'],
+    datasets: [{
+      data: [8, 4, 3, 2, 1],
+      backgroundColor: [BLUE, PURPLE, GREEN, RED, GREY],
+      borderWidth: 2,
+      borderColor: '#fff',
+    }]
+  },
+  options: {
+    responsive: true, maintainAspectRatio: false,
+    cutout: '62%',
+    plugins: {
+      legend: { position: 'bottom', labels: { padding: 12 } },
+      tooltip: { callbacks: { label: ctx => ` ${ctx.label}: ${ctx.parsed} companies` } }
+    }
+  }
+});
+
+// ── 3. COMPANY HORIZONTAL BAR ────────────────────────────────
+new Chart(document.getElementById('chartCompany'), {
+  type: 'bar',
+  data: {
+    labels: [
+      'Hornetsecurity (Altaro)', 'Paysafe (Skrill/NETELLER)',
+      'Gemini (EU Artemis)', 'Crypto.com (Foris DAX MT)',
+      'Bitstamp (Malta MTF)', 'Nuvei Technologies',
+      'BMIT Technologies', 'Kindred (Unibet)',
+      'Greentube Malta', 'Betsson Group',
+    ],
+    datasets: [{
+      label: 'Confirmed Frameworks',
+      data: [4, 3, 4, 3, 3, 3, 2, 1, 1, 1],
+      backgroundColor: [
+        BLUE,BLUE,BLUE,BLUE,BLUE,BLUE,GREEN,GREEN,AMBER,GREY
+      ],
+      borderRadius: 3,
+      borderSkipped: false,
+    }]
+  },
+  options: {
+    indexAxis: 'y',
+    responsive: true, maintainAspectRatio: false,
+    plugins: { legend: { display: false }, tooltip: { callbacks: { label: ctx => ` ${ctx.parsed.x} frameworks` } } },
+    scales: {
+      x: { beginAtZero: true, ticks: { stepSize: 1 }, grid: { color: '#f0f0f0' } },
+      y: { grid: { display: false }, ticks: { font: { size: 11 } } }
+    }
+  }
+});
+
+// ── 4. SECTOR × FRAMEWORK GROUPED BAR ────────────────────────
+new Chart(document.getElementById('chartSectorFramework'), {
+  type: 'bar',
+  data: {
+    labels: ['iGaming / MGA', 'Crypto / MiCA', 'Payment / EMI', 'IT / Cloud', 'Trading / MiFID'],
+    datasets: [
+      {
+        label: 'SOC 2',
+        data: [1, 3, 2, 1, 1],
+        backgroundColor: BLUE, borderRadius: 2,
+      },
+      {
+        label: 'ISAE 3402',
+        data: [1, 0, 1, 1, 0],
+        backgroundColor: GREEN, borderRadius: 2,
+      },
+      {
+        label: 'SOC 1',
+        data: [0, 2, 1, 1, 0],
+        backgroundColor: PURPLE, borderRadius: 2,
+      },
+      {
+        label: 'PCI DSS / Other',
+        data: [0, 0, 2, 0, 0],
+        backgroundColor: RED, borderRadius: 2,
+      }
+    ]
+  },
+  options: {
+    responsive: true, maintainAspectRatio: false,
+    plugins: { legend: { position: 'bottom' } },
+    scales: {
+      y: { beginAtZero: true, ticks: { stepSize: 1 }, grid: { color: '#f0f0f0' }, stacked: false },
+      x: { grid: { display: false } }
+    }
+  }
+});
+
+// ── 5. REGULATORY DRIVER PIE ─────────────────────────────────
+new Chart(document.getElementById('chartDriver'), {
+  type: 'pie',
+  data: {
+    labels: [
+      'MiCA / MFSA CASP Obligation',
+      'MGA B2B Client Due Diligence',
+      'MiFID II / R13-13.6 System Cert',
+      'DORA / FIR/03 EMI Requirement',
+      'Voluntary / Market Differentiation',
+    ],
+    datasets: [{
+      data: [4, 3, 3, 2, 2],
+      backgroundColor: [BLUE, RED, PURPLE, GREEN, AMBER],
+      borderWidth: 2, borderColor: '#fff',
+    }]
+  },
+  options: {
+    responsive: true, maintainAspectRatio: false,
+    plugins: {
+      legend: { position: 'bottom', labels: { padding: 10, font: { size: 11 } } },
+      tooltip: { callbacks: { label: ctx => ` ${ctx.label}: ${ctx.parsed} companies` } }
+    }
+  }
+});
+
+// ── 6. TIMELINE LINE CHART ───────────────────────────────────
+new Chart(document.getElementById('chartTimeline'), {
+  type: 'bar',
+  data: {
+    labels: ['2018','2019','2020','2021','2022','2023','2024','2025'],
+    datasets: [
+      {
+        label: 'New SOC/ISAE engagements confirmed',
+        data: [1, 0, 1, 1, 1, 2, 3, 2],
+        backgroundColor: BLUE,
+        borderRadius: 3,
+      },
+      {
+        label: 'Cumulative total',
+        data: [1, 1, 2, 3, 4, 6, 9, 11],
+        type: 'line',
+        borderColor: RED,
+        backgroundColor: 'transparent',
+        borderWidth: 2.5,
+        pointBackgroundColor: RED,
+        pointRadius: 4,
+        tension: 0.35,
+        yAxisID: 'y2',
+      }
+    ]
+  },
+  options: {
+    responsive: true, maintainAspectRatio: false,
+    plugins: { legend: { position: 'bottom' } },
+    scales: {
+      y: {
+        beginAtZero: true, ticks: { stepSize: 1 }, grid: { color: '#f0f0f0' },
+        title: { display: true, text: 'New engagements', font: { size: 11 } }
+      },
+      y2: {
+        position: 'right', beginAtZero: true, ticks: { stepSize: 2 },
+        grid: { display: false },
+        title: { display: true, text: 'Cumulative', font: { size: 11 } }
+      },
+      x: { grid: { display: false } }
+    }
+  }
+});
+</script>
+</body>
+</html>
