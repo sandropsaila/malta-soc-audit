@@ -94,7 +94,7 @@
   function sync(){ds.forEach((d,i)=>{d.className='dot'+(i<inp.length?' on':'');});}
   async function check(){
     if(busy)return;busy=true;
-    if(await hash(inp)===H){ds.forEach(d=>{d.className='dot ok';});setTimeout(()=>window.location.replace('./main.html'),500);}
+    if(await hash(inp)===H){ds.forEach(d=>{d.className='dot ok';});setTimeout(()=>{sessionStorage.setItem('msi_auth',H);window.location.replace('./main.html');},500);}
     else{ds.forEach(d=>{d.className='dot err';});shell.classList.add('shake');setTimeout(()=>{shell.classList.remove('shake');ds.forEach(d=>{d.className='dot';});inp='';sync();busy=false;},650);}
   }
   function press(n){if(busy||inp.length>=4)return;const b=document.querySelector('[data-n="'+n+'"]');if(b){b.classList.add('p');setTimeout(()=>b.classList.remove('p'),130);}inp+=n;sync();if(inp.length===4)setTimeout(check,130);}

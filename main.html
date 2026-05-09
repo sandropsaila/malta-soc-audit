@@ -1008,16 +1008,25 @@ function openModal(i){
   overlay.classList.add('open');
   document.body.style.overflow='hidden';
 }
-function closeModal(e){
-  if(e&&e.target!==overlay)return;
-  overlay.classList.remove('open');
-  document.body.style.overflow='';
-}
 modal.addEventListener('click',e=>e.stopPropagation());
 document.addEventListener('keydown',e=>{
   if(e.key==='Escape'){overlay.classList.remove('open');document.body.style.overflow='';}
+});
+
+/* ── SESSION GUARD ───────────────────────────────────────────── */
+// Block direct access — require the keypad to have been passed first
+(function(){
+  const H='b3282a2f2a28757b3a18ab833de16a9c54518c0b0cf493e3f0a7cf09386f326a';
+  if(sessionStorage.getItem('msi_auth')!==H){
+    document.body.innerHTML='';
+    window.location.replace('./index.html');
+  }
+})();
+
 /* ── INLINE CHARTS ─────────────────────────────────────────── */
 (function(){
+  // Wait for Chart.js to be ready
+  if(typeof Chart==='undefined'){return;}
   Chart.defaults.font.family="'Source Sans 3',sans-serif";
   Chart.defaults.font.size=11;
   Chart.defaults.color='#6d6d6d';
@@ -1031,11 +1040,7 @@ document.addEventListener('keydown',e=>{
     type:'bar',
     data:{
       labels:['iGaming / MGA','Crypto / MiCA','Payment / EMI','IT / Cloud / Cyber','Trading / MiFID'],
-      datasets:[{
-        data:[4,3,3,2,2],
-        backgroundColor:[C.red,C.blue,C.green,C.amber,C.purple],
-        borderRadius:3,borderSkipped:false
-      }]
+      datasets:[{data:[4,3,3,2,2],backgroundColor:[C.red,C.blue,C.green,C.amber,C.purple],borderRadius:3,borderSkipped:false}]
     },
     options:{responsive:true,maintainAspectRatio:false,
       plugins:{legend:{display:false},tooltip:{callbacks:{label:c=>` ${c.parsed.y} companies`}}},
@@ -1055,7 +1060,7 @@ document.addEventListener('keydown',e=>{
     }
   });
 
-  // 3. SOC2 vs ISAE grouped bar
+  // 3. SOC 2 vs ISAE 3402 grouped bar
   new Chart(document.getElementById('cSectorFw'),{
     type:'bar',
     data:{
@@ -1085,14 +1090,11 @@ document.addEventListener('keydown',e=>{
     }
   });
 
-  // 5. Company horizontal bar
+  // 5. Frameworks per company — horizontal bar
   new Chart(document.getElementById('cCompany'),{
     type:'bar',
     data:{
-      labels:[
-        'Hornetsecurity','Gemini (EU Artemis)','Paysafe','Crypto.com','Bitstamp','Nuvei',
-        'BMIT Technologies','Kindred (Unibet)','Greentube','Betsson'
-      ],
+      labels:['Hornetsecurity','Gemini (EU Artemis)','Paysafe','Crypto.com','Bitstamp','Nuvei','BMIT Technologies','Kindred (Unibet)','Greentube','Betsson'],
       datasets:[{
         label:'Confirmed Frameworks',
         data:[4,4,3,3,3,3,2,1,1,1],
@@ -1106,7 +1108,7 @@ document.addEventListener('keydown',e=>{
     }
   });
 
-  // 6. Timeline combo
+  // 6. Timeline combo bar + line
   new Chart(document.getElementById('cTimeline'),{
     type:'bar',
     data:{
