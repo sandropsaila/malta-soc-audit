@@ -1,0 +1,428 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+  <title>Malta SOC Audit Providers · Independent Assurance Firms</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;800&family=Source+Sans+3:ital,wght@0,300;0,400;0,600;0,700;1,400&display=swap" rel="stylesheet"/>
+  <style>
+    :root{
+      --red:#BB1919; --red-dark:#8B1010;
+      --black:#0d0d0d; --ink:#1a1a1a;
+      --grey-1:#f5f5f5; --grey-2:#e0e0e0; --grey-3:#9a9a9a; --grey-4:#6d6d6d;
+      --white:#ffffff; --border:#d0d0d0;
+      --green:#1a7a3f; --blue:#0a5eb0; --amber:#b35a00;
+      --max:1140px; --pad:20px;
+    }
+    *,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
+    html{scroll-behavior:smooth;}
+    body{background:var(--grey-1);color:var(--ink);font-family:'Source Sans 3',sans-serif;font-size:16px;line-height:1.6;}
+
+    /* ── TOP BAR ── */
+    .topbar{background:var(--black);position:sticky;top:0;z-index:200;}
+    .topbar-inner{max-width:var(--max);margin:0 auto;padding:0 var(--pad);height:52px;display:flex;align-items:center;}
+    .logo-blocks{display:flex;gap:3px;flex-shrink:0;}
+    .logo-block{width:28px;height:28px;background:var(--white);display:flex;align-items:center;justify-content:center;font-weight:700;font-size:14px;letter-spacing:-.5px;color:var(--black);}
+    .topbar-divider{width:1px;height:28px;background:#3a3a3a;margin:0 16px;}
+    .topbar-label{color:#9a9a9a;font-size:.75rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;}
+    .topbar-right{margin-left:auto;display:flex;align-items:center;gap:20px;}
+    .topbar-date{color:#666;font-size:.72rem;font-weight:300;}
+    .topbar-badge{background:var(--blue);color:var(--white);font-size:.65rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;padding:3px 8px;border-radius:1px;}
+    .red-strip{background:var(--red);height:3px;}
+
+    /* ── NAV ── */
+    nav{background:var(--white);border-bottom:1px solid var(--border);}
+    .nav-inner{max-width:var(--max);margin:0 auto;padding:0 var(--pad);display:flex;align-items:center;overflow-x:auto;scrollbar-width:none;}
+    .nav-inner::-webkit-scrollbar{display:none;}
+    .nav-link{display:block;padding:14px 16px;font-size:.82rem;font-weight:600;color:var(--grey-4);text-decoration:none;white-space:nowrap;border-bottom:3px solid transparent;transition:color .15s,border-color .15s;}
+    .nav-link:hover{color:var(--ink);}
+    .nav-link.active{color:var(--red);border-bottom-color:var(--red);}
+    .nav-link.back{color:var(--grey-4);}
+
+    /* ── LAYOUT ── */
+    .page{max-width:var(--max);margin:0 auto;padding:0 var(--pad);}
+
+    /* ── HERO ── */
+    .hero{background:var(--white);border-bottom:1px solid var(--border);padding:40px 0 36px;margin-bottom:32px;}
+    .hero-inner{max-width:var(--max);margin:0 auto;padding:0 var(--pad);}
+    .hero-kicker{display:inline-flex;align-items:center;gap:8px;font-size:.72rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--blue);margin-bottom:14px;}
+    .hero-kicker::before{content:'';display:block;width:18px;height:2px;background:var(--blue);}
+    h1{font-family:'Playfair Display',serif;font-size:clamp(1.9rem,4vw,3rem);font-weight:800;line-height:1.1;color:var(--black);margin-bottom:12px;letter-spacing:-.02em;}
+    .hero-sub{font-size:1rem;color:var(--grey-4);font-weight:300;max-width:680px;line-height:1.65;margin-bottom:28px;}
+
+    /* back link */
+    .back-link{display:inline-flex;align-items:center;gap:6px;color:var(--red);font-size:.82rem;font-weight:600;text-decoration:none;border-bottom:1px solid transparent;transition:border-color .15s;}
+    .back-link:hover{border-bottom-color:var(--red);}
+    .back-link::before{content:'←';}
+
+    /* stats */
+    .stats-row{display:flex;flex-wrap:wrap;gap:1px;background:var(--border);}
+    .stat{background:var(--white);padding:18px 28px;flex:1;min-width:130px;}
+    .stat-num{font-family:'Playfair Display',serif;font-size:2.2rem;font-weight:700;color:var(--blue);line-height:1;}
+    .stat-label{font-size:.72rem;font-weight:600;color:var(--grey-4);letter-spacing:.06em;text-transform:uppercase;margin-top:4px;}
+
+    /* ── SECTION HEAD ── */
+    .sec-head{display:flex;align-items:center;gap:14px;margin:36px 0 20px;}
+    .sec-head h2{font-family:'Playfair Display',serif;font-size:1.35rem;font-weight:700;color:var(--black);padding-left:14px;border-left:4px solid var(--blue);line-height:1.2;}
+    .sec-line{flex:1;height:1px;background:var(--border);}
+
+    /* ── INTRO BOX ── */
+    .intro-box{background:var(--white);border:1px solid var(--border);border-left:4px solid var(--blue);border-radius:2px;padding:22px 24px;margin-bottom:32px;}
+    .intro-box p{font-size:.9rem;color:var(--grey-4);line-height:1.7;margin-bottom:10px;}
+    .intro-box p:last-child{margin-bottom:0;}
+    .intro-box strong{color:var(--ink);font-weight:600;}
+
+    /* ── TOOLBAR ── */
+    .toolbar{background:var(--white);border:1px solid var(--border);border-radius:2px;padding:16px 20px;margin-bottom:20px;display:flex;flex-wrap:wrap;gap:12px;align-items:center;}
+    .search-wrap{position:relative;flex:1;min-width:200px;max-width:360px;}
+    .search-wrap input{width:100%;border:1px solid var(--border);border-radius:2px;padding:9px 12px 9px 36px;font-size:.875rem;font-family:'Source Sans 3',sans-serif;color:var(--ink);background:var(--grey-1);outline:none;transition:border-color .2s;}
+    .search-wrap input:focus{border-color:var(--blue);background:var(--white);}
+    .search-icon{position:absolute;left:10px;top:50%;transform:translateY(-50%);color:var(--grey-3);}
+    .filter-pills{display:flex;flex-wrap:wrap;gap:6px;align-items:center;}
+    .filter-label{font-size:.72rem;font-weight:700;color:var(--grey-3);letter-spacing:.08em;text-transform:uppercase;}
+    .fpill{padding:6px 14px;border:1px solid var(--border);border-radius:2px;font-size:.78rem;font-weight:600;color:var(--grey-4);background:var(--grey-1);cursor:pointer;transition:all .15s;font-family:'Source Sans 3',sans-serif;}
+    .fpill:hover{background:var(--grey-2);color:var(--ink);}
+    .fpill.active{background:var(--blue);color:var(--white);border-color:var(--blue);}
+
+    /* ── PROVIDER CARDS GRID ── */
+    .providers-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:20px;margin-bottom:40px;}
+    .pcard{background:var(--white);border:1px solid var(--border);border-top:3px solid var(--blue);border-radius:2px;padding:24px;transition:box-shadow .2s,border-color .2s;}
+    .pcard:hover{box-shadow:0 4px 20px rgba(0,0,0,.08);border-color:#b0b0b0;}
+    .pcard.hidden{display:none;}
+
+    .pcard-header{display:flex;justify-content:space-between;align-items:flex-start;gap:12px;margin-bottom:14px;}
+    .pcard-name{font-family:'Playfair Display',serif;font-size:1.1rem;font-weight:700;color:var(--black);line-height:1.2;}
+    .pcard-type{font-size:.68rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--blue);margin-top:3px;}
+
+    .pcard-network{display:inline-block;background:var(--grey-1);border:1px solid var(--border);border-radius:2px;padding:3px 10px;font-size:.72rem;font-weight:600;color:var(--grey-4);white-space:nowrap;}
+
+    /* service tags */
+    .stags{display:flex;flex-wrap:wrap;gap:5px;margin-bottom:14px;}
+    .stag{display:inline-flex;align-items:center;border-radius:2px;padding:3px 9px;font-size:.68rem;font-weight:700;letter-spacing:.04em;text-transform:uppercase;white-space:nowrap;}
+    .stag.soc2{background:#dbeafe;color:#1e40af;}
+    .stag.soc1{background:#ede9fe;color:#5b21b6;}
+    .stag.isae3402{background:#d1fae5;color:#065f46;}
+    .stag.isae3000{background:#fef3c7;color:#92400e;}
+    .stag.advisory{background:#f0f0f0;color:#555;}
+
+    .pcard-body{font-size:.85rem;color:var(--grey-4);line-height:1.65;margin-bottom:16px;}
+    .pcard-body strong{color:var(--ink);font-weight:600;}
+
+    .pcard-footer{display:flex;justify-content:space-between;align-items:center;padding-top:14px;border-top:1px solid var(--grey-2);flex-wrap:wrap;gap:8px;}
+    .pcard-contact{font-size:.78rem;color:var(--grey-3);}
+    .pcard-link{display:inline-flex;align-items:center;gap:4px;color:var(--blue);font-size:.78rem;font-weight:700;text-decoration:none;border-bottom:1px solid transparent;transition:border-color .15s;}
+    .pcard-link:hover{border-bottom-color:var(--blue);}
+    .pcard-link::after{content:'↗';}
+
+    /* ── DISCLAIMER ── */
+    .disclaimer{background:var(--grey-1);border:1px solid var(--border);border-radius:2px;padding:22px 24px;margin-bottom:40px;}
+    .disclaimer h3{font-size:.72rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--grey-3);margin-bottom:8px;}
+    .disclaimer p{font-size:.82rem;color:var(--grey-4);line-height:1.65;}
+
+    /* ── FOOTER ── */
+    .site-footer{background:var(--black);color:#555;padding:28px var(--pad);}
+    .footer-inner{max-width:var(--max);margin:0 auto;display:flex;flex-wrap:wrap;gap:20px;align-items:center;justify-content:space-between;}
+    .footer-copy{font-size:.75rem;line-height:1.6;}
+    .footer-links{display:flex;gap:20px;flex-wrap:wrap;}
+    .footer-links a{color:#666;font-size:.75rem;text-decoration:none;transition:color .15s;}
+    .footer-links a:hover{color:#9a9a9a;}
+
+    @media(max-width:640px){
+      .providers-grid{grid-template-columns:1fr;}
+      .stat-num{font-size:1.8rem;}
+    }
+  </style>
+</head>
+<body>
+
+<!-- TOP BAR -->
+<div class="topbar">
+  <div class="topbar-inner">
+    <div class="logo-blocks">
+      <div class="logo-block">M</div>
+      <div class="logo-block">S</div>
+      <div class="logo-block">I</div>
+    </div>
+    <div class="topbar-divider"></div>
+    <span class="topbar-label">Malta SOC Intelligence</span>
+    <div class="topbar-right">
+      <span class="topbar-date">Updated May 2026</span>
+      <span class="topbar-badge">Providers</span>
+    </div>
+  </div>
+</div>
+<div class="red-strip"></div>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-inner">
+    <a class="nav-link back" href="./main.html">← Registry</a>
+    <a class="nav-link active" href="#">SOC Providers</a>
+    <a class="nav-link" href="#what-is">What is a SOC Provider?</a>
+    <a class="nav-link" href="#directory">Directory</a>
+    <a class="nav-link" href="#choose">How to Choose</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-inner">
+    <div style="margin-bottom:16px;"><a class="back-link" href="./main.html">Back to Company Registry</a></div>
+    <div class="hero-kicker">Malta · Audit Assurance Firms</div>
+    <h1>SOC Audit Providers<br>Directory</h1>
+    <p class="hero-sub">
+      Professional firms operating in Malta that provide SOC 1, SOC 2, ISAE 3402, and ISAE 3000 audit and assurance services. These firms conduct the independent assessments that companies in the registry have undergone. Click any provider card to explore their services.
+    </p>
+    <div class="stats-row">
+      <div class="stat"><div class="stat-num">6</div><div class="stat-label">Providers Listed</div></div>
+      <div class="stat"><div class="stat-num">4</div><div class="stat-label">Frameworks Covered</div></div>
+      <div class="stat"><div class="stat-num">3</div><div class="stat-label">Big-4 Present</div></div>
+      <div class="stat"><div class="stat-num">2026</div><div class="stat-label">Last Updated</div></div>
+    </div>
+  </div>
+</div>
+
+<!-- PAGE BODY -->
+<div class="page">
+
+  <!-- WHAT IS -->
+  <div id="what-is">
+    <div class="sec-head"><h2>What is a SOC Audit Provider?</h2><div class="sec-line"></div></div>
+    <div class="intro-box">
+      <p>A <strong>SOC audit provider</strong> is a licensed assurance firm — typically a CPA firm or accredited auditor — that independently examines and reports on a service organisation's internal controls. They are distinct from the companies that <em>receive</em> the audit (listed in the main registry). To issue a SOC 2 or ISAE 3402 report, a firm must hold appropriate professional licences (e.g. ACCA, CPA Malta, or IAASB membership) and comply with independence requirements.</p>
+      <p>In Malta, SOC audit engagements are typically conducted by the local offices of the Big-4 networks (Deloitte, KPMG, EY, PwC) and mid-tier firms (RSM, BDO, Grant Thornton), all of which are regulated by the Malta Accountancy Board (MAB) and the Accountancy Profession Act. Some engagements are also conducted by the parent offices of these networks on behalf of Malta-licensed entities.</p>
+      <p>When selecting a provider, organisations should verify the firm's <strong>independence from the auditee</strong>, their experience with the relevant Trust Services Criteria (for SOC 2) or ISAE standards, and their familiarity with Malta-specific regulatory requirements (MGA, MFSA, FIAU).</p>
+    </div>
+  </div>
+
+  <!-- DIRECTORY -->
+  <div id="directory">
+    <div class="sec-head"><h2>Provider Directory</h2><div class="sec-line"></div></div>
+
+    <div class="toolbar">
+      <div class="search-wrap">
+        <svg class="search-icon" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+        <input type="text" id="searchInput" placeholder="Search provider or service…" oninput="filterCards()"/>
+      </div>
+      <div class="filter-pills">
+        <span class="filter-label">Filter:</span>
+        <button class="fpill active" onclick="setFilter('all',this)">All</button>
+        <button class="fpill" onclick="setFilter('soc2',this)">SOC 2</button>
+        <button class="fpill" onclick="setFilter('isae3402',this)">ISAE 3402</button>
+        <button class="fpill" onclick="setFilter('big4',this)">Big-4</button>
+        <button class="fpill" onclick="setFilter('mid',this)">Mid-Tier</button>
+      </div>
+    </div>
+
+    <div class="providers-grid" id="providerGrid">
+
+      <!-- RSM Malta -->
+      <div class="pcard" data-tags="soc2 soc1 isae3402 isae3000 mid" data-name="RSM Malta">
+        <div class="pcard-header">
+          <div>
+            <div class="pcard-name">RSM Malta</div>
+            <div class="pcard-type">Assurance · Audit · Advisory</div>
+          </div>
+          <span class="pcard-network">RSM Global</span>
+        </div>
+        <div class="stags">
+          <span class="stag soc2">SOC 2</span>
+          <span class="stag soc1">SOC 1</span>
+          <span class="stag isae3402">ISAE 3402</span>
+          <span class="stag isae3000">ISAE 3000</span>
+          <span class="stag advisory">GAP Assessment</span>
+        </div>
+        <div class="pcard-body">
+          RSM Malta — part of the RSM global network (6th largest globally) — operates a dedicated <strong>SOC 2 and ISAE 3402 assurance practice</strong> from its Malta office. Services span the full engagement lifecycle: SOC 2 Readiness and GAP Assessment, Type I and Type II attestation, ISAE 3402 service auditor reports, and ongoing SOC 2 outsourcing programmes. RSM Malta's practice specifically targets service organisations in <strong>cloud, SaaS, fintech, and iGaming</strong> sectors, with deep familiarity of Malta's MGA and MFSA regulatory environments. The firm is also listed as a Tech.mt member company.
+        </div>
+        <div class="pcard-footer">
+          <span class="pcard-contact">Floriana, Malta · Tech.mt Member</span>
+          <a class="pcard-link" href="https://www.rsm.global/malta/service/governance-and-compliance/standards-and-regulations/soc-2-compliance-services" target="_blank">SOC 2 Services</a>
+        </div>
+      </div>
+
+      <!-- BDO Malta -->
+      <div class="pcard" data-tags="soc2 soc1 isae3402 isae3000 mid" data-name="BDO Malta">
+        <div class="pcard-header">
+          <div>
+            <div class="pcard-name">BDO Malta</div>
+            <div class="pcard-type">Audit · Assurance · SOC 2+</div>
+          </div>
+          <span class="pcard-network">BDO Global</span>
+        </div>
+        <div class="stags">
+          <span class="stag soc2">SOC 2+</span>
+          <span class="stag isae3402">ISAE 3402</span>
+          <span class="stag isae3000">ISAE 3000</span>
+          <span class="stag advisory">DORA / NIST</span>
+        </div>
+        <div class="pcard-body">
+          BDO Malta has developed a leading <strong>SOC 2+ assurance practice</strong>, helping Malta-based service providers exceed standard Trust Services Criteria compliance by incorporating additional frameworks (NIST CSF, ISO 27001, GDPR/CSRD, DORA). BDO advises that Type 2 attestation can be achieved in a minimum of 9 months using a pragmatic, risk-based approach — particularly relevant to <strong>iGaming B2B suppliers and fintech companies</strong> facing EU regulatory obligations. BDO Malta is also an active ISAE 3402 auditor for Maltese clients with outsourced financial processing controls.
+        </div>
+        <div class="pcard-footer">
+          <span class="pcard-contact">Mriehel, Malta · BDO Global Network</span>
+          <a class="pcard-link" href="https://www.bdo.com.mt/en-gb/insights/soc-2-enhancing-your-existing-controls-assurance-reporting" target="_blank">SOC 2+ Insights</a>
+        </div>
+      </div>
+
+      <!-- Deloitte Malta -->
+      <div class="pcard" data-tags="soc2 soc1 isae3402 isae3000 big4" data-name="Deloitte Malta">
+        <div class="pcard-header">
+          <div>
+            <div class="pcard-name">Deloitte Malta</div>
+            <div class="pcard-type">Audit · Risk Advisory · Cyber</div>
+          </div>
+          <span class="pcard-network">Deloitte Global</span>
+        </div>
+        <div class="stags">
+          <span class="stag soc2">SOC 2</span>
+          <span class="stag soc1">SOC 1</span>
+          <span class="stag isae3402">ISAE 3402</span>
+          <span class="stag advisory">Cyber / DORA</span>
+        </div>
+        <div class="pcard-body">
+          Deloitte Malta's Risk Advisory and Audit practices offer the full suite of SOC and ISAE assurance engagements, backed by Deloitte's global Cyber and Strategic Risk methodology. The Malta office delivers <strong>ISAE 3402 Type I and II</strong> reports for fund administrators, payment institutions, and technology service providers regulated by the MFSA and FIAU. Deloitte's global SOC practice — one of the largest worldwide — underpins engagements for multinational clients with Malta-licensed operations. Deloitte Malta is one of the leading auditors of MGA-licensed and MFSA-regulated entities on the island.
+        </div>
+        <div class="pcard-footer">
+          <span class="pcard-contact">Msida, Malta · Big-4</span>
+          <a class="pcard-link" href="https://www.deloitte.com/mt/en/services/risk-advisory.html" target="_blank">Risk Advisory</a>
+        </div>
+      </div>
+
+      <!-- KPMG Malta -->
+      <div class="pcard" data-tags="soc2 soc1 isae3402 isae3000 big4" data-name="KPMG Malta">
+        <div class="pcard-header">
+          <div>
+            <div class="pcard-name">KPMG Malta</div>
+            <div class="pcard-type">Audit · IT Assurance · Advisory</div>
+          </div>
+          <span class="pcard-network">KPMG Global</span>
+        </div>
+        <div class="stags">
+          <span class="stag soc2">SOC 2</span>
+          <span class="stag isae3402">ISAE 3402</span>
+          <span class="stag isae3000">ISAE 3000</span>
+          <span class="stag advisory">IT Audit</span>
+        </div>
+        <div class="pcard-body">
+          KPMG Malta's IT Assurance and Internal Audit practice provides <strong>SOC 2, ISAE 3402, and ISAE 3000</strong> engagements for service organisations, payment processors, and technology firms operating under Malta's regulatory frameworks. KPMG's global ISAE 3402 methodology is widely adopted by fund administrators and custodians seeking assurance over outsourced controls. The Malta office has significant experience with <strong>MFSA-licensed investment firms and EMIs</strong>, and advises clients on DORA operational resilience compliance in the context of third-party assurance.
+        </div>
+        <div class="pcard-footer">
+          <span class="pcard-contact">Portico Building, Malta · Big-4</span>
+          <a class="pcard-link" href="https://kpmg.com/mt/en/home/services/advisory/risk-consulting.html" target="_blank">Risk Consulting</a>
+        </div>
+      </div>
+
+      <!-- EY Malta -->
+      <div class="pcard" data-tags="soc2 soc1 isae3402 isae3000 big4" data-name="EY Malta Ernst Young">
+        <div class="pcard-header">
+          <div>
+            <div class="pcard-name">EY Malta (Ernst &amp; Young)</div>
+            <div class="pcard-type">Assurance · Technology Risk · Advisory</div>
+          </div>
+          <span class="pcard-network">EY Global</span>
+        </div>
+        <div class="stags">
+          <span class="stag soc2">SOC 2</span>
+          <span class="stag soc1">SOC 1</span>
+          <span class="stag isae3402">ISAE 3402</span>
+          <span class="stag advisory">Tech Risk</span>
+        </div>
+        <div class="pcard-body">
+          EY Malta's Assurance and Technology Risk teams deliver <strong>SOC 1, SOC 2, and ISAE 3402</strong> engagements across Malta's financial services, iGaming, and technology sectors. EY's global Technology Risk practice is one of the most recognised for SOC 2 readiness and attestation, particularly for SaaS and cloud-hosted platforms. The Malta practice advises clients on aligning SOC 2 programmes with <strong>DORA (Digital Operational Resilience Act)</strong> obligations and MFSA ICT governance guidance, making it particularly relevant for investment firms and payment institutions under dual regulatory scrutiny.
+        </div>
+        <div class="pcard-footer">
+          <span class="pcard-contact">Birkirkara, Malta · Big-4</span>
+          <a class="pcard-link" href="https://www.ey.com/en_mt/services/assurance" target="_blank">Assurance Services</a>
+        </div>
+      </div>
+
+      <!-- Grant Thornton Malta -->
+      <div class="pcard" data-tags="soc2 isae3402 isae3000 mid" data-name="Grant Thornton Malta">
+        <div class="pcard-header">
+          <div>
+            <div class="pcard-name">Grant Thornton Malta</div>
+            <div class="pcard-type">Audit · Assurance · Advisory</div>
+          </div>
+          <span class="pcard-network">GT Global</span>
+        </div>
+        <div class="stags">
+          <span class="stag soc2">SOC 2</span>
+          <span class="stag isae3402">ISAE 3402</span>
+          <span class="stag isae3000">ISAE 3000</span>
+          <span class="stag advisory">Readiness</span>
+        </div>
+        <div class="pcard-body">
+          Grant Thornton Malta provides <strong>SOC 2 and ISAE 3402</strong> assurance engagements with a focus on practical readiness support for growing technology and financial services companies. As a mid-tier firm with a strong presence in Malta's professional services sector, Grant Thornton offers a more personalised engagement model compared to the Big-4, often preferred by <strong>scale-up iGaming suppliers, fintech startups, and boutique fund administrators</strong>. The firm's global network provides access to cross-border assurance expertise for Malta-licensed entities with multi-jurisdictional operations.
+        </div>
+        <div class="pcard-footer">
+          <span class="pcard-contact">Valletta, Malta · GT Global Network</span>
+          <a class="pcard-link" href="https://www.grantthornton.com.mt/services/audit/" target="_blank">Audit Services</a>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- HOW TO CHOOSE -->
+  <div id="choose">
+    <div class="sec-head"><h2>How to Choose a SOC Provider</h2><div class="sec-line"></div></div>
+    <div class="intro-box" style="border-left-color:var(--red);">
+      <p><strong>1. Verify independence.</strong> The auditing firm must be independent of the service organisation — it cannot provide both internal audit/consulting and external SOC attestation services to the same client within the same period (IAASB independence rules).</p>
+      <p><strong>2. Check Malta regulatory familiarity.</strong> For MFSA-licensed investment firms and payment institutions, choose a provider familiar with the MFSA's ICT governance guidance, DORA obligations, and FIAU AML reporting — these directly affect the scope of system certification reports.</p>
+      <p><strong>3. Match firm size to your scale.</strong> Big-4 firms offer global methodology and multi-jurisdiction reach; mid-tier firms (RSM, BDO, Grant Thornton) often provide more competitive pricing and dedicated partner attention for SMEs and scale-ups.</p>
+      <p><strong>4. Clarify Type I vs Type II.</strong> Type I reports (design only, point-in-time) are faster and cheaper but carry less weight with sophisticated clients. Type II reports (operating effectiveness over 6–12 months) are required by most enterprise contracts and regulatory frameworks.</p>
+      <p><strong>5. Consider readiness first.</strong> All providers listed offer readiness or GAP assessments before formal attestation — these are strongly recommended to avoid scope surprises during the audit itself.</p>
+    </div>
+  </div>
+
+  <!-- BACK LINK -->
+  <div style="margin-bottom:40px;">
+    <a class="back-link" href="./main.html">Return to Company Registry</a>
+  </div>
+
+  <div class="disclaimer">
+    <h3>Notes</h3>
+    <p>Provider information is based on publicly available service descriptions, firm websites, and Malta Accountancy Board records. Listing here does not constitute endorsement. Firms should be independently evaluated for independence, competence, and suitability before engagement. Last updated May 2026.</p>
+  </div>
+
+</div>
+
+<footer class="site-footer">
+  <div class="footer-inner">
+    <div class="footer-copy">
+      Malta SOC Audit Intelligence · Providers Directory<br>
+      &copy; 2026 · <a href="./main.html" style="color:#666;text-decoration:none;">← Back to Registry</a>
+    </div>
+    <div class="footer-links">
+      <a href="./main.html">Company Registry</a>
+      <a href="https://www.mga.org.mt/licensee-hub/licensee-register/" target="_blank">MGA Register</a>
+      <a href="https://www.mfsa.mt" target="_blank">MFSA</a>
+    </div>
+  </div>
+</footer>
+
+<script>
+let cur='all';
+function setFilter(t,btn){
+  cur=t;
+  document.querySelectorAll('.fpill').forEach(b=>b.classList.remove('active'));
+  btn.classList.add('active');
+  filterCards();
+}
+function filterCards(){
+  const q=document.getElementById('searchInput').value.toLowerCase();
+  document.querySelectorAll('.pcard').forEach(c=>{
+    const tags=c.dataset.tags||'';
+    const name=(c.dataset.name||'').toLowerCase();
+    const text=c.innerText.toLowerCase();
+    const mf=cur==='all'||tags.includes(cur);
+    const ms=!q||name.includes(q)||text.includes(q);
+    c.classList.toggle('hidden',!(mf&&ms));
+  });
+}
+</script>
+</body>
+</html>

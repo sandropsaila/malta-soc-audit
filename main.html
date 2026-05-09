@@ -492,6 +492,7 @@
     <a class="nav-link" href="#frameworks">Frameworks</a>
     <a class="nav-link" href="#mfsa">MFSA Rules</a>
     <a class="nav-link" href="#methodology">Methodology</a>
+    <a class="nav-link" href="./providers.html" style="color:var(--red);border-bottom-color:transparent;">SOC Providers →</a>
   </div>
 </nav>
 
@@ -504,7 +505,7 @@
       A curated registry of Malta-based companies that have publicly disclosed SOC 1, SOC 2, ISAE 3402, ISAE 3000 or equivalent independent assurance engagements. Sourced from Tech.mt, the MGA Licensee Register, MFSA filings, corporate announcements, and LinkedIn. Click any company name to view its full detail card.
     </p>
     <div class="stats-row">
-      <div class="stat"><div class="stat-num">14</div><div class="stat-label">Companies</div></div>
+      <div class="stat"><div class="stat-num">12</div><div class="stat-label">Companies</div></div>
       <div class="stat"><div class="stat-num">6</div><div class="stat-label">SOC 2 Audits</div></div>
       <div class="stat"><div class="stat-num">3</div><div class="stat-label">ISAE 3402</div></div>
       <div class="stat"><div class="stat-num">4</div><div class="stat-label">Sectors</div></div>
@@ -589,6 +590,16 @@
     </div>
   </div>
 
+  <!-- PROVIDERS PROMO -->
+  <div style="background:var(--white);border:1px solid var(--border);border-left:4px solid var(--red);border-radius:2px;padding:20px 24px;margin-bottom:36px;display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:16px;">
+    <div>
+      <div style="font-size:.7rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--red);margin-bottom:4px;">Looking for a SOC auditor in Malta?</div>
+      <div style="font-family:'Playfair Display',serif;font-size:1.05rem;font-weight:700;color:var(--black);margin-bottom:4px;">Malta SOC Audit Providers Directory</div>
+      <div style="font-size:.82rem;color:var(--grey-4);">A separate directory of professional firms in Malta that offer SOC 1, SOC 2, ISAE 3402 and ISAE 3000 audit and assurance services.</div>
+    </div>
+    <a href="./providers.html" style="display:inline-flex;align-items:center;gap:6px;background:var(--red);color:var(--white);text-decoration:none;padding:10px 20px;font-size:.78rem;font-weight:700;letter-spacing:.04em;text-transform:uppercase;border-radius:2px;white-space:nowrap;transition:background .15s;" onmouseover="this.style.background='var(--red-dark)'" onmouseout="this.style.background='var(--red)'">View Providers →</a>
+  </div>
+
   <!-- METHODOLOGY -->
   <div id="methodology">
     <div class="sec-head"><h2>Methodology &amp; Sources</h2><div class="sec-line"></div></div>
@@ -671,28 +682,6 @@ const CO=[
     kicker:'MGA Licensed · 1,400+ Malta Staff',
     body:`Betsson Group — operational headquarters in Malta (Ta' Xbiex) — obtained <strong>ISO 27001:2022 certification through Bureau Veritas in May 2025</strong>, transitioning from its 2013 version (held since 2019). The certification covers operations in Sweden, Malta, Hungary, and Estonia across 93 controls. Betsson has not publicly disclosed a dedicated SOC 2 or ISAE 3402 report, although its ISO 27001 ISMS provides a strong foundation for such audits.`,
     link:'https://betssongroup.com/news/iso270012022-2025/'
-  },
-  {
-    name:'RSM Malta',
-    sector:'Professional Services · Audit · Assurance',
-    tags:['soc2','soc1','isae3402','tech','confirmed'],
-    certs:[{cls:'soc2',l:'SOC 2 Practice'},{cls:'soc1',l:'SOC 1 / ISAE 3402'}],
-    status:'g',statusLabel:'Active Practice',
-    date:'Active 2024/2025',
-    kicker:'Tech.mt Member · RSM Global Network',
-    body:`RSM Malta — part of the global RSM network — operates a dedicated <strong>SOC 2 and ISAE 3402 assurance practice</strong>, conducting audits for Maltese and international clients. Services include SOC 2 GAP Assessments, SOC 2 Audit Assistance (Type I and II), and full SOC 2 Outsourcing programmes. RSM Malta's practice specifically targets service organisations in cloud, SaaS, fintech, and igaming sectors seeking to comply with EU outsourcing requirements and client due diligence obligations.`,
-    link:'https://www.rsm.global/malta/service/governance-and-compliance/standards-and-regulations/soc-2-compliance-services'
-  },
-  {
-    name:'BDO Malta',
-    sector:'Professional Services · Audit · SOC 2+',
-    tags:['soc2','soc1','isae3402','tech','confirmed'],
-    certs:[{cls:'soc2',l:'SOC 2+'},{cls:'isae3402',l:'ISAE 3402'}],
-    status:'g',statusLabel:'Active Practice',
-    date:'Active 2024/2025',
-    kicker:'Tech.mt Member · BDO Global Network',
-    body:`BDO Malta has developed a leading <strong>SOC 2+ assurance practice</strong>, helping Malta-based service providers exceed standard Trust Services Criteria compliance by incorporating additional frameworks (NIST, ISO, GDPR/CSRD, DORA). BDO advises that Type 2 attestation can be achieved in a minimum of 9 months using a pragmatic risk-based approach. This is particularly relevant to Malta's igaming B2B suppliers and fintech companies facing EU regulatory obligations.`,
-    link:'https://www.bdo.com.mt/en-gb/insights/soc-2-enhancing-your-existing-controls-assurance-reporting'
   },
   {
     name:'Kambi Group',
