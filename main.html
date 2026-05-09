@@ -7,6 +7,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com"/>
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;800&family=Source+Sans+3:ital,wght@0,300;0,400;0,600;0,700;1,400&display=swap" rel="stylesheet"/>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
   <style>
     /* ── TOKENS ─────────────────────────────────────────── */
     :root{
@@ -441,6 +442,40 @@
       td,th{padding:11px 12px;}
       .modal-name{font-size:1.2rem;}
     }
+
+    /* ── INLINE CHARTS ─────────────────────────────────── */
+    .charts-section{margin-bottom:8px;}
+    .chart-grid-inline{
+      display:grid;
+      grid-template-columns:repeat(auto-fill,minmax(340px,1fr));
+      gap:16px;
+      margin-bottom:8px;
+    }
+    .chart-card-inline{
+      background:var(--white);
+      border:1px solid var(--border);
+      border-top:3px solid var(--blue);
+      border-radius:2px;
+      padding:20px;
+    }
+    .chart-card-inline.full{grid-column:1/-1;}
+    .chart-card-inline.red-top{border-top-color:var(--red);}
+    .chart-title-inline{
+      font-family:'Playfair Display',serif;
+      font-size:.95rem;font-weight:700;
+      color:var(--black);margin-bottom:2px;
+    }
+    .chart-sub-inline{font-size:.75rem;color:var(--grey-3);margin-bottom:14px;}
+    .chart-wrap-inline{position:relative;width:100%;height:220px;}
+    .chart-wrap-inline.pie{height:240px;max-width:360px;margin:0 auto;}
+    .chart-wrap-inline.tall{height:300px;}
+
+    @media(max-width:640px){
+      .chart-grid-inline{grid-template-columns:1fr;}
+      .chart-card-inline.full{grid-column:auto;}
+      .chart-wrap-inline{height:180px;}
+      .chart-wrap-inline.tall{height:240px;}
+    }
   </style>
 </head>
 <body>
@@ -538,6 +573,57 @@
         <div class="fw-title">ISAE 3000</div>
         <div class="fw-desc">The overarching international assurance standard for non-financial engagements, covering information security, GDPR, ESG and more. SOC 2 reports issued outside the US typically comply with ISAE 3000.</div>
       </div>
+    </div>
+  </div>
+
+  <!-- ── INLINE CHARTS ─────────────────────────────────────── -->
+  <div class="charts-section">
+    <div class="sec-head"><h2>Sector &amp; Framework Analytics</h2><div class="sec-line"></div></div>
+
+    <div class="chart-grid-inline">
+
+      <!-- Companies by sector -->
+      <div class="chart-card-inline">
+        <div class="chart-title-inline">Companies by Sector</div>
+        <div class="chart-sub-inline">Distribution across Malta's key regulated sectors</div>
+        <div class="chart-wrap-inline"><canvas id="cSector"></canvas></div>
+      </div>
+
+      <!-- Framework breakdown doughnut -->
+      <div class="chart-card-inline">
+        <div class="chart-title-inline">Audit Framework Breakdown</div>
+        <div class="chart-sub-inline">Which SOC/ISAE frameworks Malta companies hold (multiple possible)</div>
+        <div class="chart-wrap-inline pie"><canvas id="cFramework"></canvas></div>
+      </div>
+
+      <!-- SOC 2 vs ISAE 3402 by sector -->
+      <div class="chart-card-inline">
+        <div class="chart-title-inline">SOC 2 vs ISAE 3402 by Sector</div>
+        <div class="chart-sub-inline">Framework preference per sector in Malta</div>
+        <div class="chart-wrap-inline"><canvas id="cSectorFw"></canvas></div>
+      </div>
+
+      <!-- Regulatory driver pie -->
+      <div class="chart-card-inline">
+        <div class="chart-title-inline">Primary Regulatory Driver</div>
+        <div class="chart-sub-inline">What is pushing Malta companies to obtain assurance reports</div>
+        <div class="chart-wrap-inline pie"><canvas id="cDriver"></canvas></div>
+      </div>
+
+      <!-- Frameworks per company — full width -->
+      <div class="chart-card-inline full">
+        <div class="chart-title-inline">Certification Breadth by Company</div>
+        <div class="chart-sub-inline">Number of distinct confirmed audit frameworks per company</div>
+        <div class="chart-wrap-inline tall"><canvas id="cCompany"></canvas></div>
+      </div>
+
+      <!-- Timeline — full width -->
+      <div class="chart-card-inline full red-top">
+        <div class="chart-title-inline">Confirmed Engagements Timeline</div>
+        <div class="chart-sub-inline">Year of first publicly confirmed SOC/ISAE engagement, with cumulative growth</div>
+        <div class="chart-wrap-inline"><canvas id="cTimeline"></canvas></div>
+      </div>
+
     </div>
   </div>
 
@@ -930,7 +1016,118 @@ function closeModal(e){
 modal.addEventListener('click',e=>e.stopPropagation());
 document.addEventListener('keydown',e=>{
   if(e.key==='Escape'){overlay.classList.remove('open');document.body.style.overflow='';}
-});
+/* ── INLINE CHARTS ─────────────────────────────────────────── */
+(function(){
+  Chart.defaults.font.family="'Source Sans 3',sans-serif";
+  Chart.defaults.font.size=11;
+  Chart.defaults.color='#6d6d6d';
+  Chart.defaults.plugins.legend.labels.boxWidth=12;
+  Chart.defaults.plugins.legend.labels.padding=12;
+
+  const C={red:'#BB1919',blue:'#0a5eb0',green:'#1a7a3f',amber:'#b35a00',purple:'#6b3a9e',grey:'#9a9a9a'};
+
+  // 1. Sector bar
+  new Chart(document.getElementById('cSector'),{
+    type:'bar',
+    data:{
+      labels:['iGaming / MGA','Crypto / MiCA','Payment / EMI','IT / Cloud / Cyber','Trading / MiFID'],
+      datasets:[{
+        data:[4,3,3,2,2],
+        backgroundColor:[C.red,C.blue,C.green,C.amber,C.purple],
+        borderRadius:3,borderSkipped:false
+      }]
+    },
+    options:{responsive:true,maintainAspectRatio:false,
+      plugins:{legend:{display:false},tooltip:{callbacks:{label:c=>` ${c.parsed.y} companies`}}},
+      scales:{y:{beginAtZero:true,ticks:{stepSize:1},grid:{color:'#f0f0f0'}},x:{grid:{display:false}}}
+    }
+  });
+
+  // 2. Framework doughnut
+  new Chart(document.getElementById('cFramework'),{
+    type:'doughnut',
+    data:{
+      labels:['SOC 2 / ISAE 3000','SOC 1','ISAE 3402','PCI DSS Lvl 1','ISO 27001 only'],
+      datasets:[{data:[8,4,3,2,1],backgroundColor:[C.blue,C.purple,C.green,C.red,C.grey],borderWidth:2,borderColor:'#fff'}]
+    },
+    options:{responsive:true,maintainAspectRatio:false,cutout:'60%',
+      plugins:{legend:{position:'bottom'},tooltip:{callbacks:{label:c=>` ${c.label}: ${c.parsed}`}}}
+    }
+  });
+
+  // 3. SOC2 vs ISAE grouped bar
+  new Chart(document.getElementById('cSectorFw'),{
+    type:'bar',
+    data:{
+      labels:['iGaming','Crypto','Payment','IT / Cloud','Trading'],
+      datasets:[
+        {label:'SOC 2',data:[1,3,2,1,1],backgroundColor:C.blue,borderRadius:2},
+        {label:'ISAE 3402',data:[1,0,1,1,0],backgroundColor:C.green,borderRadius:2},
+        {label:'SOC 1',data:[0,2,1,1,0],backgroundColor:C.purple,borderRadius:2},
+        {label:'PCI DSS',data:[0,0,2,0,0],backgroundColor:C.red,borderRadius:2}
+      ]
+    },
+    options:{responsive:true,maintainAspectRatio:false,
+      plugins:{legend:{position:'bottom'}},
+      scales:{y:{beginAtZero:true,ticks:{stepSize:1},grid:{color:'#f0f0f0'}},x:{grid:{display:false}}}
+    }
+  });
+
+  // 4. Regulatory driver pie
+  new Chart(document.getElementById('cDriver'),{
+    type:'pie',
+    data:{
+      labels:['MiCA / MFSA CASP','MGA B2B Due Diligence','MiFID II / R13-13.6','DORA / FIR/03 EMI','Voluntary / Market'],
+      datasets:[{data:[4,3,3,2,2],backgroundColor:[C.blue,C.red,C.purple,C.green,C.amber],borderWidth:2,borderColor:'#fff'}]
+    },
+    options:{responsive:true,maintainAspectRatio:false,
+      plugins:{legend:{position:'bottom',labels:{font:{size:10}}},tooltip:{callbacks:{label:c=>` ${c.label}: ${c.parsed}`}}}
+    }
+  });
+
+  // 5. Company horizontal bar
+  new Chart(document.getElementById('cCompany'),{
+    type:'bar',
+    data:{
+      labels:[
+        'Hornetsecurity','Gemini (EU Artemis)','Paysafe','Crypto.com','Bitstamp','Nuvei',
+        'BMIT Technologies','Kindred (Unibet)','Greentube','Betsson'
+      ],
+      datasets:[{
+        label:'Confirmed Frameworks',
+        data:[4,4,3,3,3,3,2,1,1,1],
+        backgroundColor:[C.blue,C.blue,C.blue,C.blue,C.blue,C.blue,C.green,C.green,C.amber,C.grey],
+        borderRadius:3,borderSkipped:false
+      }]
+    },
+    options:{indexAxis:'y',responsive:true,maintainAspectRatio:false,
+      plugins:{legend:{display:false},tooltip:{callbacks:{label:c=>` ${c.parsed.x} frameworks`}}},
+      scales:{x:{beginAtZero:true,ticks:{stepSize:1},grid:{color:'#f0f0f0'}},y:{grid:{display:false},ticks:{font:{size:10}}}}
+    }
+  });
+
+  // 6. Timeline combo
+  new Chart(document.getElementById('cTimeline'),{
+    type:'bar',
+    data:{
+      labels:['2018','2019','2020','2021','2022','2023','2024','2025'],
+      datasets:[
+        {label:'New engagements',data:[1,0,1,1,1,2,3,2],backgroundColor:C.blue,borderRadius:3},
+        {label:'Cumulative',type:'line',data:[1,1,2,3,4,6,9,11],
+          borderColor:C.red,backgroundColor:'transparent',borderWidth:2.5,
+          pointBackgroundColor:C.red,pointRadius:4,tension:0.35,yAxisID:'y2'}
+      ]
+    },
+    options:{responsive:true,maintainAspectRatio:false,
+      plugins:{legend:{position:'bottom'}},
+      scales:{
+        y:{beginAtZero:true,ticks:{stepSize:1},grid:{color:'#f0f0f0'},title:{display:true,text:'New',font:{size:10}}},
+        y2:{position:'right',beginAtZero:true,ticks:{stepSize:2},grid:{display:false},title:{display:true,text:'Cumulative',font:{size:10}}},
+        x:{grid:{display:false}}
+      }
+    }
+  });
+})();
 </script>
 </body>
 </html>
