@@ -3,151 +3,50 @@
 <head>
   <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width,initial-scale=1.0"/>
-  <title>Access Required · Malta SOC Intelligence</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com"/>
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;800&family=Source+Sans+3:wght@300;400;600;700&display=swap" rel="stylesheet"/>
+  <title>Access</title>
   <style>
     *,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
-    :root{
-      --red:#BB1919;
-      --red-dark:#8B1010;
-      --black:#0d0d0d;
-      --grey-1:#f5f5f5;
-      --grey-2:#e0e0e0;
-      --grey-3:#6d6d6d;
-      --white:#ffffff;
-    }
     body{
-      background:var(--grey-1);
-      font-family:'Source Sans 3',sans-serif;
+      background:#f5f5f5;
       min-height:100dvh;
       display:flex;
-      flex-direction:column;
-      align-items:stretch;
-    }
-
-    /* top bar */
-    .topbar{
-      background:var(--black);
-      padding:0 24px;
-      height:52px;
-      display:flex;
-      align-items:center;
-      gap:16px;
-    }
-    .bbc-logo{
-      display:flex;
-      gap:3px;
-    }
-    .bbc-box{
-      width:26px;height:26px;
-      background:var(--white);
-      display:flex;align-items:center;justify-content:center;
-      font-family:'Source Sans 3',sans-serif;
-      font-weight:700;font-size:14px;
-      color:var(--black);
-      letter-spacing:-.5px;
-    }
-    .topbar-title{
-      color:#9a9a9a;
-      font-size:.8rem;
-      font-weight:400;
-      letter-spacing:.06em;
-      text-transform:uppercase;
-      border-left:1px solid #333;
-      padding-left:16px;
-      margin-left:4px;
-    }
-
-    /* red strip */
-    .red-strip{
-      background:var(--red);
-      height:4px;
-    }
-
-    /* hero */
-    .hero{
-      background:var(--white);
-      border-bottom:1px solid var(--grey-2);
-      padding:48px 24px 40px;
-      text-align:center;
-      flex:1;
-      display:flex;
-      flex-direction:column;
       align-items:center;
       justify-content:center;
     }
-    .hero-eyebrow{
-      font-size:.72rem;
-      font-weight:700;
-      letter-spacing:.14em;
-      text-transform:uppercase;
-      color:var(--red);
-      margin-bottom:12px;
-    }
-    .hero h1{
-      font-family:'Playfair Display',serif;
-      font-size:clamp(1.9rem,5vw,2.8rem);
-      font-weight:800;
-      color:var(--black);
-      line-height:1.15;
-      margin-bottom:8px;
-    }
-    .hero-sub{
-      font-size:.9rem;
-      color:var(--grey-3);
-      margin-bottom:40px;
-      font-weight:300;
-    }
-
-    /* keypad shell */
     .shell{
-      background:var(--white);
-      border:1px solid var(--grey-2);
-      border-top:3px solid var(--red);
-      border-radius:4px;
-      padding:36px 32px 32px;
-      width:min(300px,90vw);
-      box-shadow:0 4px 24px rgba(0,0,0,.08);
+      background:#fff;
+      border-top:3px solid #BB1919;
+      border:1px solid #e0e0e0;
+      border-top:3px solid #BB1919;
+      padding:32px 28px 28px;
+      width:min(260px,90vw);
+      box-shadow:0 2px 16px rgba(0,0,0,.07);
     }
-
-    /* dots */
     .dots{
-      display:flex;justify-content:center;gap:14px;
+      display:flex;justify-content:center;gap:16px;
       margin-bottom:28px;
     }
     .dot{
       width:12px;height:12px;border-radius:50%;
-      border:2px solid var(--grey-2);background:transparent;
+      border:2px solid #e0e0e0;background:transparent;
       transition:background .15s,border-color .15s,transform .12s;
     }
-    .dot.on {background:var(--red);border-color:var(--red);transform:scale(1.2);}
+    .dot.on {background:#BB1919;border-color:#BB1919;transform:scale(1.2);}
     .dot.ok {background:#1a7a3f;border-color:#1a7a3f;}
-    .dot.err{background:var(--red-dark);border-color:var(--red-dark);}
-
-    /* grid */
+    .dot.err{background:#8B1010;border-color:#8B1010;}
     .grid{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;}
     .key{
-      aspect-ratio:1;
+      aspect-ratio:1;border:1px solid #e0e0e0;background:#f5f5f5;
+      font-family:system-ui,sans-serif;font-size:1.3rem;font-weight:700;color:#0d0d0d;
+      cursor:pointer;display:flex;align-items:center;justify-content:center;
+      transition:background .1s,transform .08s;
+      user-select:none;-webkit-tap-highlight-color:transparent;
       border-radius:2px;
-      border:1px solid var(--grey-2);
-      background:var(--grey-1);
-      font-family:'Source Sans 3',sans-serif;
-      font-size:1.35rem;
-      font-weight:700;
-      color:var(--black);
-      cursor:pointer;
-      display:flex;align-items:center;justify-content:center;
-      transition:background .1s,border-color .1s,transform .08s;
-      user-select:none;
-      -webkit-tap-highlight-color:transparent;
     }
-    .key:hover{background:var(--grey-2);}
-    .key.p{background:var(--red);color:var(--white);border-color:var(--red);transform:scale(.95);}
+    .key:hover{background:#e0e0e0;}
+    .key.p{background:#BB1919;color:#fff;border-color:#BB1919;transform:scale(.94);}
     .key.blank{background:transparent;border-color:transparent;cursor:default;pointer-events:none;}
-    .key.back svg{width:18px;height:18px;}
-
+    .key.back svg{width:17px;height:17px;}
     @keyframes shake{
       0%,100%{transform:translateX(0);}
       20%{transform:translateX(-7px);}
@@ -156,106 +55,53 @@
       80%{transform:translateX(5px);}
     }
     .shake{animation:shake .38s ease;}
-
-    /* footer */
-    footer{
-      background:var(--black);
-      color:#6d6d6d;
-      text-align:center;
-      font-size:.75rem;
-      padding:14px 24px;
-    }
   </style>
 </head>
 <body>
-
-<div class="topbar">
-  <div class="bbc-logo">
-    <div class="bbc-box">M</div>
-    <div class="bbc-box">S</div>
-    <div class="bbc-box">I</div>
+<div class="shell" id="shell">
+  <div class="dots" id="dots">
+    <div class="dot" id="d0"></div>
+    <div class="dot" id="d1"></div>
+    <div class="dot" id="d2"></div>
+    <div class="dot" id="d3"></div>
   </div>
-  <span class="topbar-title">Secure Access</span>
-</div>
-<div class="red-strip"></div>
-
-<div class="hero">
-  <div class="hero-eyebrow">Restricted Intelligence</div>
-  <h1>Malta SOC<br>Audit Registry</h1>
-  <p class="hero-sub">Enter your 4-digit passcode to continue</p>
-
-  <div class="shell" id="shell">
-    <div class="dots" id="dots">
-      <div class="dot" id="d0"></div>
-      <div class="dot" id="d1"></div>
-      <div class="dot" id="d2"></div>
-      <div class="dot" id="d3"></div>
-    </div>
-    <div class="grid">
-      <button class="key" data-n="1">1</button>
-      <button class="key" data-n="2">2</button>
-      <button class="key" data-n="3">3</button>
-      <button class="key" data-n="4">4</button>
-      <button class="key" data-n="5">5</button>
-      <button class="key" data-n="6">6</button>
-      <button class="key" data-n="7">7</button>
-      <button class="key" data-n="8">8</button>
-      <button class="key" data-n="9">9</button>
-      <button class="key blank"></button>
-      <button class="key" data-n="0">0</button>
-      <button class="key back" id="back">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
-          <path d="M21 4H8l-7 8 7 8h13a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2z"/>
-          <line x1="18" y1="9" x2="12" y2="15"/><line x1="12" y1="9" x2="18" y2="15"/>
-        </svg>
-      </button>
-    </div>
+  <div class="grid">
+    <button class="key" data-n="1">1</button>
+    <button class="key" data-n="2">2</button>
+    <button class="key" data-n="3">3</button>
+    <button class="key" data-n="4">4</button>
+    <button class="key" data-n="5">5</button>
+    <button class="key" data-n="6">6</button>
+    <button class="key" data-n="7">7</button>
+    <button class="key" data-n="8">8</button>
+    <button class="key" data-n="9">9</button>
+    <button class="key blank"></button>
+    <button class="key" data-n="0">0</button>
+    <button class="key back" id="back">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M21 4H8l-7 8 7 8h13a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2z"/>
+        <line x1="18" y1="9" x2="12" y2="15"/><line x1="12" y1="9" x2="18" y2="15"/>
+      </svg>
+    </button>
   </div>
 </div>
-
-<footer>Malta SOC Audit Intelligence · Restricted Access · &copy; 2026</footer>
-
 <script>
   const H='b3282a2f2a28757b3a18ab833de16a9c54518c0b0cf493e3f0a7cf09386f326a';
   let inp='',busy=false;
   const ds=[0,1,2,3].map(i=>document.getElementById('d'+i));
   const shell=document.getElementById('shell');
-
-  async function hash(s){
-    const b=await crypto.subtle.digest('SHA-256',new TextEncoder().encode(s));
-    return Array.from(new Uint8Array(b)).map(x=>x.toString(16).padStart(2,'0')).join('');
-  }
+  async function hash(s){const b=await crypto.subtle.digest('SHA-256',new TextEncoder().encode(s));return Array.from(new Uint8Array(b)).map(x=>x.toString(16).padStart(2,'0')).join('');}
   function sync(){ds.forEach((d,i)=>{d.className='dot'+(i<inp.length?' on':'');});}
   async function check(){
     if(busy)return;busy=true;
-    if(await hash(inp)===H){
-      ds.forEach(d=>{d.className='dot ok';});
-      setTimeout(()=>window.location.replace('./main.html'),500);
-    } else {
-      ds.forEach(d=>{d.className='dot err';});
-      shell.classList.add('shake');
-      setTimeout(()=>{shell.classList.remove('shake');ds.forEach(d=>{d.className='dot';});inp='';sync();busy=false;},650);
-    }
+    if(await hash(inp)===H){ds.forEach(d=>{d.className='dot ok';});setTimeout(()=>window.location.replace('./main.html'),500);}
+    else{ds.forEach(d=>{d.className='dot err';});shell.classList.add('shake');setTimeout(()=>{shell.classList.remove('shake');ds.forEach(d=>{d.className='dot';});inp='';sync();busy=false;},650);}
   }
-  function press(n){
-    if(busy||inp.length>=4)return;
-    const b=document.querySelector('[data-n="'+n+'"]');
-    if(b){b.classList.add('p');setTimeout(()=>b.classList.remove('p'),130);}
-    inp+=n;sync();
-    if(inp.length===4)setTimeout(check,130);
-  }
-  function del(){
-    if(busy)return;
-    const b=document.getElementById('back');
-    b.classList.add('p');setTimeout(()=>b.classList.remove('p'),130);
-    inp=inp.slice(0,-1);sync();
-  }
+  function press(n){if(busy||inp.length>=4)return;const b=document.querySelector('[data-n="'+n+'"]');if(b){b.classList.add('p');setTimeout(()=>b.classList.remove('p'),130);}inp+=n;sync();if(inp.length===4)setTimeout(check,130);}
+  function del(){if(busy)return;const b=document.getElementById('back');b.classList.add('p');setTimeout(()=>b.classList.remove('p'),130);inp=inp.slice(0,-1);sync();}
   document.querySelectorAll('.key[data-n]').forEach(b=>b.addEventListener('click',()=>press(b.dataset.n)));
   document.getElementById('back').addEventListener('click',del);
-  document.addEventListener('keydown',e=>{
-    if(e.key>='0'&&e.key<='9')press(e.key);
-    else if(e.key==='Backspace')del();
-  });
+  document.addEventListener('keydown',e=>{if(e.key>='0'&&e.key<='9')press(e.key);else if(e.key==='Backspace')del();});
 </script>
 </body>
 </html>
