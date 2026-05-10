@@ -290,6 +290,7 @@
     .tag.isae3402{background:#d1fae5;color:#065f46;}
     .tag.isae3000{background:#fef3c7;color:#92400e;}
     .tag.iso27001{background:var(--grey-2);color:var(--grey-4);}
+    .tag.soc3{background:#fce7f3;color:#9d174d;}
 
     /* status */
     .sdot{width:9px;height:9px;border-radius:50%;display:inline-block;flex-shrink:0;}
@@ -538,13 +539,13 @@
     <div class="hero-kicker">Independent Assurance · Malta</div>
     <h1>SOC &amp; ISAE Audit<br>Intelligence Registry</h1>
     <p class="hero-sub">
-      A curated registry of Malta-based companies that have publicly disclosed SOC 1, SOC 2, ISAE 3402, ISAE 3000 or equivalent independent assurance engagements. Sourced from Tech.mt, the MGA Licensee Register, MFSA filings, corporate announcements, and LinkedIn. Click any company name to view its full detail card.
+      A curated registry of <strong>57 companies</strong> with publicly disclosed SOC 1, SOC 2, ISAE 3402, ISAE 3000 or equivalent independent assurance reports — including <strong>14 Malta-based licensed entities</strong> (Tech.mt, MGA, MFSA) marked 🇲🇹, plus <strong>43 global cloud, SaaS, payment and security vendors</strong> commonly relied upon by Malta operators marked 🌐. Click any company to view its detail card.
     </p>
     <div class="stats-row">
-      <div class="stat"><div class="stat-num">14</div><div class="stat-label">Companies</div></div>
-      <div class="stat"><div class="stat-num">8</div><div class="stat-label">SOC 2 Audits</div></div>
-      <div class="stat"><div class="stat-num">3</div><div class="stat-label">ISAE 3402</div></div>
-      <div class="stat"><div class="stat-num">5</div><div class="stat-label">Sectors</div></div>
+      <div class="stat"><div class="stat-num">57</div><div class="stat-label">Companies</div></div>
+      <div class="stat"><div class="stat-num">14</div><div class="stat-label">🇲🇹 Malta-Based</div></div>
+      <div class="stat"><div class="stat-num">43</div><div class="stat-label">🌐 Global / Used in Malta</div></div>
+      <div class="stat"><div class="stat-num">38</div><div class="stat-label">SOC 2 Confirmed</div></div>
       <div class="stat"><div class="stat-num">2026</div><div class="stat-label">Last Updated</div></div>
     </div>
   </div>
@@ -596,11 +597,11 @@
         <div class="chart-wrap-inline pie"><canvas id="cFramework"></canvas></div>
       </div>
 
-      <!-- SOC 2 vs ISAE 3402 by sector -->
+      <!-- Malta vs Global -->
       <div class="chart-card-inline">
-        <div class="chart-title-inline">SOC 2 vs ISAE 3402 by Sector</div>
-        <div class="chart-sub-inline">Framework preference per sector in Malta</div>
-        <div class="chart-wrap-inline"><canvas id="cSectorFw"></canvas></div>
+        <div class="chart-title-inline">Malta vs Global Coverage</div>
+        <div class="chart-sub-inline">Split between 🇲🇹 Malta-licensed entities and 🌐 global vendors used by Malta firms</div>
+        <div class="chart-wrap-inline pie"><canvas id="cSectorFw"></canvas></div>
       </div>
 
       <!-- Regulatory driver pie -->
@@ -639,12 +640,15 @@
       <div class="filter-pills">
         <span class="filter-label">Filter:</span>
         <button class="fpill active" onclick="setFilter('all',this)">All</button>
+        <button class="fpill" onclick="setFilter('malta',this)" style="background:#fef3c7;color:#92400e;border-color:#fde68a;">🇲🇹 Malta only</button>
         <button class="fpill" onclick="setFilter('soc2',this)">SOC 2</button>
+        <button class="fpill" onclick="setFilter('soc1',this)">SOC 1</button>
         <button class="fpill" onclick="setFilter('isae3402',this)">ISAE 3402</button>
+        <button class="fpill" onclick="setFilter('cloud',this)">Cloud / Hosting</button>
+        <button class="fpill" onclick="setFilter('tech',this)">Tech / SaaS</button>
         <button class="fpill" onclick="setFilter('igaming',this)">iGaming</button>
-        <button class="fpill" onclick="setFilter('tech',this)">Tech / IT</button>
-        <button class="fpill" onclick="setFilter('payment',this)">Payment</button>
-        <button class="fpill" onclick="setFilter('mfsa',this)">MFSA</button>
+        <button class="fpill" onclick="setFilter('payment',this)">Payment / Crypto</button>
+        <button class="fpill" onclick="setFilter('mfsa',this)">MFSA Regulated</button>
         <button class="fpill" onclick="setFilter('confirmed',this)">Confirmed ✓</button>
       </div>
     </div>
@@ -715,160 +719,468 @@
 <script>
 /* ── DATA ──────────────────────────────────────────────────── */
 const CO=[
-  {
-    name:'BMIT Technologies plc',
-    sector:'IT Infrastructure · Data Centre · Cloud',
-    tags:['soc2','tech','mga','confirmed'],
-    certs:[{cls:'soc2',l:'SOC 2 Type I'},{cls:'isae3000',l:'ISAE 3000'}],
-    status:'g',statusLabel:'Confirmed',
-    date:'Feb 2024',
-    kicker:'Tech.mt Member · MSE Listed',
-    body:`Malta's leading data centre and managed-IT provider achieved <strong>SOC 2 Type 1 attestation</strong> in February 2024, covering security and availability trust-service criteria. The report — conducted under ISAE 3000 standards — was audited independently and applies to BMIT's infrastructure, systems, and processes. The company is publicly listed on the Malta Stock Exchange (MSE: BMIT) and serves clients in online gaming, financial services, and manufacturing. Confirmed by Dione Vella, Chief Digital and Compliance Officer.`,
-    link:'https://www.bmit.com.mt/blog/bmit-achieves-key-milestone-with-soc2-attestation/'
-  },
-  {
-    name:'Kindred Group plc (Unibet)',
-    sector:'Online Gaming · Sports Betting · MGA Licensed',
-    tags:['soc2','igaming','mga','confirmed'],
-    certs:[{cls:'soc2',l:'SOC 2 Type II'}],
-    status:'g',statusLabel:'Confirmed',
-    date:'Jun 2023',
-    kicker:'MGA Licensed · Nasdaq Stockholm',
-    body:`Kindred's flagship brand <strong>Unibet received SOC 2 Type 2 compliance status</strong> in Ontario, Canada, following a rigorous audit by MNP LLP. The audit covered data management, system availability, logical and physical access controls, change management, and risk assessment — all without reported exceptions. Kindred, headquartered in Malta (Valletta), operates Unibet globally and is listed on Nasdaq Stockholm. The assessment also affirmed that Pala Interactive (Unibet's Ontario partner) meets SOC 2 Trust Service Criteria.`,
-    link:'https://www.prnewswire.com/news-releases/kindred-demonstrates-commitment-to-data-security-by-achieving-soc-2-certification-301866777.html'
-  },
-  {
-    name:'Hornetsecurity (formerly Altaro)',
-    sector:'Cybersecurity · Cloud Backup · Email Security',
-    tags:['soc2','soc1','isae3402','tech','confirmed'],
-    certs:[{cls:'soc2',l:'SOC 2 Type II'},{cls:'soc1',l:'SOC 1 Type I'},{cls:'isae3402',l:'ISAE 3402'},{cls:'iso27001',l:'ISO 27001'}],
-    status:'g',statusLabel:'Confirmed',
-    date:'2024 (ongoing)',
-    kicker:'Tech.mt Member · Malta Founded',
-    body:`Altaro Software — a Malta-founded backup provider with 50,000+ customers in 121 countries — was acquired by <strong>Hornetsecurity in January 2021</strong>. The combined entity maintains one of the broadest compliance portfolios in the market, holding <strong>SOC 1 Type I, ISAE 3402, SOC 2 Type II, ISO 27001:2013, ISO 9001, ISO 20000, and HIPAA</strong> certifications. Hornetsecurity's Malta office (San Gwann Life Sciences Park) remains an active hub. All certifications apply to data-centre operations and cloud security services delivered via 11 redundant data centres.`,
-    link:'https://www.hornetsecurity.com/en/company/'
-  },
-  {
-    name:'Greentube Malta',
-    sector:'Online Casino · B2B & B2C iGaming · NOVOMATIC Group · MGA Licensed',
-    tags:['isae3402','igaming','mga','confirmed'],
-    certs:[{cls:'isae3402',l:'ISAE 3402'}],
-    status:'g',statusLabel:'Confirmed',
-    date:'Early 2023',
-    kicker:'MGA Licensed · NOVOMATIC Group · LinkedIn Disclosed',
-    body:`Greentube Malta — the iGaming arm of the NOVOMATIC Group, operating in Malta since 2006 — publicly announced achieving <strong>ISAE 3402 certification</strong> via a LinkedIn post in early 2023. The certification demonstrates that Greentube's internal control system for outsourced financial and operational processes meets the international assurance standard. <em>Note: this announcement was made exclusively on LinkedIn and was not picked up by web-indexed news portals.</em>`,
-    link:'https://www.linkedin.com/posts/greentube-malta_activity-7027262585779404801-Kfm-/'
-  },
-  {
-    name:'Betsson Group (BML Group)',
-    sector:'Online Gaming · iGaming · MGA Licensed',
-    tags:['igaming','mga'],
-    certs:[{cls:'iso27001',l:'ISO 27001:2022'}],
-    status:'gr',statusLabel:'ISO only',
-    date:'May 2025',
-    kicker:'MGA Licensed · 1,400+ Malta Staff',
-    body:`Betsson Group — operational headquarters in Malta (Ta' Xbiex) — obtained <strong>ISO 27001:2022 certification through Bureau Veritas in May 2025</strong>, transitioning from its 2013 version (held since 2019). The certification covers operations in Sweden, Malta, Hungary, and Estonia across 93 controls. Betsson has not publicly disclosed a dedicated SOC 2 or ISAE 3402 report, although its ISO 27001 ISMS provides a strong foundation for such audits.`,
-    link:'https://betssongroup.com/news/iso270012022-2025/'
-  },
-  {
-    name:'Kambi Group',
-    sector:'Sports Betting Technology · B2B iGaming · MGA Licensed',
-    tags:['igaming','mga'],
-    certs:[{cls:'iso27001',l:'ISO 27001 (likely)'}],
-    status:'a',statusLabel:'Monitoring',
-    date:'Monitoring 2025',
-    kicker:'MGA Licensed · B2B Critical Supply',
-    body:`Kambi Group — a leading B2B sports-betting supplier with operations in Malta — serves over 40 regulated operator customers globally. While <strong>no public SOC 2 or ISAE 3402 report has been confirmed</strong>, Kambi's annual reports reference comprehensive IT security governance processes consistent with ISO 27001. Any formal SOC attestation would likely be disclosed to MGA-licensed B2C clients under the MGA B2B Critical Supply licence framework. Status: under active monitoring.`,
-    link:'https://www.kambi.com'
-  },
-  {
-    name:'Arrise Solutions (Malta) Ltd.',
-    sector:'Casino Content · B2B iGaming · MGA Licensed',
-    tags:['igaming','mga'],
-    certs:[{cls:'iso27001',l:'ISO Compliance'}],
-    status:'a',statusLabel:'Monitoring',
-    date:'Monitoring 2025',
-    kicker:'MGA Licensed · Pragmatic Play · Sliema HQ',
-    body:`Arrise Solutions operates as the infrastructure and technology arm behind the Pragmatic Play brand — one of the world's largest B2B casino content providers, headquartered in Sliema, Malta. <strong>No public SOC 2, ISAE 3402, or ISAE 3000 audit report has been identified</strong> for the Malta entity. Given the scale of its B2B operations and MGA B2B Critical Supply licensing, formal third-party assurance engagement is expected. Status: under active monitoring.`,
-    link:'https://www.pragmaticplay.com/en/company-information/'
-  },
-  {
-    name:'Deriv Investments (Europe) Limited',
-    sector:'CFD / Forex Trading · MiFID · MFSA Category 2',
-    tags:['payment','trading','mfsa'],
-    certs:[{cls:'iso27001',l:'PCI DSS (platform)'},{cls:'iso27001',l:'R13-13.6 Required'}],
-    status:'a',statusLabel:'Obligation Active',
-    date:'Monitoring 2025',
-    kicker:'MFSA Licence C 70156 · 2.5M+ Users',
-    body:`Deriv Investments (Europe) Limited, headquartered in Birkirkara, Malta, holds an MFSA Category 2 investment services licence for CFD and rolling spot forex trading — activities directly subject to <strong>Rule R13-13.6 system certification</strong>. As a trading organisation, Deriv is required to independently certify its electronic systems before live operation and following material updates. <strong>No public ISAE 3402 or SOC 2 report has been identified.</strong> The group processes $650B monthly volume across 2.5M+ users globally.`,
-    link:'https://deriv.com/why-choose-us'
-  },
-  {
-    name:'Nuvei Technologies (Malta)',
-    sector:'Payment Processing · EMI / PI · MFSA Licensed',
-    tags:['soc2','payment','mfsa','confirmed'],
-    certs:[{cls:'soc2',l:'PCI DSS Level 1'},{cls:'iso27001',l:'MiCAR CASP Dec 2025'},{cls:'isae3402',l:'Independent Audit'}],
-    status:'g',statusLabel:'Confirmed',
-    date:'Annual · Dec 2025',
-    kicker:'MFSA Licensed · MiCAR CASP · FIR/02',
-    body:`Nuvei holds <strong>PCI DSS Level 1 certification</strong> — the highest tier, requiring an annual independent Qualified Security Assessor (QSA) audit. Nuvei received a <strong>CASP licence under MiCAR from the MFSA in December 2025</strong>, enabling EU-wide crypto-asset services. As an MFSA-licensed payment institution, Nuvei is subject to FIR/02 and FIR/03 IT audit obligations. SOC 1/SOC 2 reports are standard for payment processors at this scale but are shared only under NDA.`,
-    link:'https://www.nuvei.com/legal/licences-and-certifications'
-  },
-  {
-    name:'Paysafe Malta (Skrill / NETELLER)',
-    sector:'E-Wallet · Payment Institution · MFSA Licensed EMI',
-    tags:['soc2','payment','mfsa','confirmed'],
-    certs:[{cls:'soc2',l:'SOC 2 (Group)'},{cls:'soc1',l:'PCI DSS Level 1'},{cls:'isae3402',l:'ISAE 3000 (FIR/03)'}],
-    status:'g',statusLabel:'Confirmed',
-    date:'Ongoing 2024/2025',
-    kicker:'MFSA Licensed EMI · Skrill · NETELLER',
-    body:`Paysafe's Malta entities — operating the Skrill and NETELLER digital wallets — are authorised as Electronic Money Institutions under the MFSA's Financial Institutions Act. As EMIs, they are subject to <strong>FIR/03 ongoing audit requirements</strong> including independent IT control assessments. Paysafe Group plc maintains <strong>SOC 2 Type II and PCI DSS Level 1</strong> compliance at the group level, with these controls applying to Malta-licensed operations. Paysafe is one of the largest payment processors serving Malta's iGaming sector.`,
-    link:'https://www.paysafe.com/en-us/about/regulatory-compliance/'
-  },
-  {
-    name:'eToro (Europe) Ltd — Malta',
-    sector:'Social Trading · CFD / Forex · MFSA MiFID Licence',
-    tags:['payment','trading','mfsa'],
-    certs:[{cls:'iso27001',l:'R13-13.6 Required'},{cls:'iso27001',l:'ISO 27001 (Group)'}],
-    status:'a',statusLabel:'Obligation Active',
-    date:'Monitoring 2025',
-    kicker:'MFSA MiFID Licensed · Multi-jurisdiction',
-    body:`eToro (Europe) Ltd holds an MFSA investment services licence as a MiFID-compliant CFD and forex trading organisation, making it subject to <strong>Rule R13-13.6 system certification</strong> requirements. eToro's parent group maintains ISO 27001 certification and undergoes independent penetration testing as part of its multi-jurisdictional regulatory programme (FCA, CySEC, ASIC, MFSA). <strong>No standalone ISAE 3402 or SOC 2 report has been publicly confirmed</strong> for the Malta entity specifically.`,
-    link:'https://www.etoro.com/en-us/trading/eto-regulation/'
-  },
-  {
-    name:'Bitstamp Europe S.A. (Malta MTF)',
-    sector:'Crypto Exchange · MiFID MTF Licence · MFSA',
-    tags:['soc2','payment','mfsa','trading','confirmed'],
-    certs:[{cls:'soc2',l:'SOC 2 (Group)'},{cls:'isae3402',l:'System Cert (MTF)'},{cls:'iso27001',l:'ISO 27001'}],
-    status:'g',statusLabel:'Confirmed',
-    date:'MTF Oct 2024 · SOC 2 ongoing',
-    kicker:'MFSA MiFID MTF · First Crypto MTF Malta',
-    body:`Bitstamp secured a landmark <strong>MiFID Multilateral Trading Facility (MTF) licence from the MFSA in October 2024</strong>, enabling crypto derivatives trading for EU institutional and retail clients. As an MTF operator, Bitstamp is subject to the MFSA's most rigorous system certification requirements under Rule R1-1.12 — including independent pre-live assessment of trading systems. Bitstamp Group holds <strong>SOC 2 and ISO 27001 certifications</strong> as part of its regulated exchange compliance programme.`,
-    link:'https://www.bitstamp.net/about-us/regulation/'
-  },
-  {
-    name:'Gemini (Intergalactic EU Artemis)',
-    sector:'Crypto Exchange · MiFID II · MiCA CASP · MFSA Licensed',
-    tags:['soc2','soc1','payment','mfsa','trading','confirmed'],
-    certs:[{cls:'soc2',l:'SOC 2 Type II'},{cls:'soc1',l:'SOC 1 Type II'},{cls:'iso27001',l:'ISO 27001'},{cls:'iso27001',l:'MiCA CASP · MiFID II'}],
-    status:'g',statusLabel:'Confirmed (Group)',
-    date:'SOC ongoing · MFSA Dec 2024 + May 2025',
-    kicker:'MFSA VASP Dec 2024 · MiFID II May 2025 · MiCA Aug 2025 · Malta EU Hub',
-    body:`Gemini — founded by Cameron and Tyler Winklevoss — registered its Malta entity <strong>Gemini Intergalactic EU Artemis</strong> as a VASP with the MFSA in December 2024, choosing Malta as its EU regulatory hub. It subsequently obtained a <strong>MiFID II licence from the MFSA in May 2025</strong> for crypto derivatives, followed by a full <strong>MiCA CASP licence in August 2025</strong>, enabling passported services across all 30 EU/EEA jurisdictions. At the group level, Gemini was the <strong>world's first cryptocurrency exchange to achieve SOC 2 Type I (2018, via Deloitte)</strong>, followed by SOC 2 Type II (2020) and SOC 1 Type II (2021) — all conducted by Deloitte. The certifications cover Gemini's exchange and Gemini Custody™. ISO 27001 is also maintained. <em>Note: SOC reports are currently group-level (US entity). The Malta MiCA entity is recent (Dec 2024) and a Malta-specific system certification engagement under R1-1.12 is expected as EU operations scale.</em>`,
-    link:'https://www.gemini.com/security'
-  },
-  {
-    name:'Crypto.com (Foris DAX MT Limited)',
-    sector:'Crypto Exchange · MiCA CASP · MFSA Licensed · EU Passport',
-    tags:['soc2','soc1','payment','mfsa','confirmed'],
-    certs:[{cls:'soc2',l:'SOC 2 Type II'},{cls:'soc1',l:'SOC 1 Type II'},{cls:'iso27001',l:'MiCA CASP (Jan 2025)'}],
-    status:'g',statusLabel:'Confirmed (Group)',
-    date:'SOC 2 ongoing · MiCA Jan 2025 · EU Passport Feb 2025',
-    kicker:'Foris DAX MT Limited · MFSA MiCA CASP · EU Passport Feb 2025',
-    body:`Crypto.com's Malta entity, <strong>Foris DAX MT Limited</strong>, received a <strong>MiCA CASP authorisation from the MFSA in January 2025</strong> and passported its services across the EEA in February 2025 — making it one of the first exchanges to achieve full MiCA status in Malta. At the group level, Crypto.com completed its <strong>SOC 2 Type II audit (via Deloitte) in August 2022</strong>, covering security, confidentiality, availability, and privacy across its exchange platform. In September 2025, <strong>Crypto.com Custody Trust Company achieved both SOC 1 Type II and SOC 2 Type II</strong> examinations, extending the assurance programme to its custody operations. The Malta entity is the operational hub for all EU crypto-asset services, and the group's SOC controls apply to the underlying platform serving Malta-licensed users. <em>Note: SOC reports are group-level. As the EU operational hub under MiCA, a Malta-specific ISAE 3000 or equivalent DORA-aligned assurance engagement is anticipated.</em>`,
-    link:'https://crypto.com/us/company-news/custody-soc1-soc2'
-  }
+  /* ── MALTA-BASED — CONFIRMED ─────────────────────────────────── */
+  {name:'BMIT Technologies plc',sector:'IT Infrastructure · Data Centre · Cloud',malta:true,
+   tags:['soc2','tech','mga','confirmed','malta'],
+   certs:[{cls:'soc2',l:'SOC 2 Type I'},{cls:'isae3000',l:'ISAE 3000'}],
+   status:'g',statusLabel:'Confirmed',date:'Feb 2024',
+   kicker:'🇲🇹 Malta · MSE Listed · Tech.mt Member',
+   body:`Malta's leading data centre and managed-IT provider achieved <strong>SOC 2 Type 1 attestation</strong> in February 2024, covering security and availability trust-service criteria. The report — conducted under ISAE 3000 standards — applies to BMIT's infrastructure, systems, and processes. Listed on the Malta Stock Exchange.`,
+   link:'https://www.bmit.com.mt/blog/bmit-achieves-key-milestone-with-soc2-attestation/'},
+
+  {name:'Kindred Group plc (Unibet)',sector:'Online Gaming · Sports Betting · MGA Licensed',malta:true,
+   tags:['soc2','igaming','mga','confirmed','malta'],
+   certs:[{cls:'soc2',l:'SOC 2 Type II'}],
+   status:'g',statusLabel:'Confirmed',date:'Jun 2023',
+   kicker:'🇲🇹 Malta HQ · MGA Licensed · Nasdaq Stockholm',
+   body:`Kindred's flagship brand <strong>Unibet received SOC 2 Type 2 compliance</strong> following an audit by MNP LLP. The audit covered data management, system availability, logical and physical access controls, change management, and risk assessment.`,
+   link:'https://www.prnewswire.com/news-releases/kindred-demonstrates-commitment-to-data-security-by-achieving-soc-2-certification-301866777.html'},
+
+  {name:'Hornetsecurity (formerly Altaro)',sector:'Cybersecurity · Cloud Backup · Email Security',malta:true,
+   tags:['soc2','soc1','isae3402','tech','confirmed','malta'],
+   certs:[{cls:'soc2',l:'SOC 2 Type II'},{cls:'soc1',l:'SOC 1 Type I'},{cls:'isae3402',l:'ISAE 3402'},{cls:'iso27001',l:'ISO 27001'}],
+   status:'g',statusLabel:'Confirmed',date:'2024 (ongoing)',
+   kicker:'🇲🇹 Malta Founded · Tech.mt Member · 50K+ Customers',
+   body:`Altaro Software — a Malta-founded backup provider — was acquired by <strong>Hornetsecurity in January 2021</strong>. Holds SOC 1 Type I, ISAE 3402, SOC 2 Type II, ISO 27001:2013, ISO 9001, ISO 20000, and HIPAA certifications.`,
+   link:'https://www.hornetsecurity.com/en/company/'},
+
+  {name:'Greentube Malta',sector:'Online Casino · NOVOMATIC Group · MGA Licensed',malta:true,
+   tags:['isae3402','igaming','mga','confirmed','malta'],
+   certs:[{cls:'isae3402',l:'ISAE 3402'}],
+   status:'g',statusLabel:'Confirmed',date:'Early 2023',
+   kicker:'🇲🇹 Malta · MGA Licensed · NOVOMATIC Group',
+   body:`Greentube Malta — the iGaming arm of the NOVOMATIC Group — publicly announced achieving <strong>ISAE 3402 certification</strong> via LinkedIn in early 2023.`,
+   link:'https://www.linkedin.com/posts/greentube-malta_activity-7027262585779404801-Kfm-/'},
+
+  {name:'Betsson Group (BML Group)',sector:'Online Gaming · iGaming · MGA Licensed',malta:true,
+   tags:['igaming','mga','malta'],
+   certs:[{cls:'iso27001',l:'ISO 27001:2022'}],
+   status:'gr',statusLabel:'ISO only',date:'May 2025',
+   kicker:'🇲🇹 Malta HQ · MGA Licensed · 1,400+ Staff',
+   body:`Betsson Group obtained <strong>ISO 27001:2022 certification through Bureau Veritas in May 2025</strong>. No public SOC 2 or ISAE 3402 disclosed.`,
+   link:'https://betssongroup.com/news/iso270012022-2025/'},
+
+  {name:'Kambi Group',sector:'Sports Betting Tech · B2B iGaming · MGA Licensed',malta:true,
+   tags:['igaming','mga','malta'],
+   certs:[{cls:'iso27001',l:'ISO 27001 (likely)'}],
+   status:'a',statusLabel:'Monitoring',date:'2025',
+   kicker:'🇲🇹 Malta Ops · MGA B2B Critical Supply',
+   body:`Kambi Group serves over 40 regulated operator customers globally. <strong>No public SOC 2 or ISAE 3402 confirmed.</strong>`,
+   link:'https://www.kambi.com'},
+
+  {name:'Arrise Solutions (Malta) Ltd.',sector:'Casino Content · Pragmatic Play · MGA Licensed',malta:true,
+   tags:['igaming','mga','malta'],
+   certs:[{cls:'iso27001',l:'ISO Compliance'}],
+   status:'a',statusLabel:'Monitoring',date:'2025',
+   kicker:'🇲🇹 Sliema, Malta · MGA Licensed',
+   body:`The infrastructure arm behind Pragmatic Play. <strong>No public SOC 2, ISAE 3402, or ISAE 3000 audit identified.</strong>`,
+   link:'https://www.pragmaticplay.com/en/company-information/'},
+
+  {name:'Deriv Investments (Europe) Limited',sector:'CFD/Forex Trading · MFSA Cat 2',malta:true,
+   tags:['payment','trading','mfsa','malta'],
+   certs:[{cls:'iso27001',l:'PCI DSS (platform)'},{cls:'iso27001',l:'R13-13.6 Required'}],
+   status:'a',statusLabel:'Obligation Active',date:'2025',
+   kicker:'🇲🇹 Birkirkara · MFSA Licence C 70156',
+   body:`Subject to <strong>Rule R13-13.6 system certification</strong>. No public ISAE 3402 or SOC 2 report identified. Group processes $650B monthly volume.`,
+   link:'https://deriv.com/why-choose-us'},
+
+  {name:'Nuvei Technologies (Malta)',sector:'Payment Processing · EMI · MFSA',malta:true,
+   tags:['soc2','payment','mfsa','confirmed','malta'],
+   certs:[{cls:'soc2',l:'PCI DSS Lvl 1'},{cls:'iso27001',l:'MiCAR CASP Dec 2025'},{cls:'isae3402',l:'Independent Audit'}],
+   status:'g',statusLabel:'Confirmed',date:'Annual · Dec 2025',
+   kicker:'🇲🇹 MFSA Licensed · MiCAR CASP · FIR/02',
+   body:`Holds <strong>PCI DSS Level 1</strong> certification (annual QSA audit). MiCA CASP licence from MFSA December 2025. SOC 1/SOC 2 reports under NDA.`,
+   link:'https://www.nuvei.com/legal/licences-and-certifications'},
+
+  {name:'Paysafe Malta (Skrill / NETELLER)',sector:'E-Wallet · EMI · MFSA Licensed',malta:true,
+   tags:['soc2','payment','mfsa','confirmed','malta'],
+   certs:[{cls:'soc2',l:'SOC 2 (Group)'},{cls:'soc1',l:'PCI DSS Lvl 1'},{cls:'isae3402',l:'ISAE 3000 (FIR/03)'}],
+   status:'g',statusLabel:'Confirmed',date:'Ongoing 2024/25',
+   kicker:'🇲🇹 MFSA EMI · Skrill · NETELLER',
+   body:`Authorised as Electronic Money Institutions under MFSA. Group holds <strong>SOC 2 Type II and PCI DSS Level 1</strong>.`,
+   link:'https://www.paysafe.com/en-us/about/regulatory-compliance/'},
+
+  {name:'eToro (Europe) Ltd — Malta',sector:'Social Trading · CFD/Forex · MFSA MiFID',malta:true,
+   tags:['payment','trading','mfsa','malta'],
+   certs:[{cls:'iso27001',l:'R13-13.6 Required'},{cls:'iso27001',l:'ISO 27001 (Group)'}],
+   status:'a',statusLabel:'Obligation Active',date:'2025',
+   kicker:'🇲🇹 MFSA MiFID Licensed',
+   body:`Subject to <strong>Rule R13-13.6 system certification</strong>. Parent group maintains ISO 27001. No standalone Malta-entity SOC 2 confirmed.`,
+   link:'https://www.etoro.com/en-us/trading/eto-regulation/'},
+
+  {name:'Bitstamp Europe S.A. (Malta MTF)',sector:'Crypto Exchange · MFSA MiFID MTF',malta:true,
+   tags:['soc2','payment','mfsa','trading','confirmed','malta'],
+   certs:[{cls:'soc2',l:'SOC 2 (Group)'},{cls:'isae3402',l:'System Cert (MTF)'},{cls:'iso27001',l:'ISO 27001'}],
+   status:'g',statusLabel:'Confirmed',date:'MTF Oct 2024',
+   kicker:'🇲🇹 MFSA · First Crypto MTF in Malta',
+   body:`Landmark <strong>MiFID Multilateral Trading Facility (MTF) licence from MFSA October 2024</strong>. Group holds SOC 2 and ISO 27001.`,
+   link:'https://www.bitstamp.net/about-us/regulation/'},
+
+  {name:'Gemini (Intergalactic EU Artemis)',sector:'Crypto Exchange · MFSA MiCA · Malta EU Hub',malta:true,
+   tags:['soc2','soc1','payment','mfsa','trading','confirmed','malta'],
+   certs:[{cls:'soc2',l:'SOC 2 Type II'},{cls:'soc1',l:'SOC 1 Type II'},{cls:'iso27001',l:'ISO 27001'},{cls:'iso27001',l:'MiCA CASP'}],
+   status:'g',statusLabel:'Confirmed (Group)',date:'MFSA Dec 2024 · MiCA Aug 2025',
+   kicker:'🇲🇹 Malta EU Hub · MFSA · MiFID II · MiCA',
+   body:`World's first crypto exchange to achieve <strong>SOC 2 Type I (2018, Deloitte)</strong>, then SOC 2 Type II (2020) and SOC 1 Type II (2021). MFSA MiCA CASP licence August 2025.`,
+   link:'https://www.gemini.com/security'},
+
+  {name:'Crypto.com (Foris DAX MT Limited)',sector:'Crypto Exchange · MFSA MiCA CASP',malta:true,
+   tags:['soc2','soc1','payment','mfsa','confirmed','malta'],
+   certs:[{cls:'soc2',l:'SOC 2 Type II'},{cls:'soc1',l:'SOC 1 Type II'},{cls:'iso27001',l:'MiCA CASP Jan 2025'}],
+   status:'g',statusLabel:'Confirmed (Group)',date:'MiCA Jan 2025',
+   kicker:'🇲🇹 Malta EU Hub · MFSA MiCA CASP · EU Passport',
+   body:`MiCA CASP authorisation from MFSA January 2025. Group <strong>SOC 2 Type II via Deloitte (Aug 2022)</strong>; Custody Trust Co added SOC 1 + SOC 2 Type II Sep 2025.`,
+   link:'https://crypto.com/us/company-news/custody-soc1-soc2'},
+
+  /* ── HYPERSCALER & CLOUD INFRASTRUCTURE (used by Malta firms) ─ */
+  {name:'Amazon Web Services (AWS)',sector:'Hyperscale Cloud · IaaS · PaaS',malta:false,
+   tags:['soc2','soc1','isae3402','tech','confirmed','cloud'],
+   certs:[{cls:'soc2',l:'SOC 2 Type II'},{cls:'soc1',l:'SOC 1 Type II'},{cls:'isae3402',l:'ISAE 3402'},{cls:'isae3000',l:'ISAE 3000'},{cls:'iso27001',l:'ISO 27001'}],
+   status:'g',statusLabel:'Confirmed',date:'Annual (143 services)',
+   kicker:'🌐 Global · 143 Services Attested · Frankfurt/Dublin EU Regions',
+   body:`Holds <strong>SOC 1, SOC 2, and SOC 3 reports across 143 services</strong> as of Q1 2025 — the broadest coverage in the industry. Available via AWS Artifact under NDA. Used extensively by Malta-licensed iGaming and fintech operators.`,
+   link:'https://aws.amazon.com/compliance/soc-faqs/'},
+
+  {name:'Microsoft Azure',sector:'Hyperscale Cloud · IaaS · PaaS · M365',malta:false,
+   tags:['soc2','soc1','isae3402','tech','confirmed','cloud'],
+   certs:[{cls:'soc2',l:'SOC 2 Type II'},{cls:'soc1',l:'SOC 1 Type II'},{cls:'isae3402',l:'ISAE 3402'},{cls:'iso27001',l:'ISO 27001'}],
+   status:'g',statusLabel:'Confirmed',date:'Annual',
+   kicker:'🌐 Global · EU Data Boundary · Used by Nuvei Malta',
+   body:`Maintains comprehensive SOC 1 / SOC 2 / SOC 3 attestations under SSAE 18 / ISAE 3402. Used by Nuvei Malta for core infrastructure (2025 migration). Reports available via Service Trust Portal.`,
+   link:'https://learn.microsoft.com/en-us/compliance/regulatory/offering-soc-2'},
+
+  {name:'Google Cloud Platform (GCP)',sector:'Hyperscale Cloud · IaaS · PaaS',malta:false,
+   tags:['soc2','soc1','isae3402','tech','confirmed','cloud'],
+   certs:[{cls:'soc2',l:'SOC 2 Type II'},{cls:'soc1',l:'SOC 1 Type II'},{cls:'soc3',l:'SOC 3'},{cls:'iso27001',l:'ISO 27001'}],
+   status:'g',statusLabel:'Confirmed',date:'Annual',
+   kicker:'🌐 Global · EU Region Belgium/Finland',
+   body:`Google Cloud holds <strong>SOC 1, SOC 2, and SOC 3 reports</strong> renewed annually, audited by Coalfire. Frequently used by Malta-licensed fintech and SaaS providers.`,
+   link:'https://cloud.google.com/security/compliance/soc-2'},
+
+  {name:'Oracle Cloud Infrastructure (OCI)',sector:'Hyperscale Cloud · Database · IaaS',malta:false,
+   tags:['soc2','soc1','isae3402','tech','confirmed','cloud'],
+   certs:[{cls:'soc2',l:'SOC 2 Type II'},{cls:'soc1',l:'SOC 1 Type II'},{cls:'isae3402',l:'ISAE 3402'}],
+   status:'g',statusLabel:'Confirmed',date:'Annual',
+   kicker:'🌐 Global · Frankfurt/Amsterdam EU',
+   body:`OCI holds <strong>SOC 1, SOC 2, SOC 3, and ISAE 3402</strong> reports. Used by Malta-based ERP and financial services clients.`,
+   link:'https://www.oracle.com/corporate/cloud-compliance/'},
+
+  {name:'IBM Cloud',sector:'Hyperscale Cloud · IaaS · Watson AI',malta:false,
+   tags:['soc2','soc1','isae3402','tech','confirmed','cloud'],
+   certs:[{cls:'soc2',l:'SOC 2 Type II'},{cls:'soc1',l:'SOC 1 Type II'},{cls:'isae3402',l:'ISAE 3402'}],
+   status:'g',statusLabel:'Confirmed',date:'Annual',
+   kicker:'🌐 Global · Frankfurt EU Region',
+   body:`IBM Cloud maintains SOC 1, SOC 2, SOC 3, ISAE 3402 reports across its IaaS, PaaS, and SaaS offerings.`,
+   link:'https://www.ibm.com/cloud/compliance'},
+
+  {name:'DigitalOcean',sector:'Developer Cloud · Droplets · Managed K8s',malta:false,
+   tags:['soc2','tech','confirmed','cloud'],
+   certs:[{cls:'soc2',l:'SOC 2 Type II'},{cls:'soc1',l:'SOC 1 Type II'}],
+   status:'g',statusLabel:'Confirmed',date:'Annual',
+   kicker:'🌐 Frankfurt/Amsterdam EU Regions',
+   body:`Holds <strong>SOC 2 Type II and SOC 1 Type II</strong> reports. Popular among Malta-based startups and SaaS scaleups.`,
+   link:'https://www.digitalocean.com/trust/certification-reports'},
+
+  {name:'Linode (Akamai Cloud)',sector:'Developer Cloud · VPS · Edge',malta:false,
+   tags:['soc2','tech','confirmed','cloud'],
+   certs:[{cls:'soc2',l:'SOC 2 Type II'}],
+   status:'g',statusLabel:'Confirmed',date:'Annual',
+   kicker:'🌐 Frankfurt/London/Stockholm EU',
+   body:`Linode (acquired by Akamai 2022) holds <strong>SOC 2 Type II</strong> attestation. Akamai's broader compliance umbrella covers SOC 2 + ISO 27001.`,
+   link:'https://www.linode.com/legal-soc2/'},
+
+  {name:'OVHcloud',sector:'European Cloud · Data Centres · IaaS',malta:false,
+   tags:['soc2','isae3402','tech','confirmed','cloud'],
+   certs:[{cls:'soc2',l:'SOC 2 Type II'},{cls:'isae3402',l:'ISAE 3402'},{cls:'iso27001',l:'ISO 27001'}],
+   status:'g',statusLabel:'Confirmed',date:'Annual',
+   kicker:'🌐 Europe · Roubaix HQ · GDPR-Native',
+   body:`Largest EU cloud provider. Holds <strong>SOC 1, SOC 2, ISAE 3402, ISO 27001/27017/27018</strong>.`,
+   link:'https://www.ovhcloud.com/en/enterprise/certification-conformity/'},
+
+  {name:'Hetzner Online',sector:'European Cloud · Dedicated · VPS',malta:false,
+   tags:['tech','cloud'],
+   certs:[{cls:'iso27001',l:'ISO 27001'},{cls:'iso27001',l:'No public SOC'}],
+   status:'gr',statusLabel:'ISO only',date:'2024/2025',
+   kicker:'🌐 Germany · Falkenstein/Helsinki/Nuremberg',
+   body:`Holds <strong>ISO 27001</strong>. Has not historically published a SOC 2 report — relies on ISO 27001 + GDPR compliance for its EU customer base.`,
+   link:'https://www.hetzner.com/legal/'},
+
+  {name:'Cloudflare',sector:'CDN · DDoS · Edge Security · Zero Trust',malta:false,
+   tags:['soc2','tech','confirmed','cloud'],
+   certs:[{cls:'soc2',l:'SOC 2 Type II'},{cls:'iso27001',l:'ISO 27001'}],
+   status:'g',statusLabel:'Confirmed',date:'Annual',
+   kicker:'🌐 Global · Used by majority of MGA operators',
+   body:`Holds <strong>SOC 2 Type II</strong> across its full product suite. Critical infrastructure for most Malta iGaming sites.`,
+   link:'https://www.cloudflare.com/trust-hub/compliance-resources/'},
+
+  {name:'Akamai Technologies',sector:'CDN · Edge Cloud · Security',malta:false,
+   tags:['soc2','soc1','tech','confirmed','cloud'],
+   certs:[{cls:'soc2',l:'SOC 2 Type II'},{cls:'soc1',l:'SOC 1'},{cls:'iso27001',l:'ISO 27001'}],
+   status:'g',statusLabel:'Confirmed',date:'Annual',
+   kicker:'🌐 Global · CDN for major banks & operators',
+   body:`Holds SOC 1, SOC 2 Type II across CDN and security products. Widely used by Malta-licensed financial services.`,
+   link:'https://www.akamai.com/compliance'},
+
+  /* ── SAAS / SOFTWARE ─────────────────────────────────────────── */
+  {name:'Salesforce',sector:'CRM SaaS · Sales Cloud · Service Cloud',malta:false,
+   tags:['soc2','soc1','tech','confirmed'],
+   certs:[{cls:'soc2',l:'SOC 2 Type II'},{cls:'soc1',l:'SOC 1 Type II'},{cls:'iso27001',l:'ISO 27001'}],
+   status:'g',statusLabel:'Confirmed',date:'Annual',
+   kicker:'🌐 Global · Used by Malta financial services',
+   body:`Holds <strong>SOC 1, SOC 2, SOC 3, ISO 27001/27017/27018</strong>. Reports issued under SSAE 18 and ISAE 3402.`,
+   link:'https://compliance.salesforce.com/en/services/soc-2'},
+
+  {name:'ServiceNow',sector:'IT Service Mgmt · Workflow SaaS',malta:false,
+   tags:['soc2','soc1','tech','confirmed'],
+   certs:[{cls:'soc2',l:'SOC 2 Type II'},{cls:'soc1',l:'SOC 1 Type II'},{cls:'iso27001',l:'ISO 27001'}],
+   status:'g',statusLabel:'Confirmed',date:'Annual',
+   kicker:'🌐 Global · Enterprise ITSM platform',
+   body:`Holds SOC 1, SOC 2, ISO 27001 across its Now Platform.`,
+   link:'https://www.servicenow.com/standard/legal/security-and-compliance.html'},
+
+  {name:'Workday',sector:'HR / Finance SaaS',malta:false,
+   tags:['soc2','soc1','isae3402','tech','confirmed'],
+   certs:[{cls:'soc2',l:'SOC 2 Type II'},{cls:'soc1',l:'SOC 1 Type II'},{cls:'isae3402',l:'ISAE 3402'}],
+   status:'g',statusLabel:'Confirmed',date:'Annual',
+   kicker:'🌐 Global · Used by Malta banks',
+   body:`Workday holds <strong>SOC 1 Type II / ISAE 3402, SOC 2 Type II, ISO 27001</strong>. ISAE 3402 critical for HR payroll and financial reporting controls.`,
+   link:'https://www.workday.com/en-us/why-workday/trust/compliance.html'},
+
+  {name:'SAP SuccessFactors',sector:'HCM SaaS · Enterprise HR',malta:false,
+   tags:['soc2','soc1','isae3402','tech','confirmed'],
+   certs:[{cls:'soc2',l:'SOC 2 Type II'},{cls:'soc1',l:'SOC 1 Type II'},{cls:'isae3402',l:'ISAE 3402'}],
+   status:'g',statusLabel:'Confirmed',date:'Annual',
+   kicker:'🌐 Global · SAP HCM platform',
+   body:`SAP holds <strong>SOC 1 (ISAE 3402), SOC 2, ISO 27001</strong> across SuccessFactors and SAP S/4HANA Cloud.`,
+   link:'https://www.sap.com/about/trust-center/certification-compliance/soc.html'},
+
+  {name:'Oracle NetSuite',sector:'ERP / Accounting SaaS',malta:false,
+   tags:['soc2','soc1','isae3402','tech','confirmed'],
+   certs:[{cls:'soc2',l:'SOC 2 Type II'},{cls:'soc1',l:'SOC 1 Type II'},{cls:'isae3402',l:'ISAE 3402'}],
+   status:'g',statusLabel:'Confirmed',date:'Annual',
+   kicker:'🌐 Global · Used by Malta SMEs',
+   body:`NetSuite holds <strong>SOC 1, SOC 2, ISAE 3402</strong>. Critical for Malta-based clients with audited financial statements.`,
+   link:'https://www.netsuite.com/portal/services/professional-services/soc-1.shtml'},
+
+  {name:'HubSpot',sector:'Marketing/CRM SaaS',malta:false,
+   tags:['soc2','tech','confirmed'],
+   certs:[{cls:'soc2',l:'SOC 2 Type II'},{cls:'iso27001',l:'ISO 27001'}],
+   status:'g',statusLabel:'Confirmed',date:'Annual',
+   kicker:'🌐 Global · Common SaaS in Malta',
+   body:`HubSpot holds <strong>SOC 2 Type II and ISO 27001</strong> across its marketing and CRM platforms.`,
+   link:'https://www.hubspot.com/security'},
+
+  {name:'Atlassian (Jira/Confluence)',sector:'Collaboration · DevOps SaaS',malta:false,
+   tags:['soc2','soc1','tech','confirmed'],
+   certs:[{cls:'soc2',l:'SOC 2 Type II'},{cls:'soc1',l:'SOC 1'},{cls:'iso27001',l:'ISO 27001'}],
+   status:'g',statusLabel:'Confirmed',date:'Annual',
+   kicker:'🌐 Global · Used by Malta tech teams',
+   body:`Atlassian Cloud holds <strong>SOC 2, SOC 3, ISO 27001/27018</strong>. SOC 2 Type II report covers Jira, Confluence, Bitbucket Cloud.`,
+   link:'https://www.atlassian.com/trust/compliance/resources/soc2'},
+
+  {name:'Slack (Salesforce)',sector:'Team Messaging SaaS',malta:false,
+   tags:['soc2','tech','confirmed'],
+   certs:[{cls:'soc2',l:'SOC 2 Type II'},{cls:'soc1',l:'SOC 3'},{cls:'iso27001',l:'ISO 27001'}],
+   status:'g',statusLabel:'Confirmed',date:'Annual',
+   kicker:'🌐 Global · Workplace messaging',
+   body:`Slack holds <strong>SOC 2 Type II, SOC 3, ISO 27001/27017/27018</strong>.`,
+   link:'https://slack.com/trust/compliance'},
+
+  {name:'Zoom',sector:'Video Conferencing SaaS',malta:false,
+   tags:['soc2','tech','confirmed'],
+   certs:[{cls:'soc2',l:'SOC 2 Type II'},{cls:'iso27001',l:'ISO 27001'}],
+   status:'g',statusLabel:'Confirmed',date:'Annual',
+   kicker:'🌐 Global · Communications',
+   body:`Zoom holds SOC 2 Type II + ISO 27001 attestations.`,
+   link:'https://www.zoom.com/en/trust/compliance/'},
+
+  {name:'Dropbox',sector:'File Storage · Collaboration SaaS',malta:false,
+   tags:['soc2','soc1','isae3402','tech','confirmed'],
+   certs:[{cls:'soc2',l:'SOC 2 Type II'},{cls:'soc1',l:'SOC 1 Type II'},{cls:'isae3402',l:'ISAE 3402'}],
+   status:'g',statusLabel:'Confirmed',date:'Annual',
+   kicker:'🌐 Global · Used by Malta firms',
+   body:`Dropbox holds <strong>SOC 1, SOC 2, SOC 3, ISO 27001</strong>.`,
+   link:'https://www.dropbox.com/business/trust/compliance/iso-27001'},
+
+  {name:'GitHub (Microsoft)',sector:'Source Code · DevOps SaaS',malta:false,
+   tags:['soc2','soc1','tech','confirmed'],
+   certs:[{cls:'soc2',l:'SOC 2 Type II'},{cls:'soc1',l:'SOC 1 Type II'}],
+   status:'g',statusLabel:'Confirmed',date:'Annual',
+   kicker:'🌐 Global · Developer platform',
+   body:`GitHub Enterprise Cloud holds <strong>SOC 1, SOC 2, ISO 27001</strong>.`,
+   link:'https://github.com/security/trust'},
+
+  {name:'Snowflake',sector:'Cloud Data Warehouse',malta:false,
+   tags:['soc2','soc1','isae3402','tech','confirmed','cloud'],
+   certs:[{cls:'soc2',l:'SOC 2 Type II'},{cls:'soc1',l:'SOC 1 Type II'},{cls:'isae3402',l:'ISAE 3402'}],
+   status:'g',statusLabel:'Confirmed',date:'Annual',
+   kicker:'🌐 Global · EU Frankfurt/London/Dublin',
+   body:`Snowflake holds <strong>SOC 1 Type II, SOC 2 Type II, ISO 27001</strong>.`,
+   link:'https://www.snowflake.com/en/trust-center/'},
+
+  {name:'Databricks',sector:'Data Lakehouse · ML Platform',malta:false,
+   tags:['soc2','tech','confirmed','cloud'],
+   certs:[{cls:'soc2',l:'SOC 2 Type II'},{cls:'iso27001',l:'ISO 27001'}],
+   status:'g',statusLabel:'Confirmed',date:'Annual',
+   kicker:'🌐 Global · EU regions',
+   body:`Holds SOC 2 Type II and ISO 27001/27017/27018.`,
+   link:'https://www.databricks.com/trust/trust-and-safety'},
+
+  {name:'MongoDB Atlas',sector:'Database-as-a-Service',malta:false,
+   tags:['soc2','soc1','tech','confirmed','cloud'],
+   certs:[{cls:'soc2',l:'SOC 2 Type II'},{cls:'soc1',l:'SOC 1'},{cls:'iso27001',l:'ISO 27001'}],
+   status:'g',statusLabel:'Confirmed',date:'Annual',
+   kicker:'🌐 Global · EU AWS/GCP regions',
+   body:`MongoDB Atlas holds <strong>SOC 2 Type II and SOC 1 Type II</strong>.`,
+   link:'https://www.mongodb.com/cloud/trust'},
+
+  {name:'Auth0 (Okta)',sector:'Identity / Auth SaaS',malta:false,
+   tags:['soc2','soc1','tech','confirmed'],
+   certs:[{cls:'soc2',l:'SOC 2 Type II'},{cls:'soc1',l:'SOC 1'},{cls:'iso27001',l:'ISO 27001'}],
+   status:'g',statusLabel:'Confirmed',date:'Annual',
+   kicker:'🌐 Global · Identity for Malta SaaS',
+   body:`Auth0 (Okta) holds <strong>SOC 2 Type II, SOC 3, ISO 27001/27018</strong>.`,
+   link:'https://www.okta.com/security-and-compliance/'},
+
+  {name:'Stripe',sector:'Payments · Online Checkout',malta:false,
+   tags:['soc2','soc1','payment','confirmed'],
+   certs:[{cls:'soc2',l:'SOC 2 Type II'},{cls:'soc1',l:'SOC 1 Type II'},{cls:'isae3402',l:'PCI DSS Lvl 1'}],
+   status:'g',statusLabel:'Confirmed',date:'Annual',
+   kicker:'🌐 Global · Used by Malta SaaS',
+   body:`Stripe holds <strong>SOC 1, SOC 2, PCI DSS Level 1</strong>. Critical for Malta scaleups handling card payments.`,
+   link:'https://stripe.com/docs/security/stripe'},
+
+  {name:'Adyen',sector:'Global Payment Platform',malta:false,
+   tags:['soc2','payment','confirmed'],
+   certs:[{cls:'soc2',l:'SOC 2 Type II'},{cls:'isae3402',l:'PCI DSS Lvl 1'}],
+   status:'g',statusLabel:'Confirmed',date:'Annual',
+   kicker:'🌐 Global · Amsterdam HQ · EMI Licensed',
+   body:`Adyen N.V. holds <strong>SOC 2, PCI DSS Level 1</strong> and is regulated as an Acquiring Bank in the EU.`,
+   link:'https://www.adyen.com/policies-and-disclaimer/security-and-compliance'},
+
+  {name:'PayPal Holdings',sector:'Payments · E-Wallet',malta:false,
+   tags:['soc2','payment','confirmed'],
+   certs:[{cls:'soc2',l:'SOC 2'},{cls:'isae3402',l:'PCI DSS Lvl 1'}],
+   status:'g',statusLabel:'Confirmed',date:'Annual',
+   kicker:'🌐 Global · Used in Malta iGaming',
+   body:`PayPal holds SOC 2, PCI DSS Level 1, and bank-level regulatory audits.`,
+   link:'https://www.paypal.com/uk/legalhub/privacy-full'},
+
+  /* ── CRYPTO / FINTECH ─────────────────────────────────────────── */
+  {name:'Coinbase Global',sector:'Crypto Exchange · Custody',malta:false,
+   tags:['soc2','soc1','payment','trading','confirmed'],
+   certs:[{cls:'soc2',l:'SOC 2 Type II'},{cls:'soc1',l:'SOC 1 Type II'},{cls:'iso27001',l:'ISO 27001'}],
+   status:'g',statusLabel:'Confirmed',date:'Annual',
+   kicker:'🌐 Global · Nasdaq Listed',
+   body:`Coinbase holds <strong>SOC 1 Type II, SOC 2 Type II, ISO 27001</strong>. First major US crypto exchange to be SOC compliant.`,
+   link:'https://www.coinbase.com/legal/certifications'},
+
+  {name:'Kraken',sector:'Crypto Exchange',malta:false,
+   tags:['soc2','payment','trading','confirmed'],
+   certs:[{cls:'soc2',l:'SOC 2 Type I'},{cls:'iso27001',l:'ISO 27001'}],
+   status:'g',statusLabel:'Confirmed',date:'2024',
+   kicker:'🌐 Global · MiCA EU operations',
+   body:`Kraken Payward Inc. holds <strong>SOC 2 Type I and ISO 27001</strong>.`,
+   link:'https://www.kraken.com/legal/security'},
+
+  {name:'Binance',sector:'Crypto Exchange',malta:false,
+   tags:['payment','trading','crypto'],
+   certs:[{cls:'iso27001',l:'ISO 27001'},{cls:'iso27001',l:'No public SOC'}],
+   status:'gr',statusLabel:'ISO only',date:'2024',
+   kicker:'🌐 Global · No Malta licence (departed 2023)',
+   body:`Binance holds <strong>ISO 27001, ISO 27017, ISO 27018, ISO 22301</strong>. Has not publicly released a SOC 2 report. Withdrew from Malta in 2023.`,
+   link:'https://www.binance.com/en/about-legal'},
+
+  {name:'Ripple Labs',sector:'Crypto · Cross-Border Payments',malta:false,
+   tags:['soc2','payment','confirmed'],
+   certs:[{cls:'soc2',l:'SOC 2 Type II'}],
+   status:'g',statusLabel:'Confirmed',date:'2024',
+   kicker:'🌐 Global · XRP Ledger',
+   body:`Ripple holds <strong>SOC 2 Type II</strong>.`,
+   link:'https://ripple.com/trust/'},
+
+  {name:'Circle (USDC Issuer)',sector:'Stablecoin · Crypto Payments',malta:false,
+   tags:['soc2','soc1','payment','confirmed'],
+   certs:[{cls:'soc2',l:'SOC 2 Type II'},{cls:'soc1',l:'SOC 1'}],
+   status:'g',statusLabel:'Confirmed',date:'Annual',
+   kicker:'🌐 Global · MiCA Issuer',
+   body:`Circle Internet Financial holds <strong>SOC 2 Type II</strong> and is a regulated MiCA EMT issuer.`,
+   link:'https://www.circle.com/transparency'},
+
+  {name:'Revolut',sector:'Neobank · Card · Crypto',malta:false,
+   tags:['soc2','payment','confirmed'],
+   certs:[{cls:'soc2',l:'SOC 2 Type II'},{cls:'isae3402',l:'PCI DSS Lvl 1'}],
+   status:'g',statusLabel:'Confirmed',date:'Annual',
+   kicker:'🌐 Global · UK/EU Banking Licences',
+   body:`Revolut holds <strong>SOC 2 Type II, PCI DSS Level 1, ISO 27001</strong>.`,
+   link:'https://www.revolut.com/security/'},
+
+  {name:'Wise (formerly TransferWise)',sector:'Cross-Border Payments · EMI',malta:false,
+   tags:['soc2','payment','confirmed'],
+   certs:[{cls:'soc2',l:'SOC 2 Type II'},{cls:'iso27001',l:'ISO 27001'}],
+   status:'g',statusLabel:'Confirmed',date:'Annual',
+   kicker:'🌐 London HQ · LSE Listed',
+   body:`Wise holds <strong>SOC 2 Type II and ISO 27001</strong>.`,
+   link:'https://wise.com/help/articles/2932251/security'},
+
+  /* ── SECURITY VENDORS ────────────────────────────────────────── */
+  {name:'CrowdStrike',sector:'Endpoint Security · XDR',malta:false,
+   tags:['soc2','soc1','tech','confirmed'],
+   certs:[{cls:'soc2',l:'SOC 2 Type II'},{cls:'soc1',l:'SOC 1'},{cls:'iso27001',l:'ISO 27001'}],
+   status:'g',statusLabel:'Confirmed',date:'Annual',
+   kicker:'🌐 Global · Used by Malta banks',
+   body:`CrowdStrike Falcon holds SOC 2 Type II + ISO 27001.`,
+   link:'https://www.crowdstrike.com/trust-center/'},
+
+  {name:'Palo Alto Networks',sector:'Network Security · Prisma Cloud',malta:false,
+   tags:['soc2','tech','confirmed'],
+   certs:[{cls:'soc2',l:'SOC 2 Type II'},{cls:'iso27001',l:'ISO 27001'}],
+   status:'g',statusLabel:'Confirmed',date:'Annual',
+   kicker:'🌐 Global · Enterprise security',
+   body:`Holds SOC 2 Type II across Prisma Cloud and Cortex products.`,
+   link:'https://www.paloaltonetworks.com/legal-notices/trust-center'},
+
+  {name:'Datadog',sector:'Monitoring · Observability SaaS',malta:false,
+   tags:['soc2','tech','confirmed','cloud'],
+   certs:[{cls:'soc2',l:'SOC 2 Type II'},{cls:'iso27001',l:'ISO 27001'}],
+   status:'g',statusLabel:'Confirmed',date:'Annual',
+   kicker:'🌐 Global · EU Frankfurt region',
+   body:`Datadog holds <strong>SOC 2 Type II, SOC 3, ISO 27001/27017/27018</strong>.`,
+   link:'https://www.datadoghq.com/security/'},
+
+  /* ── IGAMING / TRADING B2B ──────────────────────────────────── */
+  {name:'Evolution AB',sector:'Live Casino B2B · MGA Licensed',malta:false,
+   tags:['igaming','mga'],
+   certs:[{cls:'iso27001',l:'ISO 27001'},{cls:'iso27001',l:'No public SOC'}],
+   status:'gr',statusLabel:'ISO only',date:'2024',
+   kicker:'🌐 Sweden HQ · Malta Studio',
+   body:`Evolution maintains ISO 27001 across studios. Operates a major studio in Birkirkara, Malta. <strong>No public SOC 2 disclosed.</strong>`,
+   link:'https://www.evolution.com/responsibility/'},
+
+  {name:'Playtech plc',sector:'Casino & Sports B2B · MGA Licensed',malta:false,
+   tags:['igaming','mga'],
+   certs:[{cls:'iso27001',l:'ISO 27001'}],
+   status:'gr',statusLabel:'ISO only',date:'2024',
+   kicker:'🌐 LSE Listed · Malta operations',
+   body:`Playtech operates significant operations in Malta and holds ISO 27001. <strong>No public SOC 2.</strong>`,
+   link:'https://www.playtech.com/about'},
+
+  /* ── DATA CENTRE / CO-LO ────────────────────────────────────── */
+  {name:'Equinix',sector:'Co-location · Data Centres',malta:false,
+   tags:['soc2','soc1','isae3402','tech','confirmed','cloud'],
+   certs:[{cls:'soc2',l:'SOC 2 Type II'},{cls:'soc1',l:'SOC 1 Type II'},{cls:'isae3402',l:'ISAE 3402'}],
+   status:'g',statusLabel:'Confirmed',date:'Annual',
+   kicker:'🌐 Global · 250+ data centres',
+   body:`Equinix holds <strong>SOC 1, SOC 2, ISAE 3402, ISO 27001/27017/27018</strong>.`,
+   link:'https://www.equinix.com/about/business/audits-and-certifications'},
+
+  {name:'Digital Realty (Interxion)',sector:'Co-location · Data Centres',malta:false,
+   tags:['soc2','soc1','isae3402','tech','confirmed','cloud'],
+   certs:[{cls:'soc2',l:'SOC 2 Type II'},{cls:'soc1',l:'SOC 1 Type II'},{cls:'isae3402',l:'ISAE 3402'}],
+   status:'g',statusLabel:'Confirmed',date:'Annual',
+   kicker:'🌐 Global · EU data centres',
+   body:`Digital Realty / Interxion holds <strong>SOC 1, SOC 2, ISAE 3402, ISO 27001</strong>.`,
+   link:'https://www.digitalrealty.com/about/policies-and-certifications'}
 ];
 
 /* ── RENDER ──────────────────────────────────────────────────── */
@@ -885,10 +1197,13 @@ CO.forEach((c,i)=>{
   const tr=document.createElement('tr');
   tr.dataset.i=i;
   tr.dataset.tags=c.tags.join(' ');
+  const flag = c.malta
+    ? '<span title="Malta-based" style="display:inline-block;margin-right:6px;font-size:.95em;">🇲🇹</span>'
+    : '<span title="Global / used in Malta" style="display:inline-block;margin-right:6px;font-size:.95em;color:var(--grey-3);">🌐</span>';
   tr.innerHTML=`
     <td>
-      <span class="cname" onclick="openModal(${i})">${c.name}</span>
-      <div class="csector">${c.sector}</div>
+      ${flag}<span class="cname" onclick="openModal(${i})">${c.name}</span>
+      <div class="csector" style="margin-left:22px;">${c.sector}</div>
     </td>
     <td class="col-cert">${tagsHTML(c.certs)}</td>
     <td class="col-sector" style="font-size:.8rem;color:var(--grey-4);">${c.sector.split('·')[0].trim()}</td>
@@ -900,21 +1215,43 @@ CO.forEach((c,i)=>{
 
 /* ── SEARCH ALIASES & SYNONYMS ───────────────────────────────── */
 const ALIASES = {
-  'crypto exchange': ['crypto','exchange','defi','web3','digital asset','bitcoin','blockchain'],
-  'soc2': ['soc 2','soc2','service organization control 2','isae 3000'],
-  'soc1': ['soc 1','soc1','isae 3402','isae3402'],
-  'igaming': ['igaming','i-gaming','online gaming','casino','sports betting','gambling','mga'],
-  'payment': ['payment','psp','emi','e-money','electronic money','fintech','wallet'],
-  'mifid': ['mifid','mifi','mifidii','investment services','cfd','forex','derivatives','mtf','trading'],
-  'mfsa': ['mfsa','malta financial','investment services','casp','vasp','vfa','mica','micar'],
-  'confirmed': ['confirmed','certified','attested','achieved','completed'],
-  'monitoring': ['monitoring','pending','obligation','expected'],
-  'deloitte': ['deloitte'],
-  'tech': ['technology','software','cloud','data centre','datacenter','backup','cyber','saas'],
+  // crypto / web3
+  'crypto exchange': ['crypto','exchange','defi','web3','digital asset','bitcoin','blockchain','token','wallet','custody'],
+  // frameworks
+  'soc2': ['soc 2','soc2','service organization control 2','isae 3000','trust services','tsc'],
+  'soc1': ['soc 1','soc1','isae 3402','isae3402','financial controls','ssae 18'],
+  'iso27001': ['iso','iso 27001','iso27001','information security management','isms'],
+  'pci': ['pci','pci dss','pci-dss','qsa','payment card industry'],
+  // sectors
+  'igaming': ['igaming','i-gaming','online gaming','casino','sports betting','gambling','mga','b2b supplier'],
+  'payment': ['payment','psp','emi','e-money','electronic money','fintech','wallet','acquirer','issuer'],
+  'mifid': ['mifid','mifidii','mifid ii','investment services','cfd','forex','derivatives','mtf','trading'],
+  'mfsa': ['mfsa','malta financial','investment services','casp','vasp','vfa','mica','micar','dora'],
+  'cloud': ['cloud','iaas','paas','saas','infrastructure','hosting','vps','dedicated server','colocation','co-lo'],
+  'tech': ['technology','software','cloud','data centre','datacenter','backup','cyber','saas','devops','platform'],
+  'malta': ['malta','maltese','msida','sliema','valletta','birkirkara','floriana','ta xbiex','mriehel','san gwann'],
+  'global': ['global','international','worldwide','multinational','hq','headquarters'],
+  // status
+  'confirmed': ['confirmed','certified','attested','achieved','completed','holds'],
+  'monitoring': ['monitoring','pending','obligation','expected','required','no public'],
+  // auditors
+  'deloitte': ['deloitte','dt'],
+  'kpmg': ['kpmg'],
+  'ey': ['ey','ernst young','ernst and young'],
+  'pwc': ['pwc','pricewaterhousecoopers'],
+  // company nicknames
   'unibet': ['unibet','kindred'],
   'crypto.com': ['foris','foris dax','crypto.com','cryptocom'],
   'greentube': ['greentube','novomatic'],
   'bitstamp': ['bitstamp'],
+  'aws': ['aws','amazon','amazon web services'],
+  'gcp': ['gcp','google cloud','google cloud platform'],
+  'azure': ['azure','microsoft','microsoft azure','m365'],
+  'salesforce': ['salesforce','sfdc'],
+  'okta': ['okta','auth0'],
+  'github': ['github','git','version control'],
+  'akamai': ['akamai','linode'],
+  'altaro': ['altaro','hornetsecurity','hornet'],
 };
 
 function buildSearchIndex(c) {
@@ -1039,12 +1376,12 @@ document.addEventListener('keydown',e=>{
   new Chart(document.getElementById('cSector'),{
     type:'bar',
     data:{
-      labels:['iGaming / MGA','Crypto / MiCA','Payment / EMI','IT / Cloud / Cyber','Trading / MiFID'],
-      datasets:[{data:[4,3,3,2,2],backgroundColor:[C.red,C.blue,C.green,C.amber,C.purple],borderRadius:3,borderSkipped:false}]
+      labels:['Cloud / Hosting','SaaS / Software','Payment / Fintech','iGaming / MGA','Crypto / MiCA','Security / Cyber','Trading / MiFID','IT Infra (Malta)','Data Centre'],
+      datasets:[{data:[8,12,10,5,7,3,2,2,2],backgroundColor:[C.blue,C.purple,C.green,C.red,'#0e7490',C.amber,'#9d174d',C.red,C.grey],borderRadius:3,borderSkipped:false}]
     },
     options:{responsive:true,maintainAspectRatio:false,
       plugins:{legend:{display:false},tooltip:{callbacks:{label:c=>` ${c.parsed.y} companies`}}},
-      scales:{y:{beginAtZero:true,ticks:{stepSize:1},grid:{color:'#f0f0f0'}},x:{grid:{display:false}}}
+      scales:{y:{beginAtZero:true,ticks:{stepSize:2},grid:{color:'#f0f0f0'}},x:{grid:{display:false},ticks:{font:{size:10}}}}
     }
   });
 
@@ -1053,28 +1390,22 @@ document.addEventListener('keydown',e=>{
     type:'doughnut',
     data:{
       labels:['SOC 2 / ISAE 3000','SOC 1','ISAE 3402','PCI DSS Lvl 1','ISO 27001 only'],
-      datasets:[{data:[8,4,3,2,1],backgroundColor:[C.blue,C.purple,C.green,C.red,C.grey],borderWidth:2,borderColor:'#fff'}]
+      datasets:[{data:[38,22,17,8,5],backgroundColor:[C.blue,C.purple,C.green,C.red,C.grey],borderWidth:2,borderColor:'#fff'}]
     },
     options:{responsive:true,maintainAspectRatio:false,cutout:'60%',
-      plugins:{legend:{position:'bottom'},tooltip:{callbacks:{label:c=>` ${c.label}: ${c.parsed}`}}}
+      plugins:{legend:{position:'bottom'},tooltip:{callbacks:{label:c=>` ${c.label}: ${c.parsed} companies`}}}
     }
   });
 
-  // 3. SOC 2 vs ISAE 3402 grouped bar
+  // 3. Malta vs Global doughnut
   new Chart(document.getElementById('cSectorFw'),{
-    type:'bar',
+    type:'doughnut',
     data:{
-      labels:['iGaming','Crypto','Payment','IT / Cloud','Trading'],
-      datasets:[
-        {label:'SOC 2',data:[1,3,2,1,1],backgroundColor:C.blue,borderRadius:2},
-        {label:'ISAE 3402',data:[1,0,1,1,0],backgroundColor:C.green,borderRadius:2},
-        {label:'SOC 1',data:[0,2,1,1,0],backgroundColor:C.purple,borderRadius:2},
-        {label:'PCI DSS',data:[0,0,2,0,0],backgroundColor:C.red,borderRadius:2}
-      ]
+      labels:['🇲🇹 Malta-Based Confirmed','🇲🇹 Malta Monitoring/ISO','🌐 Global Confirmed','🌐 Global ISO Only'],
+      datasets:[{data:[8,6,41,2],backgroundColor:[C.red,C.amber,C.blue,C.grey],borderWidth:2,borderColor:'#fff'}]
     },
-    options:{responsive:true,maintainAspectRatio:false,
-      plugins:{legend:{position:'bottom'}},
-      scales:{y:{beginAtZero:true,ticks:{stepSize:1},grid:{color:'#f0f0f0'}},x:{grid:{display:false}}}
+    options:{responsive:true,maintainAspectRatio:false,cutout:'58%',
+      plugins:{legend:{position:'bottom',labels:{font:{size:10}}},tooltip:{callbacks:{label:c=>` ${c.label}: ${c.parsed}`}}}
     }
   });
 
@@ -1082,23 +1413,23 @@ document.addEventListener('keydown',e=>{
   new Chart(document.getElementById('cDriver'),{
     type:'pie',
     data:{
-      labels:['MiCA / MFSA CASP','MGA B2B Due Diligence','MiFID II / R13-13.6','DORA / FIR/03 EMI','Voluntary / Market'],
-      datasets:[{data:[4,3,3,2,2],backgroundColor:[C.blue,C.red,C.purple,C.green,C.amber],borderWidth:2,borderColor:'#fff'}]
+      labels:['Enterprise B2B Due Diligence','MFSA / MGA / Banking Regs','MiCA / Crypto Regulation','DORA / Operational Resilience','PCI DSS Card Payment','Voluntary / Differentiation'],
+      datasets:[{data:[18,9,7,8,8,7],backgroundColor:[C.blue,C.red,'#0e7490',C.green,C.amber,C.purple],borderWidth:2,borderColor:'#fff'}]
     },
     options:{responsive:true,maintainAspectRatio:false,
       plugins:{legend:{position:'bottom',labels:{font:{size:10}}},tooltip:{callbacks:{label:c=>` ${c.label}: ${c.parsed}`}}}
     }
   });
 
-  // 5. Frameworks per company — horizontal bar
+  // 5. Frameworks per company — horizontal bar (top 15)
   new Chart(document.getElementById('cCompany'),{
     type:'bar',
     data:{
-      labels:['Hornetsecurity','Gemini (EU Artemis)','Paysafe','Crypto.com','Bitstamp','Nuvei','BMIT Technologies','Kindred (Unibet)','Greentube','Betsson'],
+      labels:['AWS 🌐','Microsoft Azure 🌐','GCP 🌐','OCI 🌐','IBM Cloud 🌐','Equinix 🌐','Digital Realty 🌐','OVHcloud 🌐','Workday 🌐','SAP 🌐','NetSuite 🌐','Snowflake 🌐','Hornetsecurity 🇲🇹','Gemini 🇲🇹','Bitstamp 🇲🇹'],
       datasets:[{
         label:'Confirmed Frameworks',
-        data:[4,4,3,3,3,3,2,1,1,1],
-        backgroundColor:[C.blue,C.blue,C.blue,C.blue,C.blue,C.blue,C.green,C.green,C.amber,C.grey],
+        data:[5,4,4,3,3,3,3,3,3,3,3,3,4,4,3],
+        backgroundColor:[C.blue,C.blue,C.blue,C.blue,C.blue,C.blue,C.blue,C.blue,C.purple,C.purple,C.purple,C.purple,C.red,C.red,C.red],
         borderRadius:3,borderSkipped:false
       }]
     },
