@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>MDIA & Technology Assurance Analysis · Malta SOC Intelligence</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;800&family=Source+Sans+3:ital,wght@0,300;0,400;0,600;0,700;1,400&display=swap" rel="stylesheet"/>
+<style>
+:root{--red:#BB1919;--red-dark:#8B1010;--black:#0d0d0d;--ink:#1a1a1a;--grey-1:#f5f5f5;--grey-2:#e0e0e0;--grey-3:#9a9a9a;--grey-4:#6d6d6d;--white:#fff;--border:#d0d0d0;--green:#1a7a3f;--blue:#0a5eb0;--purple:#6b3a9e;--max:1140px;--pad:20px;}
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{background:var(--grey-1);color:var(--ink);font-family:'Source Sans 3',sans-serif;font-size:16px;line-height:1.65;}
+.topbar{background:var(--black);position:sticky;top:0;z-index:200;}
+.topbar-inner{max-width:var(--max);margin:0 auto;padding:0 var(--pad);height:52px;display:flex;align-items:center;}
+.logo-blocks{display:flex;gap:3px;}
+.logo-block{width:28px;height:28px;background:var(--white);display:flex;align-items:center;justify-content:center;font-weight:700;font-size:14px;letter-spacing:-.5px;color:var(--black);}
+.topbar-divider{width:1px;height:28px;background:#3a3a3a;margin:0 16px;}
+.topbar-label{color:#9a9a9a;font-size:.75rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;}
+.topbar-right{margin-left:auto;display:flex;align-items:center;gap:20px;}
+.topbar-date{color:#666;font-size:.72rem;}
+.topbar-badge{background:var(--red);color:var(--white);font-size:.65rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;padding:3px 8px;border-radius:1px;}
+.red-strip{background:var(--red);height:3px;}
+nav{background:var(--white);border-bottom:1px solid var(--border);}
+.nav-inner{max-width:var(--max);margin:0 auto;padding:0 var(--pad);display:flex;align-items:center;overflow-x:auto;scrollbar-width:none;}
+.nav-inner::-webkit-scrollbar{display:none;}
+.nav-link{display:block;padding:14px 16px;font-size:.82rem;font-weight:600;color:var(--grey-4);text-decoration:none;white-space:nowrap;border-bottom:3px solid transparent;transition:color .15s,border-color .15s;}
+.nav-link:hover{color:var(--ink);}
+.nav-link.active{color:var(--red);border-bottom-color:var(--red);}
+.page{max-width:var(--max);margin:0 auto;padding:0 var(--pad);}
+.hero{background:var(--white);border-bottom:1px solid var(--border);padding:40px 0 36px;margin-bottom:32px;}
+.hero-inner{max-width:var(--max);margin:0 auto;padding:0 var(--pad);}
+.hero-kicker{display:inline-flex;align-items:center;gap:8px;font-size:.72rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--red);margin-bottom:14px;}
+.hero-kicker::before{content:'';display:block;width:18px;height:2px;background:var(--red);}
+h1{font-family:'Playfair Display',serif;font-size:clamp(2rem,4.5vw,3rem);font-weight:800;line-height:1.1;color:var(--black);margin-bottom:12px;letter-spacing:-.02em;}
+.hero-sub{font-size:1rem;color:var(--grey-4);font-weight:300;max-width:720px;line-height:1.65;margin-bottom:24px;}
+.back-link{display:inline-flex;align-items:center;gap:6px;color:var(--red);font-size:.82rem;font-weight:600;text-decoration:none;border-bottom:1px solid transparent;transition:border-color .15s;}
+.back-link:hover{border-bottom-color:var(--red);}
+.back-link::before{content:'←';}
+.stats-row{display:flex;flex-wrap:wrap;gap:1px;background:var(--border);}
+.stat{background:var(--white);padding:18px 28px;flex:1;min-width:130px;}
+.stat-num{font-family:'Playfair Display',serif;font-size:2.2rem;font-weight:700;color:var(--red);line-height:1;}
+.stat-label{font-size:.72rem;font-weight:600;color:var(--grey-4);letter-spacing:.06em;text-transform:uppercase;margin-top:4px;}
+.sec-head{display:flex;align-items:center;gap:14px;margin:36px 0 20px;}
+.sec-head h2{font-family:'Playfair Display',serif;font-size:1.4rem;font-weight:700;color:var(--black);padding-left:14px;border-left:4px solid var(--red);line-height:1.2;}
+.sec-line{flex:1;height:1px;background:var(--border);}
+.article{background:var(--white);border:1px solid var(--border);border-radius:2px;padding:32px;margin-bottom:32px;}
+.article p{font-size:.95rem;color:var(--ink);line-height:1.8;margin-bottom:16px;}
+.article p strong{font-weight:600;color:var(--black);}
+.article h3{font-family:'Playfair Display',serif;font-size:1.15rem;font-weight:700;color:var(--black);margin:28px 0 12px;}
+.article h4{font-size:.95rem;font-weight:700;color:var(--ink);margin:20px 0 8px;text-transform:uppercase;letter-spacing:.04em;}
+.article ul,.article ol{margin:0 0 16px 22px;}
+.article li{font-size:.92rem;color:var(--ink);line-height:1.75;margin-bottom:6px;}
+.article a{color:var(--blue);text-decoration:underline;}
+.article blockquote{border-left:4px solid var(--blue);background:var(--grey-1);padding:16px 20px;margin:18px 0;font-size:.92rem;font-style:italic;color:var(--grey-4);}
+.callout{background:var(--white);border:1px solid var(--border);border-left:4px solid var(--red);padding:24px;margin-bottom:24px;border-radius:2px;}
+.callout-kicker{font-size:.7rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--red);margin-bottom:8px;}
+.callout-title{font-family:'Playfair Display',serif;font-size:1.05rem;font-weight:700;color:var(--black);margin-bottom:10px;}
+.callout p{font-size:.88rem;color:var(--grey-4);line-height:1.65;margin-bottom:8px;}
+.callout p:last-child{margin-bottom:0;}
+.auditors-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:16px;margin-bottom:32px;}
+.aud-card{background:var(--white);border:1px solid var(--border);border-top:3px solid var(--red);border-radius:2px;padding:20px;}
+.aud-card.kpmg{border-top-color:#0070C0;}
+.aud-card.bdo{border-top-color:#E4002B;}
+.aud-card.stis{border-top-color:var(--purple);}
+.aud-card.fact{border-top-color:#FF6600;}
+.aud-num{font-family:'Playfair Display',serif;font-size:2.4rem;font-weight:700;color:var(--grey-2);line-height:1;float:right;margin-top:-4px;}
+.aud-name{font-family:'Playfair Display',serif;font-size:1.05rem;font-weight:700;color:var(--black);margin-bottom:3px;}
+.aud-meta{font-size:.72rem;font-weight:600;color:var(--grey-3);text-transform:uppercase;letter-spacing:.06em;margin-bottom:12px;}
+.aud-desc{font-size:.85rem;color:var(--grey-4);line-height:1.6;}
+.timeline{position:relative;padding-left:32px;margin-bottom:24px;}
+.timeline::before{content:'';position:absolute;top:0;bottom:0;left:8px;width:2px;background:var(--red);}
+.tl-item{position:relative;padding-bottom:20px;}
+.tl-item:last-child{padding-bottom:0;}
+.tl-item::before{content:'';position:absolute;left:-28px;top:5px;width:14px;height:14px;border-radius:50%;background:var(--white);border:3px solid var(--red);}
+.tl-date{font-size:.72rem;font-weight:700;color:var(--red);text-transform:uppercase;letter-spacing:.08em;margin-bottom:4px;}
+.tl-title{font-weight:700;color:var(--black);font-size:.95rem;margin-bottom:4px;}
+.tl-desc{font-size:.85rem;color:var(--grey-4);line-height:1.6;}
+.cmp{width:100%;border-collapse:collapse;background:var(--white);border:1px solid var(--border);font-size:.85rem;margin-bottom:24px;}
+.cmp th{background:var(--black);color:#9a9a9a;padding:11px 14px;text-align:left;font-size:.7rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;}
+.cmp td{padding:12px 14px;border-bottom:1px solid var(--grey-2);vertical-align:top;}
+.cmp tr:last-child td{border-bottom:none;}
+.cmp td:first-child{font-weight:700;color:var(--black);width:25%;}
+.sources{background:var(--grey-1);border:1px solid var(--border);border-radius:2px;padding:22px 24px;margin-bottom:32px;}
+.sources h3{font-size:.78rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--grey-4);margin-bottom:14px;}
+.sources ol{margin-left:20px;}
+.sources li{font-size:.82rem;color:var(--grey-4);line-height:1.7;margin-bottom:8px;}
+.sources a{color:var(--blue);text-decoration:underline;word-break:break-all;}
+footer.site-footer{background:var(--black);color:#555;padding:28px var(--pad);}
+.footer-inner{max-width:var(--max);margin:0 auto;display:flex;flex-wrap:wrap;gap:20px;align-items:center;justify-content:space-between;}
+.footer-copy{font-size:.75rem;line-height:1.6;}
+.footer-links{display:flex;gap:20px;flex-wrap:wrap;}
+.footer-links a{color:#666;font-size:.75rem;text-decoration:none;}
+.footer-links a:hover{color:#9a9a9a;}
+@media(max-width:640px){.article{padding:24px;}.stat-num{font-size:1.8rem;}}
+</style>
+</head>
+<body>
+<script>if(sessionStorage.getItem('msi_auth')!=='b3282a2f2a28757b3a18ab833de16a9c54518c0b0cf493e3f0a7cf09386f326a'){document.body.innerHTML='';window.location.replace('./index.html');}window.onload=null;</script>
+
+<div class="topbar"><div class="topbar-inner">
+<div class="logo-blocks"><div class="logo-block">M</div><div class="logo-block">S</div><div class="logo-block">I</div></div>
+<div class="topbar-divider"></div>
+<span class="topbar-label">Malta SOC Intelligence</span>
+<div class="topbar-right"><span class="topbar-date">Updated May 2026</span><span class="topbar-badge">MDIA Analysis</span></div>
+</div></div>
+<div class="red-strip"></div>
+
+<nav><div class="nav-inner">
+<a class="nav-link" href="./main.html">← Registry</a>
+<a class="nav-link active" href="#">MDIA Analysis</a>
+<a class="nav-link" href="#what">What is the MDIA?</a>
+<a class="nav-link" href="#tas">Technology Assurance Sandbox</a>
+<a class="nav-link" href="#auditors">Systems Auditors</a>
+<a class="nav-link" href="#soc-vs-ita">MDIA vs SOC/ISAE</a>
+<a class="nav-link" href="#sources">Sources</a>
+</div></nav>
+
+<div class="hero"><div class="hero-inner">
+<div style="margin-bottom:16px;"><a class="back-link" href="./main.html">Back to Company Registry</a></div>
+<div class="hero-kicker">Malta · Independent Technology Assurance</div>
+<h1>The MDIA &amp; SOC / ISAE Reporting in Malta</h1>
+<p class="hero-sub">How Malta's <strong>Digital Innovation Authority (MDIA)</strong>, its <strong>Technology Assurance Sandbox (MDIA-TAS)</strong>, and the <strong>Innovative Technology Arrangement (ITA) certification</strong> regime intersect with international SOC and ISAE assurance frameworks — and why ISAE 3000 sits at the heart of it.</p>
+<div class="stats-row">
+<div class="stat"><div class="stat-num">2018</div><div class="stat-label">MDIA Established</div></div>
+<div class="stat"><div class="stat-num">5</div><div class="stat-label">Certified Sys Auditors</div></div>
+<div class="stat"><div class="stat-num">ISAE 3000</div><div class="stat-label">Required Standard</div></div>
+<div class="stat"><div class="stat-num">591.01</div><div class="stat-label">Subsidiary Legislation</div></div>
+</div>
+</div></div>
+
+<div class="page">
+
+<div id="what">
+<div class="sec-head"><h2>What is the MDIA?</h2><div class="sec-line"></div></div>
+<div class="article">
+<p>The <strong>Malta Digital Innovation Authority (MDIA)</strong> was established under the <a href="https://legislation.mt/eli/cap/591/eng" target="_blank">Malta Digital Innovation Authority Act, Chapter 591 of the Laws of Malta</a> (2018) as the country's regulator for innovative technologies. It was originally created to regulate Distributed Ledger Technology (DLT) and smart contracts under Malta's pioneering "Blockchain Island" framework, and its mandate was significantly expanded in 2024 by Act No. XIX of 2024 to cover Artificial Intelligence and other innovative technologies.</p>
+<p>The MDIA's regulatory tools work alongside the <strong>Innovative Technology Arrangements and Services Act (ITAS Act)</strong> (Cap. 592), which gives the Authority power to certify <strong>Innovative Technology Arrangements (ITAs)</strong> — including DLT systems, smart contracts, decentralised oracles, and AI systems — as functionally correct, secure, and aligned with internationally recognised control objectives.</p>
+<p>Crucially, the MDIA is also Malta's designated <strong>cybersecurity certification authority</strong> and the competent authority for the EU Data Governance Act, putting it at the centre of Malta's cross-cutting digital trust framework alongside the MFSA (financial services) and MGA (gaming).</p>
+<h3>Core Functions</h3>
+<ul>
+<li><strong>Certification of ITAs</strong> — voluntary registration and certification of DLT systems, smart contracts, and AI solutions against published Control Objectives</li>
+<li><strong>Registration of Technology Service Providers</strong> — under the ITAS Act</li>
+<li><strong>MDIA Technology Assurance Sandbox (MDIA-TAS)</strong> — an iterative two-year residency for start-ups and SMEs</li>
+<li><strong>Accreditation of Systems Auditors</strong> — independent third parties licensed to perform conformity assessments under <strong>ISAE 3000</strong></li>
+<li><strong>National AI Strategy</strong> — co-ordinating Malta's implementation of the EU AI Act (effective June 2024)</li>
+<li><strong>Cybersecurity certification authority</strong> under the EU Cybersecurity Act</li>
+</ul>
+</div>
+</div>
+
+<div class="callout">
+<div class="callout-kicker">⚖️ Key Connection</div>
+<div class="callout-title">MDIA System Audits Are Conducted Under ISAE 3000</div>
+<p>Per the official MDIA accreditation framework, <strong>"the audit conducted by the Systems Auditor must follow the ISAE 3000 standard"</strong> — the international standard for assurance over non-financial information. This makes ISAE 3000 the <strong>de facto link between Malta's national technology assurance regime and the international SOC 2 ecosystem</strong>, since SOC 2 reports issued outside the United States are typically prepared in accordance with ISAE 3000 themselves.</p>
+<p>In practice, an MDIA-certified ITA provides assurance over <strong>functional correctness</strong> of the technology arrangement (does the smart contract actually do what its blueprint says?), while a SOC 2 report provides assurance over the <strong>operating environment</strong> (security, availability, confidentiality of the systems running it). For DLT and AI service providers in Malta, the two complement each other rather than substitute for each other.</p>
+</div>
+
+<div class="sec-head"><h2>Regulatory Timeline</h2><div class="sec-line"></div></div>
+<div class="article">
+<div class="timeline">
+<div class="tl-item"><div class="tl-date">November 2018</div><div class="tl-title">ITAS Act &amp; MDIA Act enter into force</div><div class="tl-desc">Malta's "Blockchain Island" framework — Cap. 591 (MDIA) and Cap. 592 (ITAS) — comes into force on 1 November 2018, alongside the Virtual Financial Assets Act. System Audits become mandatory for VFA Act licence applicants.</div></div>
+<div class="tl-item"><div class="tl-date">2019</div><div class="tl-title">First Systems Auditors accredited</div><div class="tl-desc">MDIA accredits the first round of Systems Auditors — <strong>PwC Malta, KPMG Malta, BDO Technology Advisory Limited and STIS Group Ltd</strong>. Malta becomes the first jurisdiction with a national, cryptographically-verifiable certification scheme for innovative technology.</div></div>
+<div class="tl-item"><div class="tl-date">October 2019</div><div class="tl-title">National AI Strategy launched</div><div class="tl-desc">Malta becomes "the world's first national AI certification programme" via the AI Innovative Technology Arrangement (AI ITA) scheme — pre-dating the EU AI Act by more than four years.</div></div>
+<div class="tl-item"><div class="tl-date">June 2022</div><div class="tl-title">MDIA-TAS v2.0 launched</div><div class="tl-desc">The Technology Assurance Sandbox is upgraded to v2.0, designed for start-ups and small companies. Up to two-year residency, phased Control Objective alignment, and access to government grants substantially covering Systems Auditor assessment fees.</div></div>
+<div class="tl-item"><div class="tl-date">November 2022</div><div class="tl-title">Fact Technologies certified — 5th Systems Auditor</div><div class="tl-desc">MDIA certifies <strong>Fact Technologies Ltd</strong> as its 5th Systems Auditor. Each certificate is now <strong>cryptographically verifiable via SHA-512</strong> and <strong>timestamped on the public Bitcoin blockchain</strong>.</div></div>
+<div class="tl-item"><div class="tl-date">June 2024</div><div class="tl-title">EU AI Act applicable — MDIA leads implementation</div><div class="tl-desc">The EU AI Act becomes directly applicable in Malta. MDIA is designated lead authority for AI Act implementation.</div></div>
+<div class="tl-item"><div class="tl-date">2024</div><div class="tl-title">Act XIX of 2024 — expanded MDIA powers</div><div class="tl-desc">The Malta Digital Innovation Authority (Amendment) Act expands the MDIA's mandate beyond DLT to all innovative technology — explicitly including AI — and removes earlier restrictions.</div></div>
+<div class="tl-item"><div class="tl-date">2024 / 2025</div><div class="tl-title">ITAS Certification Regulations 591.01</div><div class="tl-desc">The <strong>ITAS Certification Regulations (S.L. 591.01)</strong> are updated to reflect the broader scope, the new MDIA-TAS framework, and harmonisation with EU AI, DORA, NIS 2, and Cyber Resilience Act obligations.</div></div>
+</div>
+</div>
+
+<div id="tas">
+<div class="sec-head"><h2>Technology Assurance Sandbox (MDIA-TAS)</h2><div class="sec-line"></div></div>
+<div class="article">
+<p>The <strong>MDIA-TAS</strong> is the Authority's flagship utility for innovative technology developers — a regulatory sandbox specifically designed to give start-ups and smaller companies a structured, affordable pathway to MDIA certification. It addresses one of the longest-standing criticisms of the original 2018 ITA framework: <strong>that full certification was prohibitively expensive for small teams</strong>.</p>
+<h3>How It Works</h3>
+<ol>
+<li><strong>Pre-engagement.</strong> The applicant engages with MDIA to confirm Malta substance — either the development is carried out in Malta, or the operations are carried out in or from Malta.</li>
+<li><strong>Residency (up to 2 years).</strong> The applicant enters the sandbox and selects which Control Objectives apply at which phase, allowing flexible alignment with the team's development plan.</li>
+<li><strong>Phased assessments.</strong> At the end of each phase, an <strong>independent third-party technical assessment</strong> is conducted by an MDIA-certified Systems Auditor, following ISAE 3000.</li>
+<li><strong>Iteration.</strong> The applicant addresses any findings; the Auditor re-tests; the cycle continues until all Control Objectives are met.</li>
+<li><strong>Full MDIA certification.</strong> Issued once all Control Objectives are satisfied.</li>
+</ol>
+<h3>Why It Matters</h3>
+<ul>
+<li><strong>Low barrier to entry.</strong> Administrative cost is just <strong>€500</strong>, and the Systems Auditor assessment fees can be covered by Government grants.</li>
+<li><strong>Designed for SMEs.</strong> Especially start-ups in DLT, AI, and critical-systems development that cannot absorb Big-4 audit fees up-front.</li>
+<li><strong>Cryptographic verification.</strong> Each certificate has a SHA-512 signature and is timestamped on the Bitcoin blockchain — meaning anyone can verify the authenticity of an MDIA certificate independently.</li>
+<li><strong>EU regulatory alignment.</strong> The TAS is designed as a single venue where applicants can also align with DORA, NIS 2, the Cyber Resilience Act, and the EU AI Act.</li>
+</ul>
+<blockquote>"By creating the Technology Assurance Sandbox, the MDIA envisaged an innovative concept which provides a safe environment for individuals and companies developing solutions on Innovative Technologies, such as Blockchain, AI and critical systems, to enable the correct nurturing of such solutions in line with recognised standards." — MDIA-TAS programme description, via tech.mt</blockquote>
+</div>
+</div>
+
+<div id="auditors">
+<div class="sec-head"><h2>The Five MDIA-Certified Systems Auditors</h2><div class="sec-line"></div></div>
+<div class="article">
+<p>Only five firms in Malta currently hold MDIA Systems Auditor certification, making them the exclusive pool of independent third parties able to issue ISAE 3000 conformity assessments for ITAs. The certification process is described by the MDIA as <em>"very rigorous"</em> and requires deep technical knowledge of the technology being audited as well as IT-assurance methodology.</p>
+</div>
+<div class="auditors-grid">
+<div class="aud-card"><span class="aud-num">1</span><div class="aud-name">PwC Malta</div><div class="aud-meta">Big-4 · 2019</div><div class="aud-desc">First Systems Auditor accredited under the ITAS Act. Conducts ISAE 3000 audits and full SOC 1/2/ISAE 3402 services.</div></div>
+<div class="aud-card kpmg"><span class="aud-num">2</span><div class="aud-name">KPMG Malta</div><div class="aud-meta">Big-4 · 2019</div><div class="aud-desc">Tier-1 advisor for MFSA-licensed entities; performs ISAE 3000 audits across DLT, AI, and critical-systems clients.</div></div>
+<div class="aud-card bdo"><span class="aud-num">3</span><div class="aud-name">BDO Technology Advisory</div><div class="aud-meta">Mid-tier · Reconfirmed 2021</div><div class="aud-desc">Tech Assurance practice led by Ivan Spiteri. Active SOC 2+ and ISAE 3402 practice running parallel to the MDIA work.</div></div>
+<div class="aud-card stis"><span class="aud-num">4</span><div class="aud-name">STIS Group Ltd</div><div class="aud-meta">Specialist · 2019</div><div class="aud-desc">Specialist IT-assurance firm focused on innovative-technology audits.</div></div>
+<div class="aud-card fact"><span class="aud-num">5</span><div class="aud-name">Fact Technologies Ltd</div><div class="aud-meta">Specialist · Nov 2022</div><div class="aud-desc">5th and most recent Systems Auditor. Certificates verified via SHA-512 and Bitcoin blockchain timestamping.</div></div>
+</div>
+</div>
+
+<div id="soc-vs-ita">
+<div class="sec-head"><h2>How MDIA Certification Compares to SOC / ISAE Reports</h2><div class="sec-line"></div></div>
+<div class="article">
+<p>MDIA certification, SOC 2, and ISAE 3402 are sometimes confused — but they answer fundamentally different questions. The table below summarises the differences, then the analysis explains why a sophisticated Malta operator typically needs <strong>more than one</strong> of these reports.</p>
+<table class="cmp">
+<thead><tr><th>Dimension</th><th>MDIA ITA Certification</th><th>SOC 2 / ISAE 3000</th><th>SOC 1 / ISAE 3402</th></tr></thead>
+<tbody>
+<tr><td>Standard followed</td><td>ISAE 3000 (national application)</td><td>SSAE 18 / ISAE 3000</td><td>SSAE 18 / ISAE 3402</td></tr>
+<tr><td>What is being audited</td><td>The technology itself — DLT, smart contract, AI model</td><td>Operating controls (security, availability, confidentiality, processing integrity, privacy)</td><td>Internal controls relevant to <em>user entities' financial reporting</em></td></tr>
+<tr><td>Who issues it</td><td>5 MDIA-certified Systems Auditors only</td><td>Any qualified CPA / IAASB-licensed auditor</td><td>Any qualified CPA / IAASB-licensed auditor</td></tr>
+<tr><td>Scope</td><td>Functional correctness vs blueprint + Control Objectives</td><td>Trust Services Criteria over a period (Type II) or point in time (Type I)</td><td>Financial-reporting controls (Type I or II)</td></tr>
+<tr><td>Mandatory or voluntary</td><td>Voluntary unless: VFA Act licensee, MDIA Sandbox, or MGA Sandbox tenant</td><td>Voluntary — but typically demanded by enterprise clients</td><td>Voluntary — but typically demanded by client auditors</td></tr>
+<tr><td>Audience</td><td>Regulators, end-users, investors</td><td>Customers, prospects, procurement</td><td>User entities' external auditors</td></tr>
+<tr><td>Verification</td><td>SHA-512 signature + Bitcoin blockchain timestamp</td><td>Issued report (often under NDA)</td><td>Issued report (often under NDA)</td></tr>
+<tr><td>Renewal</td><td>2-year cycle; Type 2 audit periodically</td><td>Annual</td><td>Annual</td></tr>
+</tbody>
+</table>
+<h3>The Layered Reality for a Malta DLT or AI Service Provider</h3>
+<p>A VFA-licensed crypto custodian operating from Malta typically holds <strong>three different reports addressing three different audiences</strong>:</p>
+<ul>
+<li>A <strong>SOC 2 Type II</strong> demonstrates to enterprise customers and counterparties that its security, availability, and confidentiality controls operated effectively over the past year.</li>
+<li>A <strong>SOC 1 / ISAE 3402</strong> demonstrates to its clients' financial auditors that the controls relevant to those clients' financial statements (custody balances, transaction processing) operated effectively.</li>
+<li>An <strong>MDIA ITA Certification</strong> (where applicable) demonstrates to the MDIA, regulators, and the Maltese public that the technology itself — the smart contract, the DLT system, or the AI model — does what its published blueprint says it does.</li>
+</ul>
+<p>Because all three are anchored in <strong>ISAE 3000 / 3402 international standards</strong>, the underlying control catalogues, audit methodology, and evidence requirements significantly overlap. This is why Malta's leading audit firms (PwC, KPMG, BDO, RSM, EY, Grant Thornton) typically run <strong>integrated technology-assurance practices</strong> that can issue all three with shared evidence collection.</p>
+</div>
+</div>
+
+<div class="sec-head"><h2>Which Sectors Use MDIA &amp; SOC/ISAE Reporting in Malta?</h2><div class="sec-line"></div></div>
+<div class="article">
+<h4>Mandatory Use Cases</h4>
+<ul>
+<li><strong>VFA Act licensees</strong> — Issuers and Service Providers applying to the MFSA under the Virtual Financial Assets Act must obtain a Type 1 System Audit before licence award. Type 2 audits are conducted periodically thereafter.</li>
+<li><strong>MDIA Sandbox tenants</strong> — Mandatory Systems Auditor assessments at each phase.</li>
+<li><strong>MGA Sandbox tenants</strong> — A similar assurance process is obligatory for Malta Gaming Authority Sandbox participants using DLT.</li>
+</ul>
+<h4>Voluntary But Strategically Important</h4>
+<ul>
+<li><strong>iGaming B2B suppliers</strong> — Major B2C operators increasingly require ISAE 3402 / SOC 2 from their critical suppliers as part of the MGA's <em>B2B Critical Supply</em> framework. Greentube Malta's ISAE 3402 (early 2023) is a leading example.</li>
+<li><strong>MFSA-licensed payment institutions and EMIs</strong> — Subject to FIR/02 and FIR/03 IT audit obligations equivalent to ISAE 3000 / SOC 2.</li>
+<li><strong>MFSA Investment Services licensees (MiFID firms)</strong> — Subject to <strong>Rule R1-1.12 (System Certification)</strong> of Part BI and <strong>Rule R13-13.6</strong> for CFD/Forex trading organisations.</li>
+<li><strong>Cloud and IT infrastructure providers serving Malta</strong> (e.g. BMIT, Hornetsecurity) — SOC 2 / ISAE 3402 used as differentiation in EU enterprise sales.</li>
+<li><strong>AI service providers</strong> — As Malta's AI ITA scheme matures alongside the EU AI Act, voluntary MDIA certification of AI systems is expected to become a recognised compliance signal under high-risk AI categories.</li>
+</ul>
+</div>
+
+<div class="callout" style="border-left-color:var(--green);">
+<div class="callout-kicker" style="color:var(--green);">📌 Bottom Line</div>
+<div class="callout-title">Malta's Distinctive Position</div>
+<p>Malta is one of very few EU jurisdictions where a <strong>single national authority</strong> co-ordinates a regulatory technology-assurance regime that explicitly anchors itself in ISAE 3000. This has two consequences:</p>
+<p><strong>(1) For Malta-based service providers</strong>, the MDIA framework provides a unique, internationally credible signal of technology trustworthiness — particularly valuable for DLT, smart-contract, and AI deployments where conventional SOC 2 reports cannot speak to functional correctness.</p>
+<p><strong>(2) For international service providers entering Malta</strong> (including MiCA CASPs choosing Malta as their EU hub), the MDIA / MFSA / MGA assurance ecosystem creates a layered compliance landscape where SOC 2, ISAE 3402, MDIA ITA, and PCI DSS reports often need to coexist. The five MDIA-certified Systems Auditors — PwC, KPMG, BDO, STIS, and Fact Technologies — are positioned as the natural single-point providers across these adjacent regimes.</p>
+</div>
+
+<div id="sources">
+<div class="sec-head"><h2>Sources &amp; Further Reading</h2><div class="sec-line"></div></div>
+<div class="sources">
+<h3>Verified Primary &amp; Secondary Sources Used in This Analysis</h3>
+<ol>
+<li>Malta Digital Innovation Authority — <em>Innovative Technology Arrangement</em>: <a href="https://mdia.gov.mt/services/innovative-technology-arrangement/" target="_blank">https://mdia.gov.mt/services/innovative-technology-arrangement/</a></li>
+<li>MDIA — <em>MDIA certifies its fifth Systems Auditor: Fact Group</em> (Nov 2022): <a href="https://www.mdia.gov.mt/news-events/mdia-certifies-its-fifth-systems-auditor-fact-group/" target="_blank">https://www.mdia.gov.mt/news-events/mdia-certifies-its-fifth-systems-auditor-fact-group/</a></li>
+<li>MDIA — <em>ITA News &amp; Tag Archive</em>: <a href="https://www.mdia.gov.mt/news-events/tag/ita/" target="_blank">https://www.mdia.gov.mt/news-events/tag/ita/</a></li>
+<li>BDO Malta — <em>BDO reconfirmed as Certified Systems Auditor for ITA</em>: <a href="https://www.bdo.com.mt/en-gb/news/2021/malta-digital-innovation-authority-(mdia)-reconfirms-bdo-malta-as-certified-systems-auditor-for-ita" target="_blank">link</a></li>
+<li>BDO Malta — <em>MDIA launches Technology Assurance Sandbox</em>: <a href="https://www.bdo.com.mt/en-gb/news/2021/the-mdia-launches-a-technology-assurance-sandbox" target="_blank">link</a></li>
+<li>Tech.mt — <em>MDIA the Technology Regulator: Technology Assurance Sandbox</em>: <a href="https://tech.mt/mdia-the-technology-regulator/technology-assurance-sandbox/" target="_blank">https://tech.mt/mdia-the-technology-regulator/technology-assurance-sandbox/</a></li>
+<li>MaltaCEOs.mt — <em>How MDIA's certification can give you peace of mind about your technology</em>: <a href="https://maltaceos.mt/how-mdias-certification-can-give-you-peace-of-mind-about-your-technology/" target="_blank">link</a></li>
+<li>Chambers and Partners — <em>Fintech 2025: Malta</em>: <a href="https://practiceguides.chambers.com/practice-guides/fintech-2025/malta" target="_blank">link</a></li>
+<li>Chambers and Partners — <em>Artificial Intelligence 2025: Malta</em>: <a href="https://practiceguides.chambers.com/practice-guides/artificial-intelligence-2025/malta" target="_blank">link</a></li>
+<li>Regulations.AI — <em>AI Innovative Technology Arrangement (AI ITA) scheme</em>: <a href="https://regulations.ai/regulations/malta-2019-10-ai-ita-scheme" target="_blank">link</a></li>
+<li>Mondaq / Ganado Advocates — <em>Chambers Global Practice Guide AI 2025</em>: <a href="https://www.mondaq.com/new-technology/1638888/chambers-global-practice-guide-artificial-intelligence-2025" target="_blank">link</a></li>
+<li>Maltese Legislation Portal — <em>Cap. 591 (MDIA Act)</em>: <a href="https://legislation.mt/eli/cap/591/eng" target="_blank">https://legislation.mt/eli/cap/591/eng</a></li>
+<li>MFSA — <em>Investment Services Rules, Part BI</em> (Dec 2024): <a href="https://www.mfsa.mt/wp-content/uploads/2024/12/MFSA-Part-BI-Rule-Appliable-to-Investment-Services-Licence-Holders-which-Qualify-as-MIFID-Firms.pdf" target="_blank">link</a></li>
+<li>MFSA — <em>Part A: The Application Process</em> (Oct 2025): <a href="https://www.mfsa.mt/wp-content/uploads/2025/10/Investment-Services-Rule-for-Investment-Service-Providers-Part-A-The-Application-Process.pdf" target="_blank">link</a></li>
+<li>MGA — <em>Approved System and Compliance Audit Service Providers FAQ</em>: <a href="https://www.mga.org.mt/faqs/which-are-the-approved-system-and-compliance-auditors-who-can-be-engaged-by-licensees/" target="_blank">link</a></li>
+<li>RSM Malta — <em>Gaming Audits</em>: <a href="https://www.rsm.global/malta/service/consulting/gaming-audits" target="_blank">link</a></li>
+<li>Wikipedia — <em>ISAE 3402</em>: <a href="https://en.wikipedia.org/wiki/ISAE_3402" target="_blank">https://en.wikipedia.org/wiki/ISAE_3402</a></li>
+</ol>
+</div>
+</div>
+
+<div style="margin-bottom:40px;"><a class="back-link" href="./main.html">Return to Company Registry</a></div>
+
+</div>
+
+<footer class="site-footer"><div class="footer-inner">
+<div class="footer-copy">Malta SOC Audit Intelligence · MDIA &amp; Technology Assurance Analysis · &copy; 2026</div>
+<div class="footer-links">
+<a href="./main.html">Registry</a>
+<a href="./providers.html">SOC Providers</a>
+<a href="./analytics.html">Analytics</a>
+<a href="https://www.mdia.gov.mt" target="_blank">MDIA</a>
+</div>
+</div></footer>
+
+</body>
+</html>
