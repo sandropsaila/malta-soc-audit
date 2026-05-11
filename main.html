@@ -639,19 +639,19 @@
         <input type="text" id="searchInput" placeholder="Search by name, sector, cert, auditor, licence type…" oninput="filterTable()"/>
       </div>
       <div class="filter-pills">
-        <span class="filter-label">Filter:</span>
-        <button class="fpill active" onclick="setFilter('all',this)">All</button>
-        <button class="fpill" onclick="setFilter('malta',this)" style="background:#fef3c7;color:#92400e;border-color:#fde68a;">🇲🇹 Malta only</button>
-        <button class="fpill" onclick="setFilter('soc2',this)">SOC 2</button>
-        <button class="fpill" onclick="setFilter('soc1',this)">SOC 1</button>
-        <button class="fpill" onclick="setFilter('isae3402',this)">ISAE 3402</button>
-        <button class="fpill" onclick="setFilter('isae3000',this)">ISAE 3000</button>
-        <button class="fpill" onclick="setFilter('hosting',this)">Cloud / Hosting</button>
-        <button class="fpill" onclick="setFilter('tech',this)">Tech / SaaS</button>
-        <button class="fpill" onclick="setFilter('igaming',this)">iGaming</button>
-        <button class="fpill" onclick="setFilter('payment',this)">Payment / Crypto</button>
-        <button class="fpill" onclick="setFilter('mfsa',this)">MFSA</button>
-        <button class="fpill" onclick="setFilter('confirmed',this)">Confirmed ✓</button>
+        <span class="filter-label">Filter <span id="filterCount" style="display:none;background:var(--red);color:#fff;border-radius:10px;padding:1px 7px;font-size:.65rem;font-weight:700;margin-left:4px;vertical-align:middle;"></span></span>
+        <button class="fpill active" data-filter="all" onclick="setFilter('all',this)">All</button>
+        <button class="fpill" data-filter="malta" onclick="setFilter('malta',this)" style="background:#fef3c7;color:#92400e;border-color:#fde68a;">🇲🇹 Malta only</button>
+        <button class="fpill" data-filter="soc2" onclick="setFilter('soc2',this)">SOC 2</button>
+        <button class="fpill" data-filter="soc1" onclick="setFilter('soc1',this)">SOC 1</button>
+        <button class="fpill" data-filter="isae3402" onclick="setFilter('isae3402',this)">ISAE 3402</button>
+        <button class="fpill" data-filter="isae3000" onclick="setFilter('isae3000',this)">ISAE 3000</button>
+        <button class="fpill" data-filter="hosting" onclick="setFilter('hosting',this)">Cloud / Hosting</button>
+        <button class="fpill" data-filter="tech" onclick="setFilter('tech',this)">Tech / SaaS</button>
+        <button class="fpill" data-filter="igaming" onclick="setFilter('igaming',this)">iGaming</button>
+        <button class="fpill" data-filter="payment" onclick="setFilter('payment',this)">Payment / Crypto</button>
+        <button class="fpill" data-filter="mfsa" onclick="setFilter('mfsa',this)">MFSA</button>
+        <button class="fpill" data-filter="confirmed" onclick="setFilter('confirmed',this)">Confirmed ✓</button>
       </div>
     </div>
 
@@ -1542,24 +1542,55 @@ function tokenMatches(searchTok, idx){
   if(idx.raw.includes(searchTok)) return true;
   return idx.words.some(w => fuzzyWordMatch(searchTok, w));
 }
-let cur='all';
+let activeFilters = new Set(); // empty = show all
 const SEARCH_IDX = CO.map(buildSearchIndex);
-function setFilter(t,btn){
-  cur=t;
-  document.querySelectorAll('.fpill').forEach(b=>b.classList.remove('active'));
-  btn.classList.add('active');
+
+function setFilter(t, btn){
+  if(t === 'all'){
+    activeFilters.clear();
+    document.querySelectorAll('.fpill').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+  } else {
+    if(activeFilters.has(t)){
+      activeFilters.delete(t);
+      btn.classList.remove('active');
+    } else {
+      activeFilters.add(t);
+      btn.classList.add('active');
+    }
+    // Manage "All" pill state
+    const allBtn = document.querySelector('.fpill[data-filter="all"]');
+    if(allBtn) allBtn.classList.toggle('active', activeFilters.size === 0);
+  }
+  // Update count badge
+  const badge = document.getElementById('filterCount');
+  if(badge){
+    if(activeFilters.size > 0){
+      badge.textContent = activeFilters.size;
+      badge.style.display = 'inline';
+    } else {
+      badge.style.display = 'none';
+    }
+  }
   filterTable();
 }
+
 function filterTable(){
   const raw = document.getElementById('searchInput').value.trim().toLowerCase();
   const userTokens = raw.length > 0 ? raw.split(/\s+/).filter(t=>t.length>0) : [];
   const rows = document.querySelectorAll('#tBody tr');
+
   rows.forEach(tr=>{
     if(tr.id==='noResults') return;
     const i = +tr.dataset.i;
     const idx = SEARCH_IDX[i];
     const tags = tr.dataset.tags;
-    const mf = cur==='all' || tags.includes(cur);
+
+    // Filter: must match ALL active filter pills (AND logic across pills, OR within each tag)
+    const mf = activeFilters.size === 0 ||
+      [...activeFilters].every(f => tags.includes(f));
+
+    // Search: AND across user tokens, each expanded via aliases + fuzzy
     let ms = userTokens.length === 0;
     if(!ms){
       ms = userTokens.every(userTok => {
@@ -1567,8 +1598,10 @@ function filterTable(){
         return expanded.some(exp => tokenMatches(exp, idx));
       });
     }
+
     tr.classList.toggle('hr', !(mf && ms));
   });
+
   const visible = [...rows].filter(r=>!r.classList.contains('hr') && r.id!=='noResults');
   let hint = document.getElementById('noResults');
   if(!hint){
