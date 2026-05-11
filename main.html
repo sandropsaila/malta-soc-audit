@@ -543,9 +543,9 @@
       A curated registry of <strong>77 companies</strong> with publicly disclosed SOC 1, SOC 2, ISAE 3402, ISAE 3000 or equivalent independent assurance reports — including <strong>22 Malta-based licensed entities</strong> (Tech.mt, MGA, MFSA, MDIA Systems Auditors) marked 🇲🇹, plus <strong>55 global cloud, SaaS, payment, security and crypto vendors</strong> commonly relied upon by Malta operators marked 🌐. See <a href="./mdia.html" style="color:var(--red);font-weight:600;">MDIA Analysis →</a> for technology assurance context.
     </p>
     <div class="stats-row">
-      <div class="stat"><div class="stat-num">102</div><div class="stat-label">Companies</div></div>
-      <div class="stat"><div class="stat-num">18</div><div class="stat-label">🇲🇹 Malta-Based</div></div>
-      <div class="stat"><div class="stat-num">79</div><div class="stat-label">🌐 Global / Used in Malta</div></div>
+      <div class="stat"><div class="stat-num">104</div><div class="stat-label">Companies</div></div>
+      <div class="stat"><div class="stat-num">19</div><div class="stat-label">🇲🇹 Malta-Based</div></div>
+      <div class="stat"><div class="stat-num">85</div><div class="stat-label">🌐 Global / Used in Malta</div></div>
       <div class="stat"><div class="stat-num">5</div><div class="stat-label">MDIA Auditors in Providers</div></div>
       <div class="stat"><div class="stat-num">2026</div><div class="stat-label">Last Updated</div></div>
     </div>
@@ -1479,7 +1479,24 @@ const CO=[
    status:'gr',statusLabel:'GRC Tool — not a SOC reporter',date:'Active',
    kicker:'🌐 AI-powered GRC · ISQM & 22852 compliance automation',
    body:`LockThreat is an <strong>AI-powered GRC platform</strong> helping organisations achieve SOC 2, ISO 27001, HIPAA, GDPR, and NIST compliance — it <strong>does not itself hold a SOC 2 report</strong> as a service organisation. It automates evidence collection, policy management, and audit readiness. Available on AWS, Azure, Google Cloud, IBM Cloud, Oracle, and Salesforce.`,
-   link:'https://marketplace.microsoft.com/en-us/product/web-apps/cirruslabs1724174651623.lockthreat'}
+   link:'https://marketplace.microsoft.com/en-us/product/web-apps/cirruslabs1724174651623.lockthreat'},
+
+  /* ── USER-VERIFIED MALTA & GLOBAL ADDITIONS ──────────────────── */
+  {name:'CyberSift',sector:'AI Cybersecurity · SIEM · Threat Detection',malta:true,
+   tags:['soc2','tech','confirmed','malta'],
+   certs:[{cls:'soc2',l:'SOC 2 Type II'},{cls:'iso27001',l:'ISO 27001'}],
+   status:'g',statusLabel:'Confirmed',date:'June 2024',
+   kicker:'🇲🇹 Malta-based · SOC 2 Type II + ISO 27001 · Jun 2024',
+   body:`CyberSift, a Malta-based AI-driven cybersecurity company, achieved <strong>SOC 2 Type II compliance in June 2024</strong> — following ISO 27001 certification in January 2024. The achievement was confirmed by CTO David Vassallo, who stated it "demonstrates the company's dedication to providing secure and reliable services." The SOC 2 Type II audit involved engaging accredited auditing firms to assess infrastructure, security measures, and processes over a specified period. CyberSift provides AI-powered threat detection and SIEM solutions to enterprise clients globally.`,
+   link:'https://whoswho.mt/en/cybersift-achieves-soc-2-certification'},
+
+  {name:'everyoneINVESTED',sector:'Wealth Tech · Investor Profiling · MiFID II SaaS',malta:false,
+   tags:['isae3402','soc1','confirmed','tech'],
+   certs:[{cls:'isae3402',l:'ISAE 3402 Type I'},{cls:'iso27001',l:'MiFID II / ESMA'}],
+   status:'g',statusLabel:'Confirmed',date:'August 2022',
+   kicker:'🌐 KBC Group Wealth Tech · ISAE 3402 Type I via Deloitte · Aug 2022',
+   body:`everyoneINVESTED — a wealth tech spin-off of KBC Group — obtained an <strong>ISAE 3402 Type I certification from Deloitte</strong> in August 2022 for its sustainability preferences module within the Profiler solution. The certification confirms the module is suitably designed to collect sustainability preferences in accordance with MiFID II and ESMA draft supervisory guidance on ESG. The certification was described as "a critical differentiator" for financial institutions outsourcing investor profiling. everyoneINVESTED has twice been included in the WealthTech100 list of the world's most innovative companies.`,
+   link:'https://everyoneinvested.com/press-release/sustainability-module-obtains-the-isae-3402-certification/'}
 ];
 
 /* ── RENDER ──────────────────────────────────────────────────── */
@@ -1576,6 +1593,8 @@ const ALIASES = {
   'hpe':['hpe','hewlett packard','greenlake','data centre hpe'],
   'ultraviolet':['ultraviolet','uv cyber','uvcyber','red team','pentest'],
   'lockthreat':['lockthreat','lock threat','grc platform','risk compliance'],
+  'cybersift':['cybersift','cyber sift','siem','threat detection','ai security'],
+  'everyoneinvested':['everyoneinvested','everyone invested','kbc','wealthtech','investor profiling','esg mifid'],
 };
 function lev(a,b){
   if(!a) return b.length;
