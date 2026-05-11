@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+  <title>Audit Frameworks Explained · Malta SOC Intelligence</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;800&family=Source+Sans+3:ital,wght@0,300;0,400;0,600;0,700;1,400&display=swap" rel="stylesheet"/>
+  <style>
+    :root{
+      --red:#BB1919;--red-dark:#8B1010;--black:#0d0d0d;--ink:#1a1a1a;
+      --grey-1:#f5f5f5;--grey-2:#e0e0e0;--grey-3:#9a9a9a;--grey-4:#6d6d6d;
+      --white:#fff;--border:#d0d0d0;--green:#1a7a3f;--blue:#0a5eb0;--amber:#b35a00;--purple:#6b3a9e;
+      --max:1140px;--pad:20px;
+    }
+    *,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
+    html{scroll-behavior:smooth;}
+    body{background:var(--grey-1);color:var(--ink);font-family:'Source Sans 3',sans-serif;font-size:16px;line-height:1.65;}
+
+    .topbar{background:var(--black);position:sticky;top:0;z-index:200;}
+    .topbar-inner{max-width:var(--max);margin:0 auto;padding:0 var(--pad);height:52px;display:flex;align-items:center;}
+    .logo-blocks{display:flex;gap:3px;}
+    .logo-block{width:28px;height:28px;background:var(--white);display:flex;align-items:center;justify-content:center;font-weight:700;font-size:14px;letter-spacing:-.5px;color:var(--black);}
+    .topbar-divider{width:1px;height:28px;background:#3a3a3a;margin:0 16px;}
+    .topbar-label{color:#9a9a9a;font-size:.75rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;}
+    .topbar-right{margin-left:auto;display:flex;align-items:center;gap:20px;}
+    .topbar-date{color:#666;font-size:.72rem;}
+    .topbar-badge{background:var(--blue);color:var(--white);font-size:.65rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;padding:3px 8px;border-radius:1px;}
+    .red-strip{background:var(--red);height:3px;}
+
+    nav{background:var(--white);border-bottom:1px solid var(--border);}
+    .nav-inner{max-width:var(--max);margin:0 auto;padding:0 var(--pad);display:flex;align-items:center;overflow-x:auto;scrollbar-width:none;}
+    .nav-inner::-webkit-scrollbar{display:none;}
+    .nav-link{display:block;padding:14px 16px;font-size:.82rem;font-weight:600;color:var(--grey-4);text-decoration:none;white-space:nowrap;border-bottom:3px solid transparent;transition:color .15s,border-color .15s;}
+    .nav-link:hover{color:var(--ink);}
+    .nav-link.active{color:var(--blue);border-bottom-color:var(--blue);}
+
+    .page{max-width:var(--max);margin:0 auto;padding:0 var(--pad);}
+
+    .hero{background:var(--white);border-bottom:1px solid var(--border);padding:40px 0 36px;margin-bottom:32px;}
+    .hero-inner{max-width:var(--max);margin:0 auto;padding:0 var(--pad);}
+    .hero-kicker{display:inline-flex;align-items:center;gap:8px;font-size:.72rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--blue);margin-bottom:14px;}
+    .hero-kicker::before{content:'';display:block;width:18px;height:2px;background:var(--blue);}
+    h1{font-family:'Playfair Display',serif;font-size:clamp(2rem,4vw,3rem);font-weight:800;line-height:1.1;color:var(--black);margin-bottom:12px;letter-spacing:-.02em;}
+    .hero-sub{font-size:1rem;color:var(--grey-4);font-weight:300;max-width:680px;line-height:1.65;}
+    .back-link{display:inline-flex;align-items:center;gap:6px;color:var(--red);font-size:.82rem;font-weight:600;text-decoration:none;border-bottom:1px solid transparent;transition:border-color .15s;margin-bottom:16px;}
+    .back-link:hover{border-bottom-color:var(--red);}
+    .back-link::before{content:'←';}
+
+    .sec-head{display:flex;align-items:center;gap:14px;margin:36px 0 20px;}
+    .sec-head h2{font-family:'Playfair Display',serif;font-size:1.35rem;font-weight:700;color:var(--black);padding-left:14px;border-left:4px solid var(--blue);line-height:1.2;}
+    .sec-line{flex:1;height:1px;background:var(--border);}
+
+    /* Framework overview cards */
+    .fw-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:1px;background:var(--border);border:1px solid var(--border);margin-bottom:40px;}
+    .fw-card{background:var(--white);padding:28px 24px;border-top:4px solid transparent;}
+    .fw-card.c-soc2{border-top-color:var(--blue);}
+    .fw-card.c-soc1{border-top-color:var(--purple);}
+    .fw-card.c-isae3402{border-top-color:var(--green);}
+    .fw-card.c-isae3000{border-top-color:var(--amber);}
+    .fw-tag{display:inline-block;font-size:.68rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;margin-bottom:10px;padding:3px 10px;border-radius:2px;}
+    .fw-card.c-soc2 .fw-tag{background:#dbeafe;color:#1e40af;}
+    .fw-card.c-soc1 .fw-tag{background:#ede9fe;color:#5b21b6;}
+    .fw-card.c-isae3402 .fw-tag{background:#d1fae5;color:#065f46;}
+    .fw-card.c-isae3000 .fw-tag{background:#fef3c7;color:#92400e;}
+    .fw-title{font-family:'Playfair Display',serif;font-size:1.1rem;font-weight:700;color:var(--black);margin-bottom:8px;}
+    .fw-desc{font-size:.875rem;color:var(--grey-4);line-height:1.65;}
+
+    /* Detail articles */
+    .fw-detail{background:var(--white);border:1px solid var(--border);border-radius:2px;padding:32px;margin-bottom:24px;}
+    .fw-detail-header{display:flex;align-items:flex-start;gap:16px;margin-bottom:20px;padding-bottom:20px;border-bottom:1px solid var(--grey-2);}
+    .fw-detail-badge{width:48px;height:48px;border-radius:2px;display:flex;align-items:center;justify-content:center;font-size:.65rem;font-weight:700;letter-spacing:.06em;text-align:center;text-transform:uppercase;flex-shrink:0;}
+    .badge-soc2{background:#dbeafe;color:#1e40af;}
+    .badge-soc1{background:#ede9fe;color:#5b21b6;}
+    .badge-isae3402{background:#d1fae5;color:#065f46;}
+    .badge-isae3000{background:#fef3c7;color:#92400e;}
+    .fw-detail h3{font-family:'Playfair Display',serif;font-size:1.3rem;font-weight:700;color:var(--black);margin-bottom:4px;}
+    .fw-detail-sub{font-size:.78rem;color:var(--grey-3);text-transform:uppercase;letter-spacing:.06em;}
+    .fw-detail p{font-size:.9rem;color:var(--grey-4);line-height:1.75;margin-bottom:14px;}
+    .fw-detail p strong{color:var(--ink);font-weight:600;}
+    .fw-detail p:last-child{margin-bottom:0;}
+    .fw-detail ul{margin:0 0 14px 22px;}
+    .fw-detail li{font-size:.9rem;color:var(--grey-4);line-height:1.7;margin-bottom:5px;}
+    .fw-detail li strong{color:var(--ink);font-weight:600;}
+
+    /* Comparison table */
+    .cmp{width:100%;border-collapse:collapse;font-size:.85rem;margin-bottom:32px;background:var(--white);border:1px solid var(--border);}
+    .cmp thead{background:var(--black);}
+    .cmp th{padding:12px 16px;text-align:left;font-size:.7rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:#9a9a9a;}
+    .cmp td{padding:12px 16px;border-bottom:1px solid var(--grey-2);vertical-align:top;}
+    .cmp tr:last-child td{border-bottom:none;}
+    .cmp td:first-child{font-weight:700;color:var(--black);width:22%;}
+
+    .disclaimer{background:var(--grey-1);border:1px solid var(--border);border-radius:2px;padding:22px 24px;margin-bottom:40px;}
+    .disclaimer p{font-size:.82rem;color:var(--grey-4);line-height:1.65;}
+
+    footer.site-footer{background:var(--black);color:#555;padding:28px var(--pad);}
+    .footer-inner{max-width:var(--max);margin:0 auto;display:flex;flex-wrap:wrap;gap:20px;align-items:center;justify-content:space-between;}
+    .footer-copy{font-size:.75rem;line-height:1.6;}
+    .footer-links{display:flex;gap:20px;flex-wrap:wrap;}
+    .footer-links a{color:#666;font-size:.75rem;text-decoration:none;}
+    .footer-links a:hover{color:#9a9a9a;}
+
+    @media(max-width:640px){
+      .fw-grid{grid-template-columns:1fr;}
+      .fw-detail{padding:20px;}
+      .fw-detail-header{flex-direction:column;gap:10px;}
+      .cmp th:nth-child(n+3),.cmp td:nth-child(n+3){display:none;}
+    }
+  </style>
+</head>
+<body>
+<script>if(sessionStorage.getItem('msi_auth')!=='b3282a2f2a28757b3a18ab833de16a9c54518c0b0cf493e3f0a7cf09386f326a'){document.body.innerHTML='';window.location.replace('./index.html');}window.onload=null;</script>
+
+<div class="topbar">
+  <div class="topbar-inner">
+    <div class="logo-blocks"><div class="logo-block">M</div><div class="logo-block">S</div><div class="logo-block">I</div></div>
+    <div class="topbar-divider"></div>
+    <span class="topbar-label">Malta SOC Intelligence</span>
+    <div class="topbar-right">
+      <span class="topbar-date">May 2026</span>
+      <span class="topbar-badge">Reference</span>
+    </div>
+  </div>
+</div>
+<div class="red-strip"></div>
+
+<nav>
+  <div class="nav-inner">
+    <a class="nav-link" href="./main.html">← Registry</a>
+    <a class="nav-link active" href="#">Frameworks</a>
+    <a class="nav-link" href="#overview">Overview</a>
+    <a class="nav-link" href="#soc2">SOC 2</a>
+    <a class="nav-link" href="#soc1">SOC 1</a>
+    <a class="nav-link" href="#isae3402">ISAE 3402</a>
+    <a class="nav-link" href="#isae3000">ISAE 3000</a>
+    <a class="nav-link" href="#compare">Comparison</a>
+  </div>
+</nav>
+
+<div class="hero">
+  <div class="hero-inner">
+    <a class="back-link" href="./main.html">Back to Company Registry</a>
+    <div class="hero-kicker">Reference Guide · Independent Assurance</div>
+    <h1>Audit Frameworks<br>Explained</h1>
+    <p class="hero-sub">A plain-language guide to SOC 1, SOC 2, ISAE 3402 and ISAE 3000 — what each framework covers, when it applies, who issues it, and how they relate to Malta's regulatory landscape.</p>
+  </div>
+</div>
+
+<div class="page">
+
+  <!-- OVERVIEW CARDS -->
+  <div id="overview">
+    <div class="sec-head"><h2>At a Glance</h2><div class="sec-line"></div></div>
+    <div class="fw-grid">
+      <div class="fw-card c-soc2">
+        <div class="fw-tag">SOC 2 / ISAE 3000</div>
+        <div class="fw-title">Security &amp; Operational Controls</div>
+        <div class="fw-desc">Evaluates security, availability, processing integrity, confidentiality and privacy. Type I assesses design; Type II assesses operating effectiveness over 6–12 months. International reports comply with ISAE 3000.</div>
+      </div>
+      <div class="fw-card c-soc1">
+        <div class="fw-tag">SOC 1 / ISAE 3402</div>
+        <div class="fw-title">Financial Reporting Controls</div>
+        <div class="fw-desc">Assesses internal controls relevant to clients' financial reporting. Governed by SSAE 18 (US) or ISAE 3402 (international). Issued as Type I (design) or Type II (operating effectiveness over 6–12 months).</div>
+      </div>
+      <div class="fw-card c-isae3402">
+        <div class="fw-tag">ISAE 3402</div>
+        <div class="fw-title">International SOC 1 Equivalent</div>
+        <div class="fw-desc">International equivalent of SOC 1 (SSAE 18). Provides assurance on service-organisation controls relevant to user entities' financial reporting. Widely used in EU financial services, fund admin and payroll processing.</div>
+      </div>
+      <div class="fw-card c-isae3000">
+        <div class="fw-tag">ISAE 3000</div>
+        <div class="fw-title">General Assurance Standard</div>
+        <div class="fw-desc">The overarching international assurance standard for non-financial engagements, covering information security, GDPR, ESG and more. SOC 2 reports issued outside the US typically comply with ISAE 3000.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SOC 2 -->
+  <div id="soc2">
+    <div class="sec-head"><h2>SOC 2 in Detail</h2><div class="sec-line"></div></div>
+    <div class="fw-detail">
+      <div class="fw-detail-header">
+        <div class="fw-detail-badge badge-soc2">SOC 2</div>
+        <div>
+          <h3>SOC 2 — System and Organization Controls 2</h3>
+          <div class="fw-detail-sub">AICPA · SSAE 18 AT-C §205 · International: ISAE 3000</div>
+        </div>
+      </div>
+      <p><strong>What it covers:</strong> SOC 2 evaluates a service organisation's controls relevant to the <strong>five Trust Services Criteria (TSC)</strong>: Security (mandatory), Availability, Processing Integrity, Confidentiality, and Privacy. It is the dominant assurance framework for SaaS, cloud infrastructure, and technology service providers globally.</p>
+      <p><strong>Type I vs Type II:</strong> A Type I report assesses whether controls are suitably designed at a specific point in time. A Type II report assesses whether controls operated effectively over a period — typically 6 to 12 months — and is significantly more valuable to prospective customers and enterprise procurement teams.</p>
+      <p><strong>Who issues it:</strong> A licensed CPA firm (US) or any IAASB-accredited auditor (international). In Malta, Big-4 firms and mid-tier firms (RSM Malta, BDO Malta, Grant Thornton, Contact Advisory Services) issue SOC 2 reports.</p>
+      <p><strong>Who needs it:</strong></p>
+      <ul>
+        <li><strong>SaaS companies</strong> handling enterprise customer data (Salesforce, Workday, Slack, etc.)</li>
+        <li><strong>Cloud infrastructure providers</strong> (AWS, Azure, GCP, BMIT Technologies)</li>
+        <li><strong>Payment processors and fintech firms</strong> (Nuvei, Paysafe, Stripe, Adyen)</li>
+        <li><strong>Crypto exchanges with MiCA CASP licences</strong> (Gemini, Crypto.com, Bitstamp)</li>
+        <li><strong>iGaming B2B suppliers</strong> demonstrating compliance to MGA-licensed operators</li>
+      </ul>
+      <p><strong>Malta regulatory angle:</strong> MFSA-licensed investment firms (MiFID, CFD/Forex) satisfy the <em>Rule R13-13.6 System Certification</em> requirement via SOC 2 Type II. MFSA EMIs satisfy FIR/03 IT audit obligations via group-level SOC 2. The MDIA Technology Assurance Sandbox uses ISAE 3000 — the international equivalent of SOC 2 — for ITA certification audits.</p>
+    </div>
+  </div>
+
+  <!-- SOC 1 -->
+  <div id="soc1">
+    <div class="sec-head"><h2>SOC 1 in Detail</h2><div class="sec-line"></div></div>
+    <div class="fw-detail">
+      <div class="fw-detail-header">
+        <div class="fw-detail-badge badge-soc1">SOC 1</div>
+        <div>
+          <h3>SOC 1 — System and Organization Controls 1</h3>
+          <div class="fw-detail-sub">AICPA · SSAE 18 AT-C §320 · International: ISAE 3402</div>
+        </div>
+      </div>
+      <p><strong>What it covers:</strong> SOC 1 evaluates a service organisation's internal controls that are <strong>relevant to a user entity's internal control over financial reporting (ICFR)</strong>. It is the right framework when the service provider's operations could materially affect the accuracy of a customer's financial statements.</p>
+      <p><strong>Type I vs Type II:</strong> Type I reports on the design of controls at a point in time. Type II reports on both design and operating effectiveness over a period — typically 12 months — and is required by most external auditors reviewing clients' vendors.</p>
+      <p><strong>Who issues it:</strong> A licensed CPA firm (US, SSAE 18) or an IAASB-accredited auditor (international, ISAE 3402). The two are frequently combined into a single "SOC 1 / ISAE 3402" report.</p>
+      <p><strong>Who needs it:</strong></p>
+      <ul>
+        <li><strong>Payroll processors</strong> whose outputs flow into client financial statements</li>
+        <li><strong>Fund administrators</strong> providing NAV calculations and investor reporting</li>
+        <li><strong>ERP and accounting SaaS</strong> (Workday, SAP SuccessFactors, Oracle NetSuite, Xero)</li>
+        <li><strong>Cloud and data centre providers</strong> hosting financial systems (AWS, Azure, Equinix)</li>
+        <li><strong>Wealth tech platforms</strong> — e.g. everyoneINVESTED's ISAE 3402 Type I for its MiFID II sustainability module, audited by Deloitte</li>
+      </ul>
+      <p><strong>Malta regulatory angle:</strong> Financial institutions regulated by the MFSA, fund administrators under the Companies Act, and service providers to Malta-based investment firms all face SOC 1 / ISAE 3402 requests from their clients' external auditors — particularly from Big-4 firms conducting financial statement audits.</p>
+    </div>
+  </div>
+
+  <!-- ISAE 3402 -->
+  <div id="isae3402">
+    <div class="sec-head"><h2>ISAE 3402 in Detail</h2><div class="sec-line"></div></div>
+    <div class="fw-detail">
+      <div class="fw-detail-header">
+        <div class="fw-detail-badge badge-isae3402">ISAE 3402</div>
+        <div>
+          <h3>ISAE 3402 — Assurance Reports on Controls at a Service Organisation</h3>
+          <div class="fw-detail-sub">IAASB / IFAC · Published June 2011 · Supersedes SAS 70</div>
+        </div>
+      </div>
+      <p><strong>What it is:</strong> ISAE 3402 is the <strong>international equivalent of SOC 1 (SSAE 18)</strong>. Both standards cover the same ground — assurance over controls at a service organisation relevant to user entities' financial reporting — differing only in their governing body (IAASB vs AICPA) and reporting format. The two are frequently issued together as a combined "SOC 1 / ISAE 3402" report.</p>
+      <p><strong>When to use ISAE 3402 vs SOC 1:</strong> US clients typically request SOC 1 (SSAE 18). Non-US / EU clients expect ISAE 3402. Global service providers commonly issue a single combined report satisfying both standards through a single audit engagement.</p>
+      <p><strong>Malta examples:</strong></p>
+      <ul>
+        <li><strong>Hornetsecurity (Altaro)</strong> — holds ISAE 3402 for its cloud backup and security services</li>
+        <li><strong>Greentube Malta</strong> — holds ISAE 3402 for outsourced financial and operational controls (announced via LinkedIn, early 2023)</li>
+        <li><strong>everyoneINVESTED</strong> — holds ISAE 3402 Type I (via Deloitte) for its MiFID II sustainability preferences module</li>
+        <li><strong>Paysafe (Skrill/NETELLER)</strong> — group-level ISAE 3402 / FIR/03 compliance for EMI operations</li>
+      </ul>
+      <p><strong>MDIA connection:</strong> MDIA Systems Auditors issue conformity assessments <em>in accordance with ISAE 3000</em> (the parent standard), not ISAE 3402 specifically. ITA audits assess functional correctness of technology, not financial reporting controls — so ISAE 3402 is the relevant framework for financial service providers, while ISAE 3000 covers technology assurance.</p>
+    </div>
+  </div>
+
+  <!-- ISAE 3000 -->
+  <div id="isae3000">
+    <div class="sec-head"><h2>ISAE 3000 in Detail</h2><div class="sec-line"></div></div>
+    <div class="fw-detail">
+      <div class="fw-detail-header">
+        <div class="fw-detail-badge badge-isae3000">ISAE 3000</div>
+        <div>
+          <h3>ISAE 3000 — International Standard on Assurance Engagements (Non-financial)</h3>
+          <div class="fw-detail-sub">IAASB / IFAC · Overarching Standard · SOC 2 international equivalent</div>
+        </div>
+      </div>
+      <p><strong>What it is:</strong> ISAE 3000 is the <strong>overarching international assurance standard</strong> that applies to all assurance engagements not covered by more specific standards (such as ISAE 3402). It provides the methodological framework for SOC 2 reports issued outside the US, GDPR assurance reports, ESG / sustainability attestations, AI system audits, and cybersecurity assessments.</p>
+      <p><strong>Why it matters for Malta:</strong> The MDIA mandates that its certified Systems Auditors conduct ITA conformity assessments <em>"in accordance with ISAE 3000"</em> — making it the formal legal basis for Malta's national technology assurance regime. This directly links Malta's regulatory framework to the international SOC 2 ecosystem.</p>
+      <p><strong>Key uses:</strong></p>
+      <ul>
+        <li><strong>SOC 2 reports issued internationally</strong> — outside the US, SOC 2 is conducted under ISAE 3000 (not SSAE 18)</li>
+        <li><strong>MDIA ITA certification audits</strong> — all five MDIA-certified Systems Auditors use ISAE 3000</li>
+        <li><strong>GDPR / data privacy assurance</strong> — used by DPOs seeking third-party attestation of GDPR controls</li>
+        <li><strong>ESG / sustainability reporting</strong> — everyoneINVESTED's ISAE 3402 is technically issued under ISAE 3000 as the parent standard</li>
+        <li><strong>AI system audits</strong> — as Malta and the EU implement the AI Act, ISAE 3000 is the expected assurance standard for high-risk AI system audits</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- COMPARISON TABLE -->
+  <div id="compare">
+    <div class="sec-head"><h2>Framework Comparison</h2><div class="sec-line"></div></div>
+    <table class="cmp">
+      <thead>
+        <tr>
+          <th>Dimension</th>
+          <th>SOC 2 / ISAE 3000</th>
+          <th>SOC 1 / ISAE 3402</th>
+          <th>MDIA ITA (ISAE 3000)</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td>Primary focus</td><td>Security, availability, confidentiality of systems</td><td>Controls over financial reporting</td><td>Functional correctness of technology vs blueprint</td></tr>
+        <tr><td>Standard</td><td>SSAE 18 AT-C §205 / ISAE 3000</td><td>SSAE 18 AT-C §320 / ISAE 3402</td><td>ISAE 3000 (national application)</td></tr>
+        <tr><td>Audience</td><td>Customers, procurement, enterprise buyers</td><td>User entities' external auditors</td><td>Regulators, investors, end-users</td></tr>
+        <tr><td>Who issues</td><td>Licensed CPA / IAASB auditor</td><td>Licensed CPA / IAASB auditor</td><td>MDIA-certified Systems Auditor only (5 firms)</td></tr>
+        <tr><td>Mandatory in Malta?</td><td>MFSA R13-13.6, FIR/03 (EMIs)</td><td>Client auditor requests, FIR/03</td><td>VFA Act licensees, MDIA Sandbox tenants</td></tr>
+        <tr><td>Type I / Type II</td><td>Yes — design vs operating effectiveness</td><td>Yes — design vs operating effectiveness</td><td>Type 1 (pre-live) / Type 2 (periodic)</td></tr>
+        <tr><td>Verification</td><td>Report shared under NDA</td><td>Report shared under NDA</td><td>SHA-512 + Bitcoin blockchain timestamp</td></tr>
+        <tr><td>Renewal</td><td>Annual</td><td>Annual</td><td>2-year cycle with periodic reviews</td></tr>
+        <tr><td>Malta examples</td><td>BMIT, Kindred/Unibet, Crypto.com, Gemini, CyberSift</td><td>Hornetsecurity, Paysafe, everyoneINVESTED, Xero</td><td>MDIA Sandbox participants, former VFA licensees</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="disclaimer">
+    <p>This reference guide is based on AICPA and IAASB published standards, MDIA regulatory documentation, and the Malta SOC Intelligence registry. It is provided for informational purposes and should not substitute for professional advice. Last updated May 2026.</p>
+  </div>
+
+  <div style="margin-bottom:40px;">
+    <a class="back-link" href="./main.html">Return to Company Registry</a>
+  </div>
+
+</div>
+
+<footer class="site-footer">
+  <div class="footer-inner">
+    <div class="footer-copy">Malta SOC Audit Intelligence · Audit Frameworks Reference · &copy; 2026</div>
+    <div class="footer-links">
+      <a href="./main.html">Registry</a>
+      <a href="./analytics.html">Analytics</a>
+      <a href="./providers.html">SOC Providers</a>
+      <a href="./mdia.html">MDIA Analysis</a>
+    </div>
+  </div>
+</footer>
+</body>
+</html>
