@@ -510,8 +510,8 @@
       A curated registry of <strong>77 companies</strong> with publicly disclosed SOC 1, SOC 2, ISAE 3402, ISAE 3000 or equivalent independent assurance reports — including <strong>22 Malta-based licensed entities</strong> (Tech.mt, MGA, MFSA, MDIA Systems Auditors) marked 🇲🇹, plus <strong>55 global cloud, SaaS, payment, security and crypto vendors</strong> commonly relied upon by Malta operators marked 🌐. See <a href="./mdia.html" style="color:var(--red);font-weight:600;">MDIA Analysis →</a> for technology assurance context.
     </p>
     <div class="stats-row">
-      <div class="stat"><div class="stat-num">105</div><div class="stat-label">Companies</div></div>
-      <div class="stat"><div class="stat-num">19</div><div class="stat-label">🇲🇹 Malta-Based</div></div>
+      <div class="stat"><div class="stat-num">106</div><div class="stat-label">Companies</div></div>
+      <div class="stat"><div class="stat-num">20</div><div class="stat-label">🇲🇹 Malta-Based</div></div>
       <div class="stat"><div class="stat-num">85</div><div class="stat-label">🌐 Global / Used in Malta</div></div>
       <div class="stat"><div class="stat-num">5</div><div class="stat-label">MDIA Auditors in Providers</div></div>
       <div class="stat"><div class="stat-num">2026</div><div class="stat-label">Last Updated</div></div>
@@ -1418,7 +1418,15 @@ const CO=[
    status:'g',statusLabel:'Confirmed',date:'2023 (LinkedIn announced)',
    kicker:'🌐 Bermuda HQ · Fund Administration · Hedge Funds · Private Equity · Family Office',
    body:`Krypton Fund Services achieved <strong>SOC 1 Type 2 certification</strong>, confirming that internal controls over financial reporting, investor services, and fund administration meet rigorous standards. The scope covers fund administration, accounting, investor services, and compliance support for hedge funds, private equity funds, and family offices. The certification is regularly maintained and demonstrates operating effectiveness over a period (Type II). Krypton is a boutique independent fund administrator providing regulatory reporting, registrar and transfer agency, NAV accounting, and project management to alternative investment funds across family offices, private and special purpose vehicles. Headquartered in Bermuda. Announcement confirmed via LinkedIn.`,
-   link:'https://www.linkedin.com/pulse/krypton-fund-services-announces-successful-achievement-soc-1-bacmc'}
+   link:'https://www.linkedin.com/pulse/krypton-fund-services-announces-successful-achievement-soc-1-bacmc'},
+
+  {name:'Apex Group (Apex Fund Services)',sector:'Fund Administration · UCITS · AIF · Private Equity',malta:true,
+   tags:['isae3402','soc1','confirmed','fund','finance','malta','mfsa'],
+   certs:[{cls:'isae3402',l:'ISAE 3402 Type II'},{cls:'soc1',l:'SSAE 18 / SOC 1'}],
+   status:'g',statusLabel:'Confirmed',date:'Ongoing (first achieved 2012)',
+   kicker:'🇲🇹 Sliema Malta · MFSA-Recognised (surrendered May 2025) · Global Fund Admin · 13,000+ staff',
+   body:`Apex Group (formerly Apex Fund Services) maintains <strong>ISAE 3402 Type II and SSAE 18 certifications</strong>, audited by KPMG, covering NAV calculations, fund administration, client reporting, and investor onboarding controls across global offices including Malta. The examination confirms that controls are suitably designed and operating effectively over the audit period. Apex Malta — Sliema, Malta — was MFSA-recognised for fund administration (UCITS, AIF, PIF) and launched Malta's first tokenised share class on the Polygon blockchain in March 2025. <strong>Note: Apex Group Fund Services (Malta) Limited voluntarily surrendered its MFSA recognition certificate on 19 May 2025</strong> (no regulatory action). The group's global ISAE 3402 compliance remains active.`,
+   link:'https://www.hedgeweek.com/apex-completes-successful-isae-3402-and-ssae-16-examination/'}
 ];
 
 /* ── RENDER ──────────────────────────────────────────────────── */
@@ -1516,11 +1524,16 @@ const ALIASES = {
   'ultraviolet':['ultraviolet','uv cyber','uvcyber','red team','pentest'],
   'lockthreat':['lockthreat','lock threat','grc platform','risk compliance'],
   'cybersift':['cybersift','cyber sift','siem','threat detection','ai security'],
+  'apex':['apex group','apex fund','apex fund services','apexgroup'],
   'everyoneinvested':['everyoneinvested','everyone invested','kbc','wealthtech','investor profiling','esg mifid'],
   // fund services — specific domain
   'fund':['fund administration','fund admin','fund services','hedge fund','private equity','family office',
-          'nav','transfer agency','registrar','fund accounting','alternative investment','fund administrator',
-          'asset management','wealth management','custody','prime brokerage','fund of funds','ucits','aif','aifmd'],
+          'nav','net asset value','transfer agency','registrar','fund accounting','alternative investment',
+          'fund administrator','fund of funds','ucits','aif','aifmd','alternative fund','collective investment',
+          'hedge fund administrator','pe fund','pif','naif','management company','manco','depositary',
+          'asset management','wealth management','custody','prime brokerage','securitisation','spv',
+          'investor services','registrar transfer','fund domicile','fund domiciliation','luxembourg fund',
+          'cayman fund','bermuda fund','malta fund'],
 };
 function lev(a,b){
   if(!a) return b.length;
