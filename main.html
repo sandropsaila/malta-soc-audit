@@ -543,10 +543,10 @@
       A curated registry of <strong>77 companies</strong> with publicly disclosed SOC 1, SOC 2, ISAE 3402, ISAE 3000 or equivalent independent assurance reports — including <strong>22 Malta-based licensed entities</strong> (Tech.mt, MGA, MFSA, MDIA Systems Auditors) marked 🇲🇹, plus <strong>55 global cloud, SaaS, payment, security and crypto vendors</strong> commonly relied upon by Malta operators marked 🌐. See <a href="./mdia.html" style="color:var(--red);font-weight:600;">MDIA Analysis →</a> for technology assurance context.
     </p>
     <div class="stats-row">
-      <div class="stat"><div class="stat-num">98</div><div class="stat-label">Companies</div></div>
-      <div class="stat"><div class="stat-num">23</div><div class="stat-label">🇲🇹 Malta-Based</div></div>
+      <div class="stat"><div class="stat-num">93</div><div class="stat-label">Companies</div></div>
+      <div class="stat"><div class="stat-num">18</div><div class="stat-label">🇲🇹 Malta-Based</div></div>
       <div class="stat"><div class="stat-num">75</div><div class="stat-label">🌐 Global / Used in Malta</div></div>
-      <div class="stat"><div class="stat-num">5</div><div class="stat-label">MDIA Sys Auditors</div></div>
+      <div class="stat"><div class="stat-num">5</div><div class="stat-label">MDIA Auditors in Providers</div></div>
       <div class="stat"><div class="stat-num">2026</div><div class="stat-label">Last Updated</div></div>
     </div>
   </div>
@@ -642,7 +642,6 @@
         <span class="filter-label">Filter:</span>
         <button class="fpill active" onclick="setFilter('all',this)">All</button>
         <button class="fpill" onclick="setFilter('malta',this)" style="background:#fef3c7;color:#92400e;border-color:#fde68a;">🇲🇹 Malta only</button>
-        <button class="fpill" onclick="setFilter('mdia',this)" style="background:#fee2e2;color:#991b1b;border-color:#fecaca;">MDIA Sys Auditor</button>
         <button class="fpill" onclick="setFilter('soc2',this)">SOC 2</button>
         <button class="fpill" onclick="setFilter('soc1',this)">SOC 1</button>
         <button class="fpill" onclick="setFilter('isae3402',this)">ISAE 3402</button>
@@ -822,41 +821,6 @@ const CO=[
    body:`<strong>MFSA MiCA CASP Jan 2025</strong>. Group SOC 2 Type II via Deloitte (Aug 2022). Custody Trust Co added SOC 1+SOC 2 Type II Sep 2025.`,
    link:'https://crypto.com/'},
   /* ── 🇲🇹 MDIA-CERTIFIED SYSTEMS AUDITORS ────────────────────── */
-  {name:'PwC Malta',sector:'Big-4 · MDIA Systems Auditor',malta:true,
-   tags:['mdia','tech','confirmed','malta','auditor'],
-   certs:[{cls:'isae3000',l:'MDIA Systems Auditor'},{cls:'isae3402',l:'ISAE 3402'},{cls:'soc2',l:'SOC 2'}],
-   status:'g',statusLabel:'Active',date:'Since 2018',
-   kicker:'🇲🇹 Big-4 · 1st MDIA Systems Auditor',
-   body:`<strong>First MDIA-certified Systems Auditor</strong>. Conducts ISAE 3000 audits of ITAs. Provides SOC 1/2/ISAE 3402 services across Malta.`,
-   link:'https://www.pwc.com/mt/'},
-  {name:'KPMG Malta',sector:'Big-4 · MDIA Systems Auditor',malta:true,
-   tags:['mdia','tech','confirmed','malta','auditor'],
-   certs:[{cls:'isae3000',l:'MDIA Systems Auditor'},{cls:'isae3402',l:'ISAE 3402'},{cls:'soc2',l:'SOC 2'}],
-   status:'g',statusLabel:'Active',date:'Since 2019',
-   kicker:'🇲🇹 Big-4 · MDIA Systems Auditor',
-   body:`<strong>MDIA-certified Systems Auditor</strong> since 2019. Performs ISAE 3000 audits of ITAs and full SOC/ISAE service practice.`,
-   link:'https://kpmg.com/mt/'},
-  {name:'BDO Technology Advisory (BDO Malta)',sector:'Mid-Tier · MDIA Systems Auditor',malta:true,
-   tags:['mdia','tech','confirmed','malta','auditor'],
-   certs:[{cls:'isae3000',l:'MDIA Systems Auditor'},{cls:'isae3402',l:'ISAE 3402'},{cls:'soc2',l:'SOC 2+'}],
-   status:'g',statusLabel:'Active',date:'Reconfirmed 2021',
-   kicker:'🇲🇹 BDO Global · MDIA Reconfirmed',
-   body:`<strong>MDIA Systems Auditor reconfirmed 2021</strong>. Tech assurance team led by Ivan Spiteri. Active ISAE 3402 / SOC 2+ practice.`,
-   link:'https://www.bdo.com.mt/en-gb/news/2021/malta-digital-innovation-authority-(mdia)-reconfirms-bdo-malta-as-certified-systems-auditor-for-ita'},
-  {name:'STIS Group',sector:'IT Assurance · MDIA Systems Auditor',malta:true,
-   tags:['mdia','tech','confirmed','malta','auditor'],
-   certs:[{cls:'isae3000',l:'MDIA Systems Auditor'}],
-   status:'g',statusLabel:'Active',date:'Since 2019',
-   kicker:'🇲🇹 MDIA Systems Auditor',
-   body:`<strong>MDIA-certified Systems Auditor</strong>. Conducts ISAE 3000 ITA audits.`,
-   link:'https://www.mdia.gov.mt/'},
-  {name:'Fact Technologies Ltd',sector:'IT Assurance · MDIA Systems Auditor',malta:true,
-   tags:['mdia','tech','confirmed','malta','auditor'],
-   certs:[{cls:'isae3000',l:'MDIA Systems Auditor'}],
-   status:'g',statusLabel:'Active',date:'Certified Nov 2022',
-   kicker:'🇲🇹 5th MDIA Systems Auditor',
-   body:`<strong>5th MDIA-certified Systems Auditor (Nov 2022)</strong>. Performs ISAE 3000 audits with cryptographically verifiable certificates timestamped on the Bitcoin blockchain.`,
-   link:'https://www.mdia.gov.mt/news-events/mdia-certifies-its-fifth-systems-auditor-fact-group/'},
   /* ── 🇲🇹 OTHER MALTA-BASED ─────────────────────────────────── */
   {name:'Aspire Global plc (NeoGames)',sector:'B2B iGaming · MGA · Sliema',malta:true,
    tags:['igaming','mga','malta'],
