@@ -510,7 +510,7 @@
       A curated registry of <strong>77 companies</strong> with publicly disclosed SOC 1, SOC 2, ISAE 3402, ISAE 3000 or equivalent independent assurance reports — including <strong>22 Malta-based licensed entities</strong> (Tech.mt, MGA, MFSA, MDIA Systems Auditors) marked 🇲🇹, plus <strong>55 global cloud, SaaS, payment, security and crypto vendors</strong> commonly relied upon by Malta operators marked 🌐. See <a href="./mdia.html" style="color:var(--red);font-weight:600;">MDIA Analysis →</a> for technology assurance context.
     </p>
     <div class="stats-row">
-      <div class="stat"><div class="stat-num">104</div><div class="stat-label">Companies</div></div>
+      <div class="stat"><div class="stat-num">105</div><div class="stat-label">Companies</div></div>
       <div class="stat"><div class="stat-num">19</div><div class="stat-label">🇲🇹 Malta-Based</div></div>
       <div class="stat"><div class="stat-num">85</div><div class="stat-label">🌐 Global / Used in Malta</div></div>
       <div class="stat"><div class="stat-num">5</div><div class="stat-label">MDIA Auditors in Providers</div></div>
@@ -564,6 +564,7 @@
         <button class="fpill" data-filter="igaming" onclick="setFilter('igaming',this)">iGaming</button>
         <button class="fpill" data-filter="payment" onclick="setFilter('payment',this)">Payment / Crypto</button>
         <button class="fpill" data-filter="mfsa" onclick="setFilter('mfsa',this)">MFSA</button>
+        <button class="fpill" data-filter="fund" onclick="setFilter('fund',this)">Fund Services</button>
         <button class="fpill" data-filter="confirmed" onclick="setFilter('confirmed',this)">Confirmed ✓</button>
       </div>
     </div>
@@ -1409,7 +1410,15 @@ const CO=[
    status:'g',statusLabel:'Confirmed',date:'August 2022',
    kicker:'🌐 KBC Group Wealth Tech · ISAE 3402 Type I via Deloitte · Aug 2022',
    body:`everyoneINVESTED — a wealth tech spin-off of KBC Group — obtained an <strong>ISAE 3402 Type I certification from Deloitte</strong> in August 2022 for its sustainability preferences module within the Profiler solution. The certification confirms the module is suitably designed to collect sustainability preferences in accordance with MiFID II and ESMA draft supervisory guidance on ESG. The certification was described as "a critical differentiator" for financial institutions outsourcing investor profiling. everyoneINVESTED has twice been included in the WealthTech100 list of the world's most innovative companies.`,
-   link:'https://everyoneinvested.com/press-release/sustainability-module-obtains-the-isae-3402-certification/'}
+   link:'https://everyoneinvested.com/press-release/sustainability-module-obtains-the-isae-3402-certification/'},
+
+  {name:'Krypton Fund Services',sector:'Fund Administration · Hedge Funds · Private Equity',malta:false,
+   tags:['soc1','isae3402','confirmed','fund','finance'],
+   certs:[{cls:'soc1',l:'SOC 1 Type II'},{cls:'isae3402',l:'ISAE 3402 Type II'}],
+   status:'g',statusLabel:'Confirmed',date:'2023 (LinkedIn announced)',
+   kicker:'🌐 Bermuda HQ · Fund Administration · Hedge Funds · Private Equity · Family Office',
+   body:`Krypton Fund Services achieved <strong>SOC 1 Type 2 certification</strong>, confirming that internal controls over financial reporting, investor services, and fund administration meet rigorous standards. The scope covers fund administration, accounting, investor services, and compliance support for hedge funds, private equity funds, and family offices. The certification is regularly maintained and demonstrates operating effectiveness over a period (Type II). Krypton is a boutique independent fund administrator providing regulatory reporting, registrar and transfer agency, NAV accounting, and project management to alternative investment funds across family offices, private and special purpose vehicles. Headquartered in Bermuda. Announcement confirmed via LinkedIn.`,
+   link:'https://www.linkedin.com/pulse/krypton-fund-services-announces-successful-achievement-soc-1-bacmc'}
 ];
 
 /* ── RENDER ──────────────────────────────────────────────────── */
@@ -1508,6 +1517,10 @@ const ALIASES = {
   'lockthreat':['lockthreat','lock threat','grc platform','risk compliance'],
   'cybersift':['cybersift','cyber sift','siem','threat detection','ai security'],
   'everyoneinvested':['everyoneinvested','everyone invested','kbc','wealthtech','investor profiling','esg mifid'],
+  // fund services — specific domain
+  'fund':['fund administration','fund admin','fund services','hedge fund','private equity','family office',
+          'nav','transfer agency','registrar','fund accounting','alternative investment','fund administrator',
+          'asset management','wealth management','custody','prime brokerage','fund of funds','ucits','aif','aifmd'],
 };
 function lev(a,b){
   if(!a) return b.length;
