@@ -510,7 +510,7 @@
       A curated registry of <strong>77 companies</strong> with publicly disclosed SOC 1, SOC 2, ISAE 3402, ISAE 3000 or equivalent independent assurance reports — including <strong>22 Malta-based licensed entities</strong> (Tech.mt, MGA, MFSA, MDIA Systems Auditors) marked 🇲🇹, plus <strong>55 global cloud, SaaS, payment, security and crypto vendors</strong> commonly relied upon by Malta operators marked 🌐. See <a href="./mdia.html" style="color:var(--red);font-weight:600;">MDIA Analysis →</a> for technology assurance context.
     </p>
     <div class="stats-row">
-      <div class="stat"><div class="stat-num">106</div><div class="stat-label">Companies</div></div>
+      <div class="stat"><div class="stat-num">121</div><div class="stat-label">Companies</div></div>
       <div class="stat"><div class="stat-num">20</div><div class="stat-label">🇲🇹 Malta-Based</div></div>
       <div class="stat"><div class="stat-num">85</div><div class="stat-label">🌐 Global / Used in Malta</div></div>
       <div class="stat"><div class="stat-num">5</div><div class="stat-label">MDIA Auditors in Providers</div></div>
@@ -1426,7 +1426,128 @@ const CO=[
    status:'g',statusLabel:'Confirmed',date:'Ongoing (first achieved 2012)',
    kicker:'🇲🇹 Sliema Malta · MFSA-Recognised (surrendered May 2025) · Global Fund Admin · 13,000+ staff',
    body:`Apex Group (formerly Apex Fund Services) maintains <strong>ISAE 3402 Type II and SSAE 18 certifications</strong>, audited by KPMG, covering NAV calculations, fund administration, client reporting, and investor onboarding controls across global offices including Malta. The examination confirms that controls are suitably designed and operating effectively over the audit period. Apex Malta — Sliema, Malta — was MFSA-recognised for fund administration (UCITS, AIF, PIF) and launched Malta's first tokenised share class on the Polygon blockchain in March 2025. <strong>Note: Apex Group Fund Services (Malta) Limited voluntarily surrendered its MFSA recognition certificate on 19 May 2025</strong> (no regulatory action). The group's global ISAE 3402 compliance remains active.`,
-   link:'https://www.hedgeweek.com/apex-completes-successful-isae-3402-and-ssae-16-examination/'}
+   link:'https://www.hedgeweek.com/apex-completes-successful-isae-3402-and-ssae-16-examination/'},
+
+  /* ── ADDITIONS FROM USER GEMINI SOC REPORT LIST ─────────────── */
+  {name:'Sage Intacct',sector:'Financial Management SaaS · General Ledger · ERP',malta:false,
+   tags:['soc2','soc1','isae3402','tech','confirmed'],
+   certs:[{cls:'soc1',l:'SSAE 18 SOC 1 Type II'},{cls:'soc2',l:'SOC 2 Type II'},{cls:'isae3402',l:'ISAE 3402 / ISAE 3000'}],
+   status:'g',statusLabel:'Confirmed',date:'Annual (quarterly bridge letters)',
+   kicker:'🌐 Cloud ERP · General Ledger · Financial Management · Used by Gemini (OCM)',
+   body:`Sage Intacct — a leading cloud financial management and ERP platform — holds <strong>SSAE 18 SOC 1 Type II</strong> (conducted twice per year), <strong>SOC 2 Type II</strong> (annual), and <strong>ISAE 3402 / ISAE 3000</strong> reports. Reports are available under NDA to customers and prospective customers upon request. Also holds PCI-DSS Level 1, HIPAA, and ISO 27001 certifications. The SOC 1 report is particularly critical for financial reporting controls — Sage Intacct is used as the One Client Master (OCM) general ledger application.`,
+   link:'https://www.sage.com/en-us/legal/terms-and-conditions/product-and-service-terms-and-conditions/sage-intacct/information-security-management-program/'},
+
+  {name:'ADP (Workforce Now / GETS)',sector:'Payroll SaaS · HR Technology',malta:false,
+   tags:['soc2','soc1','tech','confirmed','finance'],
+   certs:[{cls:'soc1',l:'SOC 1 Type II'},{cls:'soc2',l:'SOC 2 Type II'},{cls:'iso27001',l:'ISO 27001 / 27701'}],
+   status:'g',statusLabel:'Confirmed',date:'Annual (quarterly bridge letters)',
+   kicker:'🌐 Payroll Processor · ADP Workforce Now + ADP GETS · Used by Gemini',
+   body:`ADP issues <strong>SOC 1 Type II and SOC 2 Type II</strong> reports over select products and services (including Workforce Now and GETS), available under NDA to customers. ADP also produces four quarterly bridge letters per year. ADP GETS (Global Employment Tax Solutions) provides the technology report supporting the Workforce Now payroll report. ADP additionally holds ISO 9001, ISO/IEC 27001, and ISO/IEC 27701 certifications for select services and locations. As a payroll processor, ADP's SOC 1 is particularly important as payroll directly impacts clients' financial statements.`,
+   link:'https://www.adp.com/about-adp/data-security.aspx'},
+
+  {name:'Ramp',sector:'Expense Management SaaS · Corporate Cards',malta:false,
+   tags:['soc2','tech','confirmed','finance'],
+   certs:[{cls:'soc2',l:'SOC 2 Type II'}],
+   status:'g',statusLabel:'Confirmed',date:'Annual',
+   kicker:'🌐 Expense Reporting · Corporate Card Platform · Used by Gemini',
+   body:`Ramp — an AI-powered corporate card and expense management platform — holds a <strong>SOC 2 Type II</strong> report. Ramp is used for expense reporting and corporate card management, with financial data flowing into client accounting systems. SOC 2 Type II validates the security and availability of Ramp's platform.`,
+   link:'https://ramp.com/security'},
+
+  {name:'Shareworks (Morgan Stanley at Work)',sector:'Stock Compensation · Equity Management SaaS',malta:false,
+   tags:['soc2','soc1','tech','confirmed','finance'],
+   certs:[{cls:'soc2',l:'SOC 2 Type II'},{cls:'soc1',l:'SOC 1'}],
+   status:'g',statusLabel:'Confirmed',date:'Annual',
+   kicker:'🌐 Stock Compensation · Equity Admin · Morgan Stanley at Work · Used by Gemini',
+   body:`Shareworks by Morgan Stanley (now Morgan Stanley at Work) — a leading equity compensation and stock plan administration platform — maintains <strong>SOC 2 Type II and SOC 1</strong> reports as part of Morgan Stanley's enterprise compliance programme. Shareworks manages employee stock options, RSUs, and equity awards, directly impacting clients' financial reporting and payroll systems.`,
+   link:'https://www.morganstanley.com/atwork/shareworks'},
+
+  {name:'FloQast',sector:'Accounting Close Management · FCRP SaaS',malta:false,
+   tags:['soc2','tech','confirmed','finance'],
+   certs:[{cls:'soc2',l:'SOC 2 Type II'},{cls:'iso27001',l:'ISO 27001'}],
+   status:'g',statusLabel:'Confirmed',date:'Dec 2021 (ongoing)',
+   kicker:'🌐 Financial Close Tool · FCRP · Used by Gemini (Coinbase, Zoom, Snowflake clients)',
+   body:`FloQast — a financial close and reporting process (FCRP) management platform — completed its <strong>SOC 2 Type II and ISO 27001</strong> certifications in December 2021. Trusted by 1,500+ accounting teams including Twilio, Coinbase, Zoom, and Snowflake. FloQast automates reconciliations, documentation requests, and workflows impacting month-end close, financial reporting, and payroll. Used by Gemini as an FCRP closing tool.`,
+   link:'https://www.floqast.com/press-releases/floqast-completes-soc-2-type-2-and-iso-27001-certification'},
+
+  {name:'Anchorage Digital Bank',sector:'Digital Asset Custody · Federally Chartered Bank',malta:false,
+   tags:['soc2','soc1','payment','confirmed','crypto'],
+   certs:[{cls:'soc1',l:'SOC 1 Type II'},{cls:'soc2',l:'SOC 2 Type II'}],
+   status:'g',statusLabel:'Confirmed',date:'Annual',
+   kicker:'🌐 Digital Asset Custodian · OCC Federal Charter · Used by Gemini',
+   body:`Anchorage Digital — the only crypto-native bank with a US OCC federal bank charter — has participated in routine audits to receive a certified <strong>SOC 1 and SOC 2 Type II report</strong>, certifying against multiple trust categories: security, confidentiality, and availability. As a digital asset custodian, Anchorage secures cryptographic keys and digital assets for institutional clients including Gemini.`,
+   link:'https://www.anchorage.com/platform/custody'},
+
+  {name:'Cryptio',sector:'Digital Asset Accounting · Crypto ERP',malta:false,
+   tags:['soc2','tech','confirmed','crypto','finance'],
+   certs:[{cls:'soc2',l:'SOC 2 Type II'}],
+   status:'g',statusLabel:'Confirmed',date:'Annual',
+   kicker:'🌐 Crypto Accounting ERP · Digital Asset Reporting · Used by Gemini',
+   body:`Cryptio is a <strong>SOC 2 Type II certified</strong> accounting and ERP platform purpose-built for digital assets. Used by institutions including Gemini for crypto accounting, reconciliation, and reporting across blockchains. Cryptio automates on-chain data ingestion, cost-basis calculations, and generates audit-ready reports for CPA and compliance teams.`,
+   link:'https://cryptio.co/security'},
+
+  {name:'CoreSite (American Tower)',sector:'Data Centre Co-location · Physical Infrastructure',malta:false,
+   tags:['soc2','soc1','tech','confirmed','hosting'],
+   certs:[{cls:'soc1',l:'SOC 1 Type II'},{cls:'soc2',l:'SOC 2 Type II'}],
+   status:'g',statusLabel:'Confirmed',date:'Annual',
+   kicker:'🌐 Secure Colocation · Physical Infrastructure · Data Centre · Used by Gemini',
+   body:`CoreSite (acquired by American Tower in 2022) delivers <strong>SOC 1 and SOC 2 Type II certified</strong> secure colocation facilities with infrastructure designed to protect customer systems from physical and environmental risks. Used by Gemini for secure physical infrastructure, power, cooling, and connectivity. CoreSite also holds ISO 27001, PCI DSS, and HIPAA attestations.`,
+   link:'https://www.coresite.com/compliance'},
+
+  {name:'Deel',sector:'International Payroll · Employer of Record',malta:false,
+   tags:['soc2','soc1','tech','confirmed','finance'],
+   certs:[{cls:'soc2',l:'SOC 2 Type II'},{cls:'iso27001',l:'ISO 27001'}],
+   status:'g',statusLabel:'Confirmed',date:'Annual',
+   kicker:'🌐 International Payroll · EOR · Used by Gemini for international payroll',
+   body:`Deel — a leading global payroll and employer-of-record (EOR) platform — holds a <strong>SOC 2 Type II and ISO 27001</strong> certification. Deel enables companies to hire, pay, and manage international employees and contractors, with financial data flowing directly into client payroll and accounting systems. Used by Gemini as the international payroll system.`,
+   link:'https://www.deel.com/security'},
+
+  {name:'Sabey Data Centers (SDC)',sector:'Data Centre Co-location · Physical Security',malta:false,
+   tags:['soc2','soc1','tech','confirmed','hosting'],
+   certs:[{cls:'soc1',l:'SOC 1 Type II'},{cls:'soc2',l:'SOC 2 Type II'}],
+   status:'g',statusLabel:'Confirmed',date:'Annual',
+   kicker:'🌐 Secure Colocation · Physical Infrastructure · Used by Gemini',
+   body:`Sabey Data Centers (SDC) holds <strong>SOC 1 and SOC 2 Type II</strong> certifications for its colocation facilities. Gemini uses SDC to secure physical infrastructure, power, cooling, and connectivity. SDC provides Tier III-designed, carrier-neutral data centres with 24/7 security, redundant power, and multi-layer physical access controls.`,
+   link:'https://sabeydatacenters.com/compliance/'},
+
+  {name:'NYDIG',sector:'Bitcoin Custody · Digital Asset Services',malta:false,
+   tags:['soc2','payment','confirmed','crypto'],
+   certs:[{cls:'soc2',l:'SOC 2 Type II'}],
+   status:'g',statusLabel:'Confirmed',date:'Annual',
+   kicker:'🌐 Bitcoin Custody · HSM Storage · Used by Gemini for cryptographic materials',
+   body:`NYDIG (New York Digital Investment Group) — a leading Bitcoin-focused financial services firm — holds a <strong>SOC 2 Type II</strong> report for its custody and digital asset services. Used by Gemini for digital storage of cryptographic materials, enabling transfer of assets on distributed ledgers. NYDIG uses FIPS 140-2 validated HSMs for key storage and management.`,
+   link:'https://nydig.com/compliance'},
+
+  {name:'Coinbase Prime',sector:'Crypto Prime Brokerage · Custody',malta:false,
+   tags:['soc2','soc1','payment','confirmed','crypto'],
+   certs:[{cls:'soc1',l:'SOC 1 Type II'},{cls:'soc2',l:'SOC 2 Type II'}],
+   status:'g',statusLabel:'Confirmed',date:'Annual',
+   kicker:'🌐 Crypto Prime Broker · Digital Asset Custody · Used by Gemini (specific assets)',
+   body:`Coinbase Prime — Coinbase's institutional prime brokerage and custody platform — completed its first-ever <strong>Prime SOC 1 and SOC 2 Type II reports</strong>, in addition to annual Custody SOC 1 and SOC 2 Type II reports. Coinbase Prime is used by Gemini as custodian for a specific set of digital assets. The SOC reports cover trade execution, custody, and settlement controls for institutional digital asset services.`,
+   link:'https://www.coinbase.com/blog/coinbase-inc-completes-initial-prime-broker-prime-soc-1-and-soc-2-type-2'},
+
+  {name:'Looker (Google Cloud)',sector:'Business Intelligence · Data Visualisation SaaS',malta:false,
+   tags:['soc2','tech','confirmed','hosting'],
+   certs:[{cls:'soc2',l:'SOC 2 (under GCP)'},{cls:'iso27001',l:'ISO 27001'}],
+   status:'g',statusLabel:'Confirmed (under GCP)',date:'Annual',
+   kicker:'🌐 Financial Data Display · BI Platform · Covered under GCP compliance · Used by Gemini',
+   body:`Looker — Google's enterprise business intelligence and data analytics platform — is covered under <strong>Google Cloud Platform's SOC 2 Type II and ISO 27001</strong> compliance programme (Google acquired Looker in 2019). Looker Studio and Looker (the BI platform) inherit GCP's compliance certifications. Used by Gemini as a financial data display application. GCP's full SOC report covers Looker's infrastructure.`,
+   link:'https://cloud.google.com/security/compliance/soc-2'},
+
+  {name:'Deribit',sector:'Crypto Derivatives · Trading Platform',malta:false,
+   tags:['trading','crypto'],
+   certs:[{cls:'iso27001',l:'SOC 2 — not publicly confirmed'}],
+   status:'a',statusLabel:'Not confirmed',date:'Active',
+   kicker:'🌐 Crypto Derivatives Exchange · Used by Gemini Voyager for derivative contracts',
+   body:`Deribit — a leading crypto options and futures trading platform — is used by Gemini Voyager to enter derivative contracts, with Deribit responsible for custody of assets on their platform. <strong>No public SOC 2 or ISAE 3402 report has been confirmed for Deribit.</strong> Deribit is incorporated in Panama and registered in the Netherlands. Its compliance posture is governed by the platform's own security controls rather than a public third-party SOC attestation.`,
+   link:'https://www.deribit.com/pages/about'},
+
+  {name:'Corecard',sector:'Credit Card Technology · Card Issuing Platform',malta:false,
+   tags:['payment','tech'],
+   certs:[{cls:'iso27001',l:'PCI DSS (likely)'},{cls:'iso27001',l:'SOC 2 — not publicly confirmed'}],
+   status:'a',statusLabel:'Not confirmed',date:'Active',
+   kicker:'🌐 Credit Card UI · Card Issuing System · Used by Gemini',
+   body:`Corecard — a card issuing and processing technology platform — provides the credit card user interface system used by Gemini. As a card-issuing processor, Corecard is required to maintain <strong>PCI DSS compliance</strong> (mandatory for any entity handling cardholder data). <strong>No public SOC 2 or ISAE 3402 report has been identified</strong> for Corecard, although PCI DSS Level 1 QSA audits provide equivalent assurance for payment processing controls.`,
+   link:'https://corecard.com/security/'}
 ];
 
 /* ── RENDER ──────────────────────────────────────────────────── */
@@ -1525,6 +1646,21 @@ const ALIASES = {
   'lockthreat':['lockthreat','lock threat','grc platform','risk compliance'],
   'cybersift':['cybersift','cyber sift','siem','threat detection','ai security'],
   'apex':['apex group','apex fund','apex fund services','apexgroup'],
+  'sage':['sage intacct','sage intacct','general ledger','gl system','financial management erp'],
+  'adp':['adp','workforce now','automatic data processing','payroll processor','adp gets'],
+  'ramp':['ramp expense','ramp card','corporate card','expense management','expense reporting'],
+  'shareworks':['shareworks','morgan stanley at work','equity compensation','stock plan','rsu','options'],
+  'floqast':['floqast','flo qast','financial close','month end close','fcrp','close management'],
+  'anchorage':['anchorage digital','anchorage bank','occ charter','federal charter crypto'],
+  'cryptio':['cryptio','crypto accounting','digital asset erp','blockchain accounting'],
+  'coresite':['coresite','core site','american tower data','colocation data'],
+  'sabey':['sabey','sdc data','sabey data center'],
+  'nydig':['nydig','new york digital','bitcoin custody hsm'],
+  'coinbase prime':['coinbase prime','prime broker crypto','coinbase custody'],
+  'looker':['looker','looker studio','google bi','business intelligence gcp'],
+  'deribit':['deribit','crypto derivatives','options futures platform'],
+  'corecard':['corecard','core card','card issuing','credit card processor'],
+  'deel':['deel','employer of record','eor','international payroll global'],
   'everyoneinvested':['everyoneinvested','everyone invested','kbc','wealthtech','investor profiling','esg mifid'],
   // fund services — specific domain
   'fund':['fund administration','fund admin','fund services','hedge fund','private equity','family office',
