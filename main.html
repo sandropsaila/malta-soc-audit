@@ -241,6 +241,12 @@
     .bar-row .bar-fill{height:100%;background:linear-gradient(90deg,var(--red),var(--red-dark));transition:width .25s ease;display:flex;align-items:center;justify-content:flex-end;padding-right:6px;color:#fff;font-weight:700;font-size:.7rem;}
     .bar-row .bar-fill.zero{background:#e5e7eb;color:transparent;}
     .bar-row .bar-count{flex:0 0 28px;text-align:right;font-weight:700;color:var(--ink);font-size:.78rem;}
+    .bar-row.clickable{cursor:pointer;padding:2px 4px;margin:0 -4px 4px -4px;border-radius:2px;transition:background .12s;}
+    .bar-row.clickable:hover{background:#f5f5f5;}
+    .bar-row.clickable:hover .bar-label{color:var(--red);}
+    .bar-row.active{background:#fef3c7;}
+    .bar-row.active .bar-label{color:#92400e;font-weight:700;}
+    .bar-row.active .bar-fill{background:linear-gradient(90deg,#92400e,#b35a00);}
     .empty-chart{color:var(--grey-3);font-size:.78rem;font-style:italic;padding:8px 0;}
     .tbl-outer{
       background:var(--white);
@@ -594,6 +600,8 @@
         </div>
         <div id="chartTotals" style="font-size:.75rem;color:var(--grey-4);"></div>
       </div>
+      <div id="chartFilterBanner" style="display:none;align-items:center;background:#fef3c7;border:1px solid #fde68a;border-radius:2px;padding:7px 12px;margin-bottom:12px;font-size:.78rem;color:#92400e;"></div>
+      <div style="font-size:.68rem;color:var(--grey-3);margin-bottom:10px;">💡 Click any bar to filter the registry by that sector or auditor.</div>
       <div style="display:grid;grid-template-columns:1fr 1fr;gap:24px;" id="chartGrid">
         <div>
           <div style="font-size:.7rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-soft);margin-bottom:8px;">Reports per sector</div>
@@ -1986,6 +1994,10 @@ function filterTable(){
         return tags.includes(f);
       });
 
+    // Chart-driven filters: sector + auditor (AND with everything else)
+    const mSector = !activeSector || SECTOR_OF[i] === activeSector;
+    const mAuditor = !activeAuditor || AUDITOR_OF[i] === activeAuditor;
+
     // Search: AND across user tokens, each expanded via aliases + fuzzy
     let ms = userTokens.length === 0;
     if(!ms){
@@ -1995,7 +2007,7 @@ function filterTable(){
       });
     }
 
-    tr.classList.toggle('hr', !(mf && ms));
+    tr.classList.toggle('hr', !(mf && ms && mSector && mAuditor));
   });
 
   const visible = [...rows].filter(r=>!r.classList.contains('hr') && r.id!=='noResults');
@@ -2022,9 +2034,25 @@ function filterTable(){
   const counter = document.getElementById('resultsCount');
   if(counter){
     const total = CO.length;
-    counter.textContent = (userTokens.length>0 || activeFilters.size>0)
+    const anyFilter = userTokens.length>0 || activeFilters.size>0 || activeSector || activeAuditor;
+    counter.textContent = anyFilter
       ? `Showing ${visible.length} of ${total} companies`
       : `${total} companies`;
+  }
+
+  // Active chart-filter banner
+  const banner = document.getElementById('chartFilterBanner');
+  if(banner){
+    const parts = [];
+    if(activeSector) parts.push(`Sector: <strong>${activeSector}</strong>`);
+    if(activeAuditor) parts.push(`Auditor: <strong>${activeAuditor}</strong>`);
+    if(parts.length){
+      banner.innerHTML = `<span>Filtered by ${parts.join(' · ')}</span>`
+        + `<button onclick="clearChartFilters()" style="margin-left:10px;background:var(--red);color:#fff;border:none;border-radius:2px;padding:3px 10px;font-size:.7rem;font-weight:700;cursor:pointer;">Clear ✕</button>`;
+      banner.style.display = 'flex';
+    } else {
+      banner.style.display = 'none';
+    }
   }
 
   if(typeof updateCharts==='function') updateCharts();
@@ -2058,6 +2086,44 @@ function openModal(i){
   document.body.style.overflow='hidden';
 }
 
+/* ── SECTOR CLASSIFICATION (single source of truth) ──────────── */
+/* Each company maps to exactly ONE sector via this if-else chain. */
+function classifySector(c){
+  const tags = (c.tags||[]).map(t=>t.toLowerCase());
+  const blob = ((c.sector||'') + ' ' + (c.name||'')).toLowerCase();
+  if(tags.includes('igaming')) return 'iGaming';
+  if(tags.includes('payment') || tags.includes('crypto')) return 'Payments / Crypto';
+  if(tags.includes('mfsa') || tags.includes('fund') || tags.includes('mifid')) return 'Fund / Financial Svcs';
+  if(tags.includes('security') || /cyber|siem|endpoint|threat|penetration|firewall/.test(blob)) return 'Cybersecurity';
+  if(/payroll|employer of record|\beor\b|workforce|human capital|\bhcm\b|\bhr\b/.test(blob)) return 'Payroll / HR Tech';
+  if(/accounting|erp|general ledger|financial management|expense|close management|fcrp|invoic|bookkeep|equity compensation|stock plan/.test(blob)) return 'Accounting / Finance SaaS';
+  if(/data centre|data center|colocation|co-location|colo/.test(blob)) return 'Data Centre / Colo';
+  if(/hyperscale|\baws\b|\bazure\b|google cloud|\bgcp\b|\boci\b|ibm cloud|alibaba cloud/.test(blob)) return 'Hyperscale Cloud';
+  if(/\bcdn\b|edge|hosting|\bvps\b|dedicated server|cloud platform|developer cloud|iaas/.test(blob)) return 'Cloud / Hosting';
+  if(/observability|monitoring|\bapm\b|aiops|analytics|business intelligence|data warehouse|data lakehouse|database|integration platform|api management/.test(blob)) return 'Data / DevOps Tools';
+  if(/\bcrm\b|customer relationship|sales|marketing|customer support|customer engagement|helpdesk|customer success/.test(blob)) return 'CRM / Sales / Marketing';
+  if(/identity|authentication|\bauth\b|access management|\bsso\b|single sign/.test(blob)) return 'Identity / Access';
+  if(/design|whiteboard|creative|visual|prototyp/.test(blob)) return 'Design / Creative';
+  if(/communication|messaging|video conferenc|\bvoice\b|\bsms\b|email api|telephony/.test(blob)) return 'Communications';
+  if(/file storage|content management|file sharing|document|\becm\b|cloud storage/.test(blob)) return 'Storage / Content';
+  if(/e-commerce|ecommerce|online store|website builder|webshop/.test(blob)) return 'eCommerce / Web';
+  if(/work management|project management|productivity|workspace|collaboration|task management|workflow/.test(blob)) return 'Collaboration / Productivity';
+  if(tags.includes('hosting') || tags.includes('tech')) return 'Other SaaS / Tech';
+  return 'Other';
+}
+function classifyAuditor(c){
+  const rawAud = c.auditor || 'Not publicly disclosed';
+  const bIdxA = rawAud.indexOf(' [');
+  return bIdxA>-1 ? rawAud.slice(0,bIdxA) : rawAud;
+}
+// Pre-compute once — each company belongs to exactly one sector / one auditor
+const SECTOR_OF = CO.map(classifySector);
+const AUDITOR_OF = CO.map(classifyAuditor);
+
+// Active chart-driven filters (null = none)
+let activeSector = null;
+let activeAuditor = null;
+
 function updateCharts(){
   const visibleRows = [...document.querySelectorAll('#tBody tr')].filter(r=>!r.classList.contains('hr') && r.id!=='noResults');
   const sectorCounts = {};
@@ -2068,76 +2134,42 @@ function updateCharts(){
     const i = +tr.dataset.i;
     const c = CO[i];
     if(!c) return;
-
-    // Only count entries that actually hold SOC/ISAE (status 'g' = confirmed, OR has soc/isae cert classes)
     const hasReport = c.certs.some(cert => /soc|isae/i.test(cert.cls));
     if(!hasReport) return;
     withSocIsae++;
-
-    // Sector bucketing — granular categories
-    const tags = (c.tags||[]).map(t=>t.toLowerCase());
-    const sectorText = (c.sector||'').toLowerCase();
-    const nameText = (c.name||'').toLowerCase();
-    const blob = sectorText + ' ' + nameText;
-    let sector = 'Other';
-
-    if(tags.includes('igaming')){
-      sector = 'iGaming';
-    } else if(tags.includes('payment') || tags.includes('crypto')){
-      sector = 'Payments / Crypto';
-    } else if(tags.includes('mfsa') || tags.includes('fund') || tags.includes('mifid')){
-      sector = 'Fund / Financial Svcs';
-    } else if(tags.includes('security') || /cyber|siem|endpoint|threat|penetration|firewall/.test(blob)){
-      sector = 'Cybersecurity';
-    } else if(/payroll|employer of record|\beor\b|workforce|human capital|\bhcm\b|\bhr\b/.test(blob)){
-      sector = 'Payroll / HR Tech';
-    } else if(/accounting|erp|general ledger|financial management|expense|close management|fcrp|invoic|bookkeep|equity compensation|stock plan/.test(blob)){
-      sector = 'Accounting / Finance SaaS';
-    } else if(/data centre|data center|colocation|co-location|colo/.test(blob)){
-      sector = 'Data Centre / Colo';
-    } else if(/hyperscale|\baws\b|\bazure\b|google cloud|\bgcp\b|\boci\b|ibm cloud|alibaba cloud/.test(blob)){
-      sector = 'Hyperscale Cloud';
-    } else if(/\bcdn\b|edge|hosting|\bvps\b|dedicated server|cloud platform|developer cloud|iaas/.test(blob)){
-      sector = 'Cloud / Hosting';
-    } else if(/observability|monitoring|\bapm\b|aiops|analytics|business intelligence|data warehouse|data lakehouse|database|integration platform|api management/.test(blob)){
-      sector = 'Data / DevOps Tools';
-    } else if(/\bcrm\b|customer relationship|sales|marketing|customer support|customer engagement|helpdesk|customer success/.test(blob)){
-      sector = 'CRM / Sales / Marketing';
-    } else if(/identity|authentication|\bauth\b|access management|\bsso\b|single sign/.test(blob)){
-      sector = 'Identity / Access';
-    } else if(/design|whiteboard|creative|visual|prototyp/.test(blob)){
-      sector = 'Design / Creative';
-    } else if(/communication|messaging|video conferenc|\bvoice\b|\bsms\b|email api|telephony/.test(blob)){
-      sector = 'Communications';
-    } else if(/file storage|content management|file sharing|document|\becm\b|cloud storage/.test(blob)){
-      sector = 'Storage / Content';
-    } else if(/e-commerce|ecommerce|online store|website builder|webshop/.test(blob)){
-      sector = 'eCommerce / Web';
-    } else if(/work management|project management|productivity|workspace|collaboration|task management|workflow/.test(blob)){
-      sector = 'Collaboration / Productivity';
-    } else if(tags.includes('hosting') || tags.includes('tech')){
-      sector = 'Other SaaS / Tech';
-    }
+    // each company counted once — SECTOR_OF[i] is deterministic
+    const sector = SECTOR_OF[i];
     sectorCounts[sector] = (sectorCounts[sector]||0) + 1;
-
-    // Auditor bucketing
-    const rawAud = c.auditor || 'Not publicly disclosed';
-    const bIdxA = rawAud.indexOf(' [');
-    const auditor = bIdxA>-1 ? rawAud.slice(0,bIdxA) : rawAud;
+    const auditor = AUDITOR_OF[i];
     auditorCounts[auditor] = (auditorCounts[auditor]||0) + 1;
   });
 
-  // Render sector chart
-  renderBars('chartSector', sectorCounts, ['Hyperscale Cloud','Cloud / Hosting','Data Centre / Colo','Data / DevOps Tools','CRM / Sales / Marketing','Collaboration / Productivity','Design / Creative','Communications','Storage / Content','Identity / Access','eCommerce / Web','Accounting / Finance SaaS','Payroll / HR Tech','Cybersecurity','Payments / Crypto','iGaming','Fund / Financial Svcs','Other SaaS / Tech','Other']);
-  // Render auditor chart (sorted desc)
-  renderBars('chartAuditor', auditorCounts, null);
+  // Render sector chart (clickable)
+  renderBars('chartSector', sectorCounts, ['Hyperscale Cloud','Cloud / Hosting','Data Centre / Colo','Data / DevOps Tools','CRM / Sales / Marketing','Collaboration / Productivity','Design / Creative','Communications','Storage / Content','Identity / Access','eCommerce / Web','Accounting / Finance SaaS','Payroll / HR Tech','Cybersecurity','Payments / Crypto','iGaming','Fund / Financial Svcs','Other SaaS / Tech','Other'], 'sector', activeSector);
+  // Render auditor chart (clickable, sorted desc)
+  renderBars('chartAuditor', auditorCounts, null, 'auditor', activeAuditor);
 
   // Totals
   const totalVisible = visibleRows.length;
   document.getElementById('chartTotals').innerHTML = `<strong style="color:var(--ink);">${withSocIsae}</strong> SOC/ISAE reports visible · <strong style="color:var(--grey-4);">${totalVisible}</strong> companies in view`;
 }
 
-function renderBars(elId, data, order){
+// Called when a chart bar is clicked
+function selectChartFilter(kind, key){
+  if(kind==='sector'){
+    activeSector = (activeSector===key) ? null : key;  // toggle
+  } else if(kind==='auditor'){
+    activeAuditor = (activeAuditor===key) ? null : key;
+  }
+  filterTable();
+}
+function clearChartFilters(){
+  activeSector = null;
+  activeAuditor = null;
+  filterTable();
+}
+
+function renderBars(elId, data, order, kind, activeKey){
   const el = document.getElementById(elId);
   const entries = Object.entries(data);
   if(entries.length === 0){
@@ -2147,7 +2179,6 @@ function renderBars(elId, data, order){
   let sorted;
   if(order){
     sorted = order.filter(k=>data[k]>0).map(k=>[k,data[k]]);
-    // append any keys not in order
     entries.forEach(([k,v])=>{ if(!order.includes(k)) sorted.push([k,v]); });
   } else {
     sorted = entries.sort((a,b)=>b[1]-a[1]);
@@ -2155,7 +2186,14 @@ function renderBars(elId, data, order){
   const max = Math.max(...sorted.map(s=>s[1]));
   el.innerHTML = sorted.map(([k,v])=>{
     const pct = max>0 ? Math.max(6, (v/max)*100) : 0;
-    return `<div class="bar-row" title="${k}: ${v}"><div class="bar-label">${k}</div><div class="bar-track"><div class="bar-fill${v===0?' zero':''}" style="width:${pct}%;">${v>0?v:''}</div></div></div>`;
+    const isActive = (k===activeKey);
+    const clickable = kind ? ' clickable' : '';
+    const activeCls = isActive ? ' active' : '';
+    const handler = kind ? ` onclick="selectChartFilter('${kind}', this.dataset.key)" data-key="${k.replace(/"/g,'&quot;')}"` : '';
+    return `<div class="bar-row${clickable}${activeCls}" title="${k}: ${v} — click to filter"${handler}>`
+      + `<div class="bar-label">${k}</div>`
+      + `<div class="bar-track"><div class="bar-fill${v===0?' zero':''}" style="width:${pct}%;">${v>0?v:''}</div></div>`
+      + `</div>`;
   }).join('');
 }
 
