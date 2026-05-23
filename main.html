@@ -499,7 +499,7 @@
       <div class="logo-block">I</div>
     </div>
     <div class="topbar-divider"></div>
-    <span class="topbar-label">Malta SOC Intelligence</span>
+    <span class="topbar-label">SOC</span>
     <div class="topbar-right">
       <span class="topbar-date">Updated May 2026</span>
       <span class="topbar-badge">Live</span>
@@ -541,26 +541,6 @@
 
 <!-- PAGE BODY -->
 <div class="page">
-
-  <!-- FRAMEWORKS LINK CARD -->
-  <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:16px;margin-bottom:36px;">
-    <a href="./frameworks.html" style="text-decoration:none;">
-      <div style="background:var(--white);border:1px solid var(--border);border-top:3px solid var(--blue);border-radius:2px;padding:24px;transition:box-shadow .2s,border-color .2s;cursor:pointer;" onmouseover="this.style.boxShadow='0 4px 20px rgba(0,0,0,.08)';this.style.borderColor='#b0b0b0'" onmouseout="this.style.boxShadow='';this.style.borderColor='var(--border)'">
-        <div style="font-size:.7rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--blue);margin-bottom:8px;">Reference Guide</div>
-        <div style="font-family:'Playfair Display',serif;font-size:1.1rem;font-weight:700;color:var(--black);margin-bottom:6px;">Audit Frameworks Explained</div>
-        <div style="font-size:.85rem;color:var(--grey-4);line-height:1.55;margin-bottom:16px;">SOC 1, SOC 2, ISAE 3402, ISAE 3000 — what each framework covers, when it applies, and how they compare.</div>
-        <span style="display:inline-flex;align-items:center;gap:4px;color:var(--blue);font-size:.82rem;font-weight:700;">View Frameworks Guide →</span>
-      </div>
-    </a>
-    <a href="./analytics.html" style="text-decoration:none;">
-      <div style="background:var(--white);border:1px solid var(--border);border-top:3px solid var(--red);border-radius:2px;padding:24px;transition:box-shadow .2s,border-color .2s;cursor:pointer;" onmouseover="this.style.boxShadow='0 4px 20px rgba(0,0,0,.08)';this.style.borderColor='#b0b0b0'" onmouseout="this.style.boxShadow='';this.style.borderColor='var(--border)'">
-        <div style="font-size:.7rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--red);margin-bottom:8px;">Data &amp; Visualisation</div>
-        <div style="font-family:'Playfair Display',serif;font-size:1.1rem;font-weight:700;color:var(--black);margin-bottom:6px;">Sector &amp; Framework Analytics</div>
-        <div style="font-size:.85rem;color:var(--grey-4);line-height:1.55;margin-bottom:16px;">6 interactive charts — sector distribution, framework breakdown, Malta vs global coverage, regulatory drivers, and engagement timeline.</div>
-        <span style="display:inline-flex;align-items:center;gap:4px;color:var(--red);font-size:.82rem;font-weight:700;">View Analytics →</span>
-      </div>
-    </a>
-  </div>
 
   <!-- TABLE -->
   <div id="registry">
@@ -657,6 +637,26 @@
       <h3>Data Sources</h3>
       <p>Company data was cross-referenced against the <strong>Tech.mt Members Directory</strong> (556 companies), the <strong>MGA Licensee Register</strong> (575 licensees), and the <strong>MFSA Investment Services Licence Holders</strong> register. Certification data was retrieved from official corporate announcements, LinkedIn company pages (including pages not indexed by search engines), press releases, and news portals. SOC 2 and ISAE 3402 reports are confidential by nature and typically shared only under NDA; this registry reflects only publicly disclosed information. PCI DSS Level 1 QSA audits are treated as equivalent to ISAE 3402 for payment processing control assurance. Last updated May 2026 — not for vendor due-diligence without independent verification.</p>
     </div>
+  </div>
+
+  <!-- FRAMEWORKS & ANALYTICS LINK CARDS — bottom of page -->
+  <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:16px;margin:36px 0 40px;">
+    <a href="./frameworks.html" style="text-decoration:none;">
+      <div style="background:var(--white);border:1px solid var(--border);border-top:3px solid var(--blue);border-radius:2px;padding:24px;transition:box-shadow .2s,border-color .2s;" onmouseover="this.style.boxShadow='0 4px 20px rgba(0,0,0,.08)';this.style.borderColor='#b0b0b0'" onmouseout="this.style.boxShadow='';this.style.borderColor='var(--border)'">
+        <div style="font-size:.7rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--blue);margin-bottom:8px;">Reference Guide</div>
+        <div style="font-family:'Playfair Display',serif;font-size:1.1rem;font-weight:700;color:var(--black);margin-bottom:6px;">Audit Frameworks Explained</div>
+        <div style="font-size:.85rem;color:var(--grey-4);line-height:1.55;margin-bottom:16px;">SOC 1, SOC 2, ISAE 3402, ISAE 3000 — what each framework covers, when it applies, and how they compare.</div>
+        <span style="display:inline-flex;align-items:center;gap:4px;color:var(--blue);font-size:.82rem;font-weight:700;">View Frameworks Guide →</span>
+      </div>
+    </a>
+    <a href="./analytics.html" style="text-decoration:none;">
+      <div style="background:var(--white);border:1px solid var(--border);border-top:3px solid var(--red);border-radius:2px;padding:24px;transition:box-shadow .2s,border-color .2s;" onmouseover="this.style.boxShadow='0 4px 20px rgba(0,0,0,.08)';this.style.borderColor='#b0b0b0'" onmouseout="this.style.boxShadow='';this.style.borderColor='var(--border)'">
+        <div style="font-size:.7rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--red);margin-bottom:8px;">Data &amp; Visualisation</div>
+        <div style="font-family:'Playfair Display',serif;font-size:1.1rem;font-weight:700;color:var(--black);margin-bottom:6px;">Sector &amp; Framework Analytics</div>
+        <div style="font-size:.85rem;color:var(--grey-4);line-height:1.55;margin-bottom:16px;">6 interactive charts — sector distribution, framework breakdown, Malta vs global coverage, regulatory drivers, and engagement timeline.</div>
+        <span style="display:inline-flex;align-items:center;gap:4px;color:var(--red);font-size:.82rem;font-weight:700;">View Analytics →</span>
+      </div>
+    </a>
   </div>
 
 </div><!-- /page -->
