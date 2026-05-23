@@ -577,7 +577,8 @@
         <button class="fpill" data-filter="hosting" onclick="setFilter('hosting',this)">Cloud / Hosting</button>
         <button class="fpill" data-filter="tech" onclick="setFilter('tech',this)">Tech / SaaS</button>
         <button class="fpill" data-filter="igaming" onclick="setFilter('igaming',this)">iGaming</button>
-        <button class="fpill" data-filter="payment" onclick="setFilter('payment',this)">Payment / Crypto</button>
+        <button class="fpill" data-filter="payment" onclick="setFilter('payment',this)">Payments</button>
+        <button class="fpill" data-filter="crypto" onclick="setFilter('crypto',this)">Crypto</button>
         <button class="fpill" data-filter="mfsa" onclick="setFilter('mfsa',this)">MFSA</button>
         <button class="fpill" data-filter="fund" onclick="setFilter('fund',this)">Fund Services</button>
         <button class="fpill" data-filter="confirmed" onclick="setFilter('confirmed',this)">Confirmed ✓</button>
@@ -2082,7 +2083,8 @@ function classifySector(c){
   const tags = (c.tags||[]).map(t=>t.toLowerCase());
   const blob = ((c.sector||'') + ' ' + (c.name||'')).toLowerCase();
   if(tags.includes('igaming')) return 'iGaming';
-  if(tags.includes('payment') || tags.includes('crypto')) return 'Payments / Crypto';
+  if(tags.includes('crypto') || /crypto|bitcoin|blockchain|digital asset|stablecoin|defi|custody.*digital|digital.*custody|exchange.*digital|digital.*exchange/.test(blob)) return 'Crypto / Digital Assets';
+  if(tags.includes('payment') || /payment|psp|\bemi\b|e-money|electronic money|wallet|acquirer|remittance|card issuing/.test(blob)) return 'Payments';
   if(tags.includes('mfsa') || tags.includes('fund') || tags.includes('mifid')) return 'Fund / Financial Svcs';
   if(tags.includes('security') || /cyber|siem|endpoint|threat|penetration|firewall/.test(blob)) return 'Cybersecurity';
   if(/payroll|employer of record|\beor\b|workforce|human capital|\bhcm\b|\bhr\b/.test(blob)) return 'Payroll / HR Tech';
@@ -2124,7 +2126,7 @@ function updateCharts(){
     const i = +tr.dataset.i;
     const c = CO[i];
     if(!c) return;
-    const hasReport = c.certs.some(cert => /soc|isae/i.test(cert.cls));
+    const hasReport = c.status === 'g' && c.certs.some(cert => /^(soc1|soc2|soc3|isae3402|isae3000)$/i.test(cert.cls));
     if(!hasReport) return;
     withSocIsae++;
     // each company counted once — SECTOR_OF[i] is deterministic
@@ -2135,7 +2137,7 @@ function updateCharts(){
   });
 
   // Render sector chart (clickable)
-  renderBars('chartSector', sectorCounts, ['Hyperscale Cloud','Cloud / Hosting','Data Centre / Colo','Data / DevOps Tools','CRM / Sales / Marketing','Collaboration / Productivity','Design / Creative','Communications','Storage / Content','Identity / Access','eCommerce / Web','Accounting / Finance SaaS','Payroll / HR Tech','Cybersecurity','Payments / Crypto','iGaming','Fund / Financial Svcs','Other SaaS / Tech','Other'], 'sector', activeSector);
+  renderBars('chartSector', sectorCounts, ['Hyperscale Cloud','Cloud / Hosting','Data Centre / Colo','Data / DevOps Tools','CRM / Sales / Marketing','Collaboration / Productivity','Design / Creative','Communications','Storage / Content','Identity / Access','eCommerce / Web','Accounting / Finance SaaS','Payroll / HR Tech','Cybersecurity','Payments','Crypto / Digital Assets','iGaming','Fund / Financial Svcs','Other SaaS / Tech','Other'], 'sector', activeSector);
   // Render auditor chart (clickable, sorted desc)
   renderBars('chartAuditor', auditorCounts, null, 'auditor', activeAuditor);
 
