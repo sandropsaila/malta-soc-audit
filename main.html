@@ -549,8 +549,9 @@
     <div class="toolbar">
       <div class="search-wrap">
         <svg class="search-icon" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
-        <input type="text" id="searchInput" placeholder="Search by name, sector, cert, auditor, licence type…" oninput="filterTable()"/>
+        <input type="text" id="searchInput" placeholder="Search name, sector, cert, auditor, source domain…" oninput="filterTable()"/>
       </div>
+      <span id="resultsCount" style="font-size:.78rem;font-weight:600;color:var(--grey-4);white-space:nowrap;">121 companies</span>
       <div class="filter-pills">
         <span class="filter-label">Filter <span id="filterCount" style="display:none;background:var(--red);color:#fff;border-radius:10px;padding:1px 7px;font-size:.65rem;font-weight:700;margin-left:4px;vertical-align:middle;"></span></span>
         <button class="fpill active" data-filter="all" onclick="setFilter('all',this)">All</button>
@@ -1698,7 +1699,27 @@ function fuzzyWordMatch(token, word){
   return false;
 }
 function buildSearchIndex(c){
-  const raw = [c.name, c.sector, c.body.replace(/<[^>]+>/g,''), c.kicker, c.date, c.tags.join(' '), c.certs.map(x=>x.l).join(' '), c.statusLabel, c.malta?'malta maltese':'global international'].join(' ').toLowerCase();
+  // Extract searchable keywords from the source URL/domain
+  // e.g. "https://www.aspireglobal.com/" -> "aspireglobal com aspireglobal.com"
+  //      "linkedin.com/posts/greentube..." -> "linkedin com greentube ..."
+  let sourceTokens = '';
+  if(c.link){
+    const cleaned = c.link
+      .replace(/^https?:\/\//,'')      // strip protocol
+      .replace(/^www\./,'')             // strip www
+      .toLowerCase();
+    // full domain + path words, split on / . - _ ?
+    const parts = cleaned.split(/[\/._\-?=&#]+/).filter(w=>w.length>1);
+    // also keep the bare domain (first segment chain before first /)
+    const domain = cleaned.split('/')[0];
+    sourceTokens = [domain, ...parts].join(' ');
+  }
+  const raw = [
+    c.name, c.sector, c.body.replace(/<[^>]+>/g,''), c.kicker, c.date,
+    c.tags.join(' '), c.certs.map(x=>x.l).join(' '), c.statusLabel,
+    c.malta?'malta maltese':'global international',
+    sourceTokens                      // <-- source URL/domain now indexed
+  ].join(' ').toLowerCase();
   const words = [...new Set(raw.split(/[^a-z0-9]+/).filter(w=>w.length>0))];
   return { raw, words };
 }
@@ -1787,6 +1808,15 @@ function filterTable(){
     document.getElementById('tBody').appendChild(hint);
   }
   hint.style.display = visible.length===0 ? '' : 'none';
+
+  // Live results counter
+  const counter = document.getElementById('resultsCount');
+  if(counter){
+    const total = CO.length;
+    counter.textContent = (userTokens.length>0 || activeFilters.size>0)
+      ? `Showing ${visible.length} of ${total} companies`
+      : `${total} companies`;
+  }
 }
 
 /* ── MODAL ───────────────────────────────────────────────────── */
