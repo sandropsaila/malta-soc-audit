@@ -1999,6 +1999,16 @@ function filterTable(){
   });
 
   const visible = [...rows].filter(r=>!r.classList.contains('hr') && r.id!=='noResults');
+
+  // Live results counter
+  const rc = document.getElementById('resultsCount');
+  if(rc){
+    const total = CO.length;
+    rc.textContent = (visible.length === total)
+      ? `${total} companies`
+      : `${visible.length} of ${total} companies`;
+  }
+
   let hint = document.getElementById('noResults');
   if(!hint){
     hint = document.createElement('tr');
