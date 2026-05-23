@@ -2074,14 +2074,36 @@ function updateCharts(){
     if(!hasReport) return;
     withSocIsae++;
 
-    // Sector bucketing — group into clean categories
+    // Sector bucketing — granular categories
     const tags = (c.tags||[]).map(t=>t.toLowerCase());
+    const sectorText = (c.sector||'').toLowerCase();
+    const nameText = (c.name||'').toLowerCase();
+    const blob = sectorText + ' ' + nameText;
     let sector = 'Other';
-    if(tags.includes('igaming')) sector = 'iGaming';
-    else if(tags.includes('hosting') || tags.includes('tech')) sector = 'Cloud / Tech';
-    else if(tags.includes('payment') || tags.includes('crypto')) sector = 'Payments / Crypto';
-    else if(tags.includes('mfsa') || tags.includes('fund') || tags.includes('mifid')) sector = 'Financial Services';
-    else if(tags.includes('security')) sector = 'Cybersecurity';
+
+    if(tags.includes('igaming')){
+      sector = 'iGaming';
+    } else if(tags.includes('payment') || tags.includes('crypto')){
+      sector = 'Payments / Crypto';
+    } else if(tags.includes('mfsa') || tags.includes('fund') || tags.includes('mifid')){
+      sector = 'Fund / Financial Svcs';
+    } else if(tags.includes('security') || /cyber|siem|endpoint|threat|penetration|firewall/.test(blob)){
+      sector = 'Cybersecurity';
+    } else if(/payroll|employer of record|\beor\b|workforce|human capital|\bhcm\b|\bhr\b/.test(blob)){
+      sector = 'Payroll / HR Tech';
+    } else if(/accounting|erp|general ledger|financial management|expense|close management|fcrp|invoic|bookkeep|equity compensation|stock plan/.test(blob)){
+      sector = 'Accounting / Finance SaaS';
+    } else if(/data centre|data center|colocation|co-location|colo/.test(blob)){
+      sector = 'Data Centre / Colo';
+    } else if(/hyperscale|\baws\b|\bazure\b|google cloud|\bgcp\b|\boci\b|ibm cloud|alibaba cloud/.test(blob)){
+      sector = 'Hyperscale Cloud';
+    } else if(/\bcdn\b|edge|hosting|\bvps\b|dedicated server|cloud platform|developer cloud|iaas/.test(blob)){
+      sector = 'Cloud / Hosting';
+    } else if(/observability|monitoring|\bapm\b|aiops|analytics|business intelligence|data warehouse|data lakehouse|database|integration platform|api management/.test(blob)){
+      sector = 'Data / DevOps Tools';
+    } else if(tags.includes('hosting') || tags.includes('tech')){
+      sector = 'Other SaaS / Tech';
+    }
     sectorCounts[sector] = (sectorCounts[sector]||0) + 1;
 
     // Auditor bucketing
@@ -2092,7 +2114,7 @@ function updateCharts(){
   });
 
   // Render sector chart
-  renderBars('chartSector', sectorCounts, ['iGaming','Cloud / Tech','Payments / Crypto','Financial Services','Cybersecurity','Other']);
+  renderBars('chartSector', sectorCounts, ['Hyperscale Cloud','Cloud / Hosting','Data Centre / Colo','Data / DevOps Tools','Accounting / Finance SaaS','Payroll / HR Tech','Cybersecurity','Payments / Crypto','iGaming','Fund / Financial Svcs','Other SaaS / Tech','Other']);
   // Render auditor chart (sorted desc)
   renderBars('chartAuditor', auditorCounts, null);
 
