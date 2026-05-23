@@ -232,6 +232,16 @@
     .fpill.active{background:var(--red);color:var(--white);border-color:var(--red);}
 
     /* ── TABLE ──────────────────────────────────────────── */
+    @media(max-width:780px){
+      #chartGrid{grid-template-columns:1fr !important;gap:20px !important;}
+    }
+    .bar-row{display:flex;align-items:center;gap:8px;margin-bottom:6px;font-size:.78rem;}
+    .bar-row .bar-label{flex:0 0 110px;color:var(--ink-soft);font-weight:600;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+    .bar-row .bar-track{flex:1;background:#f0f0f0;height:18px;border-radius:1px;overflow:hidden;position:relative;}
+    .bar-row .bar-fill{height:100%;background:linear-gradient(90deg,var(--red),var(--red-dark));transition:width .25s ease;display:flex;align-items:center;justify-content:flex-end;padding-right:6px;color:#fff;font-weight:700;font-size:.7rem;}
+    .bar-row .bar-fill.zero{background:#e5e7eb;color:transparent;}
+    .bar-row .bar-count{flex:0 0 28px;text-align:right;font-weight:700;color:var(--ink);font-size:.78rem;}
+    .empty-chart{color:var(--grey-3);font-size:.78rem;font-style:italic;padding:8px 0;}
     .tbl-outer{
       background:var(--white);
       border:1px solid var(--border);
@@ -461,6 +471,11 @@
     </div>
     <div class="modal-body">
       <div class="modal-tags" id="mTags"></div>
+      <div id="mAuditorRow" style="display:none;margin-bottom:14px;padding:10px 12px;background:#fafafa;border-left:3px solid var(--red);border-radius:2px;">
+        <div style="font-size:.65rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--grey-4);margin-bottom:3px;">Independent Auditor</div>
+        <div id="mAuditor" style="font-size:.95rem;font-weight:600;color:var(--ink);"></div>
+        <div id="mAuditorRole" style="font-size:.72rem;color:var(--grey-4);margin-top:3px;font-style:italic;"></div>
+      </div>
       <div class="modal-text" id="mText"></div>
     </div>
     <div class="modal-footer">
@@ -570,6 +585,27 @@
       </div>
     </div>
 
+    <!-- INSIGHTS CHARTS — react to active filters/search -->
+    <div id="insights" style="margin:8px 0 24px 0;background:var(--white);border:1px solid var(--border);border-radius:2px;padding:18px 20px;">
+      <div style="display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;margin-bottom:14px;">
+        <div>
+          <div style="font-size:.62rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--red);">Live Insights</div>
+          <div style="font-family:'Playfair Display',serif;font-size:1.05rem;font-weight:700;color:var(--black);">Visible Companies — Sector & Auditor Distribution</div>
+        </div>
+        <div id="chartTotals" style="font-size:.75rem;color:var(--grey-4);"></div>
+      </div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:24px;" id="chartGrid">
+        <div>
+          <div style="font-size:.7rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-soft);margin-bottom:8px;">Reports per sector</div>
+          <div id="chartSector"></div>
+        </div>
+        <div>
+          <div style="font-size:.7rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-soft);margin-bottom:8px;">Reports per auditor</div>
+          <div id="chartAuditor"></div>
+        </div>
+      </div>
+    </div>
+
     <div class="tbl-outer">
       <table>
         <thead>
@@ -642,28 +678,32 @@ const CO=[
    certs:[{cls:'soc2',l:'SOC 2 Type I'},{cls:'isae3000',l:'ISAE 3000'}],
    status:'g',statusLabel:'Confirmed',date:'Feb 2024',
    kicker:'🇲🇹 Malta · MSE Listed · Tech.mt Member',
-   body:`Malta's leading data centre and managed-IT provider achieved <strong>SOC 2 Type 1 attestation</strong> in February 2024, covering security and availability trust-service criteria. Listed on the Malta Stock Exchange (MSE: BMIT).`,
+   body:`Malta's leading data centre and managed-IT provider achieved <strong>SOC 2 Type 1 attestation</strong> in February 2024, covering security and availability trust-service criteria. Listed on the Malta Stock Exchange (MSE: BMIT). <em>Auditor not publicly disclosed.</em>`,
+   auditor:'Not publicly disclosed',
    link:'https://www.bmit.com.mt/'},
   {name:'Kindred Group plc (Unibet)',sector:'Online Gaming · Sports Betting · MGA Licensed',malta:true,
    tags:['soc2','igaming','mga','confirmed','malta'],
    certs:[{cls:'soc2',l:'SOC 2 Type II'}],
    status:'g',statusLabel:'Confirmed',date:'Jun 2023',
    kicker:'🇲🇹 Malta HQ · MGA Licensed · Nasdaq Stockholm',
-   body:`Kindred's flagship brand <strong>Unibet received SOC 2 Type 2 compliance</strong> following an audit by MNP LLP, covering data management, system availability, access controls, change management and risk assessment.`,
+   body:`Kindred's flagship brand <strong>Unibet received SOC 2 Type 2 compliance</strong> following an audit by <strong>MNP LLP</strong> (Canadian CPA firm, member of Praxity global alliance), covering data management, system availability, access controls, change management and risk assessment. The audit also confirmed Ontario partner Pala Interactive met Trust Service Criteria for security and processing integrity.`,
+   auditor:'MNP LLP',
    link:'https://www.kindredgroup.com/'},
   {name:'Hornetsecurity (formerly Altaro)',sector:'Cybersecurity · Cloud Backup · Email Security',malta:true,
    tags:['soc2','soc1','isae3402','tech','confirmed','malta','hosting'],
    certs:[{cls:'soc2',l:'SOC 2 Type II'},{cls:'soc1',l:'SOC 1 Type I'},{cls:'isae3402',l:'ISAE 3402'},{cls:'iso27001',l:'ISO 27001'}],
    status:'g',statusLabel:'Confirmed',date:'2024 ongoing',
    kicker:'🇲🇹 Malta Founded · Tech.mt Member',
-   body:`Altaro Software was acquired by <strong>Hornetsecurity in January 2021</strong>. Holds SOC 1 Type I, ISAE 3402, SOC 2 Type II, ISO 27001:2013, ISO 9001, ISO 20000, HIPAA. Malta office in San Gwann Life Sciences Park.`,
+   body:`Altaro Software was acquired by <strong>Hornetsecurity in January 2021</strong>. Holds SOC 1 Type I, ISAE 3402, SOC 2 Type II, ISO 27001:2013, ISO 9001, ISO 20000, HIPAA. Malta office in San Gwann Life Sciences Park. <em>Auditor not publicly disclosed.</em>`,
+   auditor:'Not publicly disclosed',
    link:'https://www.hornetsecurity.com/en/company/'},
   {name:'Greentube Malta',sector:'Online Casino · NOVOMATIC Group · MGA',malta:true,
    tags:['isae3402','igaming','mga','confirmed','malta'],
    certs:[{cls:'isae3402',l:'ISAE 3402'}],
    status:'g',statusLabel:'Confirmed',date:'Early 2023',
    kicker:'🇲🇹 Malta · MGA Licensed · NOVOMATIC',
-   body:`Greentube Malta — the iGaming arm of NOVOMATIC Group — publicly announced <strong>ISAE 3402 certification</strong> via LinkedIn in early 2023.`,
+   body:`Greentube Malta — the iGaming arm of NOVOMATIC Group — publicly announced <strong>ISAE 3402 certification</strong> via LinkedIn in early 2023. <em>Auditor not publicly disclosed.</em>`,
+   auditor:'Not publicly disclosed',
    link:'https://www.greentube.com/'},
   {name:'Betsson Group (BML)',sector:'Online Gaming · iGaming · MGA Licensed',malta:true,
    tags:['igaming','mga','malta'],
@@ -734,6 +774,7 @@ const CO=[
    status:'g',statusLabel:'Confirmed (Group)',date:'MiCA Jan 2025',
    kicker:'🇲🇹 EU Hub · MFSA MiCA CASP',
    body:`<strong>MFSA MiCA CASP Jan 2025</strong>. Group SOC 2 Type II via Deloitte (Aug 2022). Custody Trust Co added SOC 1+SOC 2 Type II Sep 2025.`,
+   auditor:'Not publicly disclosed [SOC 2 attestation auditor — not publicly named]',
    link:'https://crypto.com/'},
   /* ── 🇲🇹 MDIA-CERTIFIED SYSTEMS AUDITORS ────────────────────── */
   /* ── 🇲🇹 OTHER MALTA-BASED ─────────────────────────────────── */
@@ -765,6 +806,7 @@ const CO=[
    status:'g',statusLabel:'Confirmed',date:'Annual · 143+ services',
    kicker:'🌐 Frankfurt/Dublin EU',
    body:`<strong>SOC 1, SOC 2, SOC 3 across 143+ services</strong>. Reports via AWS Artifact under NDA.`,
+   auditor:'Ernst & Young LLP (EY) [SOC 1 · SOC 2 · SOC 3 attestation auditor (AICPA)]',
    link:'https://aws.amazon.com/compliance/soc-faqs/'},
   {name:'Microsoft Azure',sector:'Hyperscale Cloud · M365',malta:false,
    tags:['soc2','soc1','isae3402','tech','confirmed','hosting'],
@@ -772,6 +814,7 @@ const CO=[
    status:'g',statusLabel:'Confirmed',date:'Annual',
    kicker:'🌐 EU Data Boundary · Used by Nuvei Malta',
    body:`SOC 1/SOC 2/SOC 3 under SSAE 18 / ISAE 3402.`,
+   auditor:'Deloitte & Touche LLP [SOC 1 · SOC 2 attestation auditor (AICPA/ISAE 3402) — confirmed in published SOC 1 report PDF]',
    link:'https://learn.microsoft.com/en-us/compliance/regulatory/offering-soc-2'},
   {name:'Google Cloud Platform',sector:'Hyperscale Cloud · IaaS',malta:false,
    tags:['soc2','soc1','tech','confirmed','hosting'],
@@ -779,6 +822,7 @@ const CO=[
    status:'g',statusLabel:'Confirmed',date:'Annual',
    kicker:'🌐 EU Belgium/Finland',
    body:`Holds SOC 1, SOC 2, SOC 3 audited by Coalfire.`,
+   auditor:'Ernst & Young LLP (EY) + Coalfire [SOC 1 · SOC 2 · SOC 3 attestation auditor (AICPA) — GCP names both firms publicly]',
    link:'https://cloud.google.com/security/compliance/soc-2'},
   {name:'Oracle Cloud Infrastructure',sector:'Hyperscale Cloud · Database',malta:false,
    tags:['soc2','soc1','isae3402','tech','confirmed','hosting'],
@@ -786,6 +830,7 @@ const CO=[
    status:'g',statusLabel:'Confirmed',date:'Annual',
    kicker:'🌐 Frankfurt/Amsterdam EU',
    body:`SOC 1, SOC 2, SOC 3 and ISAE 3402.`,
+   auditor:'Not publicly disclosed',
    link:'https://www.oracle.com/corporate/cloud-compliance/'},
   {name:'IBM Cloud',sector:'Hyperscale Cloud · Watson AI',malta:false,
    tags:['soc2','soc1','isae3402','tech','confirmed','hosting'],
@@ -793,6 +838,7 @@ const CO=[
    status:'g',statusLabel:'Confirmed',date:'Annual',
    kicker:'🌐 Frankfurt EU',
    body:`SOC 1, SOC 2, SOC 3 and ISAE 3402.`,
+   auditor:'Not publicly disclosed',
    link:'https://www.ibm.com/cloud/compliance'},
   {name:'Alibaba Cloud',sector:'Hyperscale Cloud · APAC',malta:false,
    tags:['soc2','soc1','tech','confirmed','hosting'],
@@ -872,6 +918,7 @@ const CO=[
    status:'g',statusLabel:'Confirmed',date:'Annual',
    kicker:'🌐 Used by Malta financial services',
    body:`SOC 1, SOC 2, SOC 3, ISO 27001.`,
+   auditor:'Ernst & Young LLP (EY) [SOC 1 · SOC 2 attestation auditor (AICPA); EY also serves as financial statements auditor (SEC filings)]',
    link:'https://compliance.salesforce.com/en/services/soc-2'},
   {name:'ServiceNow',sector:'IT Service Mgmt SaaS',malta:false,
    tags:['soc2','soc1','tech','confirmed'],
@@ -977,6 +1024,7 @@ const CO=[
    status:'g',statusLabel:'Confirmed',date:'Annual',
    kicker:'🌐 Identity for Malta SaaS',
    body:`SOC 2, SOC 3, ISO 27001.`,
+   auditor:'Not publicly disclosed [SOC 2 Type II attestation auditor — not publicly named]',
    link:'https://www.okta.com/security-and-compliance/'},
   {name:'Twilio',sector:'Communications API',malta:false,
    tags:['soc2','tech','confirmed'],
@@ -1006,6 +1054,7 @@ const CO=[
    status:'g',statusLabel:'Confirmed',date:'Annual',
    kicker:'🌐 Used by Malta SaaS',
    body:`SOC 1, SOC 2, PCI DSS Level 1.`,
+   auditor:'Not publicly disclosed [SOC 1 · SOC 2 Type II produced annually — auditor name not publicly disclosed]',
    link:'https://stripe.com/docs/security/stripe'},
   {name:'Adyen',sector:'Global Payment Platform · EMI',malta:false,
    tags:['soc2','payment','confirmed'],
@@ -1020,6 +1069,7 @@ const CO=[
    status:'g',statusLabel:'Confirmed',date:'Annual',
    kicker:'🌐 Used in Malta iGaming',
    body:`SOC 2 + PCI DSS Level 1.`,
+   auditor:'Not publicly disclosed',
    link:'https://www.paypal.com/uk/legalhub/privacy-full'},
   {name:'Worldpay (FIS)',sector:'Payment Acquirer',malta:false,
    tags:['soc2','soc1','isae3402','payment','confirmed'],
@@ -1063,6 +1113,7 @@ const CO=[
    status:'g',statusLabel:'Confirmed',date:'Annual',
    kicker:'🌐 Nasdaq Listed',
    body:`SOC 1 Type II, SOC 2 Type II, ISO 27001.`,
+   auditor:'Deloitte & Touche LLP [SOC 1 · SOC 2 attestation auditor; Deloitte also financial statements auditor]',
    link:'https://www.coinbase.com/legal/compliance'},
   {name:'Kraken',sector:'Crypto Exchange',malta:false,
    tags:['soc2','payment','trading','confirmed'],
@@ -1130,12 +1181,139 @@ const CO=[
    body:`Major studio in Birkirkara, Malta. ISO 27001. <strong>No public SOC 2.</strong>`,
    link:'https://www.evolution.com/'},
   {name:'Playtech plc',sector:'Casino & Sports B2B · MGA',malta:false,
-   tags:['igaming','mga'],
-   certs:[{cls:'iso27001',l:'ISO 27001'}],
-   status:'gr',statusLabel:'ISO only',date:'2024',
-   kicker:'🌐 LSE Listed · Malta operations',
-   body:`Significant Malta operations. ISO 27001. <strong>No public SOC 2.</strong>`,
+   tags:['igaming','mga','soc2','isae3402','confirmed'],
+   certs:[{cls:'soc2',l:'SOC / ISAE 3402'},{cls:'iso27001',l:'ISO 27001'}],
+   status:'g',statusLabel:'Confirmed (programme)',date:'Active',
+   kicker:'🇮🇲 Isle of Man · LSE: PTEC · Malta operations',
+   body:`Active <strong>SOC/ISAE 3402 certification and surveillance audit programme</strong> confirmed via job posting for GRC Security Expert referencing ongoing SOC/ISAE 3402 audits. Also ISO 27001 certified. Report is private under NDA as standard practice. <em>Auditor not publicly disclosed.</em>`,
+   auditor:'Not publicly disclosed',
    link:'https://www.playtech.com/'},
+
+  /* ── 🌐 NON-MALTA GAMING — CONFIRMED ───────────────────────── */
+  {name:'INTRALOT (Bally\'s Intralot)',sector:'iLottery · Sportsbook · VLT · B2B',malta:false,
+   tags:['igaming','isae3402','soc1','confirmed','lottery'],
+   certs:[{cls:'isae3402',l:'ISAE 3402 Type II'}],
+   status:'g',statusLabel:'Confirmed',date:'Annual since 2013',
+   kicker:'🇬🇷 Athens, Greece · ATHEX: INLOT · 57 jurisdictions',
+   body:`<strong>ISAE 3402 Type II</strong> audited annually since 2013 for OPAP (Greek National Lottery) and since 2012 for Staatsloterij and De Lotto (Netherlands). Conducted by <strong>a major international accounting firm</strong> (firm not publicly named in INTRALOT's press release). The <strong>longest-running and most thoroughly documented ISAE 3402 programme</strong> in the global gaming sector. Now operating as Bally's Intralot following partnership with Bally's Corporation.`,
+   auditor:'Not publicly disclosed',
+   link:'https://world-lotteries.org/media-news/1660-intralot-achieves-isae-3402-yearly-assurance-for-its-operations-at-opap'},
+
+  {name:'Bede Gaming',sector:'iGaming Platform · B2B · Sportsbook',malta:false,
+   tags:['igaming','soc2','confirmed'],
+   certs:[{cls:'soc2',l:'SOC 2'}],
+   status:'g',statusLabel:'Confirmed',date:'2026',
+   kicker:'🇬🇧 Newcastle, UK · Merkur Group · AGLC Supplier Licence',
+   body:`CEO Colin Cole-Johnson confirmed in March 2026 that Bede is <strong>SOC 2 certified</strong>, citing it as a key advantage when announcing their AGLC supplier licence ahead of Alberta's July 2026 iGaming launch. Previously ISO 27001:2013 certified. First B2B platform supplier to publicly cite SOC 2 in context of Canadian market entry. <em>Auditor not publicly disclosed.</em>`,
+   auditor:'Not publicly disclosed',
+   link:'https://www.yogonet.com/international/news/2026/03/26/118228-bede-gaming-secures-oneyear-supplier-licence-from-aglc-ahead-of-alberta-39s-igaming-launch'},
+
+  /* ── 🌐 NON-MALTA GAMING — ISO 27001 ONLY ──────────────────── */
+  {name:'Bragg Gaming Group / ORYX',sector:'Casino Content · Aggregation · B2B',malta:false,
+   tags:['igaming','iso27001'],
+   certs:[{cls:'iso27001',l:'ISO 27001:2022'}],
+   status:'gr',statusLabel:'ISO only',date:'2023',
+   kicker:'🇨🇦 Toronto · NASDAQ: BRAG · Slovenia studio',
+   body:`ISO/IEC 27001:2022 certified across Oryx Gaming Limited and related entities. <strong>No public SOC 2 or ISAE 3402 report identified.</strong>`,
+   link:'https://bragg.group/clients/iso-iec-27001/'},
+
+  {name:'GiG (Gaming Innovation Group)',sector:'Sportsbook · Platform · B2B',malta:false,
+   tags:['igaming','iso27001','mga'],
+   certs:[{cls:'iso27001',l:'ISO 27001'},{cls:'iso27001',l:'ISO 20000'}],
+   status:'gr',statusLabel:'ISO only',date:'2018+',
+   kicker:'🇸🇪 Stockholm-listed · Malta operations',
+   body:`ISO 27001 and ISO 20000 certified since 2018. <strong>No public SOC 2 or ISAE 3402 report identified.</strong>`,
+   link:'https://www.gig.com/sustainability-2/it-and-cybersecurity/'},
+
+  /* ── 🌐 NON-MALTA GAMING — MONITORING ──────────────────────── */
+  {name:'Sportradar Group AG',sector:'Sports Data · Integrity · Sportsbook B2B',malta:false,
+   tags:['igaming','monitoring'],
+   certs:[],
+   status:'y',statusLabel:'Monitoring',date:'—',
+   kicker:'🇨🇭 St. Gallen · NASDAQ: SRAD · €1.29bn revenue 2025',
+   body:`SEC-listed (NASDAQ: SRAD) with mandatory SOX 404 programme — multiple active roles posted in 2025-2026 (Financial Controls and SOX Lead, Financial Controls Specialist NYC) confirming a mature ITGC environment. Filed Form 20-F for FY2025 on 27 March 2026. <strong>No public SOC 2 or ISAE 3402 report identified.</strong> Largest data intelligence gap in the sector.`,
+   link:'https://investors.sportradar.com/financials-filings/sec-filings'},
+
+  {name:'Genius Sports',sector:'Sports Data · Integrity · Sportsbook B2B',malta:false,
+   tags:['igaming','monitoring'],
+   certs:[],
+   status:'y',statusLabel:'Monitoring',date:'—',
+   kicker:'🇬🇧 London · NYSE: GENI',
+   body:`NYSE-listed. LinkedIn profiles confirm IT SOX/SOC2 reviewer roles internally. <strong>No public SOC 2 or ISAE 3402 report identified.</strong>`,
+   link:'https://www.geniussports.com/'},
+
+  {name:'Flutter Entertainment',sector:'Sportsbook · Casino · B2C',malta:false,
+   tags:['igaming','monitoring'],
+   certs:[],
+   status:'y',statusLabel:'Monitoring',date:'—',
+   kicker:'🇮🇪 Dublin · NYSE: FLUT · FanDuel · Sky Bet · PokerStars · Sisal',
+   body:`World's largest online gambling operator by revenue (~$14bn in 2024). Internal product security teams confirmed. <strong>No public SOC 2 or ISAE 3402 report identified.</strong> Alberta launch targeted — SOC 2 Type 1 required at go-live (13 July 2026).`,
+   link:'https://www.flutter.com/'},
+
+  {name:'Entain plc',sector:'Sportsbook · Casino · B2C',malta:false,
+   tags:['igaming','monitoring'],
+   certs:[],
+   status:'y',statusLabel:'Monitoring',date:'—',
+   kicker:'🇮🇲 Isle of Man · LSE: ENT · Ladbrokes · Coral · BetMGM JV',
+   body:`LSE-listed operator. <strong>No public SOC 2 or ISAE 3402 report identified.</strong>`,
+   link:'https://www.entaingroup.com/'},
+
+  {name:'DraftKings Inc.',sector:'Sportsbook · Casino · DFS · B2C',malta:false,
+   tags:['igaming','monitoring'],
+   certs:[],
+   status:'y',statusLabel:'Monitoring',date:'—',
+   kicker:'🇺🇸 Boston · NASDAQ: DKNG · Alberta pre-registration live',
+   body:`NASDAQ-listed US operator. Pre-registration portal launched in Alberta ahead of July 2026 market launch — SOC 2 Type 1 required at go-live. <strong>No public SOC 2 or ISAE 3402 report identified.</strong>`,
+   link:'https://www.draftkings.com/'},
+
+  {name:'Bet365 Group Ltd.',sector:'Sportsbook · Casino · B2C',malta:false,
+   tags:['igaming','monitoring'],
+   certs:[],
+   status:'y',statusLabel:'Monitoring',date:'—',
+   kicker:'🇬🇧 Stoke-on-Trent · Private · 15 US states',
+   body:`Privately held. <strong>No public SOC 2 or ISAE 3402 report identified.</strong>`,
+   link:'https://www.bet365.com/'},
+
+  {name:'Aristocrat Interactive',sector:'iLottery · Casino · Sportsbook · B2B',malta:false,
+   tags:['igaming','monitoring'],
+   certs:[],
+   status:'y',statusLabel:'Monitoring',date:'—',
+   kicker:'🇦🇺 Sydney · ASX: ALL · NeoGames + Aspire + BtoBet + Pariplay',
+   body:`Formed 2024 from combination of Anaxi and NeoGames (including Aspire Global, BtoBet, Pariplay). Holds WLA Responsible Gaming certification and GLI certifications. <strong>No public SOC 2 or ISAE 3402 report identified.</strong>`,
+   link:'https://aristocratinteractive.com/'},
+
+  {name:'Allwyn (ex-Sazka, Camelot UK)',sector:'National Lottery · B2B/B2C',malta:false,
+   tags:['igaming','monitoring','lottery'],
+   certs:[],
+   status:'y',statusLabel:'Monitoring',date:'—',
+   kicker:'🇨🇿 Prague / London · KKCG · UK National Lottery operator since 2024',
+   body:`Operates UK National Lottery from February 2024, replacing Camelot. Also runs lotteries in Austria, Italy, Czech Republic and Greece (OPAP ownership). <strong>No public SOC 2 or ISAE 3402 report identified.</strong>`,
+   link:'https://www.allwyn.com/'},
+
+  {name:'Caesars Entertainment / Caesars Digital',sector:'Casino · Sportsbook · B2C',malta:false,
+   tags:['igaming','monitoring'],
+   certs:[],
+   status:'y',statusLabel:'Monitoring',date:'—',
+   kicker:'🇺🇸 Reno, NV · NASDAQ: CZR · 2023 ransomware: $15m paid',
+   body:`Suffered ransomware attack in September 2023, paying $15 million in ransom. NASDAQ-listed with SOX 404 obligations. <strong>No public SOC 2 or ISAE 3402 report identified.</strong> Post-breach pressure for independent assurance is high.`,
+   link:'https://www.caesars.com/'},
+
+  {name:'MGM Resorts / BetMGM',sector:'Casino · Sportsbook · B2C',malta:false,
+   tags:['igaming','monitoring'],
+   certs:[],
+   status:'y',statusLabel:'Monitoring',date:'—',
+   kicker:'🇺🇸 Las Vegas · NYSE: MGM · 2023 ransomware: $100m loss',
+   body:`Suffered major ransomware attack in September 2023 costing $100 million in losses and disruption. NYSE-listed with SOX 404 obligations. BetMGM is 50/50 JV with Entain. <strong>No public SOC 2 or ISAE 3402 report identified.</strong>`,
+   link:'https://www.mgmresorts.com/'},
+
+  {name:'Soft2Bet',sector:'Casino · Sportsbook · Platform · B2B',malta:false,
+   tags:['igaming','monitoring'],
+   certs:[],
+   status:'y',statusLabel:'Monitoring',date:'—',
+   kicker:'🇨🇾 Limassol / Malta · 85% revenue growth 2025',
+   body:`Rapid growth platform provider — 85% revenue growth and 173% sportsbook GGR in 2025. Ontario launch (ToonieBet) exceeded expectations. <strong>No public SOC 2 or ISAE 3402 report identified.</strong>`,
+   link:'https://www.soft2bet.com/'},
+
   /* ── 🌐 DATA CENTRES ────────────────────────────────────────── */
   {name:'Equinix',sector:'Co-location · Data Centres',malta:false,
    tags:['soc2','soc1','isae3402','tech','confirmed','hosting'],
@@ -1143,6 +1321,7 @@ const CO=[
    status:'g',statusLabel:'Confirmed',date:'Annual',
    kicker:'🌐 250+ data centres',
    body:`SOC 1, SOC 2, ISAE 3402, ISO 27001.`,
+   auditor:'Not publicly disclosed [SOC 1 · SOC 2 reports issued annually — auditor name not publicly disclosed]',
    link:'https://www.equinix.com/about/business/audits-and-certifications'},
   {name:'Digital Realty (Interxion)',sector:'Co-location · Data Centres',malta:false,
    tags:['soc2','soc1','isae3402','tech','confirmed','hosting'],
@@ -1565,6 +1744,18 @@ CO.forEach((c,i)=>{
   const tr=document.createElement('tr');
   tr.dataset.i=i;
   tr.dataset.tags=c.tags.join(' ');
+  let auditorHTML='';
+  if(c.auditor){
+    const bIdx=c.auditor.indexOf(' [');
+    const firm=bIdx>-1?c.auditor.slice(0,bIdx):c.auditor;
+    const roleNote=bIdx>-1?c.auditor.slice(bIdx+2,c.auditor.length-1):'';
+    const isUnknown=firm==='Not publicly disclosed';
+    tr.dataset.auditor=firm.toLowerCase();
+    const firmColor=isUnknown?'var(--grey-3)':'var(--ink-soft)';
+    const firmWeight=isUnknown?'400':'600';
+    const roleHtml=(!isUnknown&&roleNote)?`<span style="display:block;font-size:.6rem;color:var(--grey-3);margin-top:1px;">${roleNote}</span>`:'';
+    auditorHTML=`<div style="margin-left:22px;margin-top:3px;"><span style="font-weight:700;color:var(--red);text-transform:uppercase;letter-spacing:.05em;font-size:.62rem;">Auditor:</span> <span style="color:${firmColor};font-weight:${firmWeight};font-size:.7rem;">${firm}</span>${roleHtml}</div>`;
+  }
   const flag = c.malta
     ? '<span title="Malta-based" style="display:inline-block;margin-right:6px;font-size:.95em;">🇲🇹</span>'
     : '<span title="Global / used in Malta" style="display:inline-block;margin-right:6px;font-size:.95em;color:var(--grey-3);">🌐</span>';
@@ -1572,6 +1763,7 @@ CO.forEach((c,i)=>{
     <td>
       ${flag}<span class="cname" onclick="openModal(${i})">${c.name}</span>
       <div class="csector" style="margin-left:22px;">${c.sector}</div>
+      ${auditorHTML}
     </td>
     <td class="col-cert">${tagsHTML(c.certs)}</td>
     <td class="col-sector" style="font-size:.8rem;color:var(--grey-4);">${c.sector.split('·')[0].trim()}</td>
@@ -1580,6 +1772,9 @@ CO.forEach((c,i)=>{
   `;
   tbody.appendChild(tr);
 });
+
+// Initial chart render
+setTimeout(()=>{ if(typeof updateCharts==='function') updateCharts(); }, 50);
 
 /* ── ENHANCED SEARCH ENGINE v2 (fuzzy/Levenshtein) ────────────── */
 const ALIASES = {
@@ -1784,8 +1979,12 @@ function filterTable(){
     const tags = tr.dataset.tags;
 
     // Filter: must match ALL active filter pills (AND logic across pills, OR within each tag)
+    const auditorDisclosed = tr.dataset.auditor && tr.dataset.auditor !== '' && !tr.dataset.auditor.includes('not publicly disclosed');
     const mf = activeFilters.size === 0 ||
-      [...activeFilters].every(f => tags.includes(f));
+      [...activeFilters].every(f => {
+        if(f === 'auditor-disclosed') return auditorDisclosed;
+        return tags.includes(f);
+      });
 
     // Search: AND across user tokens, each expanded via aliases + fuzzy
     let ms = userTokens.length === 0;
@@ -1817,6 +2016,8 @@ function filterTable(){
       ? `Showing ${visible.length} of ${total} companies`
       : `${total} companies`;
   }
+
+  if(typeof updateCharts==='function') updateCharts();
 }
 
 /* ── MODAL ───────────────────────────────────────────────────── */
@@ -1830,10 +2031,86 @@ function openModal(i){
   document.getElementById('mSector').textContent=c.sector;
   document.getElementById('mTags').innerHTML=tagsHTML(c.certs);
   document.getElementById('mText').innerHTML=c.body;
+  const ar=document.getElementById('mAuditorRow');
+  if(c.auditor){
+    const bIdx=c.auditor.indexOf(' [');
+    const firm=bIdx>-1?c.auditor.slice(0,bIdx):c.auditor;
+    const role=bIdx>-1?c.auditor.slice(bIdx+2,c.auditor.length-1):'';
+    document.getElementById('mAuditor').textContent=firm;
+    const roleEl=document.getElementById('mAuditorRole');
+    if(role&&firm!=='Not publicly disclosed'){roleEl.textContent=role;roleEl.style.display='block';}
+    else{roleEl.style.display='none';}
+    ar.style.display='block';
+  } else {ar.style.display='none';}
   document.getElementById('mDate').textContent=c.date;
   document.getElementById('mLink').href=c.link;
   overlay.classList.add('open');
   document.body.style.overflow='hidden';
+}
+
+function updateCharts(){
+  const visibleRows = [...document.querySelectorAll('#tBody tr')].filter(r=>!r.classList.contains('hr') && r.id!=='noResults');
+  const sectorCounts = {};
+  const auditorCounts = {};
+  let withSocIsae = 0;
+
+  visibleRows.forEach(tr=>{
+    const i = +tr.dataset.i;
+    const c = CO[i];
+    if(!c) return;
+
+    // Only count entries that actually hold SOC/ISAE (status 'g' = confirmed, OR has soc/isae cert classes)
+    const hasReport = c.certs.some(cert => /soc|isae/i.test(cert.cls));
+    if(!hasReport) return;
+    withSocIsae++;
+
+    // Sector bucketing — group into clean categories
+    const tags = (c.tags||[]).map(t=>t.toLowerCase());
+    let sector = 'Other';
+    if(tags.includes('igaming')) sector = 'iGaming';
+    else if(tags.includes('hosting') || tags.includes('tech')) sector = 'Cloud / Tech';
+    else if(tags.includes('payment') || tags.includes('crypto')) sector = 'Payments / Crypto';
+    else if(tags.includes('mfsa') || tags.includes('fund') || tags.includes('mifid')) sector = 'Financial Services';
+    else if(tags.includes('security')) sector = 'Cybersecurity';
+    sectorCounts[sector] = (sectorCounts[sector]||0) + 1;
+
+    // Auditor bucketing
+    const rawAud = c.auditor || 'Not publicly disclosed';
+    const bIdxA = rawAud.indexOf(' [');
+    const auditor = bIdxA>-1 ? rawAud.slice(0,bIdxA) : rawAud;
+    auditorCounts[auditor] = (auditorCounts[auditor]||0) + 1;
+  });
+
+  // Render sector chart
+  renderBars('chartSector', sectorCounts, ['iGaming','Cloud / Tech','Payments / Crypto','Financial Services','Cybersecurity','Other']);
+  // Render auditor chart (sorted desc)
+  renderBars('chartAuditor', auditorCounts, null);
+
+  // Totals
+  const totalVisible = visibleRows.length;
+  document.getElementById('chartTotals').innerHTML = `<strong style="color:var(--ink);">${withSocIsae}</strong> SOC/ISAE reports visible · <strong style="color:var(--grey-4);">${totalVisible}</strong> companies in view`;
+}
+
+function renderBars(elId, data, order){
+  const el = document.getElementById(elId);
+  const entries = Object.entries(data);
+  if(entries.length === 0){
+    el.innerHTML = '<div class="empty-chart">No data for current filter selection.</div>';
+    return;
+  }
+  let sorted;
+  if(order){
+    sorted = order.filter(k=>data[k]>0).map(k=>[k,data[k]]);
+    // append any keys not in order
+    entries.forEach(([k,v])=>{ if(!order.includes(k)) sorted.push([k,v]); });
+  } else {
+    sorted = entries.sort((a,b)=>b[1]-a[1]);
+  }
+  const max = Math.max(...sorted.map(s=>s[1]));
+  el.innerHTML = sorted.map(([k,v])=>{
+    const pct = max>0 ? Math.max(6, (v/max)*100) : 0;
+    return `<div class="bar-row" title="${k}: ${v}"><div class="bar-label">${k}</div><div class="bar-track"><div class="bar-fill${v===0?' zero':''}" style="width:${pct}%;">${v>0?v:''}</div></div></div>`;
+  }).join('');
 }
 
 function closeModal(e){
