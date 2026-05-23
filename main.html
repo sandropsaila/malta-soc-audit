@@ -317,7 +317,6 @@
     /* col hide */
     @media(max-width:900px){.col-sector{display:none;}}
     @media(max-width:680px){.col-date{display:none;}}
-    @media(max-width:520px){.col-cert{display:none;}}
 
     /* ── MODAL ──────────────────────────────────────────── */
     .overlay{
@@ -567,6 +566,28 @@
   <div id="registry">
     <div class="sec-head"><h2>Company Registry</h2><div class="sec-line"></div></div>
 
+    <div id="insights" style="margin:8px 0 24px 0;background:var(--white);border:1px solid var(--border);border-radius:2px;padding:18px 20px;">
+      <div style="display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;margin-bottom:14px;">
+        <div>
+          <div style="font-size:.62rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--red);">Live Insights</div>
+          <div style="font-family:'Playfair Display',serif;font-size:1.05rem;font-weight:700;color:var(--black);">Visible Companies — Sector & Auditor Distribution</div>
+        </div>
+        <div id="chartTotals" style="font-size:.75rem;color:var(--grey-4);"></div>
+      </div>
+      <div id="chartFilterBanner" style="display:none;align-items:center;background:#fef3c7;border:1px solid #fde68a;border-radius:2px;padding:7px 12px;margin-bottom:12px;font-size:.78rem;color:#92400e;"></div>
+      <div style="font-size:.68rem;color:var(--grey-3);margin-bottom:10px;">💡 Click any bar to filter the registry by that sector or auditor.</div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:24px;" id="chartGrid">
+        <div>
+          <div style="font-size:.7rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-soft);margin-bottom:8px;">Reports per sector</div>
+          <div id="chartSector"></div>
+        </div>
+        <div>
+          <div style="font-size:.7rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-soft);margin-bottom:8px;">Reports per auditor</div>
+          <div id="chartAuditor"></div>
+        </div>
+      </div>
+    </div>
+
     <div class="toolbar">
       <div class="search-wrap">
         <svg class="search-icon" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
@@ -592,34 +613,11 @@
     </div>
 
     <!-- INSIGHTS CHARTS — react to active filters/search -->
-    <div id="insights" style="margin:8px 0 24px 0;background:var(--white);border:1px solid var(--border);border-radius:2px;padding:18px 20px;">
-      <div style="display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;margin-bottom:14px;">
-        <div>
-          <div style="font-size:.62rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--red);">Live Insights</div>
-          <div style="font-family:'Playfair Display',serif;font-size:1.05rem;font-weight:700;color:var(--black);">Visible Companies — Sector & Auditor Distribution</div>
-        </div>
-        <div id="chartTotals" style="font-size:.75rem;color:var(--grey-4);"></div>
-      </div>
-      <div id="chartFilterBanner" style="display:none;align-items:center;background:#fef3c7;border:1px solid #fde68a;border-radius:2px;padding:7px 12px;margin-bottom:12px;font-size:.78rem;color:#92400e;"></div>
-      <div style="font-size:.68rem;color:var(--grey-3);margin-bottom:10px;">💡 Click any bar to filter the registry by that sector or auditor.</div>
-      <div style="display:grid;grid-template-columns:1fr 1fr;gap:24px;" id="chartGrid">
-        <div>
-          <div style="font-size:.7rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-soft);margin-bottom:8px;">Reports per sector</div>
-          <div id="chartSector"></div>
-        </div>
-        <div>
-          <div style="font-size:.7rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-soft);margin-bottom:8px;">Reports per auditor</div>
-          <div id="chartAuditor"></div>
-        </div>
-      </div>
-    </div>
-
     <div class="tbl-outer">
       <table>
         <thead>
           <tr>
             <th>Company</th>
-            <th class="col-cert">Certifications</th>
             <th class="col-sector">Sector</th>
             <th class="col-date">Last Activity</th>
             <th>Status</th>
@@ -1771,9 +1769,9 @@ CO.forEach((c,i)=>{
     <td>
       ${flag}<span class="cname" onclick="openModal(${i})">${c.name}</span>
       <div class="csector" style="margin-left:22px;">${c.sector}</div>
+      <div style="margin-left:22px;margin-top:5px;">${tagsHTML(c.certs)}</div>
       ${auditorHTML}
     </td>
-    <td class="col-cert">${tagsHTML(c.certs)}</td>
     <td class="col-sector" style="font-size:.8rem;color:var(--grey-4);">${c.sector.split('·')[0].trim()}</td>
     <td class="col-date" style="font-size:.8rem;color:var(--grey-3);white-space:nowrap;">${c.date}</td>
     <td>${statusHTML(c.status,c.statusLabel)}</td>
