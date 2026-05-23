@@ -2101,6 +2101,20 @@ function updateCharts(){
       sector = 'Cloud / Hosting';
     } else if(/observability|monitoring|\bapm\b|aiops|analytics|business intelligence|data warehouse|data lakehouse|database|integration platform|api management/.test(blob)){
       sector = 'Data / DevOps Tools';
+    } else if(/\bcrm\b|customer relationship|sales|marketing|customer support|customer engagement|helpdesk|customer success/.test(blob)){
+      sector = 'CRM / Sales / Marketing';
+    } else if(/identity|authentication|\bauth\b|access management|\bsso\b|single sign/.test(blob)){
+      sector = 'Identity / Access';
+    } else if(/design|whiteboard|creative|visual|prototyp/.test(blob)){
+      sector = 'Design / Creative';
+    } else if(/communication|messaging|video conferenc|\bvoice\b|\bsms\b|email api|telephony/.test(blob)){
+      sector = 'Communications';
+    } else if(/file storage|content management|file sharing|document|\becm\b|cloud storage/.test(blob)){
+      sector = 'Storage / Content';
+    } else if(/e-commerce|ecommerce|online store|website builder|webshop/.test(blob)){
+      sector = 'eCommerce / Web';
+    } else if(/work management|project management|productivity|workspace|collaboration|task management|workflow/.test(blob)){
+      sector = 'Collaboration / Productivity';
     } else if(tags.includes('hosting') || tags.includes('tech')){
       sector = 'Other SaaS / Tech';
     }
@@ -2114,7 +2128,7 @@ function updateCharts(){
   });
 
   // Render sector chart
-  renderBars('chartSector', sectorCounts, ['Hyperscale Cloud','Cloud / Hosting','Data Centre / Colo','Data / DevOps Tools','Accounting / Finance SaaS','Payroll / HR Tech','Cybersecurity','Payments / Crypto','iGaming','Fund / Financial Svcs','Other SaaS / Tech','Other']);
+  renderBars('chartSector', sectorCounts, ['Hyperscale Cloud','Cloud / Hosting','Data Centre / Colo','Data / DevOps Tools','CRM / Sales / Marketing','Collaboration / Productivity','Design / Creative','Communications','Storage / Content','Identity / Access','eCommerce / Web','Accounting / Finance SaaS','Payroll / HR Tech','Cybersecurity','Payments / Crypto','iGaming','Fund / Financial Svcs','Other SaaS / Tech','Other']);
   // Render auditor chart (sorted desc)
   renderBars('chartAuditor', auditorCounts, null);
 
