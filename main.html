@@ -1,12 +1,12 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8"/>
-  <meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<!-- saved from url=(0044)https://malta-soc-audit.vercel.app/main.html -->
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  
+  <meta name="viewport" content="width=device-width,initial-scale=1.0">
   <title>Malta SOC Audit Intelligence · Independent Assurance Registry</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com"/>
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;800&family=Source+Sans+3:ital,wght@0,300;0,400;0,600;0,700;1,400&display=swap" rel="stylesheet"/>
+  <link rel="preconnect" href="https://fonts.googleapis.com/">
+  <link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin="">
+  <link href="./Malta SOC Audit Intelligence · Independent Assurance Registry_files/css2" rel="stylesheet">
   <style>
     /* ── TOKENS ─────────────────────────────────────────── */
     :root{
@@ -471,7 +471,7 @@
     <div class="modal-header">
       <div>
         <div class="modal-kicker" id="mKicker"></div>
-        <div class="modal-name"   id="mName"></div>
+        <div class="modal-name" id="mName"></div>
         <div class="modal-sector" id="mSector"></div>
       </div>
       <button class="modal-close" onclick="closeModal()">×</button>
@@ -487,7 +487,7 @@
     </div>
     <div class="modal-footer">
       <span class="modal-date" id="mDate"></span>
-      <a class="modal-link" id="mLink" href="#" target="_blank">View Source</a>
+      <a class="modal-link" id="mLink" href="https://malta-soc-audit.vercel.app/main.html#" target="_blank">View Source</a>
     </div>
   </div>
 </div>
@@ -512,13 +512,13 @@
 <!-- NAV -->
 <nav>
   <div class="nav-inner">
-    <a class="nav-link active" href="#registry">Registry</a>
-    <a class="nav-link" href="./frameworks.html">Frameworks</a>
-    <a class="nav-link" href="#mfsa">MFSA Rules</a>
-    <a class="nav-link" href="./mdia.html" style="color:var(--red);">MDIA Analysis →</a>
-    <a class="nav-link" href="#methodology">Methodology</a>
-    <a class="nav-link" href="./providers.html">SOC Providers</a>
-    <a class="nav-link" href="./analytics.html" style="color:var(--blue);">Analytics</a>
+    <a class="nav-link active" href="https://malta-soc-audit.vercel.app/main.html#registry">Registry</a>
+    <a class="nav-link" href="https://malta-soc-audit.vercel.app/frameworks.html">Frameworks</a>
+    <a class="nav-link" href="https://malta-soc-audit.vercel.app/main.html#mfsa">MFSA Rules</a>
+    <a class="nav-link" href="https://malta-soc-audit.vercel.app/mdia.html" style="color:var(--red);">MDIA Analysis →</a>
+    <a class="nav-link" href="https://malta-soc-audit.vercel.app/main.html#methodology">Methodology</a>
+    <a class="nav-link" href="https://malta-soc-audit.vercel.app/providers.html">SOC Providers</a>
+    <a class="nav-link" href="https://malta-soc-audit.vercel.app/analytics.html" style="color:var(--blue);">Analytics</a>
   </div>
 </nav>
 
@@ -544,46 +544,46 @@
       <div style="display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;margin-bottom:14px;">
         <div>
           <div style="font-size:.62rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--red);">Live Insights</div>
-          <div style="font-family:'Playfair Display',serif;font-size:1.05rem;font-weight:700;color:var(--black);">Visible Companies — Sector & Auditor Distribution</div>
+          <div style="font-family:&#39;Playfair Display&#39;,serif;font-size:1.05rem;font-weight:700;color:var(--black);">Visible Companies — Sector &amp; Auditor Distribution</div>
         </div>
-        <div id="chartTotals" style="font-size:.75rem;color:var(--grey-4);"></div>
+        <div id="chartTotals" style="font-size:.75rem;color:var(--grey-4);"><strong style="color:var(--ink);">107</strong> SOC/ISAE reports visible · <strong style="color:var(--grey-4);">107</strong> companies in view</div>
       </div>
       <div id="chartFilterBanner" style="display:none;align-items:center;background:#fef3c7;border:1px solid #fde68a;border-radius:2px;padding:7px 12px;margin-bottom:12px;font-size:.78rem;color:#92400e;"></div>
       <div style="font-size:.68rem;color:var(--grey-3);margin-bottom:10px;">💡 Click any bar to filter the registry by that sector or auditor.</div>
       <div style="display:grid;grid-template-columns:1fr 1fr;gap:24px;" id="chartGrid">
         <div>
           <div style="font-size:.7rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-soft);margin-bottom:8px;">Reports per sector</div>
-          <div id="chartSector"></div>
+          <div id="chartSector"><div class="bar-row clickable" title="Hyperscale Cloud: 7 — click to filter" onclick="selectChartFilter(&#39;sector&#39;, (this.dataset.key||this.closest(&#39;[data-key]&#39;)?.dataset.key))" data-key="Hyperscale Cloud"><div class="bar-label">Hyperscale Cloud</div><div class="bar-track"><div class="bar-fill" style="width:43.75%;">7</div></div></div><div class="bar-row clickable" title="Cloud / Hosting: 7 — click to filter" onclick="selectChartFilter(&#39;sector&#39;, (this.dataset.key||this.closest(&#39;[data-key]&#39;)?.dataset.key))" data-key="Cloud / Hosting"><div class="bar-label">Cloud / Hosting</div><div class="bar-track"><div class="bar-fill" style="width:43.75%;">7</div></div></div><div class="bar-row clickable" title="Data Centre / Colo: 7 — click to filter" onclick="selectChartFilter(&#39;sector&#39;, (this.dataset.key||this.closest(&#39;[data-key]&#39;)?.dataset.key))" data-key="Data Centre / Colo"><div class="bar-label">Data Centre / Colo</div><div class="bar-track"><div class="bar-fill" style="width:43.75%;">7</div></div></div><div class="bar-row clickable" title="Data / DevOps Tools: 8 — click to filter" onclick="selectChartFilter(&#39;sector&#39;, (this.dataset.key||this.closest(&#39;[data-key]&#39;)?.dataset.key))" data-key="Data / DevOps Tools"><div class="bar-label">Data / DevOps Tools</div><div class="bar-track"><div class="bar-fill" style="width:50%;">8</div></div></div><div class="bar-row clickable" title="CRM / Sales / Marketing: 5 — click to filter" onclick="selectChartFilter(&#39;sector&#39;, (this.dataset.key||this.closest(&#39;[data-key]&#39;)?.dataset.key))" data-key="CRM / Sales / Marketing"><div class="bar-label">CRM / Sales / Marketing</div><div class="bar-track"><div class="bar-fill" style="width:31.25%;">5</div></div></div><div class="bar-row clickable" title="Collaboration / Productivity: 5 — click to filter" onclick="selectChartFilter(&#39;sector&#39;, (this.dataset.key||this.closest(&#39;[data-key]&#39;)?.dataset.key))" data-key="Collaboration / Productivity"><div class="bar-label">Collaboration / Productivity</div><div class="bar-track"><div class="bar-fill" style="width:31.25%;">5</div></div></div><div class="bar-row clickable" title="Design / Creative: 3 — click to filter" onclick="selectChartFilter(&#39;sector&#39;, (this.dataset.key||this.closest(&#39;[data-key]&#39;)?.dataset.key))" data-key="Design / Creative"><div class="bar-label">Design / Creative</div><div class="bar-track"><div class="bar-fill" style="width:18.75%;">3</div></div></div><div class="bar-row clickable" title="Communications: 3 — click to filter" onclick="selectChartFilter(&#39;sector&#39;, (this.dataset.key||this.closest(&#39;[data-key]&#39;)?.dataset.key))" data-key="Communications"><div class="bar-label">Communications</div><div class="bar-track"><div class="bar-fill" style="width:18.75%;">3</div></div></div><div class="bar-row clickable" title="Storage / Content: 2 — click to filter" onclick="selectChartFilter(&#39;sector&#39;, (this.dataset.key||this.closest(&#39;[data-key]&#39;)?.dataset.key))" data-key="Storage / Content"><div class="bar-label">Storage / Content</div><div class="bar-track"><div class="bar-fill" style="width:12.5%;">2</div></div></div><div class="bar-row clickable" title="Identity / Access: 1 — click to filter" onclick="selectChartFilter(&#39;sector&#39;, (this.dataset.key||this.closest(&#39;[data-key]&#39;)?.dataset.key))" data-key="Identity / Access"><div class="bar-label">Identity / Access</div><div class="bar-track"><div class="bar-fill" style="width:6.25%;">1</div></div></div><div class="bar-row clickable" title="eCommerce / Web: 2 — click to filter" onclick="selectChartFilter(&#39;sector&#39;, (this.dataset.key||this.closest(&#39;[data-key]&#39;)?.dataset.key))" data-key="eCommerce / Web"><div class="bar-label">eCommerce / Web</div><div class="bar-track"><div class="bar-fill" style="width:12.5%;">2</div></div></div><div class="bar-row clickable" title="Accounting / Finance SaaS: 6 — click to filter" onclick="selectChartFilter(&#39;sector&#39;, (this.dataset.key||this.closest(&#39;[data-key]&#39;)?.dataset.key))" data-key="Accounting / Finance SaaS"><div class="bar-label">Accounting / Finance SaaS</div><div class="bar-track"><div class="bar-fill" style="width:37.5%;">6</div></div></div><div class="bar-row clickable" title="Payroll / HR Tech: 4 — click to filter" onclick="selectChartFilter(&#39;sector&#39;, (this.dataset.key||this.closest(&#39;[data-key]&#39;)?.dataset.key))" data-key="Payroll / HR Tech"><div class="bar-label">Payroll / HR Tech</div><div class="bar-track"><div class="bar-fill" style="width:25%;">4</div></div></div><div class="bar-row clickable" title="Cybersecurity: 4 — click to filter" onclick="selectChartFilter(&#39;sector&#39;, (this.dataset.key||this.closest(&#39;[data-key]&#39;)?.dataset.key))" data-key="Cybersecurity"><div class="bar-label">Cybersecurity</div><div class="bar-track"><div class="bar-fill" style="width:25%;">4</div></div></div><div class="bar-row clickable" title="Payments: 8 — click to filter" onclick="selectChartFilter(&#39;sector&#39;, (this.dataset.key||this.closest(&#39;[data-key]&#39;)?.dataset.key))" data-key="Payments"><div class="bar-label">Payments</div><div class="bar-track"><div class="bar-fill" style="width:50%;">8</div></div></div><div class="bar-row clickable" title="Crypto / Digital Assets: 12 — click to filter" onclick="selectChartFilter(&#39;sector&#39;, (this.dataset.key||this.closest(&#39;[data-key]&#39;)?.dataset.key))" data-key="Crypto / Digital Assets"><div class="bar-label">Crypto / Digital Assets</div><div class="bar-track"><div class="bar-fill" style="width:75%;">12</div></div></div><div class="bar-row clickable" title="iGaming: 5 — click to filter" onclick="selectChartFilter(&#39;sector&#39;, (this.dataset.key||this.closest(&#39;[data-key]&#39;)?.dataset.key))" data-key="iGaming"><div class="bar-label">iGaming</div><div class="bar-track"><div class="bar-fill" style="width:31.25%;">5</div></div></div><div class="bar-row clickable" title="Fund / Financial Svcs: 2 — click to filter" onclick="selectChartFilter(&#39;sector&#39;, (this.dataset.key||this.closest(&#39;[data-key]&#39;)?.dataset.key))" data-key="Fund / Financial Svcs"><div class="bar-label">Fund / Financial Svcs</div><div class="bar-track"><div class="bar-fill" style="width:12.5%;">2</div></div></div><div class="bar-row clickable" title="Other SaaS / Tech: 16 — click to filter" onclick="selectChartFilter(&#39;sector&#39;, (this.dataset.key||this.closest(&#39;[data-key]&#39;)?.dataset.key))" data-key="Other SaaS / Tech"><div class="bar-label">Other SaaS / Tech</div><div class="bar-track"><div class="bar-fill" style="width:100%;">16</div></div></div></div>
         </div>
         <div>
           <div style="font-size:.7rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-soft);margin-bottom:8px;">Reports per auditor</div>
-          <div id="chartAuditor"></div>
+          <div id="chartAuditor"><div class="bar-row clickable" title="Not publicly disclosed: 101 — click to filter" onclick="selectChartFilter(&#39;auditor&#39;, (this.dataset.key||this.closest(&#39;[data-key]&#39;)?.dataset.key))" data-key="Not publicly disclosed"><div class="bar-label">Not publicly disclosed</div><div class="bar-track"><div class="bar-fill" style="width:100%;">101</div></div></div><div class="bar-row clickable" title="Ernst &amp; Young LLP (EY): 2 — click to filter" onclick="selectChartFilter(&#39;auditor&#39;, (this.dataset.key||this.closest(&#39;[data-key]&#39;)?.dataset.key))" data-key="Ernst &amp; Young LLP (EY)"><div class="bar-label">Ernst &amp; Young LLP (EY)</div><div class="bar-track"><div class="bar-fill" style="width:6%;">2</div></div></div><div class="bar-row clickable" title="Deloitte &amp; Touche LLP: 2 — click to filter" onclick="selectChartFilter(&#39;auditor&#39;, (this.dataset.key||this.closest(&#39;[data-key]&#39;)?.dataset.key))" data-key="Deloitte &amp; Touche LLP"><div class="bar-label">Deloitte &amp; Touche LLP</div><div class="bar-track"><div class="bar-fill" style="width:6%;">2</div></div></div><div class="bar-row clickable" title="MNP LLP: 1 — click to filter" onclick="selectChartFilter(&#39;auditor&#39;, (this.dataset.key||this.closest(&#39;[data-key]&#39;)?.dataset.key))" data-key="MNP LLP"><div class="bar-label">MNP LLP</div><div class="bar-track"><div class="bar-fill" style="width:6%;">1</div></div></div><div class="bar-row clickable" title="Ernst &amp; Young LLP (EY) + Coalfire: 1 — click to filter" onclick="selectChartFilter(&#39;auditor&#39;, (this.dataset.key||this.closest(&#39;[data-key]&#39;)?.dataset.key))" data-key="Ernst &amp; Young LLP (EY) + Coalfire"><div class="bar-label">Ernst &amp; Young LLP (EY) + Coalfire</div><div class="bar-track"><div class="bar-fill" style="width:6%;">1</div></div></div></div>
         </div>
       </div>
     </div>
 
     <div class="toolbar">
       <div class="search-wrap">
-        <svg class="search-icon" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
-        <input type="text" id="searchInput" placeholder="Search name, sector, cert, auditor, source domain…" oninput="filterTable()"/>
+        <svg class="search-icon" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="11" cy="11" r="8"></circle><path d="m21 21-4.35-4.35"></path></svg>
+        <input type="text" id="searchInput" placeholder="Search name, sector, cert, auditor, source domain…" oninput="filterTable()">
       </div>
       <span id="resultsCount" style="font-size:.78rem;font-weight:600;color:var(--grey-4);white-space:nowrap;">121 companies</span>
       <div class="filter-pills">
         <span class="filter-label">Filter <span id="filterCount" style="display:none;background:var(--red);color:#fff;border-radius:10px;padding:1px 7px;font-size:.65rem;font-weight:700;margin-left:4px;vertical-align:middle;"></span></span>
-        <button class="fpill active" data-filter="all" onclick="setFilter('all',this)">All</button>
-        <button class="fpill" data-filter="malta" onclick="setFilter('malta',this)" style="background:#fef3c7;color:#92400e;border-color:#fde68a;">🇲🇹 Malta only</button>
-        <button class="fpill" data-filter="soc2" onclick="setFilter('soc2',this)">SOC 2</button>
-        <button class="fpill" data-filter="soc1" onclick="setFilter('soc1',this)">SOC 1</button>
-        <button class="fpill" data-filter="isae3402" onclick="setFilter('isae3402',this)">ISAE 3402</button>
-        <button class="fpill" data-filter="isae3000" onclick="setFilter('isae3000',this)">ISAE 3000</button>
-        <button class="fpill" data-filter="hosting" onclick="setFilter('hosting',this)">Cloud / Hosting</button>
-        <button class="fpill" data-filter="tech" onclick="setFilter('tech',this)">Tech / SaaS</button>
-        <button class="fpill" data-filter="igaming" onclick="setFilter('igaming',this)">iGaming</button>
-        <button class="fpill" data-filter="payment" onclick="setFilter('payment',this)">Payments</button>
-        <button class="fpill" data-filter="crypto" onclick="setFilter('crypto',this)">Crypto</button>
-        <button class="fpill" data-filter="mfsa" onclick="setFilter('mfsa',this)">MFSA</button>
-        <button class="fpill" data-filter="fund" onclick="setFilter('fund',this)">Fund Services</button>
-        <button class="fpill" data-filter="confirmed" onclick="setFilter('confirmed',this)">Confirmed ✓</button>
+        <button class="fpill active" data-filter="all" onclick="setFilter(&#39;all&#39;,this)">All</button>
+        <button class="fpill" data-filter="malta" onclick="setFilter(&#39;malta&#39;,this)" style="background:#fef3c7;color:#92400e;border-color:#fde68a;">🇲🇹 Malta only</button>
+        <button class="fpill" data-filter="soc2" onclick="setFilter(&#39;soc2&#39;,this)">SOC 2</button>
+        <button class="fpill" data-filter="soc1" onclick="setFilter(&#39;soc1&#39;,this)">SOC 1</button>
+        <button class="fpill" data-filter="isae3402" onclick="setFilter(&#39;isae3402&#39;,this)">ISAE 3402</button>
+        <button class="fpill" data-filter="isae3000" onclick="setFilter(&#39;isae3000&#39;,this)">ISAE 3000</button>
+        <button class="fpill" data-filter="hosting" onclick="setFilter(&#39;hosting&#39;,this)">Cloud / Hosting</button>
+        <button class="fpill" data-filter="tech" onclick="setFilter(&#39;tech&#39;,this)">Tech / SaaS</button>
+        <button class="fpill" data-filter="igaming" onclick="setFilter(&#39;igaming&#39;,this)">iGaming</button>
+        <button class="fpill" data-filter="payment" onclick="setFilter(&#39;payment&#39;,this)">Payments</button>
+        <button class="fpill" data-filter="crypto" onclick="setFilter(&#39;crypto&#39;,this)">Crypto</button>
+        <button class="fpill" data-filter="mfsa" onclick="setFilter(&#39;mfsa&#39;,this)">MFSA</button>
+        <button class="fpill" data-filter="fund" onclick="setFilter(&#39;fund&#39;,this)">Fund Services</button>
+        <button class="fpill" data-filter="confirmed" onclick="setFilter(&#39;confirmed&#39;,this)">Confirmed ✓</button>
       </div>
     </div>
 
@@ -598,7 +598,1077 @@
             <th>Status</th>
           </tr>
         </thead>
-        <tbody id="tBody"></tbody>
+        <tbody id="tBody"><tr data-i="0" data-tags="soc2 tech mga confirmed malta hosting" data-auditor="not publicly disclosed">
+    <td>
+      <span title="Malta-based" style="display:inline-block;margin-right:6px;font-size:.95em;">🇲🇹</span><span class="cname" onclick="openModal(0)">BMIT Technologies plc</span>
+      <div class="csector" style="margin-left:22px;">IT Infrastructure · Data Centre · Cloud</div>
+      <div style="margin-left:22px;margin-top:5px;"><span class="tag soc2">SOC 2 Type I</span><span class="tag isae3000">ISAE 3000</span></div>
+      <div style="margin-left:22px;margin-top:3px;"><span style="font-weight:700;color:var(--red);text-transform:uppercase;letter-spacing:.05em;font-size:.62rem;">Auditor:</span> <span style="color:var(--grey-3);font-weight:400;font-size:.7rem;">Not publicly disclosed</span></div>
+    </td>
+    <td class="col-sector" style="font-size:.8rem;color:var(--grey-4);">IT Infrastructure</td>
+    <td class="col-date" style="font-size:.8rem;color:var(--grey-3);white-space:nowrap;">Feb 2024</td>
+    <td><div class="status-cell"><span class="sdot g"></span>Confirmed</div></td>
+  </tr><tr data-i="1" data-tags="soc2 igaming mga confirmed malta" data-auditor="mnp llp">
+    <td>
+      <span title="Malta-based" style="display:inline-block;margin-right:6px;font-size:.95em;">🇲🇹</span><span class="cname" onclick="openModal(1)">Kindred Group plc (Unibet)</span>
+      <div class="csector" style="margin-left:22px;">Online Gaming · Sports Betting · MGA Licensed</div>
+      <div style="margin-left:22px;margin-top:5px;"><span class="tag soc2">SOC 2 Type II</span></div>
+      <div style="margin-left:22px;margin-top:3px;"><span style="font-weight:700;color:var(--red);text-transform:uppercase;letter-spacing:.05em;font-size:.62rem;">Auditor:</span> <span style="color:var(--ink-soft);font-weight:600;font-size:.7rem;">MNP LLP</span></div>
+    </td>
+    <td class="col-sector" style="font-size:.8rem;color:var(--grey-4);">Online Gaming</td>
+    <td class="col-date" style="font-size:.8rem;color:var(--grey-3);white-space:nowrap;">Jun 2023</td>
+    <td><div class="status-cell"><span class="sdot g"></span>Confirmed</div></td>
+  </tr><tr data-i="2" data-tags="soc2 soc1 isae3402 tech confirmed malta hosting" data-auditor="not publicly disclosed">
+    <td>
+      <span title="Malta-based" style="display:inline-block;margin-right:6px;font-size:.95em;">🇲🇹</span><span class="cname" onclick="openModal(2)">Hornetsecurity (formerly Altaro)</span>
+      <div class="csector" style="margin-left:22px;">Cybersecurity · Cloud Backup · Email Security</div>
+      <div style="margin-left:22px;margin-top:5px;"><span class="tag soc2">SOC 2 Type II</span><span class="tag soc1">SOC 1 Type I</span><span class="tag isae3402">ISAE 3402</span><span class="tag iso27001">ISO 27001</span></div>
+      <div style="margin-left:22px;margin-top:3px;"><span style="font-weight:700;color:var(--red);text-transform:uppercase;letter-spacing:.05em;font-size:.62rem;">Auditor:</span> <span style="color:var(--grey-3);font-weight:400;font-size:.7rem;">Not publicly disclosed</span></div>
+    </td>
+    <td class="col-sector" style="font-size:.8rem;color:var(--grey-4);">Cybersecurity</td>
+    <td class="col-date" style="font-size:.8rem;color:var(--grey-3);white-space:nowrap;">2024 ongoing</td>
+    <td><div class="status-cell"><span class="sdot g"></span>Confirmed</div></td>
+  </tr><tr data-i="3" data-tags="isae3402 igaming mga confirmed malta" data-auditor="not publicly disclosed">
+    <td>
+      <span title="Malta-based" style="display:inline-block;margin-right:6px;font-size:.95em;">🇲🇹</span><span class="cname" onclick="openModal(3)">Greentube Malta</span>
+      <div class="csector" style="margin-left:22px;">Online Casino · NOVOMATIC Group · MGA</div>
+      <div style="margin-left:22px;margin-top:5px;"><span class="tag isae3402">ISAE 3402</span></div>
+      <div style="margin-left:22px;margin-top:3px;"><span style="font-weight:700;color:var(--red);text-transform:uppercase;letter-spacing:.05em;font-size:.62rem;">Auditor:</span> <span style="color:var(--grey-3);font-weight:400;font-size:.7rem;">Not publicly disclosed</span></div>
+    </td>
+    <td class="col-sector" style="font-size:.8rem;color:var(--grey-4);">Online Casino</td>
+    <td class="col-date" style="font-size:.8rem;color:var(--grey-3);white-space:nowrap;">Early 2023</td>
+    <td><div class="status-cell"><span class="sdot g"></span>Confirmed</div></td>
+  </tr><tr data-i="4" data-tags="soc2 payment mfsa confirmed malta">
+    <td>
+      <span title="Malta-based" style="display:inline-block;margin-right:6px;font-size:.95em;">🇲🇹</span><span class="cname" onclick="openModal(4)">Nuvei Technologies (Malta)</span>
+      <div class="csector" style="margin-left:22px;">Payment Processing · EMI · MFSA</div>
+      <div style="margin-left:22px;margin-top:5px;"><span class="tag soc2">PCI DSS Lvl 1</span><span class="tag iso27001">MiCAR CASP Dec 2025</span></div>
+      
+    </td>
+    <td class="col-sector" style="font-size:.8rem;color:var(--grey-4);">Payment Processing</td>
+    <td class="col-date" style="font-size:.8rem;color:var(--grey-3);white-space:nowrap;">Annual · Dec 2025</td>
+    <td><div class="status-cell"><span class="sdot g"></span>Confirmed</div></td>
+  </tr><tr data-i="5" data-tags="soc2 payment mfsa confirmed malta">
+    <td>
+      <span title="Malta-based" style="display:inline-block;margin-right:6px;font-size:.95em;">🇲🇹</span><span class="cname" onclick="openModal(5)">Paysafe Malta (Skrill / NETELLER)</span>
+      <div class="csector" style="margin-left:22px;">E-Wallet · EMI · MFSA</div>
+      <div style="margin-left:22px;margin-top:5px;"><span class="tag soc2">SOC 2 (Group)</span><span class="tag soc1">PCI DSS Lvl 1</span></div>
+      
+    </td>
+    <td class="col-sector" style="font-size:.8rem;color:var(--grey-4);">E-Wallet</td>
+    <td class="col-date" style="font-size:.8rem;color:var(--grey-3);white-space:nowrap;">2024/25 ongoing</td>
+    <td><div class="status-cell"><span class="sdot g"></span>Confirmed</div></td>
+  </tr><tr data-i="6" data-tags="soc2 payment mfsa trading confirmed malta">
+    <td>
+      <span title="Malta-based" style="display:inline-block;margin-right:6px;font-size:.95em;">🇲🇹</span><span class="cname" onclick="openModal(6)">Bitstamp Europe (Malta MTF)</span>
+      <div class="csector" style="margin-left:22px;">Crypto Exchange · MFSA MiFID MTF</div>
+      <div style="margin-left:22px;margin-top:5px;"><span class="tag soc2">SOC 2 (Group)</span><span class="tag iso27001">ISO 27001</span></div>
+      
+    </td>
+    <td class="col-sector" style="font-size:.8rem;color:var(--grey-4);">Crypto Exchange</td>
+    <td class="col-date" style="font-size:.8rem;color:var(--grey-3);white-space:nowrap;">MTF Oct 2024</td>
+    <td><div class="status-cell"><span class="sdot g"></span>Confirmed</div></td>
+  </tr><tr data-i="7" data-tags="soc2 soc1 payment mfsa trading confirmed malta">
+    <td>
+      <span title="Malta-based" style="display:inline-block;margin-right:6px;font-size:.95em;">🇲🇹</span><span class="cname" onclick="openModal(7)">Gemini (Intergalactic EU Artemis)</span>
+      <div class="csector" style="margin-left:22px;">Crypto Exchange · MFSA MiCA</div>
+      <div style="margin-left:22px;margin-top:5px;"><span class="tag soc2">SOC 2 Type II</span><span class="tag soc1">SOC 1 Type II</span><span class="tag iso27001">MiCA CASP</span></div>
+      
+    </td>
+    <td class="col-sector" style="font-size:.8rem;color:var(--grey-4);">Crypto Exchange</td>
+    <td class="col-date" style="font-size:.8rem;color:var(--grey-3);white-space:nowrap;">MFSA Dec 2024</td>
+    <td><div class="status-cell"><span class="sdot g"></span>Confirmed (Group)</div></td>
+  </tr><tr data-i="8" data-tags="soc2 soc1 payment mfsa confirmed malta" data-auditor="not publicly disclosed">
+    <td>
+      <span title="Malta-based" style="display:inline-block;margin-right:6px;font-size:.95em;">🇲🇹</span><span class="cname" onclick="openModal(8)">Crypto.com (Foris DAX MT)</span>
+      <div class="csector" style="margin-left:22px;">Crypto Exchange · MFSA MiCA CASP</div>
+      <div style="margin-left:22px;margin-top:5px;"><span class="tag soc2">SOC 2 Type II</span><span class="tag soc1">SOC 1 Type II</span></div>
+      <div style="margin-left:22px;margin-top:3px;"><span style="font-weight:700;color:var(--red);text-transform:uppercase;letter-spacing:.05em;font-size:.62rem;">Auditor:</span> <span style="color:var(--grey-3);font-weight:400;font-size:.7rem;">Not publicly disclosed</span></div>
+    </td>
+    <td class="col-sector" style="font-size:.8rem;color:var(--grey-4);">Crypto Exchange</td>
+    <td class="col-date" style="font-size:.8rem;color:var(--grey-3);white-space:nowrap;">MiCA Jan 2025</td>
+    <td><div class="status-cell"><span class="sdot g"></span>Confirmed (Group)</div></td>
+  </tr><tr data-i="9" data-tags="soc2 soc1 isae3402 tech confirmed hosting" data-auditor="ernst &amp; young llp (ey)">
+    <td>
+      <span title="Global / used in Malta" style="display:inline-block;margin-right:6px;font-size:.95em;color:var(--grey-3);">🌐</span><span class="cname" onclick="openModal(9)">Amazon Web Services (AWS)</span>
+      <div class="csector" style="margin-left:22px;">Hyperscale Cloud · IaaS</div>
+      <div style="margin-left:22px;margin-top:5px;"><span class="tag soc2">SOC 2 Type II</span><span class="tag soc1">SOC 1 Type II</span><span class="tag isae3402">ISAE 3402</span><span class="tag isae3000">ISAE 3000</span><span class="tag iso27001">ISO 27001</span></div>
+      <div style="margin-left:22px;margin-top:3px;"><span style="font-weight:700;color:var(--red);text-transform:uppercase;letter-spacing:.05em;font-size:.62rem;">Auditor:</span> <span style="color:var(--ink-soft);font-weight:600;font-size:.7rem;">Ernst &amp; Young LLP (EY)</span><span style="display:block;font-size:.6rem;color:var(--grey-3);margin-top:1px;">SOC 1 · SOC 2 · SOC 3 attestation auditor (AICPA)</span></div>
+    </td>
+    <td class="col-sector" style="font-size:.8rem;color:var(--grey-4);">Hyperscale Cloud</td>
+    <td class="col-date" style="font-size:.8rem;color:var(--grey-3);white-space:nowrap;">Annual · 143+ services</td>
+    <td><div class="status-cell"><span class="sdot g"></span>Confirmed</div></td>
+  </tr><tr data-i="10" data-tags="soc2 soc1 isae3402 tech confirmed hosting" data-auditor="deloitte &amp; touche llp">
+    <td>
+      <span title="Global / used in Malta" style="display:inline-block;margin-right:6px;font-size:.95em;color:var(--grey-3);">🌐</span><span class="cname" onclick="openModal(10)">Microsoft Azure</span>
+      <div class="csector" style="margin-left:22px;">Hyperscale Cloud · M365</div>
+      <div style="margin-left:22px;margin-top:5px;"><span class="tag soc2">SOC 2 Type II</span><span class="tag soc1">SOC 1 Type II</span><span class="tag isae3402">ISAE 3402</span><span class="tag iso27001">ISO 27001</span></div>
+      <div style="margin-left:22px;margin-top:3px;"><span style="font-weight:700;color:var(--red);text-transform:uppercase;letter-spacing:.05em;font-size:.62rem;">Auditor:</span> <span style="color:var(--ink-soft);font-weight:600;font-size:.7rem;">Deloitte &amp; Touche LLP</span><span style="display:block;font-size:.6rem;color:var(--grey-3);margin-top:1px;">SOC 1 · SOC 2 attestation auditor (AICPA/ISAE 3402) — confirmed in published SOC 1 report PDF</span></div>
+    </td>
+    <td class="col-sector" style="font-size:.8rem;color:var(--grey-4);">Hyperscale Cloud</td>
+    <td class="col-date" style="font-size:.8rem;color:var(--grey-3);white-space:nowrap;">Annual</td>
+    <td><div class="status-cell"><span class="sdot g"></span>Confirmed</div></td>
+  </tr><tr data-i="11" data-tags="soc2 soc1 tech confirmed hosting" data-auditor="ernst &amp; young llp (ey) + coalfire">
+    <td>
+      <span title="Global / used in Malta" style="display:inline-block;margin-right:6px;font-size:.95em;color:var(--grey-3);">🌐</span><span class="cname" onclick="openModal(11)">Google Cloud Platform</span>
+      <div class="csector" style="margin-left:22px;">Hyperscale Cloud · IaaS</div>
+      <div style="margin-left:22px;margin-top:5px;"><span class="tag soc2">SOC 2 Type II</span><span class="tag soc1">SOC 1 Type II</span><span class="tag iso27001">ISO 27001</span></div>
+      <div style="margin-left:22px;margin-top:3px;"><span style="font-weight:700;color:var(--red);text-transform:uppercase;letter-spacing:.05em;font-size:.62rem;">Auditor:</span> <span style="color:var(--ink-soft);font-weight:600;font-size:.7rem;">Ernst &amp; Young LLP (EY) + Coalfire</span><span style="display:block;font-size:.6rem;color:var(--grey-3);margin-top:1px;">SOC 1 · SOC 2 · SOC 3 attestation auditor (AICPA) — GCP names both firms publicly</span></div>
+    </td>
+    <td class="col-sector" style="font-size:.8rem;color:var(--grey-4);">Hyperscale Cloud</td>
+    <td class="col-date" style="font-size:.8rem;color:var(--grey-3);white-space:nowrap;">Annual</td>
+    <td><div class="status-cell"><span class="sdot g"></span>Confirmed</div></td>
+  </tr><tr data-i="12" data-tags="soc2 soc1 isae3402 tech confirmed hosting" data-auditor="not publicly disclosed">
+    <td>
+      <span title="Global / used in Malta" style="display:inline-block;margin-right:6px;font-size:.95em;color:var(--grey-3);">🌐</span><span class="cname" onclick="openModal(12)">Oracle Cloud Infrastructure</span>
+      <div class="csector" style="margin-left:22px;">Hyperscale Cloud · Database</div>
+      <div style="margin-left:22px;margin-top:5px;"><span class="tag soc2">SOC 2 Type II</span><span class="tag soc1">SOC 1 Type II</span><span class="tag isae3402">ISAE 3402</span></div>
+      <div style="margin-left:22px;margin-top:3px;"><span style="font-weight:700;color:var(--red);text-transform:uppercase;letter-spacing:.05em;font-size:.62rem;">Auditor:</span> <span style="color:var(--grey-3);font-weight:400;font-size:.7rem;">Not publicly disclosed</span></div>
+    </td>
+    <td class="col-sector" style="font-size:.8rem;color:var(--grey-4);">Hyperscale Cloud</td>
+    <td class="col-date" style="font-size:.8rem;color:var(--grey-3);white-space:nowrap;">Annual</td>
+    <td><div class="status-cell"><span class="sdot g"></span>Confirmed</div></td>
+  </tr><tr data-i="13" data-tags="soc2 soc1 isae3402 tech confirmed hosting" data-auditor="not publicly disclosed">
+    <td>
+      <span title="Global / used in Malta" style="display:inline-block;margin-right:6px;font-size:.95em;color:var(--grey-3);">🌐</span><span class="cname" onclick="openModal(13)">IBM Cloud</span>
+      <div class="csector" style="margin-left:22px;">Hyperscale Cloud · Watson AI</div>
+      <div style="margin-left:22px;margin-top:5px;"><span class="tag soc2">SOC 2 Type II</span><span class="tag soc1">SOC 1 Type II</span><span class="tag isae3402">ISAE 3402</span></div>
+      <div style="margin-left:22px;margin-top:3px;"><span style="font-weight:700;color:var(--red);text-transform:uppercase;letter-spacing:.05em;font-size:.62rem;">Auditor:</span> <span style="color:var(--grey-3);font-weight:400;font-size:.7rem;">Not publicly disclosed</span></div>
+    </td>
+    <td class="col-sector" style="font-size:.8rem;color:var(--grey-4);">Hyperscale Cloud</td>
+    <td class="col-date" style="font-size:.8rem;color:var(--grey-3);white-space:nowrap;">Annual</td>
+    <td><div class="status-cell"><span class="sdot g"></span>Confirmed</div></td>
+  </tr><tr data-i="14" data-tags="soc2 soc1 tech confirmed hosting">
+    <td>
+      <span title="Global / used in Malta" style="display:inline-block;margin-right:6px;font-size:.95em;color:var(--grey-3);">🌐</span><span class="cname" onclick="openModal(14)">Alibaba Cloud</span>
+      <div class="csector" style="margin-left:22px;">Hyperscale Cloud · APAC</div>
+      <div style="margin-left:22px;margin-top:5px;"><span class="tag soc2">SOC 2 Type II</span><span class="tag soc1">SOC 1 Type II</span></div>
+      
+    </td>
+    <td class="col-sector" style="font-size:.8rem;color:var(--grey-4);">Hyperscale Cloud</td>
+    <td class="col-date" style="font-size:.8rem;color:var(--grey-3);white-space:nowrap;">Annual</td>
+    <td><div class="status-cell"><span class="sdot g"></span>Confirmed</div></td>
+  </tr><tr data-i="15" data-tags="soc2 soc1 tech confirmed hosting">
+    <td>
+      <span title="Global / used in Malta" style="display:inline-block;margin-right:6px;font-size:.95em;color:var(--grey-3);">🌐</span><span class="cname" onclick="openModal(15)">DigitalOcean</span>
+      <div class="csector" style="margin-left:22px;">Developer Cloud · Droplets</div>
+      <div style="margin-left:22px;margin-top:5px;"><span class="tag soc2">SOC 2 Type II</span><span class="tag soc1">SOC 1 Type II</span></div>
+      
+    </td>
+    <td class="col-sector" style="font-size:.8rem;color:var(--grey-4);">Developer Cloud</td>
+    <td class="col-date" style="font-size:.8rem;color:var(--grey-3);white-space:nowrap;">Annual</td>
+    <td><div class="status-cell"><span class="sdot g"></span>Confirmed</div></td>
+  </tr><tr data-i="16" data-tags="soc2 tech confirmed hosting">
+    <td>
+      <span title="Global / used in Malta" style="display:inline-block;margin-right:6px;font-size:.95em;color:var(--grey-3);">🌐</span><span class="cname" onclick="openModal(16)">Linode (Akamai Cloud)</span>
+      <div class="csector" style="margin-left:22px;">Developer Cloud · VPS</div>
+      <div style="margin-left:22px;margin-top:5px;"><span class="tag soc2">SOC 2 Type II</span></div>
+      
+    </td>
+    <td class="col-sector" style="font-size:.8rem;color:var(--grey-4);">Developer Cloud</td>
+    <td class="col-date" style="font-size:.8rem;color:var(--grey-3);white-space:nowrap;">Annual</td>
+    <td><div class="status-cell"><span class="sdot g"></span>Confirmed</div></td>
+  </tr><tr data-i="17" data-tags="soc2 isae3402 tech confirmed hosting">
+    <td>
+      <span title="Global / used in Malta" style="display:inline-block;margin-right:6px;font-size:.95em;color:var(--grey-3);">🌐</span><span class="cname" onclick="openModal(17)">OVHcloud</span>
+      <div class="csector" style="margin-left:22px;">European Cloud · Data Centres</div>
+      <div style="margin-left:22px;margin-top:5px;"><span class="tag soc2">SOC 2 Type II</span><span class="tag isae3402">ISAE 3402</span><span class="tag iso27001">ISO 27001</span></div>
+      
+    </td>
+    <td class="col-sector" style="font-size:.8rem;color:var(--grey-4);">European Cloud</td>
+    <td class="col-date" style="font-size:.8rem;color:var(--grey-3);white-space:nowrap;">Annual</td>
+    <td><div class="status-cell"><span class="sdot g"></span>Confirmed</div></td>
+  </tr><tr data-i="18" data-tags="iso27001 tech hosting">
+    <td>
+      <span title="Global / used in Malta" style="display:inline-block;margin-right:6px;font-size:.95em;color:var(--grey-3);">🌐</span><span class="cname" onclick="openModal(18)">Scaleway</span>
+      <div class="csector" style="margin-left:22px;">European Cloud · IaaS</div>
+      <div style="margin-left:22px;margin-top:5px;"><span class="tag iso27001">ISO 27001</span></div>
+      
+    </td>
+    <td class="col-sector" style="font-size:.8rem;color:var(--grey-4);">European Cloud</td>
+    <td class="col-date" style="font-size:.8rem;color:var(--grey-3);white-space:nowrap;">2025</td>
+    <td><div class="status-cell"><span class="sdot a"></span>ISO 27001 · no SOC 2</div></td>
+  </tr><tr data-i="19" data-tags="soc2 tech confirmed hosting">
+    <td>
+      <span title="Global / used in Malta" style="display:inline-block;margin-right:6px;font-size:.95em;color:var(--grey-3);">🌐</span><span class="cname" onclick="openModal(19)">Vultr</span>
+      <div class="csector" style="margin-left:22px;">Developer Cloud · VPS</div>
+      <div style="margin-left:22px;margin-top:5px;"><span class="tag soc2">SOC 2 Type II</span></div>
+      
+    </td>
+    <td class="col-sector" style="font-size:.8rem;color:var(--grey-4);">Developer Cloud</td>
+    <td class="col-date" style="font-size:.8rem;color:var(--grey-3);white-space:nowrap;">Annual</td>
+    <td><div class="status-cell"><span class="sdot g"></span>Confirmed</div></td>
+  </tr><tr data-i="20" data-tags="soc2 tech confirmed hosting">
+    <td>
+      <span title="Global / used in Malta" style="display:inline-block;margin-right:6px;font-size:.95em;color:var(--grey-3);">🌐</span><span class="cname" onclick="openModal(20)">Cloudflare</span>
+      <div class="csector" style="margin-left:22px;">CDN · DDoS · Edge</div>
+      <div style="margin-left:22px;margin-top:5px;"><span class="tag soc2">SOC 2 Type II</span><span class="tag iso27001">ISO 27001</span></div>
+      
+    </td>
+    <td class="col-sector" style="font-size:.8rem;color:var(--grey-4);">CDN</td>
+    <td class="col-date" style="font-size:.8rem;color:var(--grey-3);white-space:nowrap;">Annual</td>
+    <td><div class="status-cell"><span class="sdot g"></span>Confirmed</div></td>
+  </tr><tr data-i="21" data-tags="soc2 soc1 tech confirmed hosting">
+    <td>
+      <span title="Global / used in Malta" style="display:inline-block;margin-right:6px;font-size:.95em;color:var(--grey-3);">🌐</span><span class="cname" onclick="openModal(21)">Akamai Technologies</span>
+      <div class="csector" style="margin-left:22px;">CDN · Edge Cloud · Security</div>
+      <div style="margin-left:22px;margin-top:5px;"><span class="tag soc2">SOC 2 Type II</span><span class="tag soc1">SOC 1</span><span class="tag iso27001">ISO 27001</span></div>
+      
+    </td>
+    <td class="col-sector" style="font-size:.8rem;color:var(--grey-4);">CDN</td>
+    <td class="col-date" style="font-size:.8rem;color:var(--grey-3);white-space:nowrap;">Annual</td>
+    <td><div class="status-cell"><span class="sdot g"></span>Confirmed</div></td>
+  </tr><tr data-i="22" data-tags="soc2 tech confirmed hosting">
+    <td>
+      <span title="Global / used in Malta" style="display:inline-block;margin-right:6px;font-size:.95em;color:var(--grey-3);">🌐</span><span class="cname" onclick="openModal(22)">Fastly</span>
+      <div class="csector" style="margin-left:22px;">Edge Cloud · CDN</div>
+      <div style="margin-left:22px;margin-top:5px;"><span class="tag soc2">SOC 2 Type II</span><span class="tag iso27001">ISO 27001</span></div>
+      
+    </td>
+    <td class="col-sector" style="font-size:.8rem;color:var(--grey-4);">Edge Cloud</td>
+    <td class="col-date" style="font-size:.8rem;color:var(--grey-3);white-space:nowrap;">Annual</td>
+    <td><div class="status-cell"><span class="sdot g"></span>Confirmed</div></td>
+  </tr><tr data-i="23" data-tags="soc2 soc1 tech confirmed" data-auditor="ernst &amp; young llp (ey)">
+    <td>
+      <span title="Global / used in Malta" style="display:inline-block;margin-right:6px;font-size:.95em;color:var(--grey-3);">🌐</span><span class="cname" onclick="openModal(23)">Salesforce</span>
+      <div class="csector" style="margin-left:22px;">CRM SaaS</div>
+      <div style="margin-left:22px;margin-top:5px;"><span class="tag soc2">SOC 2 Type II</span><span class="tag soc1">SOC 1 Type II</span><span class="tag iso27001">ISO 27001</span></div>
+      <div style="margin-left:22px;margin-top:3px;"><span style="font-weight:700;color:var(--red);text-transform:uppercase;letter-spacing:.05em;font-size:.62rem;">Auditor:</span> <span style="color:var(--ink-soft);font-weight:600;font-size:.7rem;">Ernst &amp; Young LLP (EY)</span><span style="display:block;font-size:.6rem;color:var(--grey-3);margin-top:1px;">SOC 1 · SOC 2 attestation auditor (AICPA); EY also serves as financial statements auditor (SEC filings)</span></div>
+    </td>
+    <td class="col-sector" style="font-size:.8rem;color:var(--grey-4);">CRM SaaS</td>
+    <td class="col-date" style="font-size:.8rem;color:var(--grey-3);white-space:nowrap;">Annual</td>
+    <td><div class="status-cell"><span class="sdot g"></span>Confirmed</div></td>
+  </tr><tr data-i="24" data-tags="soc2 soc1 tech confirmed">
+    <td>
+      <span title="Global / used in Malta" style="display:inline-block;margin-right:6px;font-size:.95em;color:var(--grey-3);">🌐</span><span class="cname" onclick="openModal(24)">ServiceNow</span>
+      <div class="csector" style="margin-left:22px;">IT Service Mgmt SaaS</div>
+      <div style="margin-left:22px;margin-top:5px;"><span class="tag soc2">SOC 2 Type II</span><span class="tag soc1">SOC 1 Type II</span><span class="tag iso27001">ISO 27001</span></div>
+      
+    </td>
+    <td class="col-sector" style="font-size:.8rem;color:var(--grey-4);">IT Service Mgmt SaaS</td>
+    <td class="col-date" style="font-size:.8rem;color:var(--grey-3);white-space:nowrap;">Annual</td>
+    <td><div class="status-cell"><span class="sdot g"></span>Confirmed</div></td>
+  </tr><tr data-i="25" data-tags="soc2 soc1 isae3402 tech confirmed">
+    <td>
+      <span title="Global / used in Malta" style="display:inline-block;margin-right:6px;font-size:.95em;color:var(--grey-3);">🌐</span><span class="cname" onclick="openModal(25)">Workday</span>
+      <div class="csector" style="margin-left:22px;">HR / Finance SaaS</div>
+      <div style="margin-left:22px;margin-top:5px;"><span class="tag soc2">SOC 2 Type II</span><span class="tag soc1">SOC 1 Type II</span><span class="tag isae3402">ISAE 3402</span></div>
+      
+    </td>
+    <td class="col-sector" style="font-size:.8rem;color:var(--grey-4);">HR / Finance SaaS</td>
+    <td class="col-date" style="font-size:.8rem;color:var(--grey-3);white-space:nowrap;">Annual</td>
+    <td><div class="status-cell"><span class="sdot g"></span>Confirmed</div></td>
+  </tr><tr data-i="26" data-tags="soc2 soc1 isae3402 tech confirmed">
+    <td>
+      <span title="Global / used in Malta" style="display:inline-block;margin-right:6px;font-size:.95em;color:var(--grey-3);">🌐</span><span class="cname" onclick="openModal(26)">SAP SuccessFactors</span>
+      <div class="csector" style="margin-left:22px;">HCM SaaS · Enterprise HR</div>
+      <div style="margin-left:22px;margin-top:5px;"><span class="tag soc2">SOC 2 Type II</span><span class="tag soc1">SOC 1 Type II</span><span class="tag isae3402">ISAE 3402</span></div>
+      
+    </td>
+    <td class="col-sector" style="font-size:.8rem;color:var(--grey-4);">HCM SaaS</td>
+    <td class="col-date" style="font-size:.8rem;color:var(--grey-3);white-space:nowrap;">Annual</td>
+    <td><div class="status-cell"><span class="sdot g"></span>Confirmed</div></td>
+  </tr><tr data-i="27" data-tags="soc2 soc1 isae3402 tech confirmed">
+    <td>
+      <span title="Global / used in Malta" style="display:inline-block;margin-right:6px;font-size:.95em;color:var(--grey-3);">🌐</span><span class="cname" onclick="openModal(27)">Oracle NetSuite</span>
+      <div class="csector" style="margin-left:22px;">ERP SaaS</div>
+      <div style="margin-left:22px;margin-top:5px;"><span class="tag soc2">SOC 2 Type II</span><span class="tag soc1">SOC 1 Type II</span><span class="tag isae3402">ISAE 3402</span></div>
+      
+    </td>
+    <td class="col-sector" style="font-size:.8rem;color:var(--grey-4);">ERP SaaS</td>
+    <td class="col-date" style="font-size:.8rem;color:var(--grey-3);white-space:nowrap;">Annual</td>
+    <td><div class="status-cell"><span class="sdot g"></span>Confirmed</div></td>
+  </tr><tr data-i="28" data-tags="soc2 tech confirmed">
+    <td>
+      <span title="Global / used in Malta" style="display:inline-block;margin-right:6px;font-size:.95em;color:var(--grey-3);">🌐</span><span class="cname" onclick="openModal(28)">HubSpot</span>
+      <div class="csector" style="margin-left:22px;">Marketing/CRM SaaS</div>
+      <div style="margin-left:22px;margin-top:5px;"><span class="tag soc2">SOC 2 Type II</span><span class="tag iso27001">ISO 27001</span></div>
+      
+    </td>
+    <td class="col-sector" style="font-size:.8rem;color:var(--grey-4);">Marketing/CRM SaaS</td>
+    <td class="col-date" style="font-size:.8rem;color:var(--grey-3);white-space:nowrap;">Annual</td>
+    <td><div class="status-cell"><span class="sdot g"></span>Confirmed</div></td>
+  </tr><tr data-i="29" data-tags="soc2 soc1 tech confirmed">
+    <td>
+      <span title="Global / used in Malta" style="display:inline-block;margin-right:6px;font-size:.95em;color:var(--grey-3);">🌐</span><span class="cname" onclick="openModal(29)">Atlassian (Jira/Confluence)</span>
+      <div class="csector" style="margin-left:22px;">Collaboration · DevOps</div>
+      <div style="margin-left:22px;margin-top:5px;"><span class="tag soc2">SOC 2 Type II</span><span class="tag soc1">SOC 1</span><span class="tag iso27001">ISO 27001</span></div>
+      
+    </td>
+    <td class="col-sector" style="font-size:.8rem;color:var(--grey-4);">Collaboration</td>
+    <td class="col-date" style="font-size:.8rem;color:var(--grey-3);white-space:nowrap;">Annual</td>
+    <td><div class="status-cell"><span class="sdot g"></span>Confirmed</div></td>
+  </tr><tr data-i="30" data-tags="soc2 tech confirmed">
+    <td>
+      <span title="Global / used in Malta" style="display:inline-block;margin-right:6px;font-size:.95em;color:var(--grey-3);">🌐</span><span class="cname" onclick="openModal(30)">Slack (Salesforce)</span>
+      <div class="csector" style="margin-left:22px;">Team Messaging</div>
+      <div style="margin-left:22px;margin-top:5px;"><span class="tag soc2">SOC 2 Type II</span><span class="tag iso27001">ISO 27001</span></div>
+      
+    </td>
+    <td class="col-sector" style="font-size:.8rem;color:var(--grey-4);">Team Messaging</td>
+    <td class="col-date" style="font-size:.8rem;color:var(--grey-3);white-space:nowrap;">Annual</td>
+    <td><div class="status-cell"><span class="sdot g"></span>Confirmed</div></td>
+  </tr><tr data-i="31" data-tags="soc2 tech confirmed">
+    <td>
+      <span title="Global / used in Malta" style="display:inline-block;margin-right:6px;font-size:.95em;color:var(--grey-3);">🌐</span><span class="cname" onclick="openModal(31)">Zoom</span>
+      <div class="csector" style="margin-left:22px;">Video Conferencing</div>
+      <div style="margin-left:22px;margin-top:5px;"><span class="tag soc2">SOC 2 Type II</span><span class="tag iso27001">ISO 27001</span></div>
+      
+    </td>
+    <td class="col-sector" style="font-size:.8rem;color:var(--grey-4);">Video Conferencing</td>
+    <td class="col-date" style="font-size:.8rem;color:var(--grey-3);white-space:nowrap;">Annual</td>
+    <td><div class="status-cell"><span class="sdot g"></span>Confirmed</div></td>
+  </tr><tr data-i="32" data-tags="soc2 soc1 isae3402 tech confirmed">
+    <td>
+      <span title="Global / used in Malta" style="display:inline-block;margin-right:6px;font-size:.95em;color:var(--grey-3);">🌐</span><span class="cname" onclick="openModal(32)">Dropbox</span>
+      <div class="csector" style="margin-left:22px;">File Storage · Collaboration</div>
+      <div style="margin-left:22px;margin-top:5px;"><span class="tag soc2">SOC 2 Type II</span><span class="tag soc1">SOC 1 Type II</span><span class="tag isae3402">ISAE 3402</span></div>
+      
+    </td>
+    <td class="col-sector" style="font-size:.8rem;color:var(--grey-4);">File Storage</td>
+    <td class="col-date" style="font-size:.8rem;color:var(--grey-3);white-space:nowrap;">Annual</td>
+    <td><div class="status-cell"><span class="sdot g"></span>Confirmed</div></td>
+  </tr><tr data-i="33" data-tags="soc2 soc1 tech confirmed">
+    <td>
+      <span title="Global / used in Malta" style="display:inline-block;margin-right:6px;font-size:.95em;color:var(--grey-3);">🌐</span><span class="cname" onclick="openModal(33)">GitHub (Microsoft)</span>
+      <div class="csector" style="margin-left:22px;">Source Code · DevOps</div>
+      <div style="margin-left:22px;margin-top:5px;"><span class="tag soc2">SOC 2 Type II</span><span class="tag soc1">SOC 1 Type II</span></div>
+      
+    </td>
+    <td class="col-sector" style="font-size:.8rem;color:var(--grey-4);">Source Code</td>
+    <td class="col-date" style="font-size:.8rem;color:var(--grey-3);white-space:nowrap;">Annual</td>
+    <td><div class="status-cell"><span class="sdot g"></span>Confirmed</div></td>
+  </tr><tr data-i="34" data-tags="soc2 tech confirmed">
+    <td>
+      <span title="Global / used in Malta" style="display:inline-block;margin-right:6px;font-size:.95em;color:var(--grey-3);">🌐</span><span class="cname" onclick="openModal(34)">GitLab</span>
+      <div class="csector" style="margin-left:22px;">DevOps Platform</div>
+      <div style="margin-left:22px;margin-top:5px;"><span class="tag soc2">SOC 2 Type II</span><span class="tag iso27001">ISO 27001</span></div>
+      
+    </td>
+    <td class="col-sector" style="font-size:.8rem;color:var(--grey-4);">DevOps Platform</td>
+    <td class="col-date" style="font-size:.8rem;color:var(--grey-3);white-space:nowrap;">Annual</td>
+    <td><div class="status-cell"><span class="sdot g"></span>Confirmed</div></td>
+  </tr><tr data-i="35" data-tags="soc2 soc1 isae3402 tech confirmed hosting">
+    <td>
+      <span title="Global / used in Malta" style="display:inline-block;margin-right:6px;font-size:.95em;color:var(--grey-3);">🌐</span><span class="cname" onclick="openModal(35)">Snowflake</span>
+      <div class="csector" style="margin-left:22px;">Cloud Data Warehouse</div>
+      <div style="margin-left:22px;margin-top:5px;"><span class="tag soc2">SOC 2 Type II</span><span class="tag soc1">SOC 1 Type II</span><span class="tag isae3402">ISAE 3402</span></div>
+      
+    </td>
+    <td class="col-sector" style="font-size:.8rem;color:var(--grey-4);">Cloud Data Warehouse</td>
+    <td class="col-date" style="font-size:.8rem;color:var(--grey-3);white-space:nowrap;">Annual</td>
+    <td><div class="status-cell"><span class="sdot g"></span>Confirmed</div></td>
+  </tr><tr data-i="36" data-tags="soc2 tech confirmed hosting">
+    <td>
+      <span title="Global / used in Malta" style="display:inline-block;margin-right:6px;font-size:.95em;color:var(--grey-3);">🌐</span><span class="cname" onclick="openModal(36)">Databricks</span>
+      <div class="csector" style="margin-left:22px;">Data Lakehouse · ML</div>
+      <div style="margin-left:22px;margin-top:5px;"><span class="tag soc2">SOC 2 Type II</span><span class="tag iso27001">ISO 27001</span></div>
+      
+    </td>
+    <td class="col-sector" style="font-size:.8rem;color:var(--grey-4);">Data Lakehouse</td>
+    <td class="col-date" style="font-size:.8rem;color:var(--grey-3);white-space:nowrap;">Annual</td>
+    <td><div class="status-cell"><span class="sdot g"></span>Confirmed</div></td>
+  </tr><tr data-i="37" data-tags="soc2 soc1 tech confirmed hosting">
+    <td>
+      <span title="Global / used in Malta" style="display:inline-block;margin-right:6px;font-size:.95em;color:var(--grey-3);">🌐</span><span class="cname" onclick="openModal(37)">MongoDB Atlas</span>
+      <div class="csector" style="margin-left:22px;">Database-as-a-Service</div>
+      <div style="margin-left:22px;margin-top:5px;"><span class="tag soc2">SOC 2 Type II</span><span class="tag soc1">SOC 1</span><span class="tag iso27001">ISO 27001</span></div>
+      
+    </td>
+    <td class="col-sector" style="font-size:.8rem;color:var(--grey-4);">Database-as-a-Service</td>
+    <td class="col-date" style="font-size:.8rem;color:var(--grey-3);white-space:nowrap;">Annual</td>
+    <td><div class="status-cell"><span class="sdot g"></span>Confirmed</div></td>
+  </tr><tr data-i="38" data-tags="soc2 soc1 tech confirmed" data-auditor="not publicly disclosed">
+    <td>
+      <span title="Global / used in Malta" style="display:inline-block;margin-right:6px;font-size:.95em;color:var(--grey-3);">🌐</span><span class="cname" onclick="openModal(38)">Auth0 (Okta)</span>
+      <div class="csector" style="margin-left:22px;">Identity / Auth SaaS</div>
+      <div style="margin-left:22px;margin-top:5px;"><span class="tag soc2">SOC 2 Type II</span><span class="tag soc1">SOC 1</span><span class="tag iso27001">ISO 27001</span></div>
+      <div style="margin-left:22px;margin-top:3px;"><span style="font-weight:700;color:var(--red);text-transform:uppercase;letter-spacing:.05em;font-size:.62rem;">Auditor:</span> <span style="color:var(--grey-3);font-weight:400;font-size:.7rem;">Not publicly disclosed</span></div>
+    </td>
+    <td class="col-sector" style="font-size:.8rem;color:var(--grey-4);">Identity / Auth SaaS</td>
+    <td class="col-date" style="font-size:.8rem;color:var(--grey-3);white-space:nowrap;">Annual</td>
+    <td><div class="status-cell"><span class="sdot g"></span>Confirmed</div></td>
+  </tr><tr data-i="39" data-tags="soc2 tech confirmed">
+    <td>
+      <span title="Global / used in Malta" style="display:inline-block;margin-right:6px;font-size:.95em;color:var(--grey-3);">🌐</span><span class="cname" onclick="openModal(39)">Twilio</span>
+      <div class="csector" style="margin-left:22px;">Communications API</div>
+      <div style="margin-left:22px;margin-top:5px;"><span class="tag soc2">SOC 2 Type II</span><span class="tag iso27001">ISO 27001</span></div>
+      
+    </td>
+    <td class="col-sector" style="font-size:.8rem;color:var(--grey-4);">Communications API</td>
+    <td class="col-date" style="font-size:.8rem;color:var(--grey-3);white-space:nowrap;">Annual</td>
+    <td><div class="status-cell"><span class="sdot g"></span>Confirmed</div></td>
+  </tr><tr data-i="40" data-tags="soc2 tech confirmed">
+    <td>
+      <span title="Global / used in Malta" style="display:inline-block;margin-right:6px;font-size:.95em;color:var(--grey-3);">🌐</span><span class="cname" onclick="openModal(40)">SendGrid (Twilio)</span>
+      <div class="csector" style="margin-left:22px;">Email API</div>
+      <div style="margin-left:22px;margin-top:5px;"><span class="tag soc2">SOC 2 Type II</span></div>
+      
+    </td>
+    <td class="col-sector" style="font-size:.8rem;color:var(--grey-4);">Email API</td>
+    <td class="col-date" style="font-size:.8rem;color:var(--grey-3);white-space:nowrap;">Annual</td>
+    <td><div class="status-cell"><span class="sdot g"></span>Confirmed</div></td>
+  </tr><tr data-i="41" data-tags="soc2 tech confirmed">
+    <td>
+      <span title="Global / used in Malta" style="display:inline-block;margin-right:6px;font-size:.95em;color:var(--grey-3);">🌐</span><span class="cname" onclick="openModal(41)">Zendesk</span>
+      <div class="csector" style="margin-left:22px;">Customer Support SaaS</div>
+      <div style="margin-left:22px;margin-top:5px;"><span class="tag soc2">SOC 2 Type II</span><span class="tag iso27001">ISO 27001</span></div>
+      
+    </td>
+    <td class="col-sector" style="font-size:.8rem;color:var(--grey-4);">Customer Support SaaS</td>
+    <td class="col-date" style="font-size:.8rem;color:var(--grey-3);white-space:nowrap;">Annual</td>
+    <td><div class="status-cell"><span class="sdot g"></span>Confirmed</div></td>
+  </tr><tr data-i="42" data-tags="soc2 soc1 payment confirmed" data-auditor="not publicly disclosed">
+    <td>
+      <span title="Global / used in Malta" style="display:inline-block;margin-right:6px;font-size:.95em;color:var(--grey-3);">🌐</span><span class="cname" onclick="openModal(42)">Stripe</span>
+      <div class="csector" style="margin-left:22px;">Payments · Online Checkout</div>
+      <div style="margin-left:22px;margin-top:5px;"><span class="tag soc2">SOC 2 Type II</span><span class="tag soc1">SOC 1 Type II</span><span class="tag isae3402">PCI DSS Lvl 1</span></div>
+      <div style="margin-left:22px;margin-top:3px;"><span style="font-weight:700;color:var(--red);text-transform:uppercase;letter-spacing:.05em;font-size:.62rem;">Auditor:</span> <span style="color:var(--grey-3);font-weight:400;font-size:.7rem;">Not publicly disclosed</span></div>
+    </td>
+    <td class="col-sector" style="font-size:.8rem;color:var(--grey-4);">Payments</td>
+    <td class="col-date" style="font-size:.8rem;color:var(--grey-3);white-space:nowrap;">Annual</td>
+    <td><div class="status-cell"><span class="sdot g"></span>Confirmed</div></td>
+  </tr><tr data-i="43" data-tags="soc2 payment confirmed">
+    <td>
+      <span title="Global / used in Malta" style="display:inline-block;margin-right:6px;font-size:.95em;color:var(--grey-3);">🌐</span><span class="cname" onclick="openModal(43)">Adyen</span>
+      <div class="csector" style="margin-left:22px;">Global Payment Platform · EMI</div>
+      <div style="margin-left:22px;margin-top:5px;"><span class="tag soc2">SOC 2 Type II</span><span class="tag isae3402">PCI DSS Lvl 1</span></div>
+      
+    </td>
+    <td class="col-sector" style="font-size:.8rem;color:var(--grey-4);">Global Payment Platform</td>
+    <td class="col-date" style="font-size:.8rem;color:var(--grey-3);white-space:nowrap;">Annual</td>
+    <td><div class="status-cell"><span class="sdot g"></span>Confirmed</div></td>
+  </tr><tr data-i="44" data-tags="soc2 payment confirmed" data-auditor="not publicly disclosed">
+    <td>
+      <span title="Global / used in Malta" style="display:inline-block;margin-right:6px;font-size:.95em;color:var(--grey-3);">🌐</span><span class="cname" onclick="openModal(44)">PayPal Holdings</span>
+      <div class="csector" style="margin-left:22px;">Payments · E-Wallet</div>
+      <div style="margin-left:22px;margin-top:5px;"><span class="tag soc2">SOC 2</span><span class="tag isae3402">PCI DSS Lvl 1</span></div>
+      <div style="margin-left:22px;margin-top:3px;"><span style="font-weight:700;color:var(--red);text-transform:uppercase;letter-spacing:.05em;font-size:.62rem;">Auditor:</span> <span style="color:var(--grey-3);font-weight:400;font-size:.7rem;">Not publicly disclosed</span></div>
+    </td>
+    <td class="col-sector" style="font-size:.8rem;color:var(--grey-4);">Payments</td>
+    <td class="col-date" style="font-size:.8rem;color:var(--grey-3);white-space:nowrap;">Annual</td>
+    <td><div class="status-cell"><span class="sdot g"></span>Confirmed</div></td>
+  </tr><tr data-i="45" data-tags="soc2 soc1 isae3402 payment confirmed">
+    <td>
+      <span title="Global / used in Malta" style="display:inline-block;margin-right:6px;font-size:.95em;color:var(--grey-3);">🌐</span><span class="cname" onclick="openModal(45)">Worldpay (FIS)</span>
+      <div class="csector" style="margin-left:22px;">Payment Acquirer</div>
+      <div style="margin-left:22px;margin-top:5px;"><span class="tag soc2">SOC 2 Type II</span><span class="tag soc1">SOC 1 Type II</span><span class="tag isae3402">PCI DSS Lvl 1</span></div>
+      
+    </td>
+    <td class="col-sector" style="font-size:.8rem;color:var(--grey-4);">Payment Acquirer</td>
+    <td class="col-date" style="font-size:.8rem;color:var(--grey-3);white-space:nowrap;">Annual</td>
+    <td><div class="status-cell"><span class="sdot g"></span>Confirmed</div></td>
+  </tr><tr data-i="46" data-tags="soc2 soc1 isae3402 payment confirmed">
+    <td>
+      <span title="Global / used in Malta" style="display:inline-block;margin-right:6px;font-size:.95em;color:var(--grey-3);">🌐</span><span class="cname" onclick="openModal(46)">Worldline</span>
+      <div class="csector" style="margin-left:22px;">European Payment Acquirer</div>
+      <div style="margin-left:22px;margin-top:5px;"><span class="tag soc2">SOC 2</span><span class="tag isae3402">ISAE 3402</span><span class="tag isae3000">ISAE 3000</span></div>
+      
+    </td>
+    <td class="col-sector" style="font-size:.8rem;color:var(--grey-4);">European Payment Acquirer</td>
+    <td class="col-date" style="font-size:.8rem;color:var(--grey-3);white-space:nowrap;">Annual</td>
+    <td><div class="status-cell"><span class="sdot g"></span>Confirmed</div></td>
+  </tr><tr data-i="47" data-tags="soc2 payment confirmed">
+    <td>
+      <span title="Global / used in Malta" style="display:inline-block;margin-right:6px;font-size:.95em;color:var(--grey-3);">🌐</span><span class="cname" onclick="openModal(47)">Wise (TransferWise)</span>
+      <div class="csector" style="margin-left:22px;">Cross-Border Payments · EMI</div>
+      <div style="margin-left:22px;margin-top:5px;"><span class="tag soc2">SOC 2 Type II</span><span class="tag iso27001">ISO 27001</span></div>
+      
+    </td>
+    <td class="col-sector" style="font-size:.8rem;color:var(--grey-4);">Cross-Border Payments</td>
+    <td class="col-date" style="font-size:.8rem;color:var(--grey-3);white-space:nowrap;">Annual</td>
+    <td><div class="status-cell"><span class="sdot g"></span>Confirmed</div></td>
+  </tr><tr data-i="48" data-tags="soc2 payment confirmed">
+    <td>
+      <span title="Global / used in Malta" style="display:inline-block;margin-right:6px;font-size:.95em;color:var(--grey-3);">🌐</span><span class="cname" onclick="openModal(48)">Revolut</span>
+      <div class="csector" style="margin-left:22px;">Neobank · Card · Crypto</div>
+      <div style="margin-left:22px;margin-top:5px;"><span class="tag soc2">SOC 2 Type II</span><span class="tag isae3402">PCI DSS Lvl 1</span></div>
+      
+    </td>
+    <td class="col-sector" style="font-size:.8rem;color:var(--grey-4);">Neobank</td>
+    <td class="col-date" style="font-size:.8rem;color:var(--grey-3);white-space:nowrap;">Annual</td>
+    <td><div class="status-cell"><span class="sdot g"></span>Confirmed</div></td>
+  </tr><tr data-i="49" data-tags="soc2 soc1 payment trading confirmed" data-auditor="deloitte &amp; touche llp">
+    <td>
+      <span title="Global / used in Malta" style="display:inline-block;margin-right:6px;font-size:.95em;color:var(--grey-3);">🌐</span><span class="cname" onclick="openModal(49)">Coinbase Global</span>
+      <div class="csector" style="margin-left:22px;">Crypto Exchange · Custody</div>
+      <div style="margin-left:22px;margin-top:5px;"><span class="tag soc2">SOC 2 Type II</span><span class="tag soc1">SOC 1 Type II</span><span class="tag iso27001">ISO 27001</span></div>
+      <div style="margin-left:22px;margin-top:3px;"><span style="font-weight:700;color:var(--red);text-transform:uppercase;letter-spacing:.05em;font-size:.62rem;">Auditor:</span> <span style="color:var(--ink-soft);font-weight:600;font-size:.7rem;">Deloitte &amp; Touche LLP</span><span style="display:block;font-size:.6rem;color:var(--grey-3);margin-top:1px;">SOC 1 · SOC 2 attestation auditor; Deloitte also financial statements auditor</span></div>
+    </td>
+    <td class="col-sector" style="font-size:.8rem;color:var(--grey-4);">Crypto Exchange</td>
+    <td class="col-date" style="font-size:.8rem;color:var(--grey-3);white-space:nowrap;">Annual</td>
+    <td><div class="status-cell"><span class="sdot g"></span>Confirmed</div></td>
+  </tr><tr data-i="50" data-tags="soc2 payment trading confirmed">
+    <td>
+      <span title="Global / used in Malta" style="display:inline-block;margin-right:6px;font-size:.95em;color:var(--grey-3);">🌐</span><span class="cname" onclick="openModal(50)">Kraken</span>
+      <div class="csector" style="margin-left:22px;">Crypto Exchange</div>
+      <div style="margin-left:22px;margin-top:5px;"><span class="tag soc2">SOC 2 Type I</span><span class="tag iso27001">ISO 27001</span></div>
+      
+    </td>
+    <td class="col-sector" style="font-size:.8rem;color:var(--grey-4);">Crypto Exchange</td>
+    <td class="col-date" style="font-size:.8rem;color:var(--grey-3);white-space:nowrap;">2024</td>
+    <td><div class="status-cell"><span class="sdot g"></span>Confirmed</div></td>
+  </tr><tr data-i="51" data-tags="soc2 payment confirmed">
+    <td>
+      <span title="Global / used in Malta" style="display:inline-block;margin-right:6px;font-size:.95em;color:var(--grey-3);">🌐</span><span class="cname" onclick="openModal(51)">Ripple Labs</span>
+      <div class="csector" style="margin-left:22px;">Crypto · Cross-Border</div>
+      <div style="margin-left:22px;margin-top:5px;"><span class="tag soc2">SOC 2 Type II</span></div>
+      
+    </td>
+    <td class="col-sector" style="font-size:.8rem;color:var(--grey-4);">Crypto</td>
+    <td class="col-date" style="font-size:.8rem;color:var(--grey-3);white-space:nowrap;">2024</td>
+    <td><div class="status-cell"><span class="sdot g"></span>Confirmed</div></td>
+  </tr><tr data-i="52" data-tags="soc2 soc1 payment confirmed">
+    <td>
+      <span title="Global / used in Malta" style="display:inline-block;margin-right:6px;font-size:.95em;color:var(--grey-3);">🌐</span><span class="cname" onclick="openModal(52)">Circle (USDC Issuer)</span>
+      <div class="csector" style="margin-left:22px;">Stablecoin · Crypto Payments</div>
+      <div style="margin-left:22px;margin-top:5px;"><span class="tag soc2">SOC 2 Type II</span><span class="tag soc1">SOC 1</span></div>
+      
+    </td>
+    <td class="col-sector" style="font-size:.8rem;color:var(--grey-4);">Stablecoin</td>
+    <td class="col-date" style="font-size:.8rem;color:var(--grey-3);white-space:nowrap;">Annual</td>
+    <td><div class="status-cell"><span class="sdot g"></span>Confirmed</div></td>
+  </tr><tr data-i="53" data-tags="soc2 soc1 tech confirmed">
+    <td>
+      <span title="Global / used in Malta" style="display:inline-block;margin-right:6px;font-size:.95em;color:var(--grey-3);">🌐</span><span class="cname" onclick="openModal(53)">CrowdStrike</span>
+      <div class="csector" style="margin-left:22px;">Endpoint Security · XDR</div>
+      <div style="margin-left:22px;margin-top:5px;"><span class="tag soc2">SOC 2 Type II</span><span class="tag soc1">SOC 1</span><span class="tag iso27001">ISO 27001</span></div>
+      
+    </td>
+    <td class="col-sector" style="font-size:.8rem;color:var(--grey-4);">Endpoint Security</td>
+    <td class="col-date" style="font-size:.8rem;color:var(--grey-3);white-space:nowrap;">Annual</td>
+    <td><div class="status-cell"><span class="sdot g"></span>Confirmed</div></td>
+  </tr><tr data-i="54" data-tags="soc2 tech confirmed">
+    <td>
+      <span title="Global / used in Malta" style="display:inline-block;margin-right:6px;font-size:.95em;color:var(--grey-3);">🌐</span><span class="cname" onclick="openModal(54)">Palo Alto Networks</span>
+      <div class="csector" style="margin-left:22px;">Network Security · Prisma</div>
+      <div style="margin-left:22px;margin-top:5px;"><span class="tag soc2">SOC 2 Type II</span><span class="tag iso27001">ISO 27001</span></div>
+      
+    </td>
+    <td class="col-sector" style="font-size:.8rem;color:var(--grey-4);">Network Security</td>
+    <td class="col-date" style="font-size:.8rem;color:var(--grey-3);white-space:nowrap;">Annual</td>
+    <td><div class="status-cell"><span class="sdot g"></span>Confirmed</div></td>
+  </tr><tr data-i="55" data-tags="soc2 tech confirmed hosting">
+    <td>
+      <span title="Global / used in Malta" style="display:inline-block;margin-right:6px;font-size:.95em;color:var(--grey-3);">🌐</span><span class="cname" onclick="openModal(55)">Datadog</span>
+      <div class="csector" style="margin-left:22px;">Monitoring · Observability</div>
+      <div style="margin-left:22px;margin-top:5px;"><span class="tag soc2">SOC 2 Type II</span><span class="tag iso27001">ISO 27001</span></div>
+      
+    </td>
+    <td class="col-sector" style="font-size:.8rem;color:var(--grey-4);">Monitoring</td>
+    <td class="col-date" style="font-size:.8rem;color:var(--grey-3);white-space:nowrap;">Annual</td>
+    <td><div class="status-cell"><span class="sdot g"></span>Confirmed</div></td>
+  </tr><tr data-i="56" data-tags="soc2 tech confirmed">
+    <td>
+      <span title="Global / used in Malta" style="display:inline-block;margin-right:6px;font-size:.95em;color:var(--grey-3);">🌐</span><span class="cname" onclick="openModal(56)">Splunk (Cisco)</span>
+      <div class="csector" style="margin-left:22px;">SIEM · Observability</div>
+      <div style="margin-left:22px;margin-top:5px;"><span class="tag soc2">SOC 2 Type II</span><span class="tag iso27001">ISO 27001</span></div>
+      
+    </td>
+    <td class="col-sector" style="font-size:.8rem;color:var(--grey-4);">SIEM</td>
+    <td class="col-date" style="font-size:.8rem;color:var(--grey-3);white-space:nowrap;">Annual</td>
+    <td><div class="status-cell"><span class="sdot g"></span>Confirmed</div></td>
+  </tr><tr data-i="57" data-tags="igaming mga soc2 isae3402 confirmed" data-auditor="not publicly disclosed">
+    <td>
+      <span title="Global / used in Malta" style="display:inline-block;margin-right:6px;font-size:.95em;color:var(--grey-3);">🌐</span><span class="cname" onclick="openModal(57)">Playtech plc</span>
+      <div class="csector" style="margin-left:22px;">Casino &amp; Sports B2B · MGA</div>
+      <div style="margin-left:22px;margin-top:5px;"><span class="tag soc2">SOC / ISAE 3402</span><span class="tag iso27001">ISO 27001</span></div>
+      <div style="margin-left:22px;margin-top:3px;"><span style="font-weight:700;color:var(--red);text-transform:uppercase;letter-spacing:.05em;font-size:.62rem;">Auditor:</span> <span style="color:var(--grey-3);font-weight:400;font-size:.7rem;">Not publicly disclosed</span></div>
+    </td>
+    <td class="col-sector" style="font-size:.8rem;color:var(--grey-4);">Casino &amp; Sports B2B</td>
+    <td class="col-date" style="font-size:.8rem;color:var(--grey-3);white-space:nowrap;">Active</td>
+    <td><div class="status-cell"><span class="sdot g"></span>Confirmed (programme)</div></td>
+  </tr><tr data-i="58" data-tags="igaming isae3402 soc1 confirmed lottery" data-auditor="not publicly disclosed">
+    <td>
+      <span title="Global / used in Malta" style="display:inline-block;margin-right:6px;font-size:.95em;color:var(--grey-3);">🌐</span><span class="cname" onclick="openModal(58)">INTRALOT (Bally's Intralot)</span>
+      <div class="csector" style="margin-left:22px;">iLottery · Sportsbook · VLT · B2B</div>
+      <div style="margin-left:22px;margin-top:5px;"><span class="tag isae3402">ISAE 3402 Type II</span></div>
+      <div style="margin-left:22px;margin-top:3px;"><span style="font-weight:700;color:var(--red);text-transform:uppercase;letter-spacing:.05em;font-size:.62rem;">Auditor:</span> <span style="color:var(--grey-3);font-weight:400;font-size:.7rem;">Not publicly disclosed</span></div>
+    </td>
+    <td class="col-sector" style="font-size:.8rem;color:var(--grey-4);">iLottery</td>
+    <td class="col-date" style="font-size:.8rem;color:var(--grey-3);white-space:nowrap;">Annual since 2013</td>
+    <td><div class="status-cell"><span class="sdot g"></span>Confirmed</div></td>
+  </tr><tr data-i="59" data-tags="igaming soc2 confirmed" data-auditor="not publicly disclosed">
+    <td>
+      <span title="Global / used in Malta" style="display:inline-block;margin-right:6px;font-size:.95em;color:var(--grey-3);">🌐</span><span class="cname" onclick="openModal(59)">Bede Gaming</span>
+      <div class="csector" style="margin-left:22px;">iGaming Platform · B2B · Sportsbook</div>
+      <div style="margin-left:22px;margin-top:5px;"><span class="tag soc2">SOC 2</span></div>
+      <div style="margin-left:22px;margin-top:3px;"><span style="font-weight:700;color:var(--red);text-transform:uppercase;letter-spacing:.05em;font-size:.62rem;">Auditor:</span> <span style="color:var(--grey-3);font-weight:400;font-size:.7rem;">Not publicly disclosed</span></div>
+    </td>
+    <td class="col-sector" style="font-size:.8rem;color:var(--grey-4);">iGaming Platform</td>
+    <td class="col-date" style="font-size:.8rem;color:var(--grey-3);white-space:nowrap;">2026</td>
+    <td><div class="status-cell"><span class="sdot g"></span>Confirmed</div></td>
+  </tr><tr data-i="60" data-tags="soc2 soc1 isae3402 tech confirmed hosting" data-auditor="not publicly disclosed">
+    <td>
+      <span title="Global / used in Malta" style="display:inline-block;margin-right:6px;font-size:.95em;color:var(--grey-3);">🌐</span><span class="cname" onclick="openModal(60)">Equinix</span>
+      <div class="csector" style="margin-left:22px;">Co-location · Data Centres</div>
+      <div style="margin-left:22px;margin-top:5px;"><span class="tag soc2">SOC 2 Type II</span><span class="tag soc1">SOC 1 Type II</span><span class="tag isae3402">ISAE 3402</span></div>
+      <div style="margin-left:22px;margin-top:3px;"><span style="font-weight:700;color:var(--red);text-transform:uppercase;letter-spacing:.05em;font-size:.62rem;">Auditor:</span> <span style="color:var(--grey-3);font-weight:400;font-size:.7rem;">Not publicly disclosed</span></div>
+    </td>
+    <td class="col-sector" style="font-size:.8rem;color:var(--grey-4);">Co-location</td>
+    <td class="col-date" style="font-size:.8rem;color:var(--grey-3);white-space:nowrap;">Annual</td>
+    <td><div class="status-cell"><span class="sdot g"></span>Confirmed</div></td>
+  </tr><tr data-i="61" data-tags="soc2 soc1 isae3402 tech confirmed hosting">
+    <td>
+      <span title="Global / used in Malta" style="display:inline-block;margin-right:6px;font-size:.95em;color:var(--grey-3);">🌐</span><span class="cname" onclick="openModal(61)">Digital Realty (Interxion)</span>
+      <div class="csector" style="margin-left:22px;">Co-location · Data Centres</div>
+      <div style="margin-left:22px;margin-top:5px;"><span class="tag soc2">SOC 2 Type II</span><span class="tag soc1">SOC 1 Type II</span><span class="tag isae3402">ISAE 3402</span></div>
+      
+    </td>
+    <td class="col-sector" style="font-size:.8rem;color:var(--grey-4);">Co-location</td>
+    <td class="col-date" style="font-size:.8rem;color:var(--grey-3);white-space:nowrap;">Annual</td>
+    <td><div class="status-cell"><span class="sdot g"></span>Confirmed</div></td>
+  </tr><tr data-i="62" data-tags="isae3402 soc1 tech confirmed">
+    <td>
+      <span title="Global / used in Malta" style="display:inline-block;margin-right:6px;font-size:.95em;color:var(--grey-3);">🌐</span><span class="cname" onclick="openModal(62)">iQuallin</span>
+      <div class="csector" style="margin-left:22px;">Software as a Service (SaaS)</div>
+      <div style="margin-left:22px;margin-top:5px;"><span class="tag isae3402">ISAE 3402 Type I</span></div>
+      
+    </td>
+    <td class="col-sector" style="font-size:.8rem;color:var(--grey-4);">Software as a Service (SaaS)</td>
+    <td class="col-date" style="font-size:.8rem;color:var(--grey-3);white-space:nowrap;">Registered</td>
+    <td><div class="status-cell"><span class="sdot g"></span>Confirmed</div></td>
+  </tr><tr data-i="63" data-tags="isae3402 soc1 tech confirmed">
+    <td>
+      <span title="Global / used in Malta" style="display:inline-block;margin-right:6px;font-size:.95em;color:var(--grey-3);">🌐</span><span class="cname" onclick="openModal(63)">Solera Market Schan - CHV</span>
+      <div class="csector" style="margin-left:22px;">Software as a Service (SaaS)</div>
+      <div style="margin-left:22px;margin-top:5px;"><span class="tag isae3402">ISAE 3402 Type II</span></div>
+      
+    </td>
+    <td class="col-sector" style="font-size:.8rem;color:var(--grey-4);">Software as a Service (SaaS)</td>
+    <td class="col-date" style="font-size:.8rem;color:var(--grey-3);white-space:nowrap;">Registered</td>
+    <td><div class="status-cell"><span class="sdot g"></span>Confirmed</div></td>
+  </tr><tr data-i="64" data-tags="isae3402 soc1 tech confirmed">
+    <td>
+      <span title="Global / used in Malta" style="display:inline-block;margin-right:6px;font-size:.95em;color:var(--grey-3);">🌐</span><span class="cname" onclick="openModal(64)">Solera VRA</span>
+      <div class="csector" style="margin-left:22px;">Software as a Service (SaaS)</div>
+      <div style="margin-left:22px;margin-top:5px;"><span class="tag isae3402">ISAE 3402 Type II</span></div>
+      
+    </td>
+    <td class="col-sector" style="font-size:.8rem;color:var(--grey-4);">Software as a Service (SaaS)</td>
+    <td class="col-date" style="font-size:.8rem;color:var(--grey-3);white-space:nowrap;">Registered</td>
+    <td><div class="status-cell"><span class="sdot g"></span>Confirmed</div></td>
+  </tr><tr data-i="65" data-tags="soc2 tech confirmed">
+    <td>
+      <span title="Global / used in Malta" style="display:inline-block;margin-right:6px;font-size:.95em;color:var(--grey-3);">🌐</span><span class="cname" onclick="openModal(65)">Nsecure B.V.</span>
+      <div class="csector" style="margin-left:22px;">IT Service Provider</div>
+      <div style="margin-left:22px;margin-top:5px;"><span class="tag soc2">SOC 2 Type II</span></div>
+      
+    </td>
+    <td class="col-sector" style="font-size:.8rem;color:var(--grey-4);">IT Service Provider</td>
+    <td class="col-date" style="font-size:.8rem;color:var(--grey-3);white-space:nowrap;">Registered</td>
+    <td><div class="status-cell"><span class="sdot g"></span>Confirmed</div></td>
+  </tr><tr data-i="66" data-tags="soc2 tech confirmed">
+    <td>
+      <span title="Global / used in Malta" style="display:inline-block;margin-right:6px;font-size:.95em;color:var(--grey-3);">🌐</span><span class="cname" onclick="openModal(66)">Avisi</span>
+      <div class="csector" style="margin-left:22px;">IT Service Provider</div>
+      <div style="margin-left:22px;margin-top:5px;"><span class="tag soc2">SOC 2 Type II</span></div>
+      
+    </td>
+    <td class="col-sector" style="font-size:.8rem;color:var(--grey-4);">IT Service Provider</td>
+    <td class="col-date" style="font-size:.8rem;color:var(--grey-3);white-space:nowrap;">Registered</td>
+    <td><div class="status-cell"><span class="sdot g"></span>Confirmed</div></td>
+  </tr><tr data-i="67" data-tags="soc2 tech confirmed">
+    <td>
+      <span title="Global / used in Malta" style="display:inline-block;margin-right:6px;font-size:.95em;color:var(--grey-3);">🌐</span><span class="cname" onclick="openModal(67)">Alloq (VI Company Square)</span>
+      <div class="csector" style="margin-left:22px;">IT Service Provider</div>
+      <div style="margin-left:22px;margin-top:5px;"><span class="tag soc2">SOC 2 Type II</span></div>
+      
+    </td>
+    <td class="col-sector" style="font-size:.8rem;color:var(--grey-4);">IT Service Provider</td>
+    <td class="col-date" style="font-size:.8rem;color:var(--grey-3);white-space:nowrap;">Registered</td>
+    <td><div class="status-cell"><span class="sdot g"></span>Confirmed</div></td>
+  </tr><tr data-i="68" data-tags="soc2 tech confirmed">
+    <td>
+      <span title="Global / used in Malta" style="display:inline-block;margin-right:6px;font-size:.95em;color:var(--grey-3);">🌐</span><span class="cname" onclick="openModal(68)">Shopify</span>
+      <div class="csector" style="margin-left:22px;">E-commerce SaaS</div>
+      <div style="margin-left:22px;margin-top:5px;"><span class="tag soc2">SOC 2 Type II</span><span class="tag iso27001">ISO 27001</span></div>
+      
+    </td>
+    <td class="col-sector" style="font-size:.8rem;color:var(--grey-4);">E-commerce SaaS</td>
+    <td class="col-date" style="font-size:.8rem;color:var(--grey-3);white-space:nowrap;">Annual</td>
+    <td><div class="status-cell"><span class="sdot g"></span>Confirmed</div></td>
+  </tr><tr data-i="69" data-tags="soc2 tech confirmed">
+    <td>
+      <span title="Global / used in Malta" style="display:inline-block;margin-right:6px;font-size:.95em;color:var(--grey-3);">🌐</span><span class="cname" onclick="openModal(69)">Wix</span>
+      <div class="csector" style="margin-left:22px;">Website Builder SaaS</div>
+      <div style="margin-left:22px;margin-top:5px;"><span class="tag soc2">SOC 2 Type II</span></div>
+      
+    </td>
+    <td class="col-sector" style="font-size:.8rem;color:var(--grey-4);">Website Builder SaaS</td>
+    <td class="col-date" style="font-size:.8rem;color:var(--grey-3);white-space:nowrap;">Annual</td>
+    <td><div class="status-cell"><span class="sdot g"></span>Confirmed</div></td>
+  </tr><tr data-i="70" data-tags="soc2 soc1 isae3402 tech confirmed">
+    <td>
+      <span title="Global / used in Malta" style="display:inline-block;margin-right:6px;font-size:.95em;color:var(--grey-3);">🌐</span><span class="cname" onclick="openModal(70)">Box</span>
+      <div class="csector" style="margin-left:22px;">Content Management SaaS</div>
+      <div style="margin-left:22px;margin-top:5px;"><span class="tag soc2">SOC 2 Type II</span><span class="tag soc1">SOC 1 Type II</span><span class="tag isae3402">ISAE 3402</span></div>
+      
+    </td>
+    <td class="col-sector" style="font-size:.8rem;color:var(--grey-4);">Content Management SaaS</td>
+    <td class="col-date" style="font-size:.8rem;color:var(--grey-3);white-space:nowrap;">Annual</td>
+    <td><div class="status-cell"><span class="sdot g"></span>Confirmed</div></td>
+  </tr><tr data-i="71" data-tags="soc2 tech confirmed">
+    <td>
+      <span title="Global / used in Malta" style="display:inline-block;margin-right:6px;font-size:.95em;color:var(--grey-3);">🌐</span><span class="cname" onclick="openModal(71)">Monday.com</span>
+      <div class="csector" style="margin-left:22px;">Work Management SaaS</div>
+      <div style="margin-left:22px;margin-top:5px;"><span class="tag soc2">SOC 2 Type II</span><span class="tag iso27001">ISO 27001</span></div>
+      
+    </td>
+    <td class="col-sector" style="font-size:.8rem;color:var(--grey-4);">Work Management SaaS</td>
+    <td class="col-date" style="font-size:.8rem;color:var(--grey-3);white-space:nowrap;">Annual</td>
+    <td><div class="status-cell"><span class="sdot g"></span>Confirmed</div></td>
+  </tr><tr data-i="72" data-tags="soc2 tech confirmed">
+    <td>
+      <span title="Global / used in Malta" style="display:inline-block;margin-right:6px;font-size:.95em;color:var(--grey-3);">🌐</span><span class="cname" onclick="openModal(72)">Asana</span>
+      <div class="csector" style="margin-left:22px;">Work Management SaaS</div>
+      <div style="margin-left:22px;margin-top:5px;"><span class="tag soc2">SOC 2 Type II</span><span class="tag iso27001">ISO 27001</span></div>
+      
+    </td>
+    <td class="col-sector" style="font-size:.8rem;color:var(--grey-4);">Work Management SaaS</td>
+    <td class="col-date" style="font-size:.8rem;color:var(--grey-3);white-space:nowrap;">Annual</td>
+    <td><div class="status-cell"><span class="sdot g"></span>Confirmed</div></td>
+  </tr><tr data-i="73" data-tags="soc2 tech confirmed">
+    <td>
+      <span title="Global / used in Malta" style="display:inline-block;margin-right:6px;font-size:.95em;color:var(--grey-3);">🌐</span><span class="cname" onclick="openModal(73)">Airtable</span>
+      <div class="csector" style="margin-left:22px;">Database / Workflow SaaS</div>
+      <div style="margin-left:22px;margin-top:5px;"><span class="tag soc2">SOC 2 Type II</span></div>
+      
+    </td>
+    <td class="col-sector" style="font-size:.8rem;color:var(--grey-4);">Database / Workflow SaaS</td>
+    <td class="col-date" style="font-size:.8rem;color:var(--grey-3);white-space:nowrap;">Annual</td>
+    <td><div class="status-cell"><span class="sdot g"></span>Confirmed</div></td>
+  </tr><tr data-i="74" data-tags="soc2 tech confirmed">
+    <td>
+      <span title="Global / used in Malta" style="display:inline-block;margin-right:6px;font-size:.95em;color:var(--grey-3);">🌐</span><span class="cname" onclick="openModal(74)">Notion</span>
+      <div class="csector" style="margin-left:22px;">Productivity / Workspace SaaS</div>
+      <div style="margin-left:22px;margin-top:5px;"><span class="tag soc2">SOC 2 Type II</span><span class="tag iso27001">ISO 27001</span></div>
+      
+    </td>
+    <td class="col-sector" style="font-size:.8rem;color:var(--grey-4);">Productivity / Workspace SaaS</td>
+    <td class="col-date" style="font-size:.8rem;color:var(--grey-3);white-space:nowrap;">Annual</td>
+    <td><div class="status-cell"><span class="sdot g"></span>Confirmed</div></td>
+  </tr><tr data-i="75" data-tags="soc2 tech confirmed">
+    <td>
+      <span title="Global / used in Malta" style="display:inline-block;margin-right:6px;font-size:.95em;color:var(--grey-3);">🌐</span><span class="cname" onclick="openModal(75)">Canva</span>
+      <div class="csector" style="margin-left:22px;">Design Platform SaaS</div>
+      <div style="margin-left:22px;margin-top:5px;"><span class="tag soc2">SOC 2 Type II</span><span class="tag iso27001">ISO 27001</span></div>
+      
+    </td>
+    <td class="col-sector" style="font-size:.8rem;color:var(--grey-4);">Design Platform SaaS</td>
+    <td class="col-date" style="font-size:.8rem;color:var(--grey-3);white-space:nowrap;">Annual</td>
+    <td><div class="status-cell"><span class="sdot g"></span>Confirmed</div></td>
+  </tr><tr data-i="76" data-tags="soc2 tech confirmed">
+    <td>
+      <span title="Global / used in Malta" style="display:inline-block;margin-right:6px;font-size:.95em;color:var(--grey-3);">🌐</span><span class="cname" onclick="openModal(76)">Figma</span>
+      <div class="csector" style="margin-left:22px;">Design Platform SaaS</div>
+      <div style="margin-left:22px;margin-top:5px;"><span class="tag soc2">SOC 2 Type II</span><span class="tag iso27001">ISO 27001</span></div>
+      
+    </td>
+    <td class="col-sector" style="font-size:.8rem;color:var(--grey-4);">Design Platform SaaS</td>
+    <td class="col-date" style="font-size:.8rem;color:var(--grey-3);white-space:nowrap;">Annual</td>
+    <td><div class="status-cell"><span class="sdot g"></span>Confirmed</div></td>
+  </tr><tr data-i="77" data-tags="soc2 soc1 isae3402 tech confirmed">
+    <td>
+      <span title="Global / used in Malta" style="display:inline-block;margin-right:6px;font-size:.95em;color:var(--grey-3);">🌐</span><span class="cname" onclick="openModal(77)">Xero</span>
+      <div class="csector" style="margin-left:22px;">Accounting SaaS</div>
+      <div style="margin-left:22px;margin-top:5px;"><span class="tag soc2">SOC 2 Type II</span><span class="tag isae3402">ISAE 3402</span></div>
+      
+    </td>
+    <td class="col-sector" style="font-size:.8rem;color:var(--grey-4);">Accounting SaaS</td>
+    <td class="col-date" style="font-size:.8rem;color:var(--grey-3);white-space:nowrap;">Annual</td>
+    <td><div class="status-cell"><span class="sdot g"></span>Confirmed</div></td>
+  </tr><tr data-i="78" data-tags="soc2 soc1 tech confirmed">
+    <td>
+      <span title="Global / used in Malta" style="display:inline-block;margin-right:6px;font-size:.95em;color:var(--grey-3);">🌐</span><span class="cname" onclick="openModal(78)">Intuit QuickBooks</span>
+      <div class="csector" style="margin-left:22px;">Accounting SaaS</div>
+      <div style="margin-left:22px;margin-top:5px;"><span class="tag soc2">SOC 2 Type II</span><span class="tag soc1">SOC 1</span></div>
+      
+    </td>
+    <td class="col-sector" style="font-size:.8rem;color:var(--grey-4);">Accounting SaaS</td>
+    <td class="col-date" style="font-size:.8rem;color:var(--grey-3);white-space:nowrap;">Annual</td>
+    <td><div class="status-cell"><span class="sdot g"></span>Confirmed</div></td>
+  </tr><tr data-i="79" data-tags="soc2 tech confirmed">
+    <td>
+      <span title="Global / used in Malta" style="display:inline-block;margin-right:6px;font-size:.95em;color:var(--grey-3);">🌐</span><span class="cname" onclick="openModal(79)">Freshworks</span>
+      <div class="csector" style="margin-left:22px;">ITSM / CX SaaS</div>
+      <div style="margin-left:22px;margin-top:5px;"><span class="tag soc2">SOC 2 Type II</span><span class="tag iso27001">ISO 27001</span></div>
+      
+    </td>
+    <td class="col-sector" style="font-size:.8rem;color:var(--grey-4);">ITSM / CX SaaS</td>
+    <td class="col-date" style="font-size:.8rem;color:var(--grey-3);white-space:nowrap;">Annual</td>
+    <td><div class="status-cell"><span class="sdot g"></span>Confirmed</div></td>
+  </tr><tr data-i="80" data-tags="soc2 tech confirmed">
+    <td>
+      <span title="Global / used in Malta" style="display:inline-block;margin-right:6px;font-size:.95em;color:var(--grey-3);">🌐</span><span class="cname" onclick="openModal(80)">Pipedrive</span>
+      <div class="csector" style="margin-left:22px;">CRM SaaS</div>
+      <div style="margin-left:22px;margin-top:5px;"><span class="tag soc2">SOC 2 Type II</span><span class="tag iso27001">ISO 27001</span></div>
+      
+    </td>
+    <td class="col-sector" style="font-size:.8rem;color:var(--grey-4);">CRM SaaS</td>
+    <td class="col-date" style="font-size:.8rem;color:var(--grey-3);white-space:nowrap;">Annual</td>
+    <td><div class="status-cell"><span class="sdot g"></span>Confirmed</div></td>
+  </tr><tr data-i="81" data-tags="soc2 soc1 tech confirmed">
+    <td>
+      <span title="Global / used in Malta" style="display:inline-block;margin-right:6px;font-size:.95em;color:var(--grey-3);">🌐</span><span class="cname" onclick="openModal(81)">Smartsheet</span>
+      <div class="csector" style="margin-left:22px;">Work Management SaaS</div>
+      <div style="margin-left:22px;margin-top:5px;"><span class="tag soc2">SOC 2 Type II</span><span class="tag soc1">SOC 1 Type II</span><span class="tag iso27001">ISO 27001</span></div>
+      
+    </td>
+    <td class="col-sector" style="font-size:.8rem;color:var(--grey-4);">Work Management SaaS</td>
+    <td class="col-date" style="font-size:.8rem;color:var(--grey-3);white-space:nowrap;">Annual</td>
+    <td><div class="status-cell"><span class="sdot g"></span>Confirmed</div></td>
+  </tr><tr data-i="82" data-tags="soc2 tech confirmed">
+    <td>
+      <span title="Global / used in Malta" style="display:inline-block;margin-right:6px;font-size:.95em;color:var(--grey-3);">🌐</span><span class="cname" onclick="openModal(82)">Miro</span>
+      <div class="csector" style="margin-left:22px;">Collaboration / Whiteboard SaaS</div>
+      <div style="margin-left:22px;margin-top:5px;"><span class="tag soc2">SOC 2 Type II</span><span class="tag iso27001">ISO 27001</span></div>
+      
+    </td>
+    <td class="col-sector" style="font-size:.8rem;color:var(--grey-4);">Collaboration / Whiteboard SaaS</td>
+    <td class="col-date" style="font-size:.8rem;color:var(--grey-3);white-space:nowrap;">Annual</td>
+    <td><div class="status-cell"><span class="sdot g"></span>Confirmed</div></td>
+  </tr><tr data-i="83" data-tags="soc2 soc1 tech confirmed">
+    <td>
+      <span title="Global / used in Malta" style="display:inline-block;margin-right:6px;font-size:.95em;color:var(--grey-3);">🌐</span><span class="cname" onclick="openModal(83)">Informatica (IDMC)</span>
+      <div class="csector" style="margin-left:22px;">Data Management SaaS · Cloud Integration</div>
+      <div style="margin-left:22px;margin-top:5px;"><span class="tag soc2">SOC 2 Type II</span><span class="tag soc1">SOC 1 Type II</span><span class="tag iso27001">ISO 27001</span></div>
+      
+    </td>
+    <td class="col-sector" style="font-size:.8rem;color:var(--grey-4);">Data Management SaaS</td>
+    <td class="col-date" style="font-size:.8rem;color:var(--grey-3);white-space:nowrap;">Annual</td>
+    <td><div class="status-cell"><span class="sdot g"></span>Confirmed</div></td>
+  </tr><tr data-i="84" data-tags="soc2 tech confirmed">
+    <td>
+      <span title="Global / used in Malta" style="display:inline-block;margin-right:6px;font-size:.95em;color:var(--grey-3);">🌐</span><span class="cname" onclick="openModal(84)">Hanzo Archives</span>
+      <div class="csector" style="margin-left:22px;">eDiscovery · Legal Hold · Compliance SaaS</div>
+      <div style="margin-left:22px;margin-top:5px;"><span class="tag soc2">SOC 2 Type II</span></div>
+      
+    </td>
+    <td class="col-sector" style="font-size:.8rem;color:var(--grey-4);">eDiscovery</td>
+    <td class="col-date" style="font-size:.8rem;color:var(--grey-3);white-space:nowrap;">Since Oct 2019</td>
+    <td><div class="status-cell"><span class="sdot g"></span>Confirmed</div></td>
+  </tr><tr data-i="85" data-tags="soc2 soc1 tech confirmed">
+    <td>
+      <span title="Global / used in Malta" style="display:inline-block;margin-right:6px;font-size:.95em;color:var(--grey-3);">🌐</span><span class="cname" onclick="openModal(85)">Netskope</span>
+      <div class="csector" style="margin-left:22px;">Cloud Security · SASE · Zero Trust</div>
+      <div style="margin-left:22px;margin-top:5px;"><span class="tag soc2">SOC 2 Type II</span><span class="tag soc1">SOC 1</span><span class="tag iso27001">ISO 27001/27017/27018</span></div>
+      
+    </td>
+    <td class="col-sector" style="font-size:.8rem;color:var(--grey-4);">Cloud Security</td>
+    <td class="col-date" style="font-size:.8rem;color:var(--grey-3);white-space:nowrap;">Annual</td>
+    <td><div class="status-cell"><span class="sdot g"></span>Confirmed</div></td>
+  </tr><tr data-i="86" data-tags="soc2 soc1 tech confirmed">
+    <td>
+      <span title="Global / used in Malta" style="display:inline-block;margin-right:6px;font-size:.95em;color:var(--grey-3);">🌐</span><span class="cname" onclick="openModal(86)">MuleSoft (Salesforce)</span>
+      <div class="csector" style="margin-left:22px;">Integration Platform · API Management</div>
+      <div style="margin-left:22px;margin-top:5px;"><span class="tag soc2">SOC 2 Type II</span><span class="tag soc1">SOC 1 Type II</span><span class="tag iso27001">ISO 27001</span></div>
+      
+    </td>
+    <td class="col-sector" style="font-size:.8rem;color:var(--grey-4);">Integration Platform</td>
+    <td class="col-date" style="font-size:.8rem;color:var(--grey-3);white-space:nowrap;">Annual</td>
+    <td><div class="status-cell"><span class="sdot g"></span>Confirmed</div></td>
+  </tr><tr data-i="87" data-tags="soc2 tech confirmed">
+    <td>
+      <span title="Global / used in Malta" style="display:inline-block;margin-right:6px;font-size:.95em;color:var(--grey-3);">🌐</span><span class="cname" onclick="openModal(87)">Tableau (Salesforce)</span>
+      <div class="csector" style="margin-left:22px;">Business Intelligence · Data Visualisation</div>
+      <div style="margin-left:22px;margin-top:5px;"><span class="tag soc2">SOC 2 Type II</span><span class="tag iso27001">ISO 27001</span></div>
+      
+    </td>
+    <td class="col-sector" style="font-size:.8rem;color:var(--grey-4);">Business Intelligence</td>
+    <td class="col-date" style="font-size:.8rem;color:var(--grey-3);white-space:nowrap;">Annual</td>
+    <td><div class="status-cell"><span class="sdot g"></span>Confirmed</div></td>
+  </tr><tr data-i="88" data-tags="soc2 soc1 tech confirmed">
+    <td>
+      <span title="Global / used in Malta" style="display:inline-block;margin-right:6px;font-size:.95em;color:var(--grey-3);">🌐</span><span class="cname" onclick="openModal(88)">Dynatrace</span>
+      <div class="csector" style="margin-left:22px;">Observability · APM · AIOps</div>
+      <div style="margin-left:22px;margin-top:5px;"><span class="tag soc2">SOC 2 Type II</span><span class="tag soc1">SOC 1 Type II</span><span class="tag iso27001">ISO 27001</span></div>
+      
+    </td>
+    <td class="col-sector" style="font-size:.8rem;color:var(--grey-4);">Observability</td>
+    <td class="col-date" style="font-size:.8rem;color:var(--grey-3);white-space:nowrap;">Annual</td>
+    <td><div class="status-cell"><span class="sdot g"></span>Confirmed</div></td>
+  </tr><tr data-i="89" data-tags="soc2 tech confirmed hosting">
+    <td>
+      <span title="Global / used in Malta" style="display:inline-block;margin-right:6px;font-size:.95em;color:var(--grey-3);">🌐</span><span class="cname" onclick="openModal(89)">HPE GreenLake</span>
+      <div class="csector" style="margin-left:22px;">Hybrid Cloud · Data Centre Infrastructure</div>
+      <div style="margin-left:22px;margin-top:5px;"><span class="tag soc2">SOC 2 (on request)</span><span class="tag iso27001">ISO 27001</span></div>
+      
+    </td>
+    <td class="col-sector" style="font-size:.8rem;color:var(--grey-4);">Hybrid Cloud</td>
+    <td class="col-date" style="font-size:.8rem;color:var(--grey-3);white-space:nowrap;">Annual</td>
+    <td><div class="status-cell"><span class="sdot g"></span>Confirmed (on request)</div></td>
+  </tr><tr data-i="90" data-tags="soc2 tech confirmed malta">
+    <td>
+      <span title="Malta-based" style="display:inline-block;margin-right:6px;font-size:.95em;">🇲🇹</span><span class="cname" onclick="openModal(90)">CyberSift</span>
+      <div class="csector" style="margin-left:22px;">AI Cybersecurity · SIEM · Threat Detection</div>
+      <div style="margin-left:22px;margin-top:5px;"><span class="tag soc2">SOC 2 Type II</span><span class="tag iso27001">ISO 27001</span></div>
+      
+    </td>
+    <td class="col-sector" style="font-size:.8rem;color:var(--grey-4);">AI Cybersecurity</td>
+    <td class="col-date" style="font-size:.8rem;color:var(--grey-3);white-space:nowrap;">June 2024</td>
+    <td><div class="status-cell"><span class="sdot g"></span>Confirmed</div></td>
+  </tr><tr data-i="91" data-tags="isae3402 soc1 confirmed tech">
+    <td>
+      <span title="Global / used in Malta" style="display:inline-block;margin-right:6px;font-size:.95em;color:var(--grey-3);">🌐</span><span class="cname" onclick="openModal(91)">everyoneINVESTED</span>
+      <div class="csector" style="margin-left:22px;">Wealth Tech · Investor Profiling · MiFID II SaaS</div>
+      <div style="margin-left:22px;margin-top:5px;"><span class="tag isae3402">ISAE 3402 Type I</span><span class="tag iso27001">MiFID II / ESMA</span></div>
+      
+    </td>
+    <td class="col-sector" style="font-size:.8rem;color:var(--grey-4);">Wealth Tech</td>
+    <td class="col-date" style="font-size:.8rem;color:var(--grey-3);white-space:nowrap;">August 2022</td>
+    <td><div class="status-cell"><span class="sdot g"></span>Confirmed</div></td>
+  </tr><tr data-i="92" data-tags="soc1 confirmed fund finance">
+    <td>
+      <span title="Global / used in Malta" style="display:inline-block;margin-right:6px;font-size:.95em;color:var(--grey-3);">🌐</span><span class="cname" onclick="openModal(92)">Krypton Fund Services</span>
+      <div class="csector" style="margin-left:22px;">Fund Administration · Hedge Funds · Private Equity</div>
+      <div style="margin-left:22px;margin-top:5px;"><span class="tag soc1">SOC 1 Type II</span></div>
+      
+    </td>
+    <td class="col-sector" style="font-size:.8rem;color:var(--grey-4);">Fund Administration</td>
+    <td class="col-date" style="font-size:.8rem;color:var(--grey-3);white-space:nowrap;">2023 (LinkedIn announced)</td>
+    <td><div class="status-cell"><span class="sdot g"></span>Confirmed</div></td>
+  </tr><tr data-i="93" data-tags="isae3402 soc1 confirmed fund finance malta mfsa">
+    <td>
+      <span title="Malta-based" style="display:inline-block;margin-right:6px;font-size:.95em;">🇲🇹</span><span class="cname" onclick="openModal(93)">Apex Group (Apex Fund Services)</span>
+      <div class="csector" style="margin-left:22px;">Fund Administration · UCITS · AIF · Private Equity</div>
+      <div style="margin-left:22px;margin-top:5px;"><span class="tag isae3402">ISAE 3402 Type II</span><span class="tag soc1">SSAE 18 / SOC 1</span></div>
+      
+    </td>
+    <td class="col-sector" style="font-size:.8rem;color:var(--grey-4);">Fund Administration</td>
+    <td class="col-date" style="font-size:.8rem;color:var(--grey-3);white-space:nowrap;">Ongoing (first achieved 2012)</td>
+    <td><div class="status-cell"><span class="sdot g"></span>Confirmed</div></td>
+  </tr><tr data-i="94" data-tags="soc2 soc1 isae3402 tech confirmed">
+    <td>
+      <span title="Global / used in Malta" style="display:inline-block;margin-right:6px;font-size:.95em;color:var(--grey-3);">🌐</span><span class="cname" onclick="openModal(94)">Sage Intacct</span>
+      <div class="csector" style="margin-left:22px;">Financial Management SaaS · General Ledger · ERP</div>
+      <div style="margin-left:22px;margin-top:5px;"><span class="tag soc1">SSAE 18 SOC 1 Type II</span><span class="tag soc2">SOC 2 Type II</span><span class="tag isae3402">ISAE 3402 / ISAE 3000</span></div>
+      
+    </td>
+    <td class="col-sector" style="font-size:.8rem;color:var(--grey-4);">Financial Management SaaS</td>
+    <td class="col-date" style="font-size:.8rem;color:var(--grey-3);white-space:nowrap;">Annual (quarterly bridge letters)</td>
+    <td><div class="status-cell"><span class="sdot g"></span>Confirmed</div></td>
+  </tr><tr data-i="95" data-tags="soc2 soc1 tech confirmed finance">
+    <td>
+      <span title="Global / used in Malta" style="display:inline-block;margin-right:6px;font-size:.95em;color:var(--grey-3);">🌐</span><span class="cname" onclick="openModal(95)">ADP (Workforce Now / GETS)</span>
+      <div class="csector" style="margin-left:22px;">Payroll SaaS · HR Technology</div>
+      <div style="margin-left:22px;margin-top:5px;"><span class="tag soc1">SOC 1 Type II</span><span class="tag soc2">SOC 2 Type II</span><span class="tag iso27001">ISO 27001 / 27701</span></div>
+      
+    </td>
+    <td class="col-sector" style="font-size:.8rem;color:var(--grey-4);">Payroll SaaS</td>
+    <td class="col-date" style="font-size:.8rem;color:var(--grey-3);white-space:nowrap;">Annual (quarterly bridge letters)</td>
+    <td><div class="status-cell"><span class="sdot g"></span>Confirmed</div></td>
+  </tr><tr data-i="96" data-tags="soc2 tech confirmed finance">
+    <td>
+      <span title="Global / used in Malta" style="display:inline-block;margin-right:6px;font-size:.95em;color:var(--grey-3);">🌐</span><span class="cname" onclick="openModal(96)">Ramp</span>
+      <div class="csector" style="margin-left:22px;">Expense Management SaaS · Corporate Cards</div>
+      <div style="margin-left:22px;margin-top:5px;"><span class="tag soc2">SOC 2 Type II</span></div>
+      
+    </td>
+    <td class="col-sector" style="font-size:.8rem;color:var(--grey-4);">Expense Management SaaS</td>
+    <td class="col-date" style="font-size:.8rem;color:var(--grey-3);white-space:nowrap;">Annual</td>
+    <td><div class="status-cell"><span class="sdot g"></span>Confirmed</div></td>
+  </tr><tr data-i="97" data-tags="soc2 soc1 tech confirmed finance">
+    <td>
+      <span title="Global / used in Malta" style="display:inline-block;margin-right:6px;font-size:.95em;color:var(--grey-3);">🌐</span><span class="cname" onclick="openModal(97)">Shareworks (Morgan Stanley at Work)</span>
+      <div class="csector" style="margin-left:22px;">Stock Compensation · Equity Management SaaS</div>
+      <div style="margin-left:22px;margin-top:5px;"><span class="tag soc2">SOC 2 Type II</span><span class="tag soc1">SOC 1</span></div>
+      
+    </td>
+    <td class="col-sector" style="font-size:.8rem;color:var(--grey-4);">Stock Compensation</td>
+    <td class="col-date" style="font-size:.8rem;color:var(--grey-3);white-space:nowrap;">Annual</td>
+    <td><div class="status-cell"><span class="sdot g"></span>Confirmed</div></td>
+  </tr><tr data-i="98" data-tags="soc2 tech confirmed finance">
+    <td>
+      <span title="Global / used in Malta" style="display:inline-block;margin-right:6px;font-size:.95em;color:var(--grey-3);">🌐</span><span class="cname" onclick="openModal(98)">FloQast</span>
+      <div class="csector" style="margin-left:22px;">Accounting Close Management · FCRP SaaS</div>
+      <div style="margin-left:22px;margin-top:5px;"><span class="tag soc2">SOC 2 Type II</span><span class="tag iso27001">ISO 27001</span></div>
+      
+    </td>
+    <td class="col-sector" style="font-size:.8rem;color:var(--grey-4);">Accounting Close Management</td>
+    <td class="col-date" style="font-size:.8rem;color:var(--grey-3);white-space:nowrap;">Dec 2021 (ongoing)</td>
+    <td><div class="status-cell"><span class="sdot g"></span>Confirmed</div></td>
+  </tr><tr data-i="99" data-tags="soc2 soc1 payment confirmed crypto">
+    <td>
+      <span title="Global / used in Malta" style="display:inline-block;margin-right:6px;font-size:.95em;color:var(--grey-3);">🌐</span><span class="cname" onclick="openModal(99)">Anchorage Digital Bank</span>
+      <div class="csector" style="margin-left:22px;">Digital Asset Custody · Federally Chartered Bank</div>
+      <div style="margin-left:22px;margin-top:5px;"><span class="tag soc1">SOC 1 Type II</span><span class="tag soc2">SOC 2 Type II</span></div>
+      
+    </td>
+    <td class="col-sector" style="font-size:.8rem;color:var(--grey-4);">Digital Asset Custody</td>
+    <td class="col-date" style="font-size:.8rem;color:var(--grey-3);white-space:nowrap;">Annual</td>
+    <td><div class="status-cell"><span class="sdot g"></span>Confirmed</div></td>
+  </tr><tr data-i="100" data-tags="soc2 tech confirmed crypto finance">
+    <td>
+      <span title="Global / used in Malta" style="display:inline-block;margin-right:6px;font-size:.95em;color:var(--grey-3);">🌐</span><span class="cname" onclick="openModal(100)">Cryptio</span>
+      <div class="csector" style="margin-left:22px;">Digital Asset Accounting · Crypto ERP</div>
+      <div style="margin-left:22px;margin-top:5px;"><span class="tag soc2">SOC 2 Type II</span></div>
+      
+    </td>
+    <td class="col-sector" style="font-size:.8rem;color:var(--grey-4);">Digital Asset Accounting</td>
+    <td class="col-date" style="font-size:.8rem;color:var(--grey-3);white-space:nowrap;">Annual</td>
+    <td><div class="status-cell"><span class="sdot g"></span>Confirmed</div></td>
+  </tr><tr data-i="101" data-tags="soc2 soc1 tech confirmed hosting">
+    <td>
+      <span title="Global / used in Malta" style="display:inline-block;margin-right:6px;font-size:.95em;color:var(--grey-3);">🌐</span><span class="cname" onclick="openModal(101)">CoreSite (American Tower)</span>
+      <div class="csector" style="margin-left:22px;">Data Centre Co-location · Physical Infrastructure</div>
+      <div style="margin-left:22px;margin-top:5px;"><span class="tag soc1">SOC 1 Type II</span><span class="tag soc2">SOC 2 Type II</span></div>
+      
+    </td>
+    <td class="col-sector" style="font-size:.8rem;color:var(--grey-4);">Data Centre Co-location</td>
+    <td class="col-date" style="font-size:.8rem;color:var(--grey-3);white-space:nowrap;">Annual</td>
+    <td><div class="status-cell"><span class="sdot g"></span>Confirmed</div></td>
+  </tr><tr data-i="102" data-tags="soc2 soc1 tech confirmed finance">
+    <td>
+      <span title="Global / used in Malta" style="display:inline-block;margin-right:6px;font-size:.95em;color:var(--grey-3);">🌐</span><span class="cname" onclick="openModal(102)">Deel</span>
+      <div class="csector" style="margin-left:22px;">International Payroll · Employer of Record</div>
+      <div style="margin-left:22px;margin-top:5px;"><span class="tag soc2">SOC 2 Type II</span><span class="tag iso27001">ISO 27001</span></div>
+      
+    </td>
+    <td class="col-sector" style="font-size:.8rem;color:var(--grey-4);">International Payroll</td>
+    <td class="col-date" style="font-size:.8rem;color:var(--grey-3);white-space:nowrap;">Annual</td>
+    <td><div class="status-cell"><span class="sdot g"></span>Confirmed</div></td>
+  </tr><tr data-i="103" data-tags="soc2 soc1 tech confirmed hosting">
+    <td>
+      <span title="Global / used in Malta" style="display:inline-block;margin-right:6px;font-size:.95em;color:var(--grey-3);">🌐</span><span class="cname" onclick="openModal(103)">Sabey Data Centers (SDC)</span>
+      <div class="csector" style="margin-left:22px;">Data Centre Co-location · Physical Security</div>
+      <div style="margin-left:22px;margin-top:5px;"><span class="tag soc1">SOC 1 Type II</span><span class="tag soc2">SOC 2 Type II</span></div>
+      
+    </td>
+    <td class="col-sector" style="font-size:.8rem;color:var(--grey-4);">Data Centre Co-location</td>
+    <td class="col-date" style="font-size:.8rem;color:var(--grey-3);white-space:nowrap;">Annual</td>
+    <td><div class="status-cell"><span class="sdot g"></span>Confirmed</div></td>
+  </tr><tr data-i="104" data-tags="soc2 payment confirmed crypto">
+    <td>
+      <span title="Global / used in Malta" style="display:inline-block;margin-right:6px;font-size:.95em;color:var(--grey-3);">🌐</span><span class="cname" onclick="openModal(104)">NYDIG</span>
+      <div class="csector" style="margin-left:22px;">Bitcoin Custody · Digital Asset Services</div>
+      <div style="margin-left:22px;margin-top:5px;"><span class="tag soc2">SOC 2 Type II</span></div>
+      
+    </td>
+    <td class="col-sector" style="font-size:.8rem;color:var(--grey-4);">Bitcoin Custody</td>
+    <td class="col-date" style="font-size:.8rem;color:var(--grey-3);white-space:nowrap;">Annual</td>
+    <td><div class="status-cell"><span class="sdot g"></span>Confirmed</div></td>
+  </tr><tr data-i="105" data-tags="soc2 soc1 payment confirmed crypto">
+    <td>
+      <span title="Global / used in Malta" style="display:inline-block;margin-right:6px;font-size:.95em;color:var(--grey-3);">🌐</span><span class="cname" onclick="openModal(105)">Coinbase Prime</span>
+      <div class="csector" style="margin-left:22px;">Crypto Prime Brokerage · Custody</div>
+      <div style="margin-left:22px;margin-top:5px;"><span class="tag soc1">SOC 1 Type II</span><span class="tag soc2">SOC 2 Type II</span></div>
+      
+    </td>
+    <td class="col-sector" style="font-size:.8rem;color:var(--grey-4);">Crypto Prime Brokerage</td>
+    <td class="col-date" style="font-size:.8rem;color:var(--grey-3);white-space:nowrap;">Annual</td>
+    <td><div class="status-cell"><span class="sdot g"></span>Confirmed</div></td>
+  </tr><tr data-i="106" data-tags="soc2 tech confirmed hosting">
+    <td>
+      <span title="Global / used in Malta" style="display:inline-block;margin-right:6px;font-size:.95em;color:var(--grey-3);">🌐</span><span class="cname" onclick="openModal(106)">Looker (Google Cloud)</span>
+      <div class="csector" style="margin-left:22px;">Business Intelligence · Data Visualisation SaaS</div>
+      <div style="margin-left:22px;margin-top:5px;"><span class="tag soc2">SOC 2 (under GCP)</span><span class="tag iso27001">ISO 27001</span></div>
+      
+    </td>
+    <td class="col-sector" style="font-size:.8rem;color:var(--grey-4);">Business Intelligence</td>
+    <td class="col-date" style="font-size:.8rem;color:var(--grey-3);white-space:nowrap;">Annual</td>
+    <td><div class="status-cell"><span class="sdot g"></span>Confirmed (under GCP)</div></td>
+  </tr></tbody>
       </table>
     </div>
   </div>
@@ -619,10 +1689,10 @@
   <div style="background:var(--white);border:1px solid var(--border);border-left:4px solid var(--red);border-radius:2px;padding:20px 24px;margin-bottom:36px;display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:16px;">
     <div>
       <div style="font-size:.7rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--red);margin-bottom:4px;">Looking for a SOC auditor in Malta?</div>
-      <div style="font-family:'Playfair Display',serif;font-size:1.05rem;font-weight:700;color:var(--black);margin-bottom:4px;">Malta SOC Audit Providers Directory</div>
+      <div style="font-family:&#39;Playfair Display&#39;,serif;font-size:1.05rem;font-weight:700;color:var(--black);margin-bottom:4px;">Malta SOC Audit Providers Directory</div>
       <div style="font-size:.82rem;color:var(--grey-4);">A separate directory of professional firms in Malta that offer SOC 1, SOC 2, ISAE 3402 and ISAE 3000 audit and assurance services.</div>
     </div>
-    <a href="./providers.html" style="display:inline-flex;align-items:center;gap:6px;background:var(--red);color:var(--white);text-decoration:none;padding:10px 20px;font-size:.78rem;font-weight:700;letter-spacing:.04em;text-transform:uppercase;border-radius:2px;white-space:nowrap;transition:background .15s;" onmouseover="this.style.background='var(--red-dark)'" onmouseout="this.style.background='var(--red)'">View Providers →</a>
+    <a href="https://malta-soc-audit.vercel.app/providers.html" style="display:inline-flex;align-items:center;gap:6px;background:var(--red);color:var(--white);text-decoration:none;padding:10px 20px;font-size:.78rem;font-weight:700;letter-spacing:.04em;text-transform:uppercase;border-radius:2px;white-space:nowrap;transition:background .15s;" onmouseover="this.style.background=&#39;var(--red-dark)&#39;" onmouseout="this.style.background=&#39;var(--red)&#39;">View Providers →</a>
   </div>
 
   <!-- METHODOLOGY -->
@@ -636,18 +1706,18 @@
 
   <!-- FRAMEWORKS & ANALYTICS LINK CARDS — bottom of page -->
   <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:16px;margin:36px 0 40px;">
-    <a href="./frameworks.html" style="text-decoration:none;">
-      <div style="background:var(--white);border:1px solid var(--border);border-top:3px solid var(--blue);border-radius:2px;padding:24px;transition:box-shadow .2s,border-color .2s;" onmouseover="this.style.boxShadow='0 4px 20px rgba(0,0,0,.08)';this.style.borderColor='#b0b0b0'" onmouseout="this.style.boxShadow='';this.style.borderColor='var(--border)'">
+    <a href="https://malta-soc-audit.vercel.app/frameworks.html" style="text-decoration:none;">
+      <div style="background:var(--white);border:1px solid var(--border);border-top:3px solid var(--blue);border-radius:2px;padding:24px;transition:box-shadow .2s,border-color .2s;" onmouseover="this.style.boxShadow=&#39;0 4px 20px rgba(0,0,0,.08)&#39;;this.style.borderColor=&#39;#b0b0b0&#39;" onmouseout="this.style.boxShadow=&#39;&#39;;this.style.borderColor=&#39;var(--border)&#39;">
         <div style="font-size:.7rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--blue);margin-bottom:8px;">Reference Guide</div>
-        <div style="font-family:'Playfair Display',serif;font-size:1.1rem;font-weight:700;color:var(--black);margin-bottom:6px;">Audit Frameworks Explained</div>
+        <div style="font-family:&#39;Playfair Display&#39;,serif;font-size:1.1rem;font-weight:700;color:var(--black);margin-bottom:6px;">Audit Frameworks Explained</div>
         <div style="font-size:.85rem;color:var(--grey-4);line-height:1.55;margin-bottom:16px;">SOC 1, SOC 2, ISAE 3402, ISAE 3000 — what each framework covers, when it applies, and how they compare.</div>
         <span style="display:inline-flex;align-items:center;gap:4px;color:var(--blue);font-size:.82rem;font-weight:700;">View Frameworks Guide →</span>
       </div>
     </a>
-    <a href="./analytics.html" style="text-decoration:none;">
-      <div style="background:var(--white);border:1px solid var(--border);border-top:3px solid var(--red);border-radius:2px;padding:24px;transition:box-shadow .2s,border-color .2s;" onmouseover="this.style.boxShadow='0 4px 20px rgba(0,0,0,.08)';this.style.borderColor='#b0b0b0'" onmouseout="this.style.boxShadow='';this.style.borderColor='var(--border)'">
+    <a href="https://malta-soc-audit.vercel.app/analytics.html" style="text-decoration:none;">
+      <div style="background:var(--white);border:1px solid var(--border);border-top:3px solid var(--red);border-radius:2px;padding:24px;transition:box-shadow .2s,border-color .2s;" onmouseover="this.style.boxShadow=&#39;0 4px 20px rgba(0,0,0,.08)&#39;;this.style.borderColor=&#39;#b0b0b0&#39;" onmouseout="this.style.boxShadow=&#39;&#39;;this.style.borderColor=&#39;var(--border)&#39;">
         <div style="font-size:.7rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--red);margin-bottom:8px;">Data &amp; Visualisation</div>
-        <div style="font-family:'Playfair Display',serif;font-size:1.1rem;font-weight:700;color:var(--black);margin-bottom:6px;">Sector &amp; Framework Analytics</div>
+        <div style="font-family:&#39;Playfair Display&#39;,serif;font-size:1.1rem;font-weight:700;color:var(--black);margin-bottom:6px;">Sector &amp; Framework Analytics</div>
         <div style="font-size:.85rem;color:var(--grey-4);line-height:1.55;margin-bottom:16px;">6 interactive charts — sector distribution, framework breakdown, Malta vs global coverage, regulatory drivers, and engagement timeline.</div>
         <span style="display:inline-flex;align-items:center;gap:4px;color:var(--red);font-size:.82rem;font-weight:700;">View Analytics →</span>
       </div>
@@ -660,12 +1730,12 @@
   <div class="footer-inner">
     <div class="footer-copy">
       Malta SOC Audit Intelligence · Independent Assurance Registry<br>
-      Data sourced from Tech.mt, MGA, MFSA, corporate announcements &amp; LinkedIn · &copy; 2026
+      Data sourced from Tech.mt, MGA, MFSA, corporate announcements &amp; LinkedIn · © 2026
     </div>
     <div class="footer-links">
       <a href="https://www.mga.org.mt/licensee-hub/licensee-register/" target="_blank">MGA Register</a>
       <a href="https://tech.mt/members/" target="_blank">Tech.mt Members</a>
-      <a href="https://www.mfsa.mt" target="_blank">MFSA</a>
+      <a href="https://www.mfsa.mt/" target="_blank">MFSA</a>
     </div>
   </div>
 </footer>
@@ -780,7 +1850,7 @@ const CO=[
    kicker:'🌐 Frankfurt EU',
    body:`SOC 1, SOC 2, SOC 3 and ISAE 3402.`,
    auditor:'Not publicly disclosed',
-   link:'https://www.ibm.com/cloud/compliance'},
+   link:'https://www.ibm.com/products/cloud/compliance/soc-2'},
   {name:'Alibaba Cloud',sector:'Hyperscale Cloud · APAC',malta:false,
    tags:['soc2','soc1','tech','confirmed','hosting'],
    certs:[{cls:'soc2',l:'SOC 2 Type II'},{cls:'soc1',l:'SOC 1 Type II'}],
@@ -810,12 +1880,12 @@ const CO=[
    body:`Largest EU cloud provider. SOC 1, SOC 2, ISAE 3402, ISO 27001.`,
    link:'https://www.ovhcloud.com/en/enterprise/certification-conformity/'},
   {name:'Scaleway',sector:'European Cloud · IaaS',malta:false,
-   tags:['soc2','tech','confirmed','hosting'],
-   certs:[{cls:'soc2',l:'SOC 2'},{cls:'iso27001',l:'ISO 27001'}],
-   status:'g',statusLabel:'Confirmed',date:'2024',
+   tags:['iso27001','tech','hosting'],
+   certs:[{cls:'iso27001',l:'ISO 27001'}],
+   status:'a',statusLabel:'ISO 27001 confirmed · no public SOC 2',date:'2025',
    kicker:'🌐 France · GDPR',
-   body:`Scaleway holds ISO 27001 and SOC 2 attestation.`,
-   link:'https://www.scaleway.com/en/security-and-compliance/'},
+   body:`Scaleway publicly documents ISO/IEC 27001:2022 and HDS (French health-data) certification, and has entered the SecNumCloud qualification process. No public SOC 2 / ISAE attestation was found.`,
+   link:'https://www.scaleway.com/en/security-and-resilience/'},
   {name:'Vultr',sector:'Developer Cloud · VPS',malta:false,
    tags:['soc2','tech','confirmed','hosting'],
    certs:[{cls:'soc2',l:'SOC 2 Type II'}],
@@ -843,7 +1913,7 @@ const CO=[
    status:'g',statusLabel:'Confirmed',date:'Annual',
    kicker:'🌐 Edge platform',
    body:`SOC 2 Type II + ISO 27001.`,
-   link:'https://www.fastly.com/security/compliance'},
+   link:'https://www.fastly.com/compliance'},
   {name:'Salesforce',sector:'CRM SaaS',malta:false,
    tags:['soc2','soc1','tech','confirmed'],
    certs:[{cls:'soc2',l:'SOC 2 Type II'},{cls:'soc1',l:'SOC 1 Type II'},{cls:'iso27001',l:'ISO 27001'}],
@@ -851,14 +1921,14 @@ const CO=[
    kicker:'🌐 Used by Malta financial services',
    body:`SOC 1, SOC 2, SOC 3, ISO 27001.`,
    auditor:'Ernst & Young LLP (EY) [SOC 1 · SOC 2 attestation auditor (AICPA); EY also serves as financial statements auditor (SEC filings)]',
-   link:'https://compliance.salesforce.com/en/services/soc-2'},
+   link:'https://compliance.salesforce.com/en/categories/soc-2'},
   {name:'ServiceNow',sector:'IT Service Mgmt SaaS',malta:false,
    tags:['soc2','soc1','tech','confirmed'],
    certs:[{cls:'soc2',l:'SOC 2 Type II'},{cls:'soc1',l:'SOC 1 Type II'},{cls:'iso27001',l:'ISO 27001'}],
    status:'g',statusLabel:'Confirmed',date:'Annual',
    kicker:'🌐 Enterprise ITSM',
    body:`SOC 1, SOC 2, ISO 27001.`,
-   link:'https://www.servicenow.com/standard/legal/security-and-compliance.html'},
+   link:'https://www.servicenow.com/company/trust/compliance.html'},
   {name:'Workday',sector:'HR / Finance SaaS',malta:false,
    tags:['soc2','soc1','isae3402','tech','confirmed'],
    certs:[{cls:'soc2',l:'SOC 2 Type II'},{cls:'soc1',l:'SOC 1 Type II'},{cls:'isae3402',l:'ISAE 3402'}],
@@ -886,7 +1956,7 @@ const CO=[
    status:'g',statusLabel:'Confirmed',date:'Annual',
    kicker:'🌐 Common SaaS in Malta',
    body:`SOC 2 Type II + ISO 27001.`,
-   link:'https://www.hubspot.com/security'},
+   link:'https://legal.hubspot.com/security'},
   {name:'Atlassian (Jira/Confluence)',sector:'Collaboration · DevOps',malta:false,
    tags:['soc2','soc1','tech','confirmed'],
    certs:[{cls:'soc2',l:'SOC 2 Type II'},{cls:'soc1',l:'SOC 1'},{cls:'iso27001',l:'ISO 27001'}],
@@ -921,7 +1991,7 @@ const CO=[
    status:'g',statusLabel:'Confirmed',date:'Annual',
    kicker:'🌐 Developer platform',
    body:`SOC 1, SOC 2, ISO 27001.`,
-   link:'https://github.com/security'},
+   link:'https://docs.github.com/en/organizations/keeping-your-organization-secure/managing-security-settings-for-your-organization/accessing-compliance-reports-for-your-organization'},
   {name:'GitLab',sector:'DevOps Platform',malta:false,
    tags:['soc2','tech','confirmed'],
    certs:[{cls:'soc2',l:'SOC 2 Type II'},{cls:'iso27001',l:'ISO 27001'}],
@@ -964,14 +2034,14 @@ const CO=[
    status:'g',statusLabel:'Confirmed',date:'Annual',
    kicker:'🌐 SMS/Voice API',
    body:`SOC 2 + ISO 27001.`,
-   link:'https://www.twilio.com/en-us/legal/security-overview'},
+   link:'https://security.twilio.com/'},
   {name:'SendGrid (Twilio)',sector:'Email API',malta:false,
    tags:['soc2','tech','confirmed'],
    certs:[{cls:'soc2',l:'SOC 2 Type II'}],
    status:'g',statusLabel:'Confirmed',date:'Annual',
    kicker:'🌐 Transactional email',
    body:`SOC 2 Type II.`,
-   link:'https://sendgrid.com/policies/security/'},
+   link:'https://www.twilio.com/en-us/trust-center'},
   {name:'Zendesk',sector:'Customer Support SaaS',malta:false,
    tags:['soc2','tech','confirmed'],
    certs:[{cls:'soc2',l:'SOC 2 Type II'},{cls:'iso27001',l:'ISO 27001'}],
@@ -1051,7 +2121,7 @@ const CO=[
    status:'g',statusLabel:'Confirmed',date:'2024',
    kicker:'🌐 XRP Ledger',
    body:`SOC 2 Type II.`,
-   link:'https://ripple.com/legal/compliance/'},
+   link:'https://ripple.com/insights/crypto-custody-security/'},
   {name:'Circle (USDC Issuer)',sector:'Stablecoin · Crypto Payments',malta:false,
    tags:['soc2','soc1','payment','confirmed'],
    certs:[{cls:'soc2',l:'SOC 2 Type II'},{cls:'soc1',l:'SOC 1'}],
@@ -1181,7 +2251,7 @@ const CO=[
    status:'g',statusLabel:'Confirmed',date:'Annual',
    kicker:'🌐 Website builder',
    body:`Wix holds a <strong>SOC 2 Type II</strong> report.`,
-   link:'https://support.wix.com/en/article/velo-security-and-privacy-at-wix'},
+   link:'https://www.wix.com/trust-center/security'},
   {name:'Box',sector:'Content Management SaaS',malta:false,
    tags:['soc2','soc1','isae3402','tech','confirmed'],
    certs:[{cls:'soc2',l:'SOC 2 Type II'},{cls:'soc1',l:'SOC 1 Type II'},{cls:'isae3402',l:'ISAE 3402'}],
@@ -1927,5 +2997,6 @@ document.addEventListener('keydown',e=>{
   }
 })();
 </script>
-</body>
-</html>
+
+
+</body></html>
