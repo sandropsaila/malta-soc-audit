@@ -568,23 +568,6 @@
         <input type="text" id="searchInput" placeholder="Search name, sector, cert, auditor, source domain…" oninput="filterTable()">
       </div>
       <span id="resultsCount" style="font-size:.78rem;font-weight:600;color:var(--grey-4);white-space:nowrap;">121 companies</span>
-      <div class="filter-pills">
-        <span class="filter-label">Filter <span id="filterCount" style="display:none;background:var(--red);color:#fff;border-radius:10px;padding:1px 7px;font-size:.65rem;font-weight:700;margin-left:4px;vertical-align:middle;"></span></span>
-        <button class="fpill active" data-filter="all" onclick="setFilter(&#39;all&#39;,this)">All</button>
-        <button class="fpill" data-filter="malta" onclick="setFilter(&#39;malta&#39;,this)" style="background:#fef3c7;color:#92400e;border-color:#fde68a;">🇲🇹 Malta only</button>
-        <button class="fpill" data-filter="soc2" onclick="setFilter(&#39;soc2&#39;,this)">SOC 2</button>
-        <button class="fpill" data-filter="soc1" onclick="setFilter(&#39;soc1&#39;,this)">SOC 1</button>
-        <button class="fpill" data-filter="isae3402" onclick="setFilter(&#39;isae3402&#39;,this)">ISAE 3402</button>
-        <button class="fpill" data-filter="isae3000" onclick="setFilter(&#39;isae3000&#39;,this)">ISAE 3000</button>
-        <button class="fpill" data-filter="hosting" onclick="setFilter(&#39;hosting&#39;,this)">Cloud / Hosting</button>
-        <button class="fpill" data-filter="tech" onclick="setFilter(&#39;tech&#39;,this)">Tech / SaaS</button>
-        <button class="fpill" data-filter="igaming" onclick="setFilter(&#39;igaming&#39;,this)">iGaming</button>
-        <button class="fpill" data-filter="payment" onclick="setFilter(&#39;payment&#39;,this)">Payments</button>
-        <button class="fpill" data-filter="crypto" onclick="setFilter(&#39;crypto&#39;,this)">Crypto</button>
-        <button class="fpill" data-filter="mfsa" onclick="setFilter(&#39;mfsa&#39;,this)">MFSA</button>
-        <button class="fpill" data-filter="fund" onclick="setFilter(&#39;fund&#39;,this)">Fund Services</button>
-        <button class="fpill" data-filter="confirmed" onclick="setFilter(&#39;confirmed&#39;,this)">Confirmed ✓</button>
-      </div>
     </div>
 
     <!-- INSIGHTS CHARTS — react to active filters/search -->
@@ -592,7 +575,7 @@
       <table>
         <thead>
           <tr>
-            <th>Company</th>
+            <th style="width:36px;text-align:center;color:var(--grey-3);font-size:.7rem;">#</th><th>Company</th>
             <th class="col-sector">Sector</th>
             <th class="col-date">Last Activity</th>
             <th>Status</th>
@@ -705,13 +688,6 @@ const CO=[
    body:`Greentube Malta — the iGaming arm of NOVOMATIC Group — publicly announced <strong>ISAE 3402 certification</strong> via LinkedIn in early 2023. <em>Auditor not publicly disclosed.</em>`,
    auditor:'Not publicly disclosed',
    link:'https://www.greentube.com/'},
-  {name:'Nuvei Technologies (Malta)',sector:'Payment Processing · EMI · MFSA',malta:true,
-   tags:['soc2','payment','mfsa','confirmed','malta'],
-   certs:[{cls:'soc2',l:'PCI DSS Lvl 1'},{cls:'iso27001',l:'MiCAR CASP Dec 2025'}],
-   status:'g',statusLabel:'Confirmed',date:'Annual · Dec 2025',
-   kicker:'🇲🇹 MFSA · MiCAR CASP · FIR/02',
-   body:`Holds <strong>PCI DSS Level 1</strong> annual QSA audit. MiCA CASP licence Dec 2025.`,
-   link:'https://www.nuvei.com/legal/licences-and-certifications'},
   {name:'Paysafe Malta (Skrill / NETELLER)',sector:'E-Wallet · EMI · MFSA',malta:true,
    tags:['soc2','payment','mfsa','confirmed','malta'],
    certs:[{cls:'soc2',l:'SOC 2 (Group)'},{cls:'soc1',l:'PCI DSS Lvl 1'}],
@@ -1472,7 +1448,7 @@ CO.forEach((c,i)=>{
   const flag = c.malta
     ? '<span title="Malta-based" style="display:inline-block;margin-right:6px;font-size:.95em;">🇲🇹</span>'
     : '<span title="Global / used in Malta" style="display:inline-block;margin-right:6px;font-size:.95em;color:var(--grey-3);">🌐</span>';
-  tr.innerHTML=`
+  tr.innerHTML=`<td class='col-num' style='text-align:center;font-size:.72rem;color:var(--grey-3);font-weight:600;width:36px;'></td>
     <td>
       ${flag}<span class="cname" onclick="openModal(${i})">${c.name}</span>
       <div class="csector" style="margin-left:22px;">${c.sector}</div>
@@ -1734,6 +1710,16 @@ function filterTable(){
     document.getElementById('tBody').appendChild(hint);
   }
   hint.style.display = visible.length===0 ? '' : 'none';
+
+  // Renumber visible rows
+  let visNum = 0;
+  rows.forEach(tr => {
+    if(tr.style.display !== 'none' && !tr.classList.contains('hr') && tr.id !== 'noResults'){
+      visNum++;
+      const numCell = tr.querySelector('.col-num');
+      if(numCell) numCell.textContent = visNum;
+    }
+  });
 
   // Live results counter
   const counter = document.getElementById('resultsCount');
