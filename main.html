@@ -783,7 +783,7 @@ const CO=[
    body:`Largest EU cloud provider. SOC 1, SOC 2, ISAE 3402, ISO 27001.`,
    link:'https://www.ovhcloud.com/en/enterprise/certification-conformity/'},
   {name:'Scaleway',sector:'European Cloud · IaaS',malta:false,
-   tags:['iso27001','tech','hosting'],
+   tags:['iso27001','tech','hosting','othercert'],
    certs:[{cls:'iso27001',l:'ISO 27001'}],
    status:'a',statusLabel:'ISO 27001 confirmed · no public SOC 2',date:'2025',
    kicker:'🌐 France · GDPR',
@@ -1421,14 +1421,14 @@ const CO=[
    kicker:'🌐 EU · Netherlands · AI Cloud · GPU',
    body:`Nebius BV holds a publicly available <strong>SOC 3 report</strong> (Security, Availability, Confidentiality + HIPAA Mapping) audited by <strong>Deloitte</strong>, covering the period April–July 2025. Also maintains a confidential SOC 2 Type II report. Scope covers Nebius AI Cloud, AI Studio (Token Factory) and Tracto AI.`,
    auditor:'Deloitte',
-   link:'https://nebius.com/trust-center/soc-3'}
-];
-
-/* ── OTHER CERTIFICATIONS (no SOC/ISAE — tracked separately) ── */
-const CO_OTHER = [
-  {name:'Nuvei Technologies (Malta)', certs:'PCI DSS Level 1 · MiCAR CASP', note:'MFSA-licensed payment processor. Holds PCI DSS Lvl 1 and MiCAR CASP licence (Dec 2025). No public SOC/ISAE report.'},
-  {name:'Scaleway', certs:'ISO/IEC 27001:2022 · HDS', note:'EU cloud provider. ISO 27001 and French HDS (health data) certified. SecNumCloud qualification in progress. No public SOC/ISAE report.'},
-  {name:'Greentube Malta', certs:'ISO 27001 · MGA Licensed', note:'NOVOMATIC Group iGaming platform. MGA licensed. No public SOC/ISAE report found.'},
+   link:'https://nebius.com/trust-center/soc-3'},
+  {name:'Nuvei Technologies (Malta)',sector:'Payment Processing · EMI · MFSA',malta:true,
+   tags:['payment','mfsa','malta','othercert'],
+   certs:[{cls:'pci',l:'PCI DSS Lvl 1'},{cls:'iso27001',l:'MiCAR CASP'}],
+   status:'a',statusLabel:'Other Certifications',date:'Annual · Dec 2025',
+   kicker:'🇲🇹 MFSA · MiCAR CASP · FIR/02',
+   body:`Holds <strong>PCI DSS Level 1</strong> annual QSA audit and MiCA CASP licence (Dec 2025). No SOC/ISAE report. Tracked here for completeness.`,
+   link:'https://www.nuvei.com/legal/licences-and-certifications'}
 ];
 
 /* ── RENDER ──────────────────────────────────────────────────── */
@@ -1793,6 +1793,7 @@ function openModal(i){
 /* Each company maps to exactly ONE sector via this if-else chain. */
 function classifySector(c){
   const tags = (c.tags||[]).map(t=>t.toLowerCase());
+  if(tags.includes('othercert') && !['soc2','soc1','soc3','isae3402','isae3000'].some(s=>tags.includes(s))) return 'Other Certifications';
   const blob = ((c.sector||'') + ' ' + (c.name||'')).toLowerCase();
   if(tags.includes('igaming')) return 'iGaming';
   if(tags.includes('crypto') || /crypto|bitcoin|blockchain|digital asset|stablecoin|defi|custody.*digital|digital.*custody|exchange.*digital|digital.*exchange/.test(blob)) return 'Crypto / Digital Assets';
@@ -1838,9 +1839,10 @@ function updateCharts(){
     const i = +tr.dataset.i;
     const c = CO[i];
     if(!c) return;
-    const hasReport = c.status === 'g' && c.certs.some(cert => /^(soc1|soc2|soc3|isae3402|isae3000)$/i.test(cert.cls));
+    const isOtherCert = (c.tags||[]).includes('othercert');
+    const hasReport = isOtherCert || (c.status === 'g' && c.certs.some(cert => /^(soc1|soc2|soc3|isae3402|isae3000)$/i.test(cert.cls)));
     if(!hasReport) return;
-    withSocIsae++;
+    if(!isOtherCert) withSocIsae++;
     // each company counted once — SECTOR_OF[i] is deterministic
     const sector = SECTOR_OF[i];
     sectorCounts[sector] = (sectorCounts[sector]||0) + 1;
@@ -1849,23 +1851,8 @@ function updateCharts(){
   });
 
   // Render sector chart (clickable) + Other Certifications bar
-  const sectorOrder = ['Hyperscale Cloud','Cloud / Hosting','Data Centre / Colo','Data / DevOps Tools','CRM / Sales / Marketing','Collaboration / Productivity','Design / Creative','Communications','Storage / Content','Identity / Access','eCommerce / Web','Accounting / Finance SaaS','Payroll / HR Tech','Cybersecurity','Payments','Crypto / Digital Assets','iGaming','Fund / Financial Svcs','Other SaaS / Tech','Other'];
+  const sectorOrder = ['Hyperscale Cloud','Cloud / Hosting','Data Centre / Colo','Data / DevOps Tools','CRM / Sales / Marketing','Collaboration / Productivity','Design / Creative','Communications','Storage / Content','Identity / Access','eCommerce / Web','Accounting / Finance SaaS','Payroll / HR Tech','Cybersecurity','Payments','Crypto / Digital Assets','iGaming','Fund / Financial Svcs','Other SaaS / Tech','Other','Other Certifications'];
   renderBars('chartSector', sectorCounts, sectorOrder, 'sector', activeSector);
-  // Append "Other Certifications" bar (non-clickable, styled differently)
-  const chartEl = document.getElementById('chartSector');
-  if(chartEl && CO_OTHER.length > 0){
-    const maxVal = Math.max(...Object.values(sectorCounts), CO_OTHER.length) || 1;
-    const pct = Math.round((CO_OTHER.length / maxVal) * 100);
-    const names = CO_OTHER.map(c=>c.name).join(', ');
-    const div = document.createElement('div');
-    div.className = 'bar-row';
-    div.title = `Other Certifications (ISO, PCI DSS, MiCAR etc — no SOC/ISAE): ${CO_OTHER.length} — ${names}`;
-    div.style.cssText = 'opacity:0.7;cursor:default;border-top:1px dashed var(--border);margin-top:6px;padding-top:6px;';
-    div.innerHTML = `<div class="bar-label" style="color:var(--grey-4);font-style:italic;">Other Certifications ⓘ</div><div class="bar-track"><div class="bar-fill" style="width:${pct}%;background:var(--grey-3);">${CO_OTHER.length}</div></div>`;
-    div.addEventListener('mouseenter', ()=>{ div.style.opacity='1'; });
-    div.addEventListener('mouseleave', ()=>{ div.style.opacity='0.7'; });
-    chartEl.appendChild(div);
-  }
 
   // Totals
   const totalVisible = visibleRows.length;
