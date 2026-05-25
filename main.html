@@ -1511,6 +1511,10 @@ const ALIASES = {
   'gemini':['gemini','intergalactic','artemis','winklevoss'],
   'paysafe':['paysafe','skrill','neteller'],
   'nuvei':['nuvei'], 'bitstamp':['bitstamp'], 'bmit':['bmit'],
+  'nebius':['nebius','nebius ai','nebius cloud','gpu cloud','ai cloud'],
+  'sendgrid':['sendgrid','send grid','email api','transactional email'],
+  'ripple':['ripple','ripple labs','ripplenet','xrp','xrpl','ripple custody'],
+  'othercert':['other certifications','other cert','iso only','pci only','no soc','non-soc'],
   // user-provided additions
   'shopify':['shopify','ecommerce','e-commerce','online store'],
   'wix':['wix','website builder'],
@@ -1708,7 +1712,7 @@ function filterTable(){
   // Live results counter
   const rc = document.getElementById('resultsCount');
   if(rc){
-    const total = CO.length;
+    const total = [...rows].filter(r => r.id !== 'noResults').length;
     rc.textContent = (visible.length === total)
       ? `${total} companies`
       : `${visible.length} of ${total} companies`;
@@ -1736,7 +1740,7 @@ function filterTable(){
   // Live results counter
   const counter = document.getElementById('resultsCount');
   if(counter){
-    const total = CO.length;
+    const total = [...rows].filter(r => r.id !== 'noResults').length;
     const anyFilter = userTokens.length>0 || activeFilters.size>0 || activeSector || activeAuditor;
     counter.textContent = anyFilter
       ? `Showing ${visible.length} of ${total} companies`
