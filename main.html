@@ -528,7 +528,10 @@
     <h1>SOC &amp; ISAE Register</h1>
     <div class="stats-row">
       <div class="stat"><div class="stat-num">107</div><div class="stat-label">Companies</div></div>
-      <div class="stat"><div class="stat-num">11</div><div class="stat-label">🇲🇹 Malta-Based</div></div>
+      <div class="stat" onclick="activeFilters.has('malta')?(activeFilters.delete('malta'),this.querySelector('.stat-label').style.color=''):(activeFilters.add('malta'),this.querySelector('.stat-label').style.color='var(--red)');filterTable();" style="cursor:pointer;" title="Click to filter Malta-based companies">
+        <div class="stat-num">11</div>
+        <div class="stat-label" style="text-decoration:underline;text-underline-offset:3px;">🇲🇹 Malta-Based</div>
+      </div>
     </div>
   </div>
 </div>
