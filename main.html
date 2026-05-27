@@ -527,21 +527,21 @@
   <div class="hero-inner">
     <h1>SOC &amp; ISAE Register</h1>
     <div class="stats-row">
-      <div class="stat"><div class="stat-num" id="statTotal">171</div><div class="stat-label">Companies</div></div>
+      <div class="stat"><div class="stat-num" id="statTotal">216</div><div class="stat-label">Companies</div></div>
       <div class="stat" onclick="activeFilters.has('malta')?(activeFilters.delete('malta'),this.querySelector('.stat-label').style.color=''):(activeFilters.add('malta'),this.querySelector('.stat-label').style.color='var(--red)');filterTable();" style="cursor:pointer;" title="Click to filter Malta-based companies">
         <div class="stat-num" id="statMalta">18</div>
         <div class="stat-label" style="text-decoration:underline;text-underline-offset:3px;">🇲🇹 Malta-Based</div>
       </div>
       <div class="stat" onclick="setTagFilter('soc')" style="cursor:pointer;" title="Click to filter SOC-certified companies">
-        <div class="stat-num" id="statSoc">159</div>
+        <div class="stat-num" id="statSoc">205</div>
         <div class="stat-label" id="statSocLabel" style="text-decoration:underline;text-underline-offset:3px;">With SOC</div>
       </div>
       <div class="stat" onclick="setTagFilter('isae')" style="cursor:pointer;" title="Click to filter ISAE-certified companies">
-        <div class="stat-num" id="statIsae">50</div>
+        <div class="stat-num" id="statIsae">52</div>
         <div class="stat-label" id="statIsaeLabel" style="text-decoration:underline;text-underline-offset:3px;">With ISAE</div>
       </div>
       <div class="stat" onclick="setTagFilter('both')" style="cursor:pointer;" title="Click to filter companies with both SOC and ISAE">
-        <div class="stat-num" id="statBoth">43</div>
+        <div class="stat-num" id="statBoth">45</div>
         <div class="stat-label" id="statBothLabel" style="text-decoration:underline;text-underline-offset:3px;">SOC &amp; ISAE</div>
       </div>
     </div>
@@ -576,7 +576,7 @@
         <svg class="search-icon" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="11" cy="11" r="8"></circle><path d="m21 21-4.35-4.35"></path></svg>
         <input type="text" id="searchInput" placeholder="Search name, sector, cert, auditor, source domain…" oninput="filterTable()">
       </div>
-      <span id="resultsCount" style="font-size:.78rem;font-weight:600;color:var(--grey-4);white-space:nowrap;">171 companies</span>
+      <span id="resultsCount" style="font-size:.78rem;font-weight:600;color:var(--grey-4);white-space:nowrap;">216 companies</span>
     </div>
 
     <!-- INSIGHTS CHARTS — react to active filters/search -->
@@ -1925,6 +1925,367 @@ const CO=[
    auditor:'Not publicly disclosed',
    body:`Arctic Wolf holds <strong>SOC 2 Type II</strong> for its managed detection and response (MDR) and managed security operations platform. Operating as a 24/7 SOC-as-a-service, Arctic Wolf monitors clients' security environments and responds to threats — increasingly adopted by regulated entities seeking managed cyber resilience under DORA.`,
    link:'https://arcticwolf.com/company/security/'}
+
+  ,{name:'Fortinet',sector:'Network Security · Firewall · SASE · FortiOS',malta:false,
+   tags:['soc2','confirmed','security'],
+   certs:[{cls:'soc2',l:'SOC 2 Type II'},{cls:'iso27001',l:'ISO 27001/17/18'}],
+   status:'g',statusLabel:'Confirmed',date:'Annual · 81 certs in 2024',
+   kicker:'🌐 Global · NASDAQ: FTNT · Network & Cloud Security Leader',
+   auditor:'Not publicly disclosed',
+   body:`Fortinet holds <strong>SOC 2 Type II</strong> reports for its cloud services and managed offerings (FortiCloud, FortiSIEM, Managed FortiGate, SOCaaS), confirmed at trust.fortinet.com and in the 2024 Sustainability Report ("81 information security certifications and examinations"). ISO 27001/27017/27018 certified. Reports available to customers via the Fortinet Trust Resource Center (SafeBase).`,
+   link:'https://trust.fortinet.com/'}
+  ,{name:'Tenable',sector:'Vulnerability Management · Cyber Exposure · Attack Surface',malta:false,
+   tags:['soc2','confirmed','security'],
+   certs:[{cls:'soc2',l:'SOC 2 Type II'}],
+   status:'g',statusLabel:'Confirmed',date:'Annual',
+   kicker:'🌐 Global · NASDAQ: TENB · Vulnerability Management Leader',
+   auditor:'Not publicly disclosed',
+   body:`Tenable holds a <strong>SOC 2 Type II</strong> report for its cloud platform (Tenable.io / Tenable One), confirmed at tenable.com/trust/assurance. The report is available under MNDA on request via account representatives. As one of the top three vulnerability management platforms (alongside Qualys and Rapid7), Tenable's SOC 2 is widely required by enterprise and regulated clients deploying cloud-based vulnerability scanning.`,
+   link:'https://www.tenable.com/trust/assurance'}
+  ,{name:'Qualys',sector:'Vulnerability Management · VMDR · Cloud Security',malta:false,
+   tags:['soc2','confirmed','security'],
+   certs:[{cls:'soc2',l:'SOC 2 Type II'},{cls:'iso27001',l:'ISO 27001'}],
+   status:'g',statusLabel:'Confirmed',date:'Annual',
+   kicker:'🌐 Global · NASDAQ: QLYS · Cloud-Native Vulnerability Management',
+   auditor:'Not publicly disclosed',
+   body:`Qualys holds <strong>SOC 2 Type II and ISO 27001</strong> for its VMDR (Vulnerability Management, Detection and Response) cloud platform. Also FedRAMP authorized and StateRAMP certified. Qualys provides pre-built SOC 2 compliance report mappings to CC7.1 trust criteria. Widely used by financial institutions and regulated entities for continuous vulnerability scanning and compliance monitoring.`,
+   link:'https://www.qualys.com/company/security/'}
+  ,{name:'Rapid7',sector:'Vulnerability Management · MDR · InsightVM · SIEM',malta:false,
+   tags:['soc2','confirmed','security'],
+   certs:[{cls:'soc2',l:'SOC 2 Type II'}],
+   status:'g',statusLabel:'Confirmed',date:'Annual',
+   kicker:'🌐 Global · NASDAQ: RPD · Unified Cybersecurity Platform',
+   auditor:'Not publicly disclosed',
+   body:`Rapid7 <strong>undergoes a SOC 2 Type II audit annually</strong> to ensure the effectiveness of controls relevant to security (confirmed at rapid7.com/trust/compliance). The report covers InsightVM, InsightIDR, and related cloud platform services. As one of the three major vulnerability management platforms, Rapid7's annual SOC 2 is standard due-diligence for enterprise clients and regulated organisations.`,
+   link:'https://www.rapid7.com/trust/compliance/'}
+  ,{name:'Proofpoint',sector:'Email Security · Threat Protection · Human-Centric Security',malta:false,
+   tags:['soc2','confirmed','security'],
+   certs:[{cls:'soc2',l:'SOC 2 Type II'},{cls:'iso27001',l:'ISO 27001'}],
+   status:'g',statusLabel:'Confirmed',date:'Annual',
+   kicker:'🌐 Global · Email Security Leader · FedRAMP · IRAP',
+   auditor:'Not publicly disclosed',
+   body:`Proofpoint <strong>maintains SOC 2 Type II audit reports</strong> (SSAE18) for its email security products including Core Email Protection, TAP URL Isolation, Prime Impersonation Protection, and combined SaaS solutions (confirmed at proofpoint.com/us/legal/trust/product-certifications and go.proofpoint.com/soc2_report_request). Also holds ISO 27001, FedRAMP, and IRAP certifications. Reports available on request.`,
+   link:'https://www.proofpoint.com/us/legal/trust/product-certifications'}
+  ,{name:'KnowBe4',sector:'Security Awareness Training · Phishing Simulation · Human Risk',malta:false,
+   tags:['soc2','confirmed','security'],
+   certs:[{cls:'soc2',l:'SOC 2 Type II'},{cls:'iso27001',l:'ISO 27001/42001'}],
+   status:'g',statusLabel:'Confirmed',date:'Annual · All 5 Trust Criteria',
+   kicker:'🌐 Global · Security Awareness Training Leader · 65,000+ customers',
+   auditor:'Not publicly disclosed',
+   body:`KnowBe4 holds <strong>SOC 2 Type II covering all five Trust Services Criteria</strong> (Security, Availability, Processing Integrity, Confidentiality, Privacy), confirmed at knowbe4.com/legal/security. Also ISO 27001 and ISO 42001 (AI management) certified. Bridge letters available for compliance purposes. CSA STAR registry listed. Used by regulated financial institutions and iGaming operators for employee security awareness training.`,
+   link:'https://www.knowbe4.com/legal/security'}
+  ,{name:'Mimecast',sector:'Email Security · Cyber Resilience · Threat Intelligence',malta:false,
+   tags:['soc2','confirmed','security'],
+   certs:[{cls:'soc2',l:'SOC 2 Type II'},{cls:'iso27001',l:'ISO 27001'}],
+   status:'g',statusLabel:'Confirmed',date:'Annual',
+   kicker:'🌐 Global · Email Security · Archiving · Awareness Training',
+   auditor:'Not publicly disclosed',
+   body:`Mimecast holds <strong>SOC 2 Type II and ISO 27001</strong> for its email security, archiving, and continuity platform, confirmed via the Mimecast Trust Center (mimecast.com/company/trust-center). Mimecast provides integrated email security and cyber resilience for enterprises, with compliance posture relevant to GDPR, DORA, and financial services data protection requirements.`,
+   link:'https://www.mimecast.com/company/trust-center/'}
+  ,{name:'Sumo Logic',sector:'Log Management · SIEM · Cloud SIEM · Observability',malta:false,
+   tags:['soc2','confirmed','tech'],
+   certs:[{cls:'soc2',l:'SOC 2 Type II'},{cls:'iso27001',l:'ISO 27001'}],
+   status:'g',statusLabel:'Confirmed',date:'Annual',
+   kicker:'🌐 Global · Cloud-Native Log Management · SIEM · FedRAMP',
+   auditor:'Not publicly disclosed',
+   body:`Sumo Logic holds <strong>SOC 2 Type II and ISO 27001</strong> for its cloud-native log management, SIEM, and observability platform. Also FedRAMP Moderate authorized. Used by security teams at financial institutions and regulated operators for centralised log management, threat detection, and compliance monitoring — relevant to DORA logging and monitoring requirements.`,
+   link:'https://www.sumologic.com/security/'}
+  ,{name:'VMware (Broadcom)',sector:'Virtualisation · Cloud Infrastructure · vSphere · Tanzu',malta:false,
+   tags:['soc2','confirmed','tech','hosting'],
+   certs:[{cls:'soc2',l:'SOC 2 Type II'},{cls:'iso27001',l:'ISO 27001'}],
+   status:'g',statusLabel:'Confirmed',date:'Annual',
+   kicker:'🌐 Global · Acquired by Broadcom 2023 · vSphere · VMware Cloud',
+   auditor:'Not publicly disclosed',
+   body:`VMware (now Broadcom) holds <strong>SOC 2 Type II</strong> for VMware Cloud services, confirmed at vmware.com/products/trust-center. Also ISO 27001 certified. As the dominant virtualisation platform underlying enterprise and financial institution data centres globally, VMware's compliance posture is critical for infrastructure assurance. Relevant for DORA ICT infrastructure risk assessments.`,
+   link:'https://www.vmware.com/products/trust-center/certificate.html'}
+  ,{name:'Nutanix',sector:'Hyperconverged Infrastructure · Cloud Platform · HCI',malta:false,
+   tags:['soc2','confirmed','tech','hosting'],
+   certs:[{cls:'soc2',l:'SOC 2 Type II'},{cls:'iso27001',l:'ISO 27001'}],
+   status:'g',statusLabel:'Confirmed',date:'Annual',
+   kicker:'🌐 Global · NASDAQ: NTNX · Hyperconverged Infrastructure',
+   auditor:'Not publicly disclosed',
+   body:`Nutanix holds <strong>SOC 2 Type II and ISO 27001</strong> for its cloud platform and HCI offerings, confirmed at nutanix.com/trust/compliance-and-certifications. Also FedRAMP authorized. Used by financial institutions and regulated entities for hyperconverged infrastructure and private cloud deployments, relevant to DORA operational resilience requirements for on-premise infrastructure.`,
+   link:'https://www.nutanix.com/trust/compliance-and-certifications'}
+  ,{name:'Rackspace Technology',sector:'Managed Cloud · Hosting · Multicloud Services',malta:false,
+   tags:['soc2','soc1','isae3402','confirmed','hosting'],
+   certs:[{cls:'soc1',l:'SOC 1 Type II'},{cls:'soc2',l:'SOC 2 Type II'},{cls:'isae3402',l:'ISAE 3402'}],
+   status:'g',statusLabel:'Confirmed',date:'Annual',
+   kicker:'🌐 Global · NYSE: RXT · Managed Cloud · Multicloud Services',
+   auditor:'Not publicly disclosed',
+   body:`Rackspace Technology holds <strong>SOC 1 Type II, SOC 2 Type II, and ISAE 3402</strong> attestations for its managed cloud, dedicated hosting, and multicloud services (confirmed at rackspace.com/compliance/soc). One of the original managed hosting providers, Rackspace's SOC reports are standard due diligence for enterprises outsourcing infrastructure management, relevant to DORA third-party risk requirements.`,
+   link:'https://www.rackspace.com/compliance/soc'}
+  ,{name:'Ping Identity',sector:'Identity & Access Management · SSO · Zero Trust',malta:false,
+   tags:['soc2','confirmed','security'],
+   certs:[{cls:'soc2',l:'SOC 2 Type II'},{cls:'iso27001',l:'ISO 27001'}],
+   status:'g',statusLabel:'Confirmed',date:'Annual',
+   kicker:'🌐 Global · IAM Leader · PingOne Cloud Platform · CIAM',
+   auditor:'Not publicly disclosed',
+   body:`Ping Identity holds <strong>SOC 2 Type II and ISO 27001</strong> for its PingOne Cloud Platform covering SSO, MFA, directory, and API security services (confirmed at pingidentity.com/en/legal/trust-center). Used by financial institutions and regulated entities for enterprise identity governance and customer identity management (CIAM), relevant to DORA access control requirements.`,
+   link:'https://www.pingidentity.com/en/legal/trust-center.html'}
+  ,{name:'SailPoint',sector:'Identity Governance · IGA · Non-Human Identity',malta:false,
+   tags:['soc2','confirmed','security'],
+   certs:[{cls:'soc2',l:'SOC 2 Type II'},{cls:'iso27001',l:'ISO 27001'}],
+   status:'g',statusLabel:'Confirmed',date:'Annual',
+   kicker:'🌐 Global · Identity Governance Leader · AI-powered IGA',
+   auditor:'Not publicly disclosed',
+   body:`SailPoint holds <strong>SOC 2 Type II and ISO 27001</strong> for its Identity Security Cloud platform (confirmed at sailpoint.com/why-us/trust). Used by enterprises and regulated financial institutions for identity governance, access certifications, and role management — critical for demonstrating access control compliance under DORA, NIS2, and MFSA requirements.`,
+   link:'https://www.sailpoint.com/why-us/trust/'}
+  ,{name:'Duo Security (Cisco)',sector:'Multi-Factor Authentication · Zero Trust Access · MFA',malta:false,
+   tags:['soc2','confirmed','security'],
+   certs:[{cls:'soc2',l:'SOC 2 Type II'},{cls:'iso27001',l:'ISO 27001'}],
+   status:'g',statusLabel:'Confirmed',date:'Annual',
+   kicker:'🌐 Global · Cisco Security · MFA Leader · Zero Trust',
+   auditor:'Not publicly disclosed',
+   body:`Duo Security (a Cisco company) holds <strong>SOC 2 Type II</strong> for its MFA and zero trust access platform, confirmed at duo.com/about/security. Also ISO 27001 and FedRAMP authorized. One of the most widely deployed MFA solutions globally, used by financial institutions and regulated entities to secure remote access and enforce zero trust policies — directly relevant to DORA and NIS2 authentication requirements.`,
+   link:'https://duo.com/about/security'}
+  ,{name:'Jamf',sector:'Apple Device Management · MDM · Enterprise Mac/iOS',malta:false,
+   tags:['soc2','confirmed','tech'],
+   certs:[{cls:'soc2',l:'SOC 2 Type II'},{cls:'iso27001',l:'ISO 27001'}],
+   status:'g',statusLabel:'Confirmed',date:'Annual',
+   kicker:'🌐 Global · NASDAQ: JAMF · Apple Enterprise Management · 75,000+ customers',
+   auditor:'Not publicly disclosed',
+   body:`Jamf holds <strong>SOC 2 Type II and ISO 27001</strong> for its Apple device management platform, confirmed at jamf.com/trust-center. Also FedRAMP authorized. Used by enterprises and regulated entities for MDM of Mac, iPhone, iPad, and Apple TV deployments, with compliance controls relevant to DORA device management and endpoint security requirements.`,
+   link:'https://www.jamf.com/trust-center/'}
+  ,{name:'Squarespace',sector:'Website Builder · eCommerce · Domain Hosting · SaaS',malta:false,
+   tags:['soc2','confirmed','tech'],
+   certs:[{cls:'soc2',l:'SOC 2 Type II'}],
+   status:'g',statusLabel:'Confirmed',date:'Annual',
+   kicker:'🌐 Global · NYSE: SQSP · Website Builder · 4M+ subscribers',
+   auditor:'Not publicly disclosed',
+   body:`Squarespace holds <strong>SOC 2 Type II</strong> for its website building and eCommerce platform, confirmed at squarespace.com/security. Also PCI DSS Level 1 certified for payment processing. Used by small and medium businesses globally including Malta-based merchants for website hosting and online commerce.`,
+   link:'https://www.squarespace.com/security'}
+  ,{name:'GoDaddy',sector:'Domain Registrar · Web Hosting · Website Builder',malta:false,
+   tags:['soc2','confirmed','tech','hosting'],
+   certs:[{cls:'soc2',l:'SOC 2 Type II'},{cls:'iso27001',l:'ISO 27001'}],
+   status:'g',statusLabel:'Confirmed',date:'Annual',
+   kicker:'🌐 Global · NYSE: GDDY · World's largest domain registrar · 21M+ customers',
+   auditor:'Not publicly disclosed',
+   body:`GoDaddy holds <strong>SOC 2 Type II and ISO 27001</strong> for its hosting and domain registration services, confirmed at godaddy.com/en-uk/trust-center. As the world's largest domain registrar with 21M+ customers globally, GoDaddy's compliance posture is relevant for organisations using GoDaddy for domain management and web hosting.`,
+   link:'https://www.godaddy.com/en-uk/trust-center'}
+  ,{name:'Redis',sector:'In-Memory Database · Caching · Real-Time Data Platform',malta:false,
+   tags:['soc2','confirmed','tech'],
+   certs:[{cls:'soc2',l:'SOC 2 Type II'},{cls:'iso27001',l:'ISO 27001'}],
+   status:'g',statusLabel:'Confirmed',date:'Annual',
+   kicker:'🌐 Global · Redis Cloud · Real-Time Data Store · Session Management',
+   auditor:'Not publicly disclosed',
+   body:`Redis holds <strong>SOC 2 Type II and ISO 27001</strong> for Redis Cloud, confirmed at redis.io/trust. Redis is the most popular in-memory data store globally, widely used by financial institutions and iGaming operators for session management, real-time leaderboards, rate limiting, and caching — making Redis Cloud's SOC 2 report a standard due-diligence document.`,
+   link:'https://redis.io/trust'}
+  ,{name:'Cockroach Labs (CockroachDB)',sector:'Distributed SQL Database · Cloud-Native Database',malta:false,
+   tags:['soc2','confirmed','tech'],
+   certs:[{cls:'soc2',l:'SOC 2 Type II'},{cls:'iso27001',l:'ISO 27001'}],
+   status:'g',statusLabel:'Confirmed',date:'Annual',
+   kicker:'🌐 Global · CockroachDB · Distributed SQL · Multi-Region',
+   auditor:'Not publicly disclosed',
+   body:`Cockroach Labs holds <strong>SOC 2 Type II and ISO 27001</strong> for CockroachDB Dedicated and Serverless, confirmed at cockroachlabs.com/security. CockroachDB is a cloud-native distributed SQL database designed for global, multi-region deployments with built-in resilience — increasingly used by financial technology companies requiring high availability and geographic data sovereignty.`,
+   link:'https://www.cockroachlabs.com/security/'}
+  ,{name:'Rubrik',sector:'Data Security · Ransomware Recovery · Backup · Cyber Resilience',malta:false,
+   tags:['soc2','confirmed','security','hosting'],
+   certs:[{cls:'soc2',l:'SOC 2 Type II'},{cls:'iso27001',l:'ISO 27001'}],
+   status:'g',statusLabel:'Confirmed',date:'Annual · Security + Confidentiality + Availability',
+   kicker:'🌐 Global · NYSE: RBRK · Zero Trust Data Security · Ransomware Recovery',
+   auditor:'Not publicly disclosed',
+   body:`Rubrik is <strong>SOC 2 Type II certified</strong> against Security, Confidentiality, and Availability criteria for its Security Cloud SaaS platform and Cluster Software Support Services (confirmed at rubrik.com/compliance-program). Also ISO 27001 certified. Rubrik's zero-trust data security platform is increasingly adopted by regulated entities for immutable backup and ransomware recovery, directly relevant to DORA operational resilience requirements.`,
+   link:'https://www.rubrik.com/compliance-program'}
+  ,{name:'Veeam Software',sector:'Backup & Recovery · Data Resilience · Ransomware Protection',malta:false,
+   tags:['soc2','confirmed','tech','hosting'],
+   certs:[{cls:'soc2',l:'SOC 2 Type II'}],
+   status:'g',statusLabel:'Confirmed',date:'Annual',
+   kicker:'🌐 Global · Acquired by Insight Partners · 550,000+ customers · Data Resilience',
+   auditor:'Not publicly disclosed',
+   body:`Veeam holds <strong>SOC 2 Type II</strong> for its backup, recovery, and data resilience platform, confirmed at veeam.com/legal/trust-center. The world's #1 backup provider by market share (550,000+ customers), Veeam is widely used by enterprises and regulated entities — including Malta-licensed operators — for VM backup, ransomware recovery, and business continuity.`,
+   link:'https://www.veeam.com/legal/trust-center.html'}
+  ,{name:'Commvault',sector:'Data Protection · Backup · Cyber Recovery · SaaS',malta:false,
+   tags:['soc2','confirmed','tech','hosting'],
+   certs:[{cls:'soc2',l:'SOC 2 Type II'},{cls:'iso27001',l:'ISO 27001'}],
+   status:'g',statusLabel:'Confirmed',date:'Annual',
+   kicker:'🌐 Global · NASDAQ: CVLT · Enterprise Data Protection · Metallic SaaS',
+   auditor:'Not publicly disclosed',
+   body:`Commvault holds <strong>SOC 2 Type II and ISO 27001</strong> for its data protection and cyber recovery platform including Metallic SaaS, confirmed at commvault.com/trust. Also FedRAMP authorized. Widely used by enterprises and regulated financial institutions for enterprise backup, cyber recovery testing, and data governance — relevant to DORA ICT business continuity requirements.`,
+   link:'https://www.commvault.com/trust'}
+  ,{name:'Druva',sector:'Cloud Data Protection · Backup SaaS · Cyber Resilience',malta:false,
+   tags:['soc2','confirmed','tech','hosting'],
+   certs:[{cls:'soc2',l:'SOC 2 Type II'},{cls:'iso27001',l:'ISO 27001'}],
+   status:'g',statusLabel:'Confirmed',date:'Annual',
+   kicker:'🌐 Global · Cloud-Native Data Protection · Microsoft Entra partner',
+   auditor:'Not publicly disclosed',
+   body:`Druva holds <strong>SOC 2 Type II and ISO 27001</strong> for its cloud-native data protection platform, confirmed at druva.com/legal/security. Also FedRAMP Moderate authorized. Druva's 100% SaaS backup platform covers endpoints, cloud workloads, and SaaS apps (Microsoft 365, Salesforce) — providing a cloud-first alternative for regulated entities seeking managed backup without on-premise infrastructure.`,
+   link:'https://www.druva.com/legal/security'}
+  ,{name:'Cohesity',sector:'Data Management · Backup & Recovery · AI Security',malta:false,
+   tags:['soc2','confirmed','tech','hosting'],
+   certs:[{cls:'soc2',l:'SOC 2 Type II'},{cls:'iso27001',l:'ISO 27001'}],
+   status:'g',statusLabel:'Confirmed',date:'Annual',
+   kicker:'🌐 Global · Data Management · AI-Powered Security · Zero Trust',
+   auditor:'Not publicly disclosed',
+   body:`Cohesity holds <strong>SOC 2 Type II and ISO 27001</strong> for its data management and backup platform, confirmed at cohesity.com/trust. Applies zero-trust principles and AI-powered threat detection to data security. Used by financial institutions and regulated entities for data management, backup orchestration, and ransomware detection.`,
+   link:'https://www.cohesity.com/trust/'}
+  ,{name:'Abnormal Security',sector:'Email Security · AI Threat Detection · BEC Protection',malta:false,
+   tags:['soc2','confirmed','security'],
+   certs:[{cls:'soc2',l:'SOC 2 Type II'},{cls:'iso27001',l:'ISO 27001'}],
+   status:'g',statusLabel:'Confirmed',date:'Annual',
+   kicker:'🌐 Global · AI-Native Email Security · BEC & ATO Prevention',
+   auditor:'Not publicly disclosed',
+   body:`Abnormal Security holds <strong>SOC 2 Type II and ISO 27001</strong> for its AI-powered email security platform, confirmed at abnormalsecurity.com/trust. Specialises in detecting and preventing business email compromise (BEC), account takeover (ATO), and AI-generated phishing — threats increasingly targeting regulated financial institutions and MGA-licensed operators.`,
+   link:'https://abnormalsecurity.com/trust'}
+  ,{name:'Lacework',sector:'Cloud Security · CNAPP · Threat Detection · CSPM',malta:false,
+   tags:['soc2','confirmed','security'],
+   certs:[{cls:'soc2',l:'SOC 2 Type II'},{cls:'iso27001',l:'ISO 27001'}],
+   status:'g',statusLabel:'Confirmed',date:'Annual',
+   kicker:'🌐 Global · Cloud-Native Security · Acquired by Fortinet 2025',
+   auditor:'Not publicly disclosed',
+   body:`Lacework holds <strong>SOC 2 Type II and ISO 27001</strong> for its cloud security platform, confirmed at lacework.com/security (acquired by Fortinet in 2025). Provides agentless cloud workload protection, CSPM, and threat detection across AWS, Azure, and GCP. Relevant for regulated cloud-first organisations managing multi-cloud security posture under DORA.`,
+   link:'https://www.lacework.com/security/'}
+  ,{name:'Orca Security',sector:'Cloud Security · CNAPP · Vulnerability Management · CSPM',malta:false,
+   tags:['soc2','confirmed','security'],
+   certs:[{cls:'soc2',l:'SOC 2 Type II'},{cls:'iso27001',l:'ISO 27001'}],
+   status:'g',statusLabel:'Confirmed',date:'Annual',
+   kicker:'🌐 Global · Cloud Security Platform · Agentless CNAPP',
+   auditor:'Not publicly disclosed',
+   body:`Orca Security holds <strong>SOC 2 Type II and ISO 27001</strong> for its agentless cloud security platform, confirmed at orca.security/company/security. Provides 360° visibility into cloud risk without agents using SideScanning technology, covering vulnerabilities, misconfigurations, identity risks, and data exposure across AWS, Azure, and GCP — relevant for cloud-first regulated entities under DORA.`,
+   link:'https://orca.security/company/security/'}
+  ,{name:'Alteryx',sector:'Data Analytics · ETL · ML Platform · Analytic Process Automation',malta:false,
+   tags:['soc2','confirmed','tech'],
+   certs:[{cls:'soc2',l:'SOC 2 Type II'},{cls:'iso27001',l:'ISO 27001'}],
+   status:'g',statusLabel:'Confirmed',date:'Annual',
+   kicker:'🌐 Global · Data Analytics Platform · No-Code/Low-Code ML',
+   auditor:'Not publicly disclosed',
+   body:`Alteryx holds <strong>SOC 2 Type II and ISO 27001</strong> for its analytic process automation platform, confirmed at alteryx.com/trust-center. Used by data analysts and business intelligence teams at financial institutions for ETL, data blending, and machine learning workflows without requiring deep coding skills.`,
+   link:'https://www.alteryx.com/trust-center'}
+  ,{name:'Qlik',sector:'Business Intelligence · Data Analytics · Active Intelligence',malta:false,
+   tags:['soc2','confirmed','tech'],
+   certs:[{cls:'soc2',l:'SOC 2 Type II'},{cls:'iso27001',l:'ISO 27001'}],
+   status:'g',statusLabel:'Confirmed',date:'Annual',
+   kicker:'🌐 Global · BI & Analytics · Talend acquired · Active Intelligence',
+   auditor:'Not publicly disclosed',
+   body:`Qlik holds <strong>SOC 2 Type II and ISO 27001</strong> for its business intelligence and analytics platform (Qlik Sense, QlikView, Talend Data Integration), confirmed at qlik.com/us/company/security. Used by financial institutions and regulated entities for reporting, dashboards, and real-time data integration pipelines relevant to regulatory reporting requirements.`,
+   link:'https://www.qlik.com/us/company/security'}
+  ,{name:'Qualtrics',sector:'Experience Management · CX · Employee Feedback · Research',malta:false,
+   tags:['soc2','confirmed','tech'],
+   certs:[{cls:'soc2',l:'SOC 2 Type II'},{cls:'iso27001',l:'ISO 27001'}],
+   status:'g',statusLabel:'Confirmed',date:'Annual',
+   kicker:'🌐 Global · SAP company · XM Platform · FedRAMP Moderate',
+   auditor:'Not publicly disclosed',
+   body:`Qualtrics holds <strong>SOC 2 Type II, ISO 27001, and FedRAMP Moderate</strong> authorization for its Experience Management platform, confirmed at qualtrics.com/security. Used by financial services organisations and regulated companies for customer experience surveys, employee engagement, and research — relevant to MFSA consumer protection feedback requirements.`,
+   link:'https://www.qualtrics.com/security/'}
+  ,{name:'Five9',sector:'Cloud Contact Centre · CCaaS · AI-Powered CX',malta:false,
+   tags:['soc2','confirmed','tech'],
+   certs:[{cls:'soc2',l:'SOC 2 Type II'},{cls:'iso27001',l:'ISO 27001'}],
+   status:'g',statusLabel:'Confirmed',date:'Annual',
+   kicker:'🌐 Global · NASDAQ: FIVN · Cloud Contact Centre · AI CX',
+   auditor:'Not publicly disclosed',
+   body:`Five9 holds <strong>SOC 2 Type II and ISO 27001</strong> for its cloud contact centre platform, confirmed at five9.com/company/trust. Also FedRAMP and HIPAA compliant. Used by customer service operations at financial institutions and regulated companies for inbound/outbound call management, IVR, and AI-powered customer interactions — relevant to MFSA consumer service requirements.`,
+   link:'https://www.five9.com/company/trust'}
+  ,{name:'RingCentral',sector:'UCaaS · Cloud Communications · Business Phone · Video',malta:false,
+   tags:['soc2','confirmed','tech'],
+   certs:[{cls:'soc2',l:'SOC 2 Type II'},{cls:'iso27001',l:'ISO 27001'}],
+   status:'g',statusLabel:'Confirmed',date:'Annual',
+   kicker:'🌐 Global · NYSE: RNG · UCaaS Leader · 400,000+ business customers',
+   auditor:'Not publicly disclosed',
+   body:`RingCentral holds <strong>SOC 2 Type II and ISO 27001</strong> for its unified communications platform (voice, video, messaging, contact centre), confirmed at ringcentral.com/legal/security. Also FedRAMP authorized. Widely used by businesses including Malta-regulated entities for business telephony, video meetings, and team messaging.`,
+   link:'https://www.ringcentral.com/legal/security.html'}
+  ,{name:'Chargebee',sector:'Subscription Billing · Revenue Management · SaaS Finance',malta:false,
+   tags:['soc2','confirmed','finance'],
+   certs:[{cls:'soc2',l:'SOC 2 Type II'},{cls:'iso27001',l:'ISO 27001'}],
+   status:'g',statusLabel:'Confirmed',date:'Annual',
+   kicker:'🌐 Global · Subscription Billing · 5,000+ SaaS businesses',
+   auditor:'Not publicly disclosed',
+   body:`Chargebee holds <strong>SOC 2 Type II and ISO 27001</strong> for its subscription billing and revenue management platform, confirmed at chargebee.com/security. Also PCI DSS Level 1 certified. Used by SaaS companies and subscription businesses for recurring billing, dunning management, and revenue recognition — with financial data flows that require assurance for downstream audit purposes.`,
+   link:'https://www.chargebee.com/security/'}
+  ,{name:'Intercom',sector:'Customer Messaging · AI Support · CX Platform',malta:false,
+   tags:['soc2','confirmed','tech'],
+   certs:[{cls:'soc2',l:'SOC 2 Type II'},{cls:'iso27001',l:'ISO 27001'}],
+   status:'g',statusLabel:'Confirmed',date:'Annual',
+   kicker:'🌐 Global · AI Customer Service · Fin AI Agent · 25,000+ businesses',
+   auditor:'Not publicly disclosed',
+   body:`Intercom holds <strong>SOC 2 Type II and ISO 27001</strong> for its customer messaging and AI support platform, confirmed at intercom.com/security. Used by financial services companies and regulated entities for customer support, live chat, and AI-powered help desk — relevant to MFSA consumer protection and complaint handling requirements.`,
+   link:'https://www.intercom.com/security'}
+  ,{name:'ClickUp',sector:'Work Management · Project Management · All-in-One Productivity',malta:false,
+   tags:['soc2','confirmed','tech'],
+   certs:[{cls:'soc2',l:'SOC 2 Type II'},{cls:'iso27001',l:'ISO 27001'}],
+   status:'g',statusLabel:'Confirmed',date:'Annual',
+   kicker:'🌐 Global · Work Management Platform · 800,000+ teams',
+   auditor:'Not publicly disclosed',
+   body:`ClickUp holds <strong>SOC 2 Type II and ISO 27001</strong> for its work management platform, confirmed at clickup.com/security. Also HIPAA compliant. Used by project and operations teams at regulated entities for task management, workflows, and cross-functional collaboration.`,
+   link:'https://clickup.com/security'}
+  ,{name:'Wrike',sector:'Work Management · Project Management · Collaborative Platform',malta:false,
+   tags:['soc2','confirmed','tech'],
+   certs:[{cls:'soc2',l:'SOC 2 Type II'},{cls:'iso27001',l:'ISO 27001'}],
+   status:'g',statusLabel:'Confirmed',date:'Annual',
+   kicker:'🌐 Global · Citrix company · Enterprise Work Management · 20,000+ customers',
+   auditor:'Not publicly disclosed',
+   body:`Wrike holds <strong>SOC 2 Type II and ISO 27001</strong> for its enterprise work management platform, confirmed at wrike.com/security. Also FedRAMP authorized. A Citrix company, Wrike is used by project management and operations teams at enterprises including regulated financial institutions for workflow orchestration and team collaboration.`,
+   link:'https://www.wrike.com/security/'}
+  ,{name:'Egnyte',sector:'Cloud Content Management · File Governance · Collaboration',malta:false,
+   tags:['soc2','confirmed','tech'],
+   certs:[{cls:'soc2',l:'SOC 2 Type II'},{cls:'iso27001',l:'ISO 27001'}],
+   status:'g',statusLabel:'Confirmed',date:'Annual',
+   kicker:'🌐 Global · Content Platform · Life Sciences & Financial Services',
+   auditor:'Not publicly disclosed',
+   body:`Egnyte holds <strong>SOC 2 Type II and ISO 27001</strong> for its content management and governance platform, confirmed at egnyte.com/trust-center. Also HIPAA, GxP, and FINRA compliant. Used by financial services firms and regulated entities for secure file sharing, content governance, and compliance document management.`,
+   link:'https://www.egnyte.com/trust-center'}
+  ,{name:'Automation Anywhere',sector:'RPA · Intelligent Automation · AI Agents · Process Automation',malta:false,
+   tags:['soc2','confirmed','tech'],
+   certs:[{cls:'soc2',l:'SOC 2 Type II'},{cls:'iso27001',l:'ISO 27001'}],
+   status:'g',statusLabel:'Confirmed',date:'Annual',
+   kicker:'🌐 Global · RPA Leader · AI + Automation · 5,000+ enterprise customers',
+   auditor:'Not publicly disclosed',
+   body:`Automation Anywhere holds <strong>SOC 2 Type II and ISO 27001</strong> for its intelligent automation platform, confirmed at automationanywhere.com/company/trust. Also FedRAMP authorized. Used by financial institutions and regulated entities to automate compliance, back-office, and KYC/AML workflows — relevant to DORA operational efficiency and resilience.`,
+   link:'https://www.automationanywhere.com/company/trust'}
+  ,{name:'Boomi',sector:'Integration Platform · iPaaS · API Management · Data Hub',malta:false,
+   tags:['soc2','confirmed','tech'],
+   certs:[{cls:'soc2',l:'SOC 2 Type II'},{cls:'iso27001',l:'ISO 27001'}],
+   status:'g',statusLabel:'Confirmed',date:'Annual',
+   kicker:'🌐 Global · Dell/Francisco Partners · iPaaS Leader · 20,000+ customers',
+   auditor:'Not publicly disclosed',
+   body:`Boomi holds <strong>SOC 2 Type II and ISO 27001</strong> for its integration platform (iPaaS), confirmed at boomi.com/company/trust. Also FedRAMP authorized. Used by enterprises for connecting cloud applications, ERP systems, and data sources — Boomi's integrations often carry financial data making its SOC 2 relevant for downstream assurance.`,
+   link:'https://boomi.com/company/trust/'}
+  ,{name:'Domo',sector:'Business Intelligence · Data Visualisation · BI Cloud',malta:false,
+   tags:['soc2','confirmed','tech'],
+   certs:[{cls:'soc2',l:'SOC 2 Type II'},{cls:'iso27001',l:'ISO 27001'}],
+   status:'g',statusLabel:'Confirmed',date:'Annual',
+   kicker:'🌐 Global · NASDAQ: DOMO · Cloud BI Platform · Real-Time Dashboards',
+   auditor:'Not publicly disclosed',
+   body:`Domo holds <strong>SOC 2 Type II and ISO 27001</strong> for its cloud business intelligence platform, confirmed at domo.com/legal/privacy-policy (trust centre). Used by executives and data teams at regulated entities for real-time KPI dashboards and business intelligence from connected data sources.`,
+   link:'https://www.domo.com/legal/security'}
+  ,{name:'Talkdesk',sector:'Cloud Contact Centre · CCaaS · AI Customer Experience',malta:false,
+   tags:['soc2','confirmed','tech'],
+   certs:[{cls:'soc2',l:'SOC 2 Type II'},{cls:'iso27001',l:'ISO 27001'}],
+   status:'g',statusLabel:'Confirmed',date:'Annual',
+   kicker:'🌐 Global · AI-Native Cloud Contact Centre · 1,800+ customers',
+   auditor:'Not publicly disclosed',
+   body:`Talkdesk holds <strong>SOC 2 Type II and ISO 27001</strong> for its AI-native cloud contact centre platform, confirmed via the Talkdesk Trust Center. Also FedRAMP and HIPAA compliant. Used by financial services companies for AI-powered customer service, with compliance features relevant to GDPR and MFSA consumer protection obligations.`,
+   link:'https://www.talkdesk.com/trust-center/'}
+  ,{name:'Expensify',sector:'Expense Management · Corporate Cards · Travel & Finance SaaS',malta:false,
+   tags:['soc2','confirmed','finance'],
+   certs:[{cls:'soc2',l:'SOC 2 Type II'}],
+   status:'g',statusLabel:'Confirmed',date:'Annual',
+   kicker:'🌐 Global · NASDAQ: EXFY · Expense Reports & Corporate Cards',
+   auditor:'Not publicly disclosed',
+   body:`Expensify holds <strong>SOC 2 Type II</strong> for its expense management and corporate card platform, confirmed at use.expensify.com/privacy and security documentation. Also PCI DSS compliant for card processing. Used by businesses for automated expense reporting and corporate card management, with financial data flows relevant to SOX and internal audit requirements.`,
+   link:'https://use.expensify.com/privacy'}
+  ,{name:'Brex',sector:'Corporate Cards · Expense Management · Business Banking · FinTech',malta:false,
+   tags:['soc2','confirmed','finance','payment'],
+   certs:[{cls:'soc2',l:'SOC 2 Type II'},{cls:'iso27001',l:'ISO 27001'}],
+   status:'g',statusLabel:'Confirmed',date:'Annual',
+   kicker:'🌐 Global · Corporate Cards · AI Finance Platform · Startup & Enterprise',
+   auditor:'Not publicly disclosed',
+   body:`Brex holds <strong>SOC 2 Type II and ISO 27001</strong> for its corporate card and expense management platform, confirmed at brex.com/legal/security. Also PCI DSS compliant. Used by technology companies and startups (including those with Malta entities) for corporate spend management, with financial data processed relevant to audit assurance.`,
+   link:'https://www.brex.com/legal/security'}
+  ,{name:'Equifax',sector:'Credit Bureau · Data Analytics · Identity & Fraud Management',malta:false,
+   tags:['soc2','soc1','confirmed','finance'],
+   certs:[{cls:'soc1',l:'SOC 1 Type II'},{cls:'soc2',l:'SOC 2 Type II'}],
+   status:'g',statusLabel:'Confirmed',date:'Annual',
+   kicker:'🌐 Global · NYSE: EFX · Credit Bureau · 800M+ consumers in 24 countries',
+   auditor:'Not publicly disclosed',
+   body:`Equifax holds <strong>SOC 1 Type II and SOC 2 Type II</strong> attestations for its data and analytics services (confirmed at equifax.com/about-equifax/our-company/security). As one of the world's three major credit bureaus, Equifax's compliance reports are essential for regulated entities (banks, EMIs, lenders) relying on Equifax for credit decisioning, identity verification, and fraud management.`,
+   link:'https://www.equifax.com/about-equifax/our-company/security/'}
+  ,{name:'TransUnion',sector:'Credit Bureau · Risk Management · Financial Services Data',malta:false,
+   tags:['soc2','soc1','confirmed','finance'],
+   certs:[{cls:'soc1',l:'SOC 1 Type II'},{cls:'soc2',l:'SOC 2 Type II'}],
+   status:'g',statusLabel:'Confirmed',date:'Annual',
+   kicker:'🌐 Global · NYSE: TRU · Credit Bureau · Risk & Information Solutions',
+   auditor:'Not publicly disclosed',
+   body:`TransUnion holds <strong>SOC 1 Type II and SOC 2 Type II</strong> for its credit, risk, and information solutions (confirmed at transunion.com/legal/privacy-center/security). As one of the three major global credit bureaus, TransUnion's compliance posture is essential for regulated financial institutions using its data for credit decisioning, fraud detection, and AML compliance.`,
+   link:'https://www.transunion.com/legal/privacy-center/security'}
 ];
 
 /* ── RENDER ──────────────────────────────────────────────────── */
