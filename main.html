@@ -578,6 +578,30 @@
       <div style="font-size:.82rem;color:var(--grey-4);">A separate directory of professional firms in Malta that offer SOC 1, SOC 2, ISAE 3402 and ISAE 3000 audit and assurance services.</div>
     </div>
     <a href="https://malta-soc-audit.vercel.app/providers.html" style="display:inline-flex;align-items:center;gap:6px;background:var(--red);color:var(--white);text-decoration:none;padding:10px 20px;font-size:.78rem;font-weight:700;letter-spacing:.04em;text-transform:uppercase;border-radius:2px;white-space:nowrap;transition:background .15s;" onmouseover="this.style.background=&#39;var(--red-dark)&#39;" onmouseout="this.style.background=&#39;var(--red)&#39;">View Providers →</a>
+
+
+    <div class="toolbar">
+      <div class="search-wrap">
+        <svg class="search-icon" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="11" cy="11" r="8"></circle><path d="m21 21-4.35-4.35"></path></svg>
+        <input type="text" id="searchInput" placeholder="Search name, sector, cert, auditor, source domain…" oninput="filterTable()">
+      </div>
+      <span id="resultsCount" style="font-size:.78rem;font-weight:600;color:var(--grey-4);white-space:nowrap;">131 companies</span>
+    </div>
+
+    <!-- INSIGHTS CHARTS — react to active filters/search -->
+    <div class="tbl-outer">
+      <table>
+        <thead>
+          <tr>
+            <th style="width:36px;text-align:center;color:var(--grey-3);font-size:.7rem;">#</th><th>Company</th>
+            <th class="col-sector">Sector</th>
+            <th class="col-date">Last Activity</th>
+            <th>Status</th>
+          </tr>
+        </thead>
+        <tbody id="tBody"></tbody>
+      </table>
+    </div>
   </div>
 
   <!-- METHODOLOGY -->
