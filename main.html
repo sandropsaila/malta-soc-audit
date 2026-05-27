@@ -667,7 +667,7 @@
 <script>
 /* ── DATA ──────────────────────────────────────────────────── */
 const CO=[
-  {name:'BMIT Technologies plc',sector:'IT Infrastructure · Data Centre · Cloud',malta:true,
+  {name:'BMIT Technologies plc',sector:'Cloud / Hosting & Data Centre',malta:true,
    tags:['soc2','tech','mga','confirmed','malta','hosting'],
    certs:[{cls:'soc2',l:'SOC 2 Type I'},{cls:'isae3000',l:'ISAE 3000'}],
    status:'g',statusLabel:'Confirmed',date:'Feb 2024',
@@ -728,7 +728,7 @@ const CO=[
    body:`<strong>MFSA MiCA CASP Jan 2025</strong>. Group SOC 2 Type II via Deloitte (Aug 2022). Custody Trust Co added SOC 1+SOC 2 Type II Sep 2025.`,
    auditor:'Not publicly disclosed [SOC 2 attestation auditor — not publicly named]',
    link:'https://crypto.com/en/security/'},
-  {name:'Amazon Web Services (AWS)',sector:'Hyperscale Cloud · IaaS',malta:false,
+  {name:'Amazon Web Services (AWS)',sector:'Cloud / Hosting & Data Centre',malta:false,
    tags:['soc2','soc1','isae3402','tech','confirmed','hosting'],
    certs:[{cls:'soc2',l:'SOC 2 Type II'},{cls:'soc1',l:'SOC 1 Type II'},{cls:'isae3402',l:'ISAE 3402'},{cls:'isae3000',l:'ISAE 3000'},{cls:'iso27001',l:'ISO 27001'}],
    status:'g',statusLabel:'Confirmed',date:'Annual · 143+ services',
@@ -736,7 +736,7 @@ const CO=[
    body:`<strong>SOC 1, SOC 2, SOC 3 across 143+ services</strong>. Reports via AWS Artifact under NDA.`,
    auditor:'Ernst & Young LLP (EY) [SOC 1 · SOC 2 · SOC 3 attestation auditor (AICPA)]',
    link:'https://aws.amazon.com/compliance/soc-faqs/'},
-  {name:'Microsoft Azure',sector:'Hyperscale Cloud · M365',malta:false,
+  {name:'Microsoft Azure',sector:'Cloud / Hosting & Data Centre · M365',malta:false,
    tags:['soc2','soc1','isae3402','tech','confirmed','hosting'],
    certs:[{cls:'soc2',l:'SOC 2 Type II'},{cls:'soc1',l:'SOC 1 Type II'},{cls:'isae3402',l:'ISAE 3402'},{cls:'iso27001',l:'ISO 27001'}],
    status:'g',statusLabel:'Confirmed',date:'Annual',
@@ -744,7 +744,7 @@ const CO=[
    body:`SOC 1/SOC 2/SOC 3 under SSAE 18 / ISAE 3402.`,
    auditor:'Deloitte & Touche LLP [SOC 1 · SOC 2 attestation auditor (AICPA/ISAE 3402) — confirmed in published SOC 1 report PDF]',
    link:'https://learn.microsoft.com/en-us/compliance/regulatory/offering-soc-2'},
-  {name:'Google Cloud Platform',sector:'Hyperscale Cloud · IaaS',malta:false,
+  {name:'Google Cloud Platform',sector:'Cloud / Hosting & Data Centre',malta:false,
    tags:['soc2','soc1','tech','confirmed','hosting'],
    certs:[{cls:'soc2',l:'SOC 2 Type II'},{cls:'soc1',l:'SOC 1 Type II'},{cls:'iso27001',l:'ISO 27001'}],
    status:'g',statusLabel:'Confirmed',date:'Annual',
@@ -752,7 +752,7 @@ const CO=[
    body:`Holds SOC 1, SOC 2, SOC 3 audited by Coalfire.`,
    auditor:'Ernst & Young LLP (EY) + Coalfire [SOC 1 · SOC 2 · SOC 3 attestation auditor (AICPA) — GCP names both firms publicly]',
    link:'https://cloud.google.com/security/compliance/soc-2'},
-  {name:'Oracle Cloud Infrastructure',sector:'Hyperscale Cloud · Database',malta:false,
+  {name:'Oracle Cloud Infrastructure',sector:'Cloud / Hosting & Data Centre · Database',malta:false,
    tags:['soc2','soc1','isae3402','tech','confirmed','hosting'],
    certs:[{cls:'soc2',l:'SOC 2 Type II'},{cls:'soc1',l:'SOC 1 Type II'},{cls:'isae3402',l:'ISAE 3402'}],
    status:'g',statusLabel:'Confirmed',date:'Annual',
@@ -760,7 +760,7 @@ const CO=[
    body:`SOC 1, SOC 2, SOC 3 and ISAE 3402.`,
    auditor:'Not publicly disclosed',
    link:'https://www.oracle.com/corporate/cloud-compliance/'},
-  {name:'IBM Cloud',sector:'Hyperscale Cloud · Watson AI',malta:false,
+  {name:'IBM Cloud',sector:'Cloud / Hosting & Data Centre · Watson AI',malta:false,
    tags:['soc2','soc1','isae3402','tech','confirmed','hosting'],
    certs:[{cls:'soc2',l:'SOC 2 Type II'},{cls:'soc1',l:'SOC 1 Type II'},{cls:'isae3402',l:'ISAE 3402'}],
    status:'g',statusLabel:'Confirmed',date:'Annual',
@@ -768,7 +768,7 @@ const CO=[
    body:`SOC 1, SOC 2, SOC 3 and ISAE 3402.`,
    auditor:'Not publicly disclosed',
    link:'https://www.ibm.com/products/cloud/compliance/soc-2'},
-  {name:'Alibaba Cloud',sector:'Hyperscale Cloud · APAC',malta:false,
+  {name:'Alibaba Cloud',sector:'Cloud / Hosting & Data Centre · APAC',malta:false,
    tags:['soc2','soc1','tech','confirmed','hosting'],
    certs:[{cls:'soc2',l:'SOC 2 Type II'},{cls:'soc1',l:'SOC 1 Type II'}],
    status:'g',statusLabel:'Confirmed',date:'Annual',
@@ -789,7 +789,7 @@ const CO=[
    kicker:'🌐 Frankfurt/London/Stockholm EU',
    body:`SOC 2 Type II. Acquired by Akamai 2022.`,
    link:'https://www.linode.com/legal-soc2/'},
-  {name:'OVHcloud',sector:'European Cloud · Data Centres',malta:false,
+  {name:'OVHcloud',sector:'Cloud / Hosting & Data Centre',malta:false,
    tags:['soc2','isae3402','tech','confirmed','hosting'],
    certs:[{cls:'soc2',l:'SOC 2 Type II'},{cls:'isae3402',l:'ISAE 3402'},{cls:'iso27001',l:'ISO 27001'}],
    status:'g',statusLabel:'Confirmed',date:'Annual',
@@ -1098,7 +1098,7 @@ const CO=[
    body:`Bede Gaming holds <strong>SOC 1 & SOC 2</strong>, <strong>ISO 27001</strong>, and <strong>PCI DSS</strong> certifications, plus WLA SCS (World Lottery Association Security Control Standard). <strong>Bede Gaming Malta Limited</strong> is licensed and regulated by the MGA, with registered address at The Plaza Business Centre, Bisazza Street, Sliema. Also holds UKGC, AGCO and WCGRB licences. Certifications confirmed via official company blog, December 2025. <em>Auditor not publicly disclosed.</em>`,
    auditor:'Not publicly disclosed',
    link:'https://bedegaming.com/news/safe-secure-certified-why-bede-is-a-trusted-partner/'},
-  {name:'Equinix',sector:'Co-location · Data Centres',malta:false,
+  {name:'Equinix',sector:'Cloud / Hosting & Data Centre',malta:false,
    tags:['soc2','soc1','isae3402','tech','confirmed','hosting'],
    certs:[{cls:'soc2',l:'SOC 2 Type II'},{cls:'soc1',l:'SOC 1 Type II'},{cls:'isae3402',l:'ISAE 3402'}],
    status:'g',statusLabel:'Confirmed',date:'Annual',
@@ -1106,7 +1106,7 @@ const CO=[
    body:`SOC 1, SOC 2, ISAE 3402, ISO 27001.`,
    auditor:'Not publicly disclosed [SOC 1 · SOC 2 reports issued annually — auditor name not publicly disclosed]',
    link:'https://www.equinix.com/about/business/audits-and-certifications'},
-  {name:'Digital Realty (Interxion)',sector:'Co-location · Data Centres',malta:false,
+  {name:'Digital Realty (Interxion)',sector:'Cloud / Hosting & Data Centre',malta:false,
    tags:['soc2','soc1','isae3402','tech','confirmed','hosting'],
    certs:[{cls:'soc2',l:'SOC 2 Type II'},{cls:'soc1',l:'SOC 1 Type II'},{cls:'isae3402',l:'ISAE 3402'}],
    status:'g',statusLabel:'Confirmed',date:'Annual',
@@ -1302,7 +1302,7 @@ const CO=[
    kicker:'🌐 Observability · SOC 1 Type II added Oct 2024',
    body:`Dynatrace holds <strong>annual SOC 2 Type II</strong> with <strong>SOC 1 Type II added in October 2024</strong>, validating financial reporting controls in regulated environments. Also holds ISO 27001.`,
    link:'https://www.dynatrace.com/news/blog/dynatrace-achieves-soc-1-type-ii-certification/'},
-  {name:'HPE GreenLake',sector:'Hybrid Cloud · Data Centre Infrastructure',malta:false,
+  {name:'HPE GreenLake',sector:'Cloud / Hosting & Data Centre',malta:false,
    tags:['soc2','tech','confirmed','hosting'],
    certs:[{cls:'soc2',l:'SOC 2 (on request)'},{cls:'iso27001',l:'ISO 27001'}],
    status:'g',statusLabel:'Confirmed (on request)',date:'Annual',
@@ -1386,7 +1386,7 @@ const CO=[
    kicker:'🌐 Crypto Accounting ERP · Digital Asset Reporting · Used by Gemini',
    body:`Cryptio is a <strong>SOC 2 Type II certified</strong> accounting and ERP platform purpose-built for digital assets. Used by institutions including Gemini for crypto accounting, reconciliation, and reporting across blockchains. Cryptio automates on-chain data ingestion, cost-basis calculations, and generates audit-ready reports for CPA and compliance teams.`,
    link:'https://cryptio.co/security'},
-  {name:'CoreSite (American Tower)',sector:'Data Centre Co-location · Physical Infrastructure',malta:false,
+  {name:'CoreSite (American Tower)',sector:'Cloud / Hosting & Data Centre',malta:false,
    tags:['soc2','soc1','tech','confirmed','hosting'],
    certs:[{cls:'soc1',l:'SOC 1 Type II'},{cls:'soc2',l:'SOC 2 Type II'}],
    status:'g',statusLabel:'Confirmed',date:'Annual',
@@ -1400,7 +1400,7 @@ const CO=[
    kicker:'🌐 International Payroll · EOR · Used by Gemini for international payroll',
    body:`Deel — a leading global payroll and employer-of-record (EOR) platform — holds a <strong>SOC 2 Type II and ISO 27001</strong> certification. Deel enables companies to hire, pay, and manage international employees and contractors, with financial data flowing directly into client payroll and accounting systems. Used by Gemini as the international payroll system.`,
    link:'https://www.deel.com/security'},
-  {name:'Sabey Data Centers (SDC)',sector:'Data Centre Co-location · Physical Security',malta:false,
+  {name:'Sabey Data Centers (SDC)',sector:'Cloud / Hosting & Data Centre',malta:false,
    tags:['soc2','soc1','tech','confirmed','hosting'],
    certs:[{cls:'soc1',l:'SOC 1 Type II'},{cls:'soc2',l:'SOC 2 Type II'}],
    status:'g',statusLabel:'Confirmed',date:'Annual',
@@ -1975,9 +1975,7 @@ function classifySector(c){
   if(tags.includes('security') || /cyber|siem|endpoint|threat|penetration|firewall/.test(blob)) return 'Cybersecurity';
   if(/payroll|employer of record|\beor\b|workforce|human capital|\bhcm\b|\bhr\b/.test(blob)) return 'Payroll / HR Tech';
   if(/accounting|erp|general ledger|financial management|expense|close management|fcrp|invoic|bookkeep|equity compensation|stock plan/.test(blob)) return 'Accounting / Finance SaaS';
-  if(/data centre|data center|colocation|co-location|colo/.test(blob)) return 'Data Centre / Colo';
-  if(/hyperscale|\baws\b|\bazure\b|google cloud|\bgcp\b|\boci\b|ibm cloud|alibaba cloud/.test(blob)) return 'Hyperscale Cloud';
-  if(/\bcdn\b|edge|hosting|\bvps\b|dedicated server|cloud platform|developer cloud|iaas/.test(blob)) return 'Cloud / Hosting';
+  if(/data centre|data center|colocation|co-location|colo|hyperscale|\baws\b|\bazure\b|google cloud|\bgcp\b|\boci\b|ibm cloud|alibaba cloud|\bcdn\b|edge|hosting|\bvps\b|dedicated server|cloud platform|developer cloud|iaas/.test(blob)) return 'Cloud / Hosting & Data Centre';
   if(/observability|monitoring|\bapm\b|aiops|analytics|business intelligence|data warehouse|data lakehouse|database|integration platform|api management/.test(blob)) return 'Data / DevOps Tools';
   if(/\bcrm\b|customer relationship|sales|marketing|customer support|customer engagement|helpdesk|customer success/.test(blob)) return 'CRM / Sales / Marketing';
   if(/identity|authentication|\bauth\b|access management|\bsso\b|single sign/.test(blob)) return 'Identity / Access';
@@ -2024,7 +2022,7 @@ function updateCharts(){
   });
 
   // Render sector chart (clickable) + Other Certifications bar
-  const sectorOrder = ['Hyperscale Cloud','Cloud / Hosting','Data Centre / Colo','Data / DevOps Tools','CRM / Sales / Marketing','Collaboration / Productivity','Design / Creative','Communications','Storage / Content','Identity / Access','eCommerce / Web','Accounting / Finance SaaS','Payroll / HR Tech','Cybersecurity','Payments','Crypto / Digital Assets','iGaming','Fund / Financial Svcs','Other SaaS / Tech','Other','Other Certifications'];
+  const sectorOrder = ['Cloud / Hosting & Data Centre','Data / DevOps Tools','CRM / Sales / Marketing','Collaboration / Productivity','Design / Creative','Communications','Storage / Content','Identity / Access','eCommerce / Web','Accounting / Finance SaaS','Payroll / HR Tech','Cybersecurity','Payments','Crypto / Digital Assets','iGaming','Fund / Financial Svcs','Other SaaS / Tech','Other','Other Certifications'];
   renderBars('chartSector', sectorCounts, sectorOrder, 'sector', activeSector);
 
   // Totals
