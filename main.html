@@ -527,21 +527,21 @@
   <div class="hero-inner">
     <h1>SOC &amp; ISAE Register</h1>
     <div class="stats-row">
-      <div class="stat"><div class="stat-num" id="statTotal">122</div><div class="stat-label">Companies</div></div>
+      <div class="stat"><div class="stat-num" id="statTotal">131</div><div class="stat-label">Companies</div></div>
       <div class="stat" onclick="activeFilters.has('malta')?(activeFilters.delete('malta'),this.querySelector('.stat-label').style.color=''):(activeFilters.add('malta'),this.querySelector('.stat-label').style.color='var(--red)');filterTable();" style="cursor:pointer;" title="Click to filter Malta-based companies">
         <div class="stat-num" id="statMalta">18</div>
         <div class="stat-label" style="text-decoration:underline;text-underline-offset:3px;">🇲🇹 Malta-Based</div>
       </div>
       <div class="stat" onclick="setTagFilter('soc')" style="cursor:pointer;" title="Click to filter SOC-certified companies">
-        <div class="stat-num" id="statSoc">117</div>
+        <div class="stat-num" id="statSoc">119</div>
         <div class="stat-label" id="statSocLabel" style="text-decoration:underline;text-underline-offset:3px;">With SOC</div>
       </div>
       <div class="stat" onclick="setTagFilter('isae')" style="cursor:pointer;" title="Click to filter ISAE-certified companies">
-        <div class="stat-num" id="statIsae">34</div>
+        <div class="stat-num" id="statIsae">43</div>
         <div class="stat-label" id="statIsaeLabel" style="text-decoration:underline;text-underline-offset:3px;">With ISAE</div>
       </div>
       <div class="stat" onclick="setTagFilter('both')" style="cursor:pointer;" title="Click to filter companies with both SOC and ISAE">
-        <div class="stat-num" id="statBoth">33</div>
+        <div class="stat-num" id="statBoth">34</div>
         <div class="stat-label" id="statBothLabel" style="text-decoration:underline;text-underline-offset:3px;">SOC &amp; ISAE</div>
       </div>
     </div>
@@ -560,7 +560,7 @@
         <div>
           <div style="font-size:.62rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--red);">Live Insights</div>
         </div>
-        <div id="chartTotals" style="font-size:.75rem;color:var(--grey-4);"><strong style="color:var(--ink);">107</strong> SOC/ISAE reports visible · <strong style="color:var(--grey-4);">107</strong> companies in view</div>
+        <div id="chartTotals" style="font-size:.75rem;color:var(--grey-4);"><strong style="color:var(--ink);">116</strong> SOC/ISAE reports visible · <strong style="color:var(--grey-4);">116</strong> companies in view</div>
       </div>
       <div id="chartFilterBanner" style="display:none;align-items:center;background:#fef3c7;border:1px solid #fde68a;border-radius:2px;padding:7px 12px;margin-bottom:12px;font-size:.78rem;color:#92400e;"></div>
       <div style="font-size:.68rem;color:var(--grey-3);margin-bottom:10px;">💡 Click any bar to filter the registry by that sector or auditor.</div>
@@ -578,7 +578,7 @@
         <svg class="search-icon" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="11" cy="11" r="8"></circle><path d="m21 21-4.35-4.35"></path></svg>
         <input type="text" id="searchInput" placeholder="Search name, sector, cert, auditor, source domain…" oninput="filterTable()">
       </div>
-      <span id="resultsCount" style="font-size:.78rem;font-weight:600;color:var(--grey-4);white-space:nowrap;">121 companies</span>
+      <span id="resultsCount" style="font-size:.78rem;font-weight:600;color:var(--grey-4);white-space:nowrap;">131 companies</span>
     </div>
 
     <!-- INSIGHTS CHARTS — react to active filters/search -->
@@ -1554,6 +1554,70 @@ const CO=[
    auditor:'Aprio',
    body:`BitPay became the <strong>first blockchain payment processor</strong> in the world to achieve <strong>SOC 2 compliance</strong>, completing the review in September 2019 conducted by <strong>Aprio</strong> (top-100 AICPA-member CPA firm). The SOC 2 examination confirmed that BitPay's payment system controls meet AICPA standards for security, availability, processing integrity and confidentiality. Enterprise Global 2000 clients had specifically requested SOC 2 assurance to support crypto payment adoption.`,
    link:'https://www.globenewswire.com/news-release/2019/09/30/1922727/0/en/BitPay-First-Blockchain-Payment-Processor-to-Achieve-SOC-2-Compliance.html'}
+
+  ,{name:'Tangelo Software',sector:'Financial Software · Fund Admin · SaaS',malta:false,
+   certs:[{l:'ISAE 3402 Type II',cls:'isae'},{l:'SOC 2 Type II',cls:'soc2'}],
+   status:'confirmed',statusLabel:'Confirmed',
+   auditor:'Independent CPA Firm',
+   kicker:'🌐 Global · Finance & Fund Admin SaaS',
+   body:`Tangelo has achieved <strong>renewed ISAE 3402 Type II and SOC 2 Type II certifications</strong>, demonstrating ongoing commitment to internal control assurance for financial services clients. The dual certification covers security, availability, and processing integrity trust-service criteria and is particularly relevant for fund administration and financial software deployments.`,
+   link:'https://tangelo-software.com/resource/tangelo-achieves-renewed-isae-3402-type-ii-and-soc-2-type-ii-certifications/'}
+  ,{name:'Proximus (MXDR Services)',sector:'Managed Security Services · MXDR · Telecom',malta:false,
+   certs:[{l:'ISAE/SOC 2 Type II',cls:'isae'}],
+   status:'confirmed',statusLabel:'Confirmed',
+   auditor:'Independent Auditor',
+   kicker:'🇧🇪 Belgium · Managed Detection & Response',
+   body:`Proximus obtained <strong>ISAE/SOC 2 Type II attestation</strong> specifically for its Managed Extended Detection and Response (MXDR) services. The certification confirms that security monitoring and response controls meet international assurance standards, providing clients — including MNCs and regulated entities — with independent confirmation of service integrity.`,
+   link:'https://www.proximus.be/en/id_b_cl_proximus_gets_attestation/companies-and-public-sector/news/news-blog/industry-recognition/isae-soc2-type2-certificate.html'}
+  ,{name:'OneTrust',sector:'Privacy Tech · GRC · Compliance SaaS',malta:false,
+   certs:[{l:'SOC 2',cls:'soc2'}],
+   status:'confirmed',statusLabel:'Confirmed',
+   auditor:'Independent CPA Firm',
+   kicker:'🌐 Global · Privacy & GRC Platform',
+   body:`OneTrust has been audited and received a <strong>SOC 2 report</strong> addressing security, confidentiality, and availability trust-service criteria. The platform is widely used by organisations operating under GDPR, CCPA, and other data-protection frameworks — including MGA-licensed operators managing player data and consent.`,
+   link:'https://www.onetrust.com/resources/trust-center/'}
+  ,{name:'Swisscom (Enterprise Services)',sector:'Telecom · Cloud · Managed Services',malta:false,
+   certs:[{l:'ISAE 3402',cls:'isae'}],
+   status:'confirmed',statusLabel:'Confirmed',
+   auditor:'Independent Auditor',
+   kicker:'🇨🇭 Switzerland · Telecom & Cloud',
+   body:`Swisscom has obtained <strong>ISAE 3402 recognition</strong> for its enterprise managed services, confirming that service organisation controls relevant to financial and operational reporting meet the standard's requirements. Used by financial institutions across Europe for regulated cloud and managed IT services.`,
+   link:'https://optimiso-group.com/en/articles-en/isae-3402-a-recognition-that-gives-assurance/'}
+  ,{name:'BNP Paribas',sector:'Banking · Financial Services · Capital Markets',malta:false,
+   certs:[{l:'ISAE 3402',cls:'isae'}],
+   status:'confirmed',statusLabel:'Confirmed',
+   auditor:'Big Four (not publicly disclosed)',
+   kicker:'🇫🇷 France · Global Banking Group',
+   body:`BNP Paribas has obtained <strong>ISAE 3402 recognition</strong> for its securities and custodial services, providing downstream assurance to fund managers, institutional investors, and regulated clients relying on BNP Paribas as a service organisation for financial transaction processing.`,
+   link:'https://optimiso-group.com/en/articles-en/isae-3402-a-recognition-that-gives-assurance/'}
+  ,{name:'Data4 Services',sector:'Data Centre · Colocation · European IaaS',malta:false,
+   certs:[{l:'ISAE 3402 Type II',cls:'isae'}],
+   status:'confirmed',statusLabel:'Confirmed',
+   auditor:'Independent Audit Firm',
+   kicker:'🇫🇷 France / Europe · Data Centre Specialist',
+   body:`Data4 Services, a European data centre specialist, holds a <strong>Type II report following the ISAE 3402 standard</strong> for its Poland operations (2023 reporting period). The certification covers physical and environmental controls, logical access, and change management processes relevant to co-location and managed hosting services.`,
+   link:'https://www.data4group.com/wp-content/uploads/2024/05/data4-isae-3402-type-ii-report-poland-2023.pdf'}
+  ,{name:'Intercontinental Trust Limited (ITL Group)',sector:'Fund Administration · Trust · Corporate Services',malta:false,
+   certs:[{l:'ISAE 3402 Type II',cls:'isae'}],
+   status:'confirmed',statusLabel:'Confirmed',
+   auditor:'Independent CPA Firm',
+   kicker:'🌐 International · Fund & Trust Administration',
+   body:`ITL Group has <strong>successfully completed ISAE 3402 Type II audits</strong>, providing service-organisation-control assurance to institutional clients and fund investors. The certification covers NAV calculation, transfer agency, and fund accounting processes — critical controls for regulated investment funds.`,
+   link:'https://intercontinentaltrust.com/wp-content/uploads/2016/09/ITL-Newsletter-Vol-5-Issue-8-ISAE-3402.pdf'}
+  ,{name:'Aztec Group',sector:'Fund Administration · Private Equity · Real Assets',malta:false,
+   certs:[{l:'ISAE 3402',cls:'isae'}],
+   status:'confirmed',statusLabel:'Confirmed',
+   auditor:'Independent Auditor',
+   kicker:'🌐 Global · Alternative Asset Fund Admin',
+   body:`Aztec Group holds <strong>ISAE 3402 certification</strong> to reassure clients regarding the integrity of data and financial transactions processed on their behalf. The certification is central to Aztec's value proposition for alternative investment fund managers seeking third-party service-organisation assurance.`,
+   link:'https://aztec.group/insights/isae-accreditation/'}
+  ,{name:'Penta (Business Banking)',sector:'FinTech · Business Banking · Neobank',malta:false,
+   certs:[{l:'ISAE 3402',cls:'isae'}],
+   status:'confirmed',statusLabel:'Confirmed',
+   auditor:'Ernst & Young (EY)',
+   kicker:'🇩🇪 Germany · SME Neobank',
+   body:`Penta received an <strong>ISAE 3402 audit by Ernst & Young (EY)</strong> with no deviations noted, confirming the integrity of its business banking platform controls. The EY attestation covered transaction processing, access controls, and financial data management — with a clean "no deviations" finding validating Penta's internal control environment.`,
+   link:'https://penta.ch/insights/no-deviations-noted-in-isae-3402-audit-by-ey'}
 ];
 
 /* ── RENDER ──────────────────────────────────────────────────── */
