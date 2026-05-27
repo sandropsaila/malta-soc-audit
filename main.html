@@ -527,21 +527,21 @@
   <div class="hero-inner">
     <h1>SOC &amp; ISAE Register</h1>
     <div class="stats-row">
-      <div class="stat"><div class="stat-num" id="statTotal">121</div><div class="stat-label">Companies</div></div>
+      <div class="stat"><div class="stat-num" id="statTotal">122</div><div class="stat-label">Companies</div></div>
       <div class="stat" onclick="activeFilters.has('malta')?(activeFilters.delete('malta'),this.querySelector('.stat-label').style.color=''):(activeFilters.add('malta'),this.querySelector('.stat-label').style.color='var(--red)');filterTable();" style="cursor:pointer;" title="Click to filter Malta-based companies">
-        <div class="stat-num" id="statMalta">17</div>
+        <div class="stat-num" id="statMalta">18</div>
         <div class="stat-label" style="text-decoration:underline;text-underline-offset:3px;">🇲🇹 Malta-Based</div>
       </div>
       <div class="stat" onclick="setTagFilter('soc')" style="cursor:pointer;" title="Click to filter SOC-certified companies">
-        <div class="stat-num" id="statSoc">116</div>
+        <div class="stat-num" id="statSoc">117</div>
         <div class="stat-label" id="statSocLabel" style="text-decoration:underline;text-underline-offset:3px;">With SOC</div>
       </div>
       <div class="stat" onclick="setTagFilter('isae')" style="cursor:pointer;" title="Click to filter ISAE-certified companies">
-        <div class="stat-num" id="statIsae">33</div>
+        <div class="stat-num" id="statIsae">34</div>
         <div class="stat-label" id="statIsaeLabel" style="text-decoration:underline;text-underline-offset:3px;">With ISAE</div>
       </div>
       <div class="stat" onclick="setTagFilter('both')" style="cursor:pointer;" title="Click to filter companies with both SOC and ISAE">
-        <div class="stat-num" id="statBoth">32</div>
+        <div class="stat-num" id="statBoth">33</div>
         <div class="stat-label" id="statBothLabel" style="text-decoration:underline;text-underline-offset:3px;">SOC &amp; ISAE</div>
       </div>
     </div>
@@ -1599,8 +1599,12 @@ CO.forEach((c,i)=>{
   tbody.appendChild(tr);
 });
 
-// Initial chart render
-setTimeout(()=>{ if(typeof updateCharts==='function') updateCharts(); }, 50);
+// Initial render
+setTimeout(()=>{
+  if(typeof filterTable==='function') filterTable();
+  if(typeof updateCharts==='function') updateCharts();
+  if(typeof updateStats==='function') updateStats();
+}, 50);
 
 /* ── ENHANCED SEARCH ENGINE v2 (fuzzy/Levenshtein) ────────────── */
 const ALIASES = {
