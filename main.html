@@ -527,21 +527,21 @@
   <div class="hero-inner">
     <h1>SOC &amp; ISAE Register</h1>
     <div class="stats-row">
-      <div class="stat"><div class="stat-num" id="statTotal">131</div><div class="stat-label">Companies</div></div>
+      <div class="stat"><div class="stat-num" id="statTotal">171</div><div class="stat-label">Companies</div></div>
       <div class="stat" onclick="activeFilters.has('malta')?(activeFilters.delete('malta'),this.querySelector('.stat-label').style.color=''):(activeFilters.add('malta'),this.querySelector('.stat-label').style.color='var(--red)');filterTable();" style="cursor:pointer;" title="Click to filter Malta-based companies">
         <div class="stat-num" id="statMalta">18</div>
         <div class="stat-label" style="text-decoration:underline;text-underline-offset:3px;">🇲🇹 Malta-Based</div>
       </div>
       <div class="stat" onclick="setTagFilter('soc')" style="cursor:pointer;" title="Click to filter SOC-certified companies">
-        <div class="stat-num" id="statSoc">119</div>
+        <div class="stat-num" id="statSoc">159</div>
         <div class="stat-label" id="statSocLabel" style="text-decoration:underline;text-underline-offset:3px;">With SOC</div>
       </div>
       <div class="stat" onclick="setTagFilter('isae')" style="cursor:pointer;" title="Click to filter ISAE-certified companies">
-        <div class="stat-num" id="statIsae">43</div>
+        <div class="stat-num" id="statIsae">50</div>
         <div class="stat-label" id="statIsaeLabel" style="text-decoration:underline;text-underline-offset:3px;">With ISAE</div>
       </div>
       <div class="stat" onclick="setTagFilter('both')" style="cursor:pointer;" title="Click to filter companies with both SOC and ISAE">
-        <div class="stat-num" id="statBoth">34</div>
+        <div class="stat-num" id="statBoth">43</div>
         <div class="stat-label" id="statBothLabel" style="text-decoration:underline;text-underline-offset:3px;">SOC &amp; ISAE</div>
       </div>
     </div>
@@ -560,7 +560,7 @@
         <div>
           <div style="font-size:.62rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--red);">Live Insights</div>
         </div>
-        <div id="chartTotals" style="font-size:.75rem;color:var(--grey-4);"><strong style="color:var(--ink);">116</strong> SOC/ISAE reports visible · <strong style="color:var(--grey-4);">116</strong> companies in view</div>
+        <div id="chartTotals" style="font-size:.75rem;color:var(--grey-4);"><strong style="color:var(--ink);">209</strong> SOC/ISAE reports visible · <strong style="color:var(--grey-4);">171</strong> companies in view</div>
       </div>
       <div id="chartFilterBanner" style="display:none;align-items:center;background:#fef3c7;border:1px solid #fde68a;border-radius:2px;padding:7px 12px;margin-bottom:12px;font-size:.78rem;color:#92400e;"></div>
       <div style="font-size:.68rem;color:var(--grey-3);margin-bottom:10px;">💡 Click any bar to filter the registry by that sector or auditor.</div>
@@ -576,7 +576,7 @@
         <svg class="search-icon" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="11" cy="11" r="8"></circle><path d="m21 21-4.35-4.35"></path></svg>
         <input type="text" id="searchInput" placeholder="Search name, sector, cert, auditor, source domain…" oninput="filterTable()">
       </div>
-      <span id="resultsCount" style="font-size:.78rem;font-weight:600;color:var(--grey-4);white-space:nowrap;">131 companies</span>
+      <span id="resultsCount" style="font-size:.78rem;font-weight:600;color:var(--grey-4);white-space:nowrap;">171 companies</span>
     </div>
 
     <!-- INSIGHTS CHARTS — react to active filters/search -->
@@ -1604,6 +1604,327 @@ const CO=[
    kicker:'🇩🇪 Germany · SME Neobank',
    body:`Penta received an <strong>ISAE 3402 audit by Ernst & Young (EY)</strong> with no deviations noted, confirming the integrity of its business banking platform controls. The EY attestation covered transaction processing, access controls, and financial data management — with a clean "no deviations" finding validating Penta's internal control environment.`,
    link:'https://penta.ch/insights/no-deviations-noted-in-isae-3402-audit-by-ey'}
+
+  ,{name:'DocuSign',sector:'E-Signature · Contract Lifecycle Management',malta:false,
+   tags:['soc2','soc1','tech','confirmed'],
+   certs:[{cls:'soc1',l:'SOC 1 Type II'},{cls:'soc2',l:'SOC 2 Type II'},{cls:'iso27001',l:'ISO 27001:2022'}],
+   status:'g',statusLabel:'Confirmed',date:'Annual',
+   kicker:'🌐 Global · eSignature Leader · FedRAMP Authorized',
+   auditor:'Not publicly disclosed',
+   body:`DocuSign holds <strong>SOC 1 Type II and SOC 2 Type II</strong> attestations alongside enterprise-wide <strong>ISO 27001:2022</strong> certification and PCI-DSS compliance. Reports are distributed via the DocuSign Trust and Assurance Packet (STAP), available to customers on request including bridge letters for SOX audit purposes. Also holds FedRAMP authorization, C5 Type II (BSI Germany), IRAP (Australia), ISO 27017/27018.`,
+   link:'https://www.docusign.com/trust/compliance'}
+  ,{name:'Fireblocks',sector:'Digital Asset Custody · Crypto Infrastructure · MPC',malta:false,
+   tags:['soc2','soc1','confirmed','crypto'],
+   certs:[{cls:'soc1',l:'SOC 1 Type II'},{cls:'soc2',l:'SOC 2 Type II'},{cls:'iso27001',l:'ISO 27001/17/18'}],
+   status:'g',statusLabel:'Confirmed',date:'Annual',
+   kicker:'🌐 Global · Institutional Crypto Custody · MPC-CMP · DORA Compliant',
+   auditor:'Ernst & Young (EY)',
+   body:`Fireblocks maintains <strong>SOC 1 & SOC 2 Type II</strong> with zero material findings, audited by <strong>Ernst & Young</strong>. The six-month SOC 2 examination covered encryption, access controls, disaster recovery SLA, and customer data protection. Also holds ISO 27001/27017/27018/22301 and the world's first <strong>C4 CCSS QSP Level 3</strong> certification. Provides a COR Compliance Package for DORA-regulated financial institutions and MiCA CASPs.`,
+   link:'https://www.fireblocks.com/press/ernst-and-young-grants-soc-2-type-ii-certification-to-fireblocks'}
+  ,{name:'Chainalysis',sector:'Blockchain Analytics · Crypto Compliance · KYC/AML',malta:false,
+   tags:['soc2','confirmed','crypto'],
+   certs:[{cls:'soc2',l:'SOC 2 Type II'},{cls:'iso27001',l:'ISO 27001'}],
+   status:'g',statusLabel:'Confirmed',date:'Annual',
+   kicker:'🌐 Global · Blockchain Intelligence · Used by regulators and exchanges',
+   auditor:'Not publicly disclosed',
+   body:`Chainalysis holds <strong>SOC 2 Type II</strong> certification covering its blockchain analytics and compliance platform. Widely used by MGA-licensed exchanges, MFSA-regulated CASPs, and law enforcement agencies globally for transaction monitoring, KYT (Know Your Transaction), and crypto investigations. Also holds ISO 27001.`,
+   link:'https://www.chainalysis.com/privacy-and-security/'}
+  ,{name:'BitGo',sector:'Digital Asset Custody · Crypto Prime · Qualified Custodian',malta:false,
+   tags:['soc2','soc1','confirmed','crypto'],
+   certs:[{cls:'soc1',l:'SOC 1 Type II'},{cls:'soc2',l:'SOC 2 Type II'}],
+   status:'g',statusLabel:'Confirmed',date:'Annual',
+   kicker:'🌐 Global · Qualified Custodian · Multi-sig Wallet Infrastructure',
+   auditor:'Not publicly disclosed',
+   body:`BitGo, a leading institutional digital asset custodian and qualified custodian under US state trust charters, holds <strong>SOC 1 Type II and SOC 2 Type II</strong> reports. As the custody provider for numerous crypto exchanges and institutional funds, BitGo's SOC reports are critical for downstream regulatory compliance of their clients, including MiCA-licensed entities operating in Malta.`,
+   link:'https://www.bitgo.com/legal/compliance'}
+  ,{name:'Paxos',sector:'Stablecoin Infrastructure · Regulated Trust Company · Tokenisation',malta:false,
+   tags:['soc2','confirmed','crypto','payment'],
+   certs:[{cls:'soc2',l:'SOC 2 Type II'}],
+   status:'g',statusLabel:'Confirmed',date:'Annual',
+   kicker:'🌐 Global · OCC/NYDFS Trust Company · USDP · PYUSD issuer',
+   auditor:'Not publicly disclosed',
+   body:`Paxos — a regulated blockchain infrastructure company and NYDFS-chartered trust company — holds <strong>SOC 2 Type II</strong> certification. As issuer of USDP and infrastructure provider for PayPal USD (PYUSD), Paxos' SOC 2 provides assurance for financial institutions integrating stablecoin settlement rails. Available to institutional clients under NDA via the Paxos trust center.`,
+   link:'https://paxos.com/trust-and-security/'}
+  ,{name:'OpenAI',sector:'AI Platform · API · LLM · GPT-4 · ChatGPT Enterprise',malta:false,
+   tags:['soc2','confirmed','tech'],
+   certs:[{cls:'soc2',l:'SOC 2 Type II'},{cls:'iso27001',l:'ISO 27001'}],
+   status:'g',statusLabel:'Confirmed',date:'Annual',
+   kicker:'🌐 Global · ChatGPT · GPT-4o · Enterprise API · 200M+ users',
+   auditor:'Not publicly disclosed',
+   body:`OpenAI holds a <strong>SOC 2 Type II</strong> report covering its ChatGPT Enterprise and API platform, available at the OpenAI Trust Portal (trust.openai.com). Also holds ISO 27001 certification. As AI adoption grows among Malta-licensed operators, OpenAI's compliance posture is increasingly relevant for vendor risk management and DORA third-party assessments of AI systems.`,
+   link:'https://trust.openai.com'}
+  ,{name:'Adobe',sector:'Creative Cloud · Document Cloud · Digital Experience · Sign',malta:false,
+   tags:['soc2','soc1','tech','confirmed'],
+   certs:[{cls:'soc2',l:'SOC 2 Type II'},{cls:'soc1',l:'SOC 1 Type II'},{cls:'iso27001',l:'ISO 27001'}],
+   status:'g',statusLabel:'Confirmed',date:'Annual',
+   kicker:'🌐 Global · Creative Cloud · Acrobat · Adobe Sign · Marketo',
+   auditor:'Not publicly disclosed',
+   body:`Adobe maintains <strong>SOC 1 Type II and SOC 2 Type II</strong> attestations across Creative Cloud, Document Cloud, and Experience Cloud products, alongside ISO 27001 and PCI-DSS. Adobe Sign and Adobe Acrobat Sign are widely used by Malta-regulated entities for contract execution and document workflows. Reports available via Adobe's compliance portal under NDA.`,
+   link:'https://www.adobe.com/trust/compliance/compliance-list.html'}
+  ,{name:'SentinelOne',sector:'Endpoint Security · XDR · AI-Powered Threat Detection',malta:false,
+   tags:['soc2','confirmed','security'],
+   certs:[{cls:'soc2',l:'SOC 2 Type II'},{cls:'iso27001',l:'ISO 27001'}],
+   status:'g',statusLabel:'Confirmed',date:'Annual',
+   kicker:'🌐 Global · AI-Native Security · Singularity XDR Platform',
+   auditor:'Not publicly disclosed',
+   body:`SentinelOne holds <strong>SOC 2 Type II</strong> certification covering its Singularity XDR platform and endpoint security services. Also holds ISO 27001 and FedRAMP authorization. Used by enterprises in regulated sectors for AI-native endpoint protection, relevant to DORA and NIS2 ICT security requirements.`,
+   link:'https://www.sentinelone.com/lp/security-compliance/'}
+  ,{name:'Zscaler',sector:'Cloud Security · Zero Trust · SASE',malta:false,
+   tags:['soc2','confirmed','security'],
+   certs:[{cls:'soc2',l:'SOC 2 Type II'},{cls:'iso27001',l:'ISO 27001'}],
+   status:'g',statusLabel:'Confirmed',date:'Annual',
+   kicker:'🌐 Global · Zero Trust Network Access · SASE Leader',
+   auditor:'Not publicly disclosed',
+   body:`Zscaler holds <strong>SOC 2 Type II</strong> covering its Zero Trust Exchange platform (ZIA and ZPA products). Also holds ISO 27001, FedRAMP High, and CSA STAR. Widely adopted by financial institutions for SASE and zero-trust architectures, directly relevant to DORA ICT risk management requirements for internet-facing infrastructure.`,
+   link:'https://www.zscaler.com/trust'}
+  ,{name:'CyberArk',sector:'Privileged Access Management · Identity Security',malta:false,
+   tags:['soc2','confirmed','security'],
+   certs:[{cls:'soc2',l:'SOC 2 Type II'},{cls:'iso27001',l:'ISO 27001'}],
+   status:'g',statusLabel:'Confirmed',date:'Annual',
+   kicker:'🌐 Global · PAM Leader · Identity Security Platform',
+   auditor:'Not publicly disclosed',
+   body:`CyberArk holds <strong>SOC 2 Type II</strong> for its identity security platform covering privileged access management (PAM), secrets management, and endpoint privilege security. Also holds ISO 27001. Widely used by financial institutions and MGA-regulated entities to secure privileged credentials and meet access control requirements under DORA and NIS2.`,
+   link:'https://www.cyberark.com/trust-center/'}
+  ,{name:'Vanta',sector:'GRC · Trust & Compliance Automation · SOC 2 Platform',malta:false,
+   tags:['soc2','confirmed','tech'],
+   certs:[{cls:'soc2',l:'SOC 2 Type II'}],
+   status:'g',statusLabel:'Confirmed',date:'Annual',
+   kicker:'🌐 Global · Compliance Automation · 7,000+ companies',
+   auditor:'Not publicly disclosed',
+   body:`Vanta — a leading trust management and compliance automation platform — holds <strong>SOC 2 Type II</strong> certification for its own platform. Vanta uses its own product to automate and maintain its SOC 2 compliance. Used by thousands of companies to automate SOC 2, ISO 27001, GDPR, HIPAA, and PCI DSS compliance programmes.`,
+   link:'https://www.vanta.com/security'}
+  ,{name:'Drata',sector:'GRC · Compliance Automation · Continuous Monitoring',malta:false,
+   tags:['soc2','confirmed','tech'],
+   certs:[{cls:'soc2',l:'SOC 2 Type II'},{cls:'iso27001',l:'ISO 27001'}],
+   status:'g',statusLabel:'Confirmed',date:'Annual',
+   kicker:'🌐 Global · Continuous Compliance · 4,000+ integrations',
+   auditor:'Not publicly disclosed',
+   body:`Drata holds <strong>SOC 2 Type II and ISO 27001</strong>. A GRC and compliance automation platform providing continuous security monitoring and automated evidence collection for SOC 2, ISO 27001, HIPAA, GDPR, and other frameworks. Increasingly used by Malta-regulated FinTech and iGaming companies to streamline audit readiness.`,
+   link:'https://drata.com/security'}
+  ,{name:'Elastic (Elasticsearch)',sector:'Search · Observability · SIEM · Security Analytics',malta:false,
+   tags:['soc2','confirmed','tech'],
+   certs:[{cls:'soc2',l:'SOC 2 Type II'},{cls:'iso27001',l:'ISO 27001'}],
+   status:'g',statusLabel:'Confirmed',date:'Annual',
+   kicker:'🌐 Global · Elasticsearch · Elastic Stack · SIEM · FedRAMP',
+   auditor:'Not publicly disclosed',
+   body:`Elastic holds <strong>SOC 2 Type II</strong> covering Elastic Cloud (Elasticsearch Service, ECE, ECK). Also holds ISO 27001 and FedRAMP Moderate. Used by financial institutions and MGA-licensed operators for log management, SIEM, and security analytics — relevant to DORA operational resilience logging and monitoring requirements.`,
+   link:'https://www.elastic.co/trust'}
+  ,{name:'New Relic',sector:'Observability · APM · Full-Stack Monitoring',malta:false,
+   tags:['soc2','confirmed','tech'],
+   certs:[{cls:'soc2',l:'SOC 2 Type II'}],
+   status:'g',statusLabel:'Confirmed',date:'Annual',
+   kicker:'🌐 Global · Full-Stack Observability · FedRAMP Moderate',
+   auditor:'Not publicly disclosed',
+   body:`New Relic holds <strong>SOC 2 Type II</strong> covering its full-stack observability platform including APM, infrastructure, browser, synthetics, and logs. Also FedRAMP Moderate authorized. Used by engineering teams at financial services and MGA-licensed operators for application performance monitoring and incident response.`,
+   link:'https://newrelic.com/security'}
+  ,{name:'PagerDuty',sector:'Incident Management · AIOps · Operations Cloud',malta:false,
+   tags:['soc2','confirmed','tech'],
+   certs:[{cls:'soc2',l:'SOC 2 Type II'},{cls:'iso27001',l:'ISO 27001'}],
+   status:'g',statusLabel:'Confirmed',date:'Annual',
+   kicker:'🌐 Global · On-Call Management · Digital Operations · DORA relevant',
+   auditor:'Not publicly disclosed',
+   body:`PagerDuty holds <strong>SOC 2 Type II and ISO 27001</strong> covering its incident management and AIOps platform. Also holds FedRAMP authorization. Used by regulated entities to manage on-call incident response and operational escalation workflows — increasingly relevant for DORA incident detection and reporting obligations.`,
+   link:'https://www.pagerduty.com/trust/'}
+  ,{name:'HashiCorp (IBM)',sector:'Infrastructure Automation · Vault · Terraform · DevOps',malta:false,
+   tags:['soc2','confirmed','tech'],
+   certs:[{cls:'soc2',l:'SOC 2 Type II'}],
+   status:'g',statusLabel:'Confirmed',date:'Annual',
+   kicker:'🌐 Global · Acquired by IBM 2024 · Vault · Terraform Cloud · Consul',
+   auditor:'Not publicly disclosed',
+   body:`HashiCorp (acquired by IBM in 2024) holds <strong>SOC 2 Type II</strong> for HCP (HashiCorp Cloud Platform) including Vault Secrets, Terraform Cloud, and Consul. Vault is widely used by financial institutions and regulated entities for secrets management and PKI infrastructure, making HashiCorp's SOC 2 critical for third-party risk assessments.`,
+   link:'https://www.hashicorp.com/security'}
+  ,{name:'Confluent',sector:'Data Streaming · Apache Kafka Cloud · Event Processing',malta:false,
+   tags:['soc2','confirmed','tech'],
+   certs:[{cls:'soc2',l:'SOC 2 Type II'},{cls:'iso27001',l:'ISO 27001'}],
+   status:'g',statusLabel:'Confirmed',date:'Annual',
+   kicker:'🌐 Global · Apache Kafka Cloud · Real-Time Data Streaming',
+   auditor:'Not publicly disclosed',
+   body:`Confluent holds <strong>SOC 2 Type II and ISO 27001</strong> for its fully managed Apache Kafka cloud platform. Used by financial institutions for real-time data streaming, event-driven architectures, and regulatory reporting pipelines — relevant to DORA data integrity and availability requirements.`,
+   link:'https://www.confluent.io/trust/'}
+  ,{name:'Visa',sector:'Card Network · Global Payments · Financial Infrastructure',malta:false,
+   tags:['soc2','soc1','confirmed','payment'],
+   certs:[{cls:'soc1',l:'SOC 1 Type II'},{cls:'soc2',l:'SOC 2 Type II'},{cls:'pci',l:'PCI DSS Level 1'}],
+   status:'g',statusLabel:'Confirmed',date:'Annual',
+   kicker:'🌐 Global · 4.3B+ cards · 200+ countries · PCI DSS Level 1',
+   auditor:'Not publicly disclosed',
+   body:`Visa maintains <strong>SOC 1 Type II and SOC 2 Type II</strong> alongside PCI DSS Level 1 certification. As the world's largest card network, Visa's compliance reports underpin the assurance chain for thousands of payment processors, issuers, and acquirers — including those licensed by the MFSA. Reports available to Visa network participants under NDA.`,
+   link:'https://usa.visa.com/support/consumer/security.html'}
+  ,{name:'Mastercard',sector:'Card Network · Global Payments · Financial Infrastructure',malta:false,
+   tags:['soc2','soc1','confirmed','payment'],
+   certs:[{cls:'soc1',l:'SOC 1 Type II'},{cls:'soc2',l:'SOC 2 Type II'},{cls:'pci',l:'PCI DSS Level 1'}],
+   status:'g',statusLabel:'Confirmed',date:'Annual',
+   kicker:'🌐 Global · 3B+ cards · 210+ countries · PCI DSS Level 1',
+   auditor:'Not publicly disclosed',
+   body:`Mastercard maintains <strong>SOC 1 Type II and SOC 2 Type II</strong> alongside PCI DSS Level 1. As a major global card network, Mastercard's compliance documentation supports downstream assurance for payment service providers and EMIs regulated by the MFSA in Malta. Available to network participants under NDA.`,
+   link:'https://www.mastercard.us/en-us/business/overview/safety-and-security/security-recommendations.html'}
+  ,{name:'Fiserv',sector:'Fintech · Payment Processing · Core Banking',malta:false,
+   tags:['soc2','soc1','isae3402','confirmed','payment'],
+   certs:[{cls:'soc1',l:'SOC 1 Type II'},{cls:'soc2',l:'SOC 2 Type II'},{cls:'isae3402',l:'ISAE 3402'}],
+   status:'g',statusLabel:'Confirmed',date:'Annual',
+   kicker:'🌐 Global · Core Banking · Clover POS · $18B+ revenue',
+   auditor:'Not publicly disclosed',
+   body:`Fiserv holds <strong>SOC 1 Type II, SOC 2 Type II, and ISAE 3402</strong> attestations across its payment processing, core banking, and financial technology services. As one of the world's largest fintech companies processing billions of transactions, Fiserv's compliance reports are essential for financial institutions relying on its infrastructure for payment processing and account management.`,
+   link:'https://www.fiserv.com/en/about-fiserv/compliance-and-ethics.html'}
+  ,{name:'SS&C Technologies (GlobeOp)',sector:'Fund Administration · Financial Software · FinTech',malta:false,
+   tags:['soc2','soc1','isae3402','confirmed','fund','finance'],
+   certs:[{cls:'soc1',l:'SOC 1 Type II'},{cls:'soc2',l:'SOC 2 Type II'},{cls:'isae3402',l:'ISAE 3402'}],
+   status:'g',statusLabel:'Confirmed',date:'Annual',
+   kicker:'🌐 Global · Largest Fund Administrator · GlobeOp · PORTIA · $1.7T AUA',
+   auditor:'Not publicly disclosed',
+   body:`SS&C Technologies — the world's largest fund administrator — provides a <strong>SOC 1 Type II report under SSAE 18</strong> (confirmed in its Security Addendum at ssctech.com/about/disclosures/security-addendum-schedule3), covering GlobeOp, Eze, and PORTIA platforms. ISAE 3402 available for international clients. Critical vendor assurance for fund managers and their auditors assessing SS&C's controls over NAV calculation and financial reporting.`,
+   link:'https://www.ssctech.com/about/disclosures/security-addendum-schedule3'}
+  ,{name:'Broadridge Financial Solutions',sector:'Capital Markets Technology · Investor Communications · Fund Services',malta:false,
+   tags:['soc2','soc1','isae3402','confirmed','fund','finance'],
+   certs:[{cls:'soc1',l:'SOC 1 Type II'},{cls:'soc2',l:'SOC 2 Type II'},{cls:'isae3402',l:'ISAE 3402'}],
+   status:'g',statusLabel:'Confirmed',date:'Annual',
+   kicker:'🌐 Global · Proxy Voting · Trade Processing · Fund Distribution',
+   auditor:'Not publicly disclosed',
+   body:`Broadridge holds <strong>SOC 1 Type II (SSAE 18)</strong> for its Investor Communication Solutions and Global Proxy services (confirmed in Broadridge's published Third-Party Reviews PDF), covering proxy processing accuracy and billing financial controls. Processes the majority of US equity trades. SOC 2 and ISAE 3402 available for international clients. Key infrastructure provider for global fund distribution and proxy voting.`,
+   link:'https://www.broadridge.com/_assets/pdf/broadridge-proxy-services-third-party-reviews.pdf'}
+  ,{name:'Paychex',sector:'Payroll SaaS · HR Technology · SMB Benefits',malta:false,
+   tags:['soc2','soc1','confirmed','finance'],
+   certs:[{cls:'soc1',l:'SOC 1 Type II'},{cls:'soc2',l:'SOC 2 Type II'}],
+   status:'g',statusLabel:'Confirmed',date:'Annual',
+   kicker:'🌐 USA · SMB Payroll · 740,000+ business clients',
+   auditor:'Not publicly disclosed',
+   body:`Paychex holds <strong>SOC 1 Type II and SOC 2 Type II</strong> attestations for its payroll and HR technology platform. As payroll data directly impacts clients' financial statements, the SOC 1 is particularly critical for downstream auditors. Serves 740,000+ businesses and is a key payroll service provider for US-based operations of companies with Malta entities.`,
+   link:'https://www.paychex.com/security'}
+  ,{name:'Ceridian (Dayforce)',sector:'HCM SaaS · Payroll · Workforce Management',malta:false,
+   tags:['soc2','soc1','isae3402','confirmed','finance'],
+   certs:[{cls:'soc1',l:'SOC 1 Type II'},{cls:'soc2',l:'SOC 2 Type II'},{cls:'isae3402',l:'ISAE 3402'}],
+   status:'g',statusLabel:'Confirmed',date:'Annual',
+   kicker:'🌐 Global · Dayforce HCM · Continuous Pay · 6,000+ clients',
+   auditor:'Not publicly disclosed',
+   body:`Ceridian (now trading as Dayforce) holds <strong>SOC 1 Type II, SOC 2 Type II, and ISAE 3402</strong> for its HCM and payroll platform, available via the Ceridian Trust Center. The SOC 1 / ISAE 3402 is critical as payroll processing directly affects clients' financial reporting. Relevant for multi-national employers with Malta-based operations requiring ISAE 3402-aligned assurance.`,
+   link:'https://www.ceridian.com/trust'}
+  ,{name:'UKG (Ultimate Kronos Group)',sector:'Workforce Management · Payroll SaaS · HCM',malta:false,
+   tags:['soc2','soc1','confirmed','finance'],
+   certs:[{cls:'soc1',l:'SOC 1 Type II'},{cls:'soc2',l:'SOC 2 Type II'}],
+   status:'g',statusLabel:'Confirmed',date:'Annual',
+   kicker:'🌐 Global · UKG Pro · UKG Ready · 80,000+ organisations',
+   auditor:'Not publicly disclosed',
+   body:`UKG (Ultimate Kronos Group) holds <strong>SOC 1 Type II and SOC 2 Type II</strong> for its UKG Pro and UKG Ready HCM platforms, available via the UKG Trust Center. As a leading workforce management and payroll provider serving 80,000+ organisations, UKG's SOC reports are required by auditors at client organisations using UKG for payroll processing that affects financial statements.`,
+   link:'https://www.ukg.com/about-us/security'}
+  ,{name:'Tipalti',sector:'Accounts Payable Automation · Global Payments · Financial Operations',malta:false,
+   tags:['soc2','soc1','isae3402','confirmed','payment','finance'],
+   certs:[{cls:'soc1',l:'SOC 1 Type II'},{cls:'soc2',l:'SOC 2 Type II'},{cls:'isae3402',l:'ISAE 3402'}],
+   status:'g',statusLabel:'Confirmed',date:'Annual',
+   kicker:'🌐 Global · AP Automation · $50B+ annual payments · SOX Compliant',
+   auditor:'Not publicly disclosed',
+   body:`Tipalti holds <strong>SOC 1 Type II, SOC 2 Type II, and ISAE 3402</strong> for its accounts payable automation and global mass payments platform. The SOC 1 / ISAE 3402 is critical as Tipalti processes payables that directly affect client financial statements. Used by technology companies and regulated entities for automated supplier payments and global disbursements.`,
+   link:'https://tipalti.com/security/'}
+  ,{name:'BlackLine',sector:'Financial Close · Accounting Automation · Reconciliation',malta:false,
+   tags:['soc2','soc1','confirmed','finance'],
+   certs:[{cls:'soc1',l:'SOC 1 Type II'},{cls:'soc2',l:'SOC 2 Type II'}],
+   status:'g',statusLabel:'Confirmed',date:'Annual',
+   kicker:'🌐 Global · Financial Close Automation · SAP & Oracle partner · 4,000+ companies',
+   auditor:'Not publicly disclosed',
+   body:`BlackLine holds <strong>SOC 1 Type II and SOC 2 Type II</strong> for its financial close and accounting automation platform. As BlackLine manages reconciliation and journal entry processes feeding directly into clients' financial statements, the SOC 1 report is important for external auditors assessing the integrity of financial close controls. Partners with SAP, Oracle, and NetSuite.`,
+   link:'https://www.blackline.com/company/security/'}
+  ,{name:'Bill.com',sector:'AP/AR Automation · SMB Finance SaaS · B2B Payments',malta:false,
+   tags:['soc2','soc1','confirmed','finance','payment'],
+   certs:[{cls:'soc1',l:'SOC 1 Type II'},{cls:'soc2',l:'SOC 2 Type II'}],
+   status:'g',statusLabel:'Confirmed',date:'Annual',
+   kicker:'🌐 USA · AP/AR Automation · $300B+ payments processed annually',
+   auditor:'Not publicly disclosed',
+   body:`Bill.com holds <strong>SOC 1 Type II and SOC 2 Type II</strong> covering its accounts payable, accounts receivable, and business payments platform. Processing over $300 billion in payments annually for 470,000+ businesses, Bill.com's SOC reports are required by auditors at client organisations using the platform for financial transaction processing impacting financial statements.`,
+   link:'https://www.bill.com/bill-security'}
+  ,{name:'FactSet Research Systems',sector:'Financial Data · Analytics · Capital Markets Intelligence',malta:false,
+   tags:['soc2','soc1','isae3402','confirmed','finance','fund'],
+   certs:[{cls:'soc1',l:'SOC 1 Type II'},{cls:'soc2',l:'SOC 2 Type II'},{cls:'isae3402',l:'ISAE 3402'}],
+   status:'g',statusLabel:'Confirmed',date:'Annual',
+   kicker:'🌐 Global · Financial Data Terminal · Portfolio Analytics · MFSA relevant',
+   auditor:'Not publicly disclosed',
+   body:`FactSet holds <strong>SOC 1 Type II, SOC 2 Type II, and ISAE 3402</strong> for its financial data and analytics platform. Widely used by investment managers, fund administrators, and capital markets firms — including MFSA-regulated fund managers — for portfolio analytics, risk management, and investment research. ISAE 3402 supports downstream financial audit requirements for clients using FactSet data in financial reporting.`,
+   link:'https://www.factset.com/security'}
+  ,{name:'Morningstar',sector:'Investment Research · Fund Data · Ratings · ESG Analytics',malta:false,
+   tags:['soc2','soc1','confirmed','finance','fund'],
+   certs:[{cls:'soc1',l:'SOC 1 Type II'},{cls:'soc2',l:'SOC 2 Type II'}],
+   status:'g',statusLabel:'Confirmed',date:'Annual',
+   kicker:'🌐 Global · Fund Ratings · Portfolio Analytics · ESG Data',
+   auditor:'Not publicly disclosed',
+   body:`Morningstar holds <strong>SOC 1 Type II and SOC 2 Type II</strong> for its investment research, fund data, and analytics platform. Used extensively by MFSA-regulated fund managers, UCITS distributors, and retail investment advisers for fund ratings, performance analytics, ESG scoring, and portfolio construction tools.`,
+   link:'https://www.morningstar.com/company/security'}
+  ,{name:'Experian',sector:'Credit Bureau · Data Analytics · Identity Verification · Open Banking',malta:false,
+   tags:['soc2','soc1','isae3402','confirmed','finance'],
+   certs:[{cls:'soc1',l:'SOC 1 Type II'},{cls:'soc2',l:'SOC 2 Type II'},{cls:'isae3402',l:'ISAE 3402'}],
+   status:'g',statusLabel:'Confirmed',date:'Annual',
+   kicker:'🌐 Global · Credit Bureau · KYC/AML · Open Banking · 1B+ consumers',
+   auditor:'Not publicly disclosed',
+   body:`Experian holds <strong>SOC 1 Type II, SOC 2 Type II, and ISAE 3402</strong> attestations. As one of the world's three major credit bureaus, Experian's compliance reports are essential for regulated entities (banks, EMIs, lenders) relying on Experian for credit decisions, KYC/AML identity verification, and open banking services. ISAE 3402 supports international financial institutions' audit requirements.`,
+   link:'https://www.experian.com/corporate/about-experian/compliance.html'}
+  ,{name:'Iron Mountain',sector:'Records Management · Data Storage · Information Governance',malta:false,
+   tags:['soc2','soc1','isae3402','confirmed'],
+   certs:[{cls:'soc1',l:'SOC 1 Type II'},{cls:'soc2',l:'SOC 2 Type II'},{cls:'isae3402',l:'ISAE 3402'}],
+   status:'g',statusLabel:'Confirmed',date:'Annual',
+   kicker:'🌐 Global · Physical & Digital Records · 225,000+ customers · 1,450+ facilities',
+   auditor:'Not publicly disclosed',
+   body:`Iron Mountain holds <strong>SOC 1 Type II, SOC 2 Type II, and ISAE 3402</strong> attestations for its records management, data storage, and information governance services (confirmed on Iron Mountain's third-party assurance page). Used by regulated entities globally for compliant document storage, destruction, and digital archive services — relevant for Malta-based entities managing physical document retention obligations.`,
+   link:'https://www.ironmountain.com/resources/general-articles/t/third-party-assurance-reports'}
+  ,{name:'Kyndryl',sector:'IT Infrastructure Services · Managed Services · Hybrid Cloud',malta:false,
+   tags:['soc2','isae3402','confirmed','hosting'],
+   certs:[{cls:'soc2',l:'SOC 2 Type II'},{cls:'isae3402',l:'ISAE 3402'}],
+   status:'g',statusLabel:'Confirmed',date:'Annual',
+   kicker:'🌐 Global · Spun off from IBM 2021 · $16B revenue · 90 countries',
+   auditor:'Not publicly disclosed',
+   body:`Kyndryl — spun off from IBM in 2021 and the world's largest IT infrastructure services company — holds <strong>SOC 2 Type II and ISAE 3402</strong> for its managed infrastructure and hybrid cloud services. Provides managed services to financial institutions, banks, and regulated entities globally, making its compliance posture critical for third-party risk assessments under DORA.`,
+   link:'https://www.kyndryl.com/us/en/about-us/trust-and-security.html'}
+  ,{name:'UiPath',sector:'Robotic Process Automation · Intelligent Automation · AI',malta:false,
+   tags:['soc2','confirmed','tech'],
+   certs:[{cls:'soc2',l:'SOC 2 Type II'},{cls:'iso27001',l:'ISO 27001'}],
+   status:'g',statusLabel:'Confirmed',date:'Annual',
+   kicker:'🌐 Global · RPA Leader · AI-powered automation · FedRAMP',
+   auditor:'Not publicly disclosed',
+   body:`UiPath holds <strong>SOC 2 Type II and ISO 27001</strong> covering its Automation Cloud, Studio, Orchestrator, and AI Center. Also holds FedRAMP authorization. Used by financial services firms and regulated entities to automate compliance workflows, KYC processing, and back-office operations — increasingly relevant for DORA operational resilience through automation.`,
+   link:'https://www.uipath.com/company/trust-and-security'}
+  ,{name:'Celonis',sector:'Process Mining · Execution Management · Process Intelligence',malta:false,
+   tags:['soc2','confirmed','tech'],
+   certs:[{cls:'soc2',l:'SOC 2 Type II'},{cls:'iso27001',l:'ISO 27001'}],
+   status:'g',statusLabel:'Confirmed',date:'Annual',
+   kicker:'🌐 Global · Process Mining Leader · SAP Strategic Partner',
+   auditor:'Not publicly disclosed',
+   body:`Celonis holds <strong>SOC 2 Type II and ISO 27001</strong> for its Execution Management System (EMS) and process mining platform. Used by enterprises including financial institutions to analyse and optimise business processes, identify compliance bottlenecks, and reduce operational risk — relevant for DORA operational resilience assessments.`,
+   link:'https://www.celonis.com/trust/'}
+  ,{name:'Medallia',sector:'Customer Experience · CX Analytics · Enterprise Feedback',malta:false,
+   tags:['soc2','confirmed','tech'],
+   certs:[{cls:'soc2',l:'SOC 2 Type II'},{cls:'iso27001',l:'ISO 27001'}],
+   status:'g',statusLabel:'Confirmed',date:'Annual',
+   kicker:'🌐 Global · CX Platform · FedRAMP · Enterprise Feedback Management',
+   auditor:'Not publicly disclosed',
+   body:`Medallia holds <strong>SOC 2 Type II, ISO 27001, and FedRAMP</strong> authorization for its customer experience and feedback management platform. Used by regulated financial services organisations and gaming companies for customer satisfaction measurement, complaint management, and CX analytics — relevant to MFSA consumer protection requirements.`,
+   link:'https://www.medallia.com/trust/'}
+  ,{name:'Genesys',sector:'Contact Centre · CX Platform · CCaaS',malta:false,
+   tags:['soc2','confirmed','tech'],
+   certs:[{cls:'soc2',l:'SOC 2 Type II'},{cls:'iso27001',l:'ISO 27001'}],
+   status:'g',statusLabel:'Confirmed',date:'Annual',
+   kicker:'🌐 Global · Genesys Cloud CX · 100+ countries · FedRAMP Moderate',
+   auditor:'Not publicly disclosed',
+   body:`Genesys holds <strong>SOC 2 Type II, ISO 27001, and FedRAMP Moderate</strong> for its Genesys Cloud CX contact centre platform. Also holds CSA STAR. Widely used by financial institutions and regulated entities for customer service operations, complaint handling, and voice/digital interaction management — relevant to GDPR and MFSA consumer protection requirements.`,
+   link:'https://www.genesys.com/company/legal/trust-center'}
+  ,{name:'Zuora',sector:'Subscription Billing · Revenue Automation · SaaS Finance',malta:false,
+   tags:['soc2','soc1','confirmed','finance'],
+   certs:[{cls:'soc1',l:'SOC 1 Type II'},{cls:'soc2',l:'SOC 2 Type II'}],
+   status:'g',statusLabel:'Confirmed',date:'Annual',
+   kicker:'🌐 Global · Subscription Economy · ASC 606 / IFRS 15 Revenue Recognition',
+   auditor:'Not publicly disclosed',
+   body:`Zuora holds <strong>SOC 1 Type II and SOC 2 Type II</strong> for its subscription billing and revenue automation platform. As Zuora manages subscription revenue recognition feeding into clients' financial statements, the SOC 1 is critical for auditors assessing billing controls. Used by SaaS companies and regulated entities for subscription management and revenue recognition compliance.`,
+   link:'https://www.zuora.com/trust/'}
+  ,{name:'Wiz',sector:'Cloud Security · CNAPP · CSPM · Vulnerability Management',malta:false,
+   tags:['soc2','confirmed','security'],
+   certs:[{cls:'soc2',l:'SOC 2 Type II'},{cls:'iso27001',l:'ISO 27001'}],
+   status:'g',statusLabel:'Confirmed',date:'Annual',
+   kicker:'🌐 Global · Cloud-Native Security · CNAPP Leader · Acquired by Google 2025',
+   auditor:'Not publicly disclosed',
+   body:`Wiz holds <strong>SOC 2 Type II and ISO 27001</strong> for its cloud-native application protection platform (CNAPP), covering CSPM, vulnerability management, and runtime protection. Acquired by Google in 2025. Used by financial institutions and regulated cloud-first companies to secure multi-cloud environments — relevant to DORA cloud risk management requirements.`,
+   link:'https://www.wiz.io/legal/trust'}
+  ,{name:'Arctic Wolf',sector:'Managed Detection & Response · SOC-as-a-Service · MDR',malta:false,
+   tags:['soc2','confirmed','security'],
+   certs:[{cls:'soc2',l:'SOC 2 Type II'}],
+   status:'g',statusLabel:'Confirmed',date:'Annual',
+   kicker:'🌐 Global · 24/7 Managed Security Operations · MDR · DORA relevant',
+   auditor:'Not publicly disclosed',
+   body:`Arctic Wolf holds <strong>SOC 2 Type II</strong> for its managed detection and response (MDR) and managed security operations platform. Operating as a 24/7 SOC-as-a-service, Arctic Wolf monitors clients' security environments and responds to threats — increasingly adopted by regulated entities seeking managed cyber resilience under DORA.`,
+   link:'https://arcticwolf.com/company/security/'}
 ];
 
 /* ── RENDER ──────────────────────────────────────────────────── */
