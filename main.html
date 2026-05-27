@@ -888,7 +888,7 @@ const CO=[
    kicker:'🌐 Workplace messaging',
    body:`SOC 2 Type II, SOC 3, ISO 27001.`,
    link:'https://slack.com/trust/compliance'},
-  {name:'Zoom',sector:'Video Conferencing',malta:false,
+  {name:'Zoom',sector:'Design, Creative & Comms',malta:false,
    tags:['soc2','tech','confirmed'],
    certs:[{cls:'soc2',l:'SOC 2 Type II'},{cls:'iso27001',l:'ISO 27001'}],
    status:'g',statusLabel:'Confirmed',date:'Annual',
@@ -945,7 +945,7 @@ const CO=[
    body:`SOC 2, SOC 3, ISO 27001.`,
    auditor:'Not publicly disclosed [SOC 2 Type II attestation auditor — not publicly named]',
    link:'https://www.okta.com/security-and-compliance/'},
-  {name:'Twilio',sector:'Communications API',malta:false,
+  {name:'Twilio',sector:'Design, Creative & Comms',malta:false,
    tags:['soc2','tech','confirmed'],
    certs:[{cls:'soc2',l:'SOC 2 Type II'},{cls:'iso27001',l:'ISO 27001'}],
    status:'g',statusLabel:'Confirmed',date:'Annual',
@@ -1204,14 +1204,14 @@ const CO=[
    kicker:'🌐 All-in-one workspace',
    body:`Notion holds <strong>SOC 2 Type II and ISO 27001</strong>.`,
    link:'https://www.notion.so/security'},
-  {name:'Canva',sector:'Design Platform SaaS',malta:false,
+  {name:'Canva',sector:'Design, Creative & Comms',malta:false,
    tags:['soc2','tech','confirmed'],
    certs:[{cls:'soc2',l:'SOC 2 Type II'},{cls:'iso27001',l:'ISO 27001'}],
    status:'g',statusLabel:'Confirmed',date:'Annual',
    kicker:'🌐 Design and visual platform',
    body:`Canva holds <strong>SOC 2 Type II and ISO 27001</strong>.`,
    link:'https://www.canva.com/trust/'},
-  {name:'Figma',sector:'Design Platform SaaS',malta:false,
+  {name:'Figma',sector:'Design, Creative & Comms',malta:false,
    tags:['soc2','tech','confirmed'],
    certs:[{cls:'soc2',l:'SOC 2 Type II'},{cls:'iso27001',l:'ISO 27001'}],
    status:'g',statusLabel:'Confirmed',date:'Annual',
@@ -1979,8 +1979,7 @@ function classifySector(c){
   if(/observability|monitoring|\bapm\b|aiops|analytics|business intelligence|data warehouse|data lakehouse|database|integration platform|api management/.test(blob)) return 'Data / DevOps Tools';
   if(/\bcrm\b|customer relationship|sales|marketing|customer support|customer engagement|helpdesk|customer success/.test(blob)) return 'CRM / Sales / Marketing';
   if(/identity|authentication|\bauth\b|access management|\bsso\b|single sign/.test(blob)) return 'Identity / Access';
-  if(/design|whiteboard|creative|visual|prototyp/.test(blob)) return 'Design / Creative';
-  if(/communication|messaging|video conferenc|\bvoice\b|\bsms\b|email api|telephony/.test(blob)) return 'Communications';
+  if(/design|whiteboard|creative|visual|prototyp|communication|messaging|video conferenc|\bvoice\b|\bsms\b|email api|telephony/.test(blob)) return 'Design, Creative & Comms';
   if(/file storage|content management|file sharing|document|\becm\b|cloud storage/.test(blob)) return 'Storage / Content';
   if(/e-commerce|ecommerce|online store|website builder|webshop/.test(blob)) return 'eCommerce / Web';
   if(/work management|project management|productivity|workspace|collaboration|task management|workflow/.test(blob)) return 'Collaboration / Productivity';
@@ -2022,7 +2021,7 @@ function updateCharts(){
   });
 
   // Render sector chart (clickable) + Other Certifications bar
-  const sectorOrder = ['Cloud / Hosting & Data Centre','Data / DevOps Tools','CRM / Sales / Marketing','Collaboration / Productivity','Design / Creative','Communications','Storage / Content','Identity / Access','eCommerce / Web','Accounting / Finance SaaS','Payroll / HR Tech','Cybersecurity','Payments','Crypto / Digital Assets','iGaming','Fund / Financial Svcs','Other SaaS / Tech','Other','Other Certifications'];
+  const sectorOrder = ['Cloud / Hosting & Data Centre','Data / DevOps Tools','CRM / Sales / Marketing','Collaboration / Productivity','Design, Creative & Comms','Storage / Content','Identity / Access','eCommerce / Web','Accounting / Finance SaaS','Payroll / HR Tech','Cybersecurity','Payments','Crypto / Digital Assets','iGaming','Fund / Financial Svcs','Other SaaS / Tech','Other','Other Certifications'];
   renderBars('chartSector', sectorCounts, sectorOrder, 'sector', activeSector);
 
   // Totals
