@@ -527,10 +527,22 @@
   <div class="hero-inner">
     <h1>SOC &amp; ISAE Register</h1>
     <div class="stats-row">
-      <div class="stat"><div class="stat-num">107</div><div class="stat-label">Companies</div></div>
+      <div class="stat"><div class="stat-num" id="statTotal">121</div><div class="stat-label">Companies</div></div>
       <div class="stat" onclick="activeFilters.has('malta')?(activeFilters.delete('malta'),this.querySelector('.stat-label').style.color=''):(activeFilters.add('malta'),this.querySelector('.stat-label').style.color='var(--red)');filterTable();" style="cursor:pointer;" title="Click to filter Malta-based companies">
-        <div class="stat-num">11</div>
+        <div class="stat-num" id="statMalta">17</div>
         <div class="stat-label" style="text-decoration:underline;text-underline-offset:3px;">🇲🇹 Malta-Based</div>
+      </div>
+      <div class="stat" onclick="setTagFilter('soc')" style="cursor:pointer;" title="Click to filter SOC-certified companies">
+        <div class="stat-num" id="statSoc">116</div>
+        <div class="stat-label" id="statSocLabel" style="text-decoration:underline;text-underline-offset:3px;">With SOC</div>
+      </div>
+      <div class="stat" onclick="setTagFilter('isae')" style="cursor:pointer;" title="Click to filter ISAE-certified companies">
+        <div class="stat-num" id="statIsae">33</div>
+        <div class="stat-label" id="statIsaeLabel" style="text-decoration:underline;text-underline-offset:3px;">With ISAE</div>
+      </div>
+      <div class="stat" onclick="setTagFilter('both')" style="cursor:pointer;" title="Click to filter companies with both SOC and ISAE">
+        <div class="stat-num" id="statBoth">32</div>
+        <div class="stat-label" id="statBothLabel" style="text-decoration:underline;text-underline-offset:3px;">SOC &amp; ISAE</div>
       </div>
     </div>
   </div>
@@ -1746,6 +1758,57 @@ function tokenMatches(searchTok, idx){
 let activeFilters = new Set(); // empty = show all
 const SEARCH_IDX = CO.map(buildSearchIndex);
 
+const SOC_TAGS  = ['soc1','soc2','soc3'];
+const ISAE_TAGS = ['isae3402','isae3000'];
+
+function updateStats(){
+  const rows = [...document.querySelectorAll('#tBody tr')].filter(r=>!r.classList.contains('hr') && r.id!=='noResults');
+  const visible = rows.filter(r=>r.style.display!=='none');
+  const ids = visible.map(r=>+r.dataset.i).filter(i=>!isNaN(i));
+  const shown = ids.map(i=>CO[i]).filter(Boolean);
+  document.getElementById('statTotal').textContent = shown.length;
+  document.getElementById('statMalta').textContent = shown.filter(c=>c.malta).length;
+  const socCount  = shown.filter(c=>(c.tags||[]).some(t=>SOC_TAGS.includes(t))).length;
+  const isaeCount = shown.filter(c=>(c.tags||[]).some(t=>ISAE_TAGS.includes(t))).length;
+  const bothCount = shown.filter(c=>{const t=c.tags||[];return t.some(x=>SOC_TAGS.includes(x))&&t.some(x=>ISAE_TAGS.includes(x));}).length;
+  document.getElementById('statSoc').textContent  = socCount;
+  document.getElementById('statIsae').textContent = isaeCount;
+  document.getElementById('statBoth').textContent = bothCount;
+  // highlight active stat labels
+  const socActive  = activeFilters.has('__soc');
+  const isaeActive = activeFilters.has('__isae');
+  const bothActive = activeFilters.has('__both');
+  document.getElementById('statSocLabel').style.color  = socActive  ? 'var(--red)' : '';
+  document.getElementById('statIsaeLabel').style.color = isaeActive ? 'var(--red)' : '';
+  document.getElementById('statBothLabel').style.color = bothActive ? 'var(--red)' : '';
+}
+
+let _socFilter=false, _isaeFilter=false, _bothFilter=false;
+function setTagFilter(kind){
+  // toggle
+  if(kind==='soc'){
+    _socFilter=!_socFilter; _isaeFilter=false; _bothFilter=false;
+    activeFilters.delete('__isae'); activeFilters.delete('__both');
+    _socFilter ? activeFilters.add('__soc') : activeFilters.delete('__soc');
+  } else if(kind==='isae'){
+    _isaeFilter=!_isaeFilter; _socFilter=false; _bothFilter=false;
+    activeFilters.delete('__soc'); activeFilters.delete('__both');
+    _isaeFilter ? activeFilters.add('__isae') : activeFilters.delete('__isae');
+  } else if(kind==='both'){
+    _bothFilter=!_bothFilter; _socFilter=false; _isaeFilter=false;
+    activeFilters.delete('__soc'); activeFilters.delete('__isae');
+    _bothFilter ? activeFilters.add('__both') : activeFilters.delete('__both');
+  }
+  filterTable();
+}
+
+function applyTagFilters(tags){
+  if(activeFilters.has('__soc'))  return SOC_TAGS.some(t=>tags.includes(t));
+  if(activeFilters.has('__isae')) return ISAE_TAGS.some(t=>tags.includes(t));
+  if(activeFilters.has('__both')) return SOC_TAGS.some(t=>tags.includes(t)) && ISAE_TAGS.some(t=>tags.includes(t));
+  return true;
+}
+
 function setFilter(t, btn){
   if(t === 'all'){
     activeFilters.clear();
@@ -1789,11 +1852,12 @@ function filterTable(){
 
     // Filter: must match ALL active filter pills (AND logic across pills, OR within each tag)
     const auditorDisclosed = tr.dataset.auditor && tr.dataset.auditor !== '' && !tr.dataset.auditor.includes('not publicly disclosed');
-    const mf = activeFilters.size === 0 ||
-      [...activeFilters].every(f => {
+    const tagList = (tags||'').split(' ');
+    const mf = (activeFilters.size === 0 || [...activeFilters].every(f => {
         if(f === 'auditor-disclosed') return auditorDisclosed;
+        if(f.startsWith('__')) return true; // handled by applyTagFilters
         return tags.includes(f);
-      });
+      })) && applyTagFilters(tagList);
 
     // Chart-driven filters: sector + auditor (AND with everything else)
     const mSector = !activeSector || SECTOR_OF[i] === activeSector;
@@ -1867,6 +1931,7 @@ function filterTable(){
   }
 
   if(typeof updateCharts==='function') updateCharts();
+  updateStats();
 }
 
 /* ── MODAL ───────────────────────────────────────────────────── */
