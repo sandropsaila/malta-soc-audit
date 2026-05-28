@@ -527,7 +527,7 @@
   <div class="hero-inner">
     <h1>SOC &amp; ISAE Register</h1>
     <div class="stats-row">
-      <div class="stat"><div class="stat-num" id="statTotal">216</div><div class="stat-label">Companies</div></div>
+      <div class="stat"><div class="stat-num" id="statTotal">240</div><div class="stat-label">Companies</div></div>
       <div class="stat" onclick="activeFilters.has('malta')?(activeFilters.delete('malta'),this.querySelector('.stat-label').style.color=''):(activeFilters.add('malta'),this.querySelector('.stat-label').style.color='var(--red)');filterTable();" style="cursor:pointer;" title="Click to filter Malta-based companies">
         <div class="stat-num" id="statMalta">18</div>
         <div class="stat-label" style="text-decoration:underline;text-underline-offset:3px;">🇲🇹 Malta-Based</div>
@@ -576,7 +576,7 @@
         <svg class="search-icon" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="11" cy="11" r="8"></circle><path d="m21 21-4.35-4.35"></path></svg>
         <input type="text" id="searchInput" placeholder="Search name, sector, cert, auditor, source domain…" oninput="filterTable()">
       </div>
-      <span id="resultsCount" style="font-size:.78rem;font-weight:600;color:var(--grey-4);white-space:nowrap;">216 companies</span>
+      <span id="resultsCount" style="font-size:.78rem;font-weight:600;color:var(--grey-4);white-space:nowrap;">240 companies</span>
     </div>
 
     <!-- INSIGHTS CHARTS — react to active filters/search -->
@@ -2286,6 +2286,200 @@ const CO=[
    auditor:'Not publicly disclosed',
    body:`TransUnion holds <strong>SOC 1 Type II and SOC 2 Type II</strong> for its credit, risk, and information solutions (confirmed at transunion.com/legal/privacy-center/security). As one of the three major global credit bureaus, TransUnion's compliance posture is essential for regulated financial institutions using its data for credit decisioning, fraud detection, and AML compliance.`,
    link:'https://www.transunion.com/legal/privacy-center/security'}
+
+  ,{name:'NordVPN / Nord Security',sector:'VPN · Consumer & Business Cybersecurity',malta:false,
+   tags:['iso27001','security','othercert'],
+   certs:[{cls:'iso27001',l:'ISO 27001'}],
+   status:'a',statusLabel:'ISO 27001 · No public SOC 2',date:'Annual',
+   kicker:'🇱🇹 Lithuania · NordVPN · NordLayer · 14M+ users',
+   auditor:'Not publicly disclosed',
+   body:`Nord Security (NordVPN, NordLayer, NordPass) holds <strong>ISO 27001</strong> certification for its VPN and business security products. No public SOC 2 report found — ISO 27001 is the primary assurance standard for consumer and SMB VPN providers. NordLayer (business VPN) is increasingly used by Malta-regulated entities for secure remote access.`,
+   link:'https://nordvpn.com/security/'}
+  ,{name:'ExpressVPN (Kape Technologies)',sector:'VPN · Consumer Privacy · Cybersecurity',malta:false,
+   tags:['iso27001','security','othercert'],
+   certs:[{cls:'iso27001',l:'ISO 27001'}],
+   status:'a',statusLabel:'ISO 27001 · No public SOC 2',date:'Annual',
+   kicker:'🌐 Global · Consumer VPN · Kape Technologies · 3M+ users',
+   auditor:'Not publicly disclosed',
+   body:`ExpressVPN (a Kape Technologies company) holds <strong>ISO 27001</strong> certification for its VPN platform, alongside independent audits of its no-logs policy by PwC. No public SOC 2 report. Also underwent a Cure53 security audit of its VPN protocols.`,
+   link:'https://www.expressvpn.com/privacy-security/'}
+  ,{name:'Surfshark',sector:'VPN · Consumer Privacy · Cybersecurity',malta:false,
+   tags:['iso27001','security','othercert'],
+   certs:[{cls:'iso27001',l:'ISO 27001'}],
+   status:'a',statusLabel:'ISO 27001 · No public SOC 2',date:'Annual',
+   kicker:'🌐 Global · Consumer & Business VPN · Nexus technology',
+   auditor:'Not publicly disclosed',
+   body:`Surfshark holds <strong>ISO/IEC 27001</strong> certification for its VPN and cybersecurity products. No public SOC 2 report. Underwent independent no-logs audits by Deloitte. Part of the Nord Security group following merger.`,
+   link:'https://surfshark.com/security'}
+  ,{name:'Infosys',sector:'IT Services · Consulting · Digital Transformation · BPO',malta:false,
+   tags:['iso27001','tech','othercert'],
+   certs:[{cls:'iso27001',l:'ISO 27001'},{cls:'iso27001',l:'ISO 9001 / ISO 22301'}],
+   status:'a',statusLabel:'ISO 27001 · No unified public SOC 2',date:'Annual',
+   kicker:'🇮🇳 Bengaluru · NSE/BSE · 315,000+ employees · Global IT Services',
+   auditor:'Not publicly disclosed',
+   body:`Infosys holds <strong>ISO 27001, ISO 9001, and ISO 22301</strong> certification across its global delivery centres. As one of India's largest IT services firms, Infosys provides outsourcing and consulting to financial institutions globally. No single public SOC 2 report as a unified service org — individual delivery units may hold SOC reports for specific client engagements.`,
+   link:'https://www.infosys.com/about/quality/certifications.html'}
+  ,{name:'Tata Consultancy Services (TCS)',sector:'IT Services · Consulting · BPO · Digital',malta:false,
+   tags:['iso27001','tech','othercert'],
+   certs:[{cls:'iso27001',l:'ISO 27001'},{cls:'iso27001',l:'ISO 9001 / CMMI Level 5'}],
+   status:'a',statusLabel:'ISO 27001 · No unified public SOC 2',date:'Annual',
+   kicker:'🇮🇳 Mumbai · BSE/NSE · 600,000+ employees · World's 2nd largest IT firm',
+   auditor:'Not publicly disclosed',
+   body:`Tata Consultancy Services holds <strong>ISO 27001, ISO 9001, and CMMI Level 5</strong> certification across its global delivery centres. The world's second-largest IT services company, TCS provides outsourcing, BPO, and consulting to financial institutions globally. No single unified public SOC 2 report — individual service units hold client-specific reports.`,
+   link:'https://www.tcs.com/compliance-certifications'}
+  ,{name:'Wipro',sector:'IT Services · Consulting · Cloud & Digital Transformation',malta:false,
+   tags:['iso27001','tech','othercert'],
+   certs:[{cls:'iso27001',l:'ISO 27001'},{cls:'iso27001',l:'ISO 9001 / ISO 22301'}],
+   status:'a',statusLabel:'ISO 27001 · No unified public SOC 2',date:'Annual',
+   kicker:'🇮🇳 Bengaluru · NYSE: WIT · 220,000+ employees · Global IT Services',
+   auditor:'Not publicly disclosed',
+   body:`Wipro holds <strong>ISO 27001, ISO 9001, and ISO 22301</strong> across its global delivery operations. A leading global IT services company providing managed services, BPO, and consulting to regulated financial institutions. No single public SOC 2 as a unified service org — delivery units may hold client-specific attestations.`,
+   link:'https://www.wipro.com/cybersecurity/'}
+  ,{name:'Cognizant',sector:'IT Services · Digital · Consulting · BPO',malta:false,
+   tags:['iso27001','tech','othercert'],
+   certs:[{cls:'iso27001',l:'ISO 27001'},{cls:'iso27001',l:'ISO 9001 / ISO 22301'}],
+   status:'a',statusLabel:'ISO 27001 · No unified public SOC 2',date:'Annual',
+   kicker:'🇺🇸 New Jersey · NASDAQ: CTSH · 300,000+ employees · Global IT Services',
+   auditor:'Not publicly disclosed',
+   body:`Cognizant holds <strong>ISO 27001, ISO 9001, and ISO 22301</strong> across its delivery units. Provides IT services, BPO, and digital consulting to regulated financial institutions globally. Individual delivery operations may hold client-specific SOC 1/2 reports — no single unified public SOC 2 for the entire service organisation.`,
+   link:'https://www.cognizant.com/us/en/about-cognizant/security'}
+  ,{name:'Capgemini',sector:'IT Services · Management Consulting · Digital & Cloud',malta:false,
+   tags:['iso27001','tech','othercert'],
+   certs:[{cls:'iso27001',l:'ISO 27001'},{cls:'iso27001',l:'ISO 9001'}],
+   status:'a',statusLabel:'ISO 27001 · No unified public SOC 2',date:'Annual',
+   kicker:'🇫🇷 Paris · CAC 40 · 340,000+ employees · Global IT Consulting',
+   auditor:'Not publicly disclosed',
+   body:`Capgemini holds <strong>ISO 27001 and ISO 9001</strong> across its global operations. A major global IT consulting and services firm with significant financial services practice. Individual service delivery units may hold client-specific SOC reports — no unified public SOC 2 for the entire organisation.`,
+   link:'https://www.capgemini.com/service/cybersecurity/'}
+  ,{name:'Accenture',sector:'IT Services · Management Consulting · Digital & Cloud',malta:false,
+   tags:['iso27001','tech','othercert'],
+   certs:[{cls:'iso27001',l:'ISO 27001'},{cls:'iso27001',l:'ISO 9001 / ISO 22301'}],
+   status:'a',statusLabel:'ISO 27001 · No unified public SOC 2',date:'Annual',
+   kicker:'🇮🇪 Dublin · NYSE: ACN · 750,000+ employees · World's largest IT consultancy',
+   auditor:'Not publicly disclosed',
+   body:`Accenture holds <strong>ISO 27001, ISO 9001, and ISO 22301</strong> certification across its global delivery operations. The world's largest IT consulting firm with a major financial services practice. Individual service delivery and managed services units hold client-specific SOC 1/2 reports — no single unified public SOC 2 for the full organisation.`,
+   link:'https://www.accenture.com/us-en/about/security-index'}
+  ,{name:'Nokia',sector:'Telecommunications Equipment · Networks · Enterprise Software',malta:false,
+   tags:['iso27001','tech','othercert'],
+   certs:[{cls:'iso27001',l:'ISO 27001'},{cls:'iso27001',l:'ISO 9001'}],
+   status:'a',statusLabel:'ISO 27001 · No public SOC 2',date:'Annual',
+   kicker:'🇫🇮 Espoo · NASDAQ: NOK · 5G Networks · Enterprise Tech',
+   auditor:'Not publicly disclosed',
+   body:`Nokia holds <strong>ISO 27001 and ISO 9001</strong> for its network equipment and software products. As a major 5G infrastructure provider, Nokia's ISO 27001 certification is relevant for telecoms operators and regulated entities evaluating network infrastructure security. No public SOC 2 report found.`,
+   link:'https://www.nokia.com/about-us/sustainability/governance/security-privacy/'}
+  ,{name:'Ericsson',sector:'Telecommunications · 5G Networks · Managed Services',malta:false,
+   tags:['iso27001','tech','othercert'],
+   certs:[{cls:'iso27001',l:'ISO 27001'},{cls:'iso27001',l:'ISO 9001'}],
+   status:'a',statusLabel:'ISO 27001 · No public SOC 2',date:'Annual',
+   kicker:'🇸🇪 Stockholm · NASDAQ: ERIC · 5G Leader · 100+ countries',
+   auditor:'Not publicly disclosed',
+   body:`Ericsson holds <strong>ISO 27001 and ISO 9001</strong> certification for its telecoms equipment and managed services. A leading global 5G infrastructure provider. ISO 27001 is the primary assurance framework for telecom hardware and network vendors. No public SOC 2 report as a unified service org.`,
+   link:'https://www.ericsson.com/en/security/certifications'}
+
+  ,{name:'Deloitte',sector:'Audit · Advisory · Tax · Consulting',malta:false,
+   tags:['iso27001','finance','othercert'],
+   certs:[{cls:'iso27001',l:'ISO 27001'},{cls:'iso27001',l:'SOC Issuer (Big Four)'}],
+   status:'a',statusLabel:'ISO 27001 · SOC Issuer not recipient',date:'Annual',
+   kicker:'🌐 Global · Big Four · 457,000+ professionals · 150+ countries',
+   auditor:'N/A',
+   body:`Deloitte holds <strong>ISO 27001</strong> certification for its internal systems and client-facing technology platforms (Deloitte Connect, Cascade, etc). As one of the Big Four, Deloitte <em>issues</em> SOC 1, SOC 2, and ISAE 3402 reports to clients rather than holding them as a service organisation. Deloitte's own technology products (Deloitte OneSite, Audit Command Language) maintain ISO 27001 as their primary assurance standard.`,
+   link:'https://www2.deloitte.com/global/en/pages/risk/topics/cyber-risk.html'}
+  ,{name:'PwC',sector:'Audit · Advisory · Tax · Consulting',malta:false,
+   tags:['iso27001','finance','othercert'],
+   certs:[{cls:'iso27001',l:'ISO 27001'},{cls:'iso27001',l:'SOC Issuer (Big Four)'}],
+   status:'a',statusLabel:'ISO 27001 · SOC Issuer not recipient',date:'Annual',
+   kicker:'🌐 Global · Big Four · 364,000+ professionals · 151 countries',
+   auditor:'N/A',
+   body:`PwC holds <strong>ISO 27001</strong> for its internal systems and client platforms. As a Big Four firm, PwC <em>issues</em> SOC 1, SOC 2, and ISAE 3402 reports to clients — including many entries in this registry — rather than holding them as a service organisation. PwC's own managed platforms maintain ISO 27001 as the primary assurance framework.`,
+   link:'https://www.pwc.com/gx/en/services/risk-assurance.html'}
+  ,{name:'EY (Ernst & Young)',sector:'Audit · Advisory · Tax · Consulting',malta:false,
+   tags:['iso27001','finance','othercert'],
+   certs:[{cls:'iso27001',l:'ISO 27001'},{cls:'iso27001',l:'SOC Issuer (Big Four)'}],
+   status:'a',statusLabel:'ISO 27001 · SOC Issuer not recipient',date:'Annual',
+   kicker:'🌐 Global · Big Four · 390,000+ professionals · 150+ countries',
+   auditor:'N/A',
+   body:`EY holds <strong>ISO 27001</strong> for its internal operations and technology platforms. As a Big Four firm, EY <em>issues</em> SOC 1, SOC 2, and ISAE 3402 attestations — including for Fireblocks, Penta, and others in this registry — rather than holding them as a service organisation. EY's own platforms (EY Canvas, EY Helix) maintain ISO 27001 as primary assurance.`,
+   link:'https://www.ey.com/en_gl/services/technology-risk'}
+  ,{name:'KPMG',sector:'Audit · Advisory · Tax · Consulting',malta:false,
+   tags:['iso27001','finance','othercert'],
+   certs:[{cls:'iso27001',l:'ISO 27001'},{cls:'iso27001',l:'SOC Issuer (Big Four)'}],
+   status:'a',statusLabel:'ISO 27001 · SOC Issuer not recipient',date:'Annual',
+   kicker:'🌐 Global · Big Four · 265,000+ professionals · 143 countries',
+   auditor:'N/A',
+   body:`KPMG holds <strong>ISO 27001</strong> for its client-facing platforms and internal systems. As a Big Four firm, KPMG <em>issues</em> SOC 1, SOC 2, and ISAE 3402 reports to service organisations rather than holding them. KPMG's proprietary audit and advisory platforms maintain ISO 27001 as their primary security assurance standard.`,
+   link:'https://kpmg.com/xx/en/home/services/advisory/risk-consulting/it-and-information-security.html'}
+  ,{name:'BDO',sector:'Audit · Advisory · Tax · Accounting',malta:false,
+   tags:['iso27001','finance','malta','othercert'],
+   certs:[{cls:'iso27001',l:'ISO 27001'},{cls:'iso27001',l:'SOC Issuer'}],
+   status:'a',statusLabel:'ISO 27001 · SOC Issuer · BDO Malta active',date:'Annual',
+   kicker:'🌐 Global incl. 🇲🇹 Malta · 5th largest accountancy network · 111,000+ people',
+   auditor:'N/A',
+   body:`BDO holds <strong>ISO 27001</strong> at member firm level and <em>issues</em> SOC 1, SOC 2, and ISAE 3402 audit reports to clients. BDO Malta is one of the leading SOC and ISAE auditors on the island, providing assurance services to financial services, iGaming, and technology companies. BDO Malta is referenced as an assurance provider on the <a href="https://www.bdo.com.mt/en-gb/services/technology/it-risk-advisory/third-party-assurance/soc-assurance-reports" target="_blank">BDO Malta SOC page</a>.`,
+   link:'https://www.bdo.com.mt/en-gb/services/technology/it-risk-advisory/third-party-assurance/soc-assurance-reports'}
+  ,{name:'Grant Thornton',sector:'Audit · Advisory · Tax · Consulting',malta:false,
+   tags:['iso27001','finance','othercert'],
+   certs:[{cls:'iso27001',l:'ISO 27001'},{cls:'iso27001',l:'SOC Issuer'}],
+   status:'a',statusLabel:'ISO 27001 · SOC Issuer not recipient',date:'Annual',
+   kicker:'🌐 Global · 6th largest accountancy network · 68,000+ people',
+   auditor:'N/A',
+   body:`Grant Thornton holds <strong>ISO 27001</strong> at member firm level and <em>issues</em> SOC 1, SOC 2, and ISAE 3402 reports to clients. A major SOC audit provider globally, Grant Thornton member firms conduct SOC examinations for financial services and technology companies seeking third-party assurance.`,
+   link:'https://www.grantthornton.global/en/service/advisory/risk/cybersecurity/'}
+  ,{name:'RSM',sector:'Audit · Advisory · Tax · Accounting',malta:false,
+   tags:['iso27001','finance','othercert'],
+   certs:[{cls:'iso27001',l:'ISO 27001'},{cls:'iso27001',l:'SOC Issuer'}],
+   status:'a',statusLabel:'ISO 27001 · SOC Issuer not recipient',date:'Annual',
+   kicker:'🌐 Global · 7th largest accountancy network · 64,000+ professionals',
+   auditor:'N/A',
+   body:`RSM holds <strong>ISO 27001</strong> at member firm level and <em>issues</em> SOC 1, SOC 2, and ISAE 3402 reports to service organisations globally. RSM is a major provider of third-party assurance services to financial technology, financial services, and iGaming companies seeking AICPA and IAASB-compliant audit attestations.`,
+   link:'https://rsmus.com/services/advisory/risk-advisory/cyber-risk.html'}
+  ,{name:'Baker Tilly',sector:'Audit · Advisory · Tax · Consulting',malta:false,
+   tags:['iso27001','finance','othercert'],
+   certs:[{cls:'iso27001',l:'ISO 27001'},{cls:'iso27001',l:'SOC Issuer'}],
+   status:'a',statusLabel:'ISO 27001 · SOC Issuer not recipient',date:'Annual',
+   kicker:'🌐 Global · 10th largest accountancy network · 43,000+ professionals',
+   auditor:'N/A',
+   body:`Baker Tilly holds <strong>ISO 27001</strong> at member firm level and <em>issues</em> SOC 1, SOC 2, and ISAE 3402 attestation reports to clients. Baker Tilly US is a recognised AICPA-licensed SOC auditor, providing third-party assurance services to technology and financial services companies.`,
+   link:'https://www.bakertilly.com/services/advisory/risk-advisory/cybersecurity'}
+  ,{name:'Aon',sector:'Insurance Broking · Risk Management · Human Capital',malta:false,
+   tags:['iso27001','finance','othercert'],
+   certs:[{cls:'iso27001',l:'ISO 27001'}],
+   status:'a',statusLabel:'ISO 27001 · No public SOC 2 as service org',date:'Annual',
+   kicker:'🌐 Global · NYSE: AON · 50,000+ professionals · Risk & Insurance',
+   auditor:'Not publicly disclosed',
+   body:`Aon holds <strong>ISO 27001</strong> certification for its technology platforms and internal systems. As a global insurance brokerage and risk management firm, Aon's primary assurance framework is ISO 27001. Individual technology products and outsourced services may have client-specific SOC attestations, but no single unified public SOC 2 is maintained as a service organisation.`,
+   link:'https://www.aon.com/cyber-solutions/cyber-security-services/'}
+  ,{name:'Marsh McLennan',sector:'Insurance Broking · Risk Advisory · Management Consulting',malta:false,
+   tags:['iso27001','finance','othercert'],
+   certs:[{cls:'iso27001',l:'ISO 27001'}],
+   status:'a',statusLabel:'ISO 27001 · No unified public SOC 2',date:'Annual',
+   kicker:'🌐 Global · NYSE: MMC · 85,000+ professionals · Marsh · Guy Carpenter · Oliver Wyman',
+   auditor:'Not publicly disclosed',
+   body:`Marsh McLennan (Marsh, Guy Carpenter, Mercer, Oliver Wyman) holds <strong>ISO 27001</strong> for its technology platforms. The world's leading insurance broker and risk advisory firm. Individual platforms and client-specific managed services may hold SOC attestations, but no single unified public SOC 2 is published for the full group.`,
+   link:'https://www.marshmclennan.com/about/our-practices/cyber-risk.html'}
+  ,{name:'Siemens',sector:'Industrial Technology · Automation · Digital Infrastructure',malta:false,
+   tags:['iso27001','tech','othercert'],
+   certs:[{cls:'iso27001',l:'ISO 27001'},{cls:'iso27001',l:'IEC 62443'}],
+   status:'a',statusLabel:'ISO 27001 · No public SOC 2',date:'Annual',
+   kicker:'🇩🇪 Munich · DAX · 320,000+ employees · Industrial Automation',
+   auditor:'Not publicly disclosed',
+   body:`Siemens holds <strong>ISO 27001 and IEC 62443</strong> (industrial cybersecurity) certification for its digital infrastructure, industrial automation, and smart building products. No public SOC 2 — Siemens operates primarily in industrial and enterprise technology where IEC 62443 and ISO 27001 are the dominant assurance standards.`,
+   link:'https://www.siemens.com/global/en/company/sustainability/reporting-and-guidelines/data-security.html'}
+  ,{name:'Fujitsu',sector:'IT Services · Cloud · Infrastructure · Managed Services',malta:false,
+   tags:['iso27001','tech','hosting','othercert'],
+   certs:[{cls:'iso27001',l:'ISO 27001'},{cls:'iso27001',l:'ISO 9001'}],
+   status:'a',statusLabel:'ISO 27001 · No unified public SOC 2',date:'Annual',
+   kicker:'🇯🇵 Tokyo · TYO: 6702 · 130,000+ employees · Global IT Services',
+   auditor:'Not publicly disclosed',
+   body:`Fujitsu holds <strong>ISO 27001 and ISO 9001</strong> across its global IT services and managed services operations. A major IT infrastructure and services provider in Europe and Asia-Pacific, Fujitsu delivers managed cloud, data centre, and outsourcing services to regulated entities. Individual delivery units may hold client-specific SOC reports.`,
+   link:'https://www.fujitsu.com/global/about/quality/'}
+  ,{name:'NEC Corporation',sector:'IT Solutions · Network Infrastructure · Public Safety Tech',malta:false,
+   tags:['iso27001','tech','othercert'],
+   certs:[{cls:'iso27001',l:'ISO 27001'},{cls:'iso27001',l:'ISO 9001'}],
+   status:'a',statusLabel:'ISO 27001 · No public SOC 2',date:'Annual',
+   kicker:'🇯🇵 Tokyo · TYO: 6701 · 110,000+ employees · IT & Network Solutions',
+   auditor:'Not publicly disclosed',
+   body:`NEC Corporation holds <strong>ISO 27001 and ISO 9001</strong> for its IT solutions and network infrastructure products. A major Japanese technology conglomerate providing IT infrastructure, biometrics, and public safety technology to government and enterprise clients globally. No public SOC 2 report found.`,
+   link:'https://www.nec.com/en/global/solutions/security/'}
 ];
 
 /* ── RENDER ──────────────────────────────────────────────────── */
