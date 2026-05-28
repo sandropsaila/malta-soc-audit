@@ -6,6 +6,16 @@
     { "src": "providers.html",  "use": "@vercel/static" },
     { "src": "analytics.html",  "use": "@vercel/static" },
     { "src": "mdia.html",       "use": "@vercel/static" },
-    { "src": "frameworks.html", "use": "@vercel/static" }
+    { "src": "frameworks.html", "use": "@vercel/static" },
+    { "src": "companies.json",  "use": "@vercel/static" }
+  ],
+  "headers": [
+    {
+      "source": "/companies.json",
+      "headers": [
+        { "key": "Cache-Control", "value": "no-store" },
+        { "key": "Access-Control-Allow-Origin", "value": "*" }
+      ]
+    }
   ]
 }
