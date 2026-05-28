@@ -527,13 +527,13 @@
   <div class="hero-inner">
     <h1>SOC &amp; ISAE Register</h1>
     <div class="stats-row">
-      <div class="stat"><div class="stat-num" id="statTotal">255</div><div class="stat-label">Companies</div></div>
+      <div class="stat"><div class="stat-num" id="statTotal">253</div><div class="stat-label">Companies</div></div>
       <div class="stat" onclick="activeFilters.has('malta')?(activeFilters.delete('malta'),this.querySelector('.stat-label').style.color=''):(activeFilters.add('malta'),this.querySelector('.stat-label').style.color='var(--red)');filterTable();" style="cursor:pointer;" title="Click to filter Malta-based companies">
         <div class="stat-num" id="statMalta">18</div>
         <div class="stat-label" style="text-decoration:underline;text-underline-offset:3px;">🇲🇹 Malta-Based</div>
       </div>
       <div class="stat" onclick="setTagFilter('soc')" style="cursor:pointer;" title="Click to filter SOC-certified companies">
-        <div class="stat-num" id="statSoc">213</div>
+        <div class="stat-num" id="statSoc">212</div>
         <div class="stat-label" id="statSocLabel" style="text-decoration:underline;text-underline-offset:3px;">With SOC</div>
       </div>
       <div class="stat" onclick="setTagFilter('isae')" style="cursor:pointer;" title="Click to filter ISAE-certified companies">
@@ -576,7 +576,7 @@
         <svg class="search-icon" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="11" cy="11" r="8"></circle><path d="m21 21-4.35-4.35"></path></svg>
         <input type="text" id="searchInput" placeholder="Search name, sector, cert, auditor, source domain…" oninput="filterTable()">
       </div>
-      <span id="resultsCount" style="font-size:.78rem;font-weight:600;color:var(--grey-4);white-space:nowrap;">255 companies</span>
+      <span id="resultsCount" style="font-size:.78rem;font-weight:600;color:var(--grey-4);white-space:nowrap;">253 companies</span>
     </div>
 
     <!-- INSIGHTS CHARTS — react to active filters/search -->
@@ -1685,7 +1685,7 @@ const CO=[
    auditor:'Not publicly disclosed',
    body:`CyberArk holds <strong>SOC 2 Type II</strong> for its identity security platform covering privileged access management (PAM), secrets management, and endpoint privilege security. Also holds ISO 27001. Widely used by financial institutions and MGA-regulated entities to secure privileged credentials and meet access control requirements under DORA and NIS2.`,
    link:'https://www.cyberark.com/trust-center/'}
-  ,{name:'Vanta',sector:'GRC · Trust & Compliance Automation · SOC 2 Platform',malta:false,
+  /* Vanta moved to soc2certification.com enriched entry */,malta:false,
    tags:['soc2','confirmed','tech'],
    certs:[{cls:'soc2',l:'SOC 2 Type II'}],
    status:'g',statusLabel:'Confirmed',date:'Annual',
@@ -1693,10 +1693,7 @@ const CO=[
    auditor:'Not publicly disclosed',
    body:`Vanta — a leading trust management and compliance automation platform — holds <strong>SOC 2 Type II</strong> certification for its own platform. Vanta uses its own product to automate and maintain its SOC 2 compliance. Used by thousands of companies to automate SOC 2, ISO 27001, GDPR, HIPAA, and PCI DSS compliance programmes.`,
    link:'https://www.vanta.com/security'}
-  ,{name:'Drata',sector:'GRC · Compliance Automation · Continuous Monitoring',malta:false,
-   tags:['soc2','confirmed','tech'],
-   certs:[{cls:'soc2',l:'SOC 2 Type II'},{cls:'iso27001',l:'ISO 27001'}],
-   status:'g',statusLabel:'Confirmed',date:'Annual',
+  /* Drata moved to soc2certification.com enriched entry */
    kicker:'🌐 Global · Continuous Compliance · 4,000+ integrations',
    auditor:'Not publicly disclosed',
    body:`Drata holds <strong>SOC 2 Type II and ISO 27001</strong>. A GRC and compliance automation platform providing continuous security monitoring and automated evidence collection for SOC 2, ISO 27001, HIPAA, GDPR, and other frameworks. Increasingly used by Malta-regulated FinTech and iGaming companies to streamline audit readiness.`,
@@ -2538,7 +2535,7 @@ const CO=[
    body:`Carr, Riggs & Ingram (CRI) is a top-25 nationally ranked CPA and advisory firm providing <strong>SOC 2 and IT audit services through its Auditwerx division</strong>, listed on soc2certification.com. <strong>Starting price: $12,000+, typical timeline: 6–10 weeks.</strong> Frameworks: SOC 2, ISO 27001, HIPAA, IT Audits. Multi-industry expertise across healthcare, financial services, and technology sectors.`,
    link:'https://www.soc2certification.com/carr-riggs-ingram'}
   ,{name:'Vanta',sector:'GRC · Compliance Automation · Trust Management Platform',malta:false,
-   tags:['soc2','confirmed','tech'],
+   tags:['soc2','confirmed','tech','grc'],
    certs:[{cls:'soc2',l:'SOC 2 Type II'},{cls:'iso27001',l:'ISO 27001'}],
    status:'g',statusLabel:'Confirmed · Automation Platform',date:'Starting at $10,000/year · 2-4 weeks',
    kicker:'🇺🇸 San Francisco · 12,000+ customers · Duolingo · GitHub · Atlassian',
@@ -2546,7 +2543,7 @@ const CO=[
    body:`Vanta is an <strong>AI-powered Trust Management Platform</strong> listed on soc2certification.com, automating compliance for 35+ frameworks including SOC 2, ISO 27001, HIPAA, GDPR, ISO 42001, and PCI DSS. Trusted by 12,000+ customers including Duolingo, GitHub, and Atlassian. <strong>Starting price: $10,000/year, typical timeline: 2–4 weeks to SOC 2 readiness.</strong> Vanta itself also holds SOC 2 Type II and ISO 27001 for its own platform.`,
    link:'https://www.soc2certification.com/vanta'}
   ,{name:'Drata',sector:'GRC · Compliance Automation · Continuous Monitoring',malta:false,
-   tags:['soc2','confirmed','tech'],
+   tags:['soc2','confirmed','tech','grc'],
    certs:[{cls:'soc2',l:'SOC 2 Type II'},{cls:'iso27001',l:'ISO 27001'}],
    status:'g',statusLabel:'Confirmed · Automation Platform',date:'Starting at $15,000/year · 2-4 weeks',
    kicker:'🇺🇸 San Diego · AWS Security Competency · 200+ integrations',
@@ -2554,7 +2551,7 @@ const CO=[
    body:`Drata is an <strong>AWS Security Competency compliance automation platform</strong> listed on soc2certification.com, offering continuous compliance monitoring for 20+ frameworks with 200+ integrations and AI-powered monitoring. Frameworks: SOC 2, ISO 27001, HIPAA, GDPR, PCI DSS. <strong>Starting price: $15,000/year, typical timeline: 2–4 weeks.</strong> Drata itself holds SOC 2 Type II and ISO 27001 for its own platform.`,
    link:'https://www.soc2certification.com/drata'}
   ,{name:'Secureframe',sector:'GRC · Compliance Automation · SOC 2 Platform',malta:false,
-   tags:['soc2','confirmed','tech'],
+   tags:['soc2','confirmed','tech','grc'],
    certs:[{cls:'soc2',l:'SOC 2 Type II'},{cls:'iso27001',l:'ISO 27001'}],
    status:'g',statusLabel:'Confirmed · Automation Platform',date:'Starting at $7,500/year · 2-4 weeks',
    kicker:'🇺🇸 San Francisco · 30+ In-House Experts · End-to-End Compliance',
@@ -2562,7 +2559,7 @@ const CO=[
    body:`Secureframe is an <strong>AI-powered compliance automation platform</strong> listed on soc2certification.com, with 30+ in-house compliance experts. Frameworks: SOC 2, ISO 27001, HIPAA, GDPR, PCI DSS. <strong>Starting price: $7,500/year, typical timeline: 2–4 weeks.</strong> Trusted by small businesses to enterprises seeking end-to-end compliance automation. Secureframe itself holds SOC 2 Type II and ISO 27001.`,
    link:'https://www.soc2certification.com/secureframe'}
   ,{name:'Thoropass',sector:'GRC · Compliance Automation · Tech-Enabled Audit',malta:false,
-   tags:['soc2','confirmed','tech'],
+   tags:['soc2','confirmed','tech','grc'],
    certs:[{cls:'soc2',l:'SOC 2 Type II'},{cls:'iso27001',l:'ISO 27001'}],
    status:'g',statusLabel:'Confirmed · Automation + Audit Platform',date:'Starting at $8,700/year · 4-6 weeks',
    kicker:'🇺🇸 New York, NY · Compliance Automation + In-House Audit',
@@ -2570,7 +2567,7 @@ const CO=[
    body:`Thoropass is a <strong>modern compliance and IT security audit platform</strong> listed on soc2certification.com, uniquely combining compliance automation with tech-enabled in-house audit services. Frameworks: SOC 2, ISO 27001, HIPAA, HITRUST, PCI DSS, GDPR. <strong>Starting price: $8,700/year, typical timeline: 4–6 weeks.</strong> Provides both the automation tooling and the auditor in one platform. Thoropass itself holds SOC 2 Type II.`,
    link:'https://www.soc2certification.com/thoropass'}
   ,{name:'Hyperproof',sector:'GRC · Intelligent Compliance · Risk Management Platform',malta:false,
-   tags:['soc2','confirmed','tech'],
+   tags:['soc2','confirmed','tech','grc'],
    certs:[{cls:'soc2',l:'SOC 2 Type II'},{cls:'iso27001',l:'ISO 27001'}],
    status:'g',statusLabel:'Confirmed · GRC Platform',date:'Starting at $12,000/year · 3-5 weeks',
    kicker:'🇺🇸 Bellevue, WA · 100+ Framework Templates · AI-Powered GRC',
@@ -2578,7 +2575,7 @@ const CO=[
    body:`Hyperproof is an <strong>intelligent GRC platform with AI capabilities</strong> listed on soc2certification.com, offering 100+ framework templates and smart compliance management. Frameworks: SOC 2, ISO 27001, PCI DSS, GDPR, HIPAA, HITRUST, CCPA. <strong>Starting price: $12,000/year, typical timeline: 3–5 weeks.</strong> Used by enterprises for streamlined multi-framework compliance management. Hyperproof itself holds SOC 2 Type II.`,
    link:'https://www.soc2certification.com/hyperproof'}
   ,{name:'Sprinto',sector:'GRC · Compliance Automation · SaaS Compliance Platform',malta:false,
-   tags:['soc2','confirmed','tech'],
+   tags:['soc2','confirmed','tech','grc'],
    certs:[{cls:'soc2',l:'SOC 2 Type II'},{cls:'iso27001',l:'ISO 27001'}],
    status:'g',statusLabel:'Confirmed · Automation Platform',date:'Starting at $4,000/year · 3-5 weeks',
    kicker:'🇮🇳 Bangalore · Most affordable SOC 2 automation · 1,000+ SaaS companies',
@@ -2586,7 +2583,7 @@ const CO=[
    body:`Sprinto is an <strong>automated compliance platform for modern SaaS companies</strong> listed on soc2certification.com, offering one of the most competitive price points in the market. Frameworks: SOC 2, ISO 27001, GDPR, HIPAA. <strong>Starting price: $4,000/year, typical timeline: 3–5 weeks.</strong> Trusted by 1,000+ SaaS companies globally. Sprinto itself holds SOC 2 Type II and ISO 27001.`,
    link:'https://www.soc2certification.com/sprinto'}
   ,{name:'Comp AI',sector:'GRC · AI Compliance Automation · Multi-Framework',malta:false,
-   tags:['soc2','confirmed','tech'],
+   tags:['soc2','confirmed','tech','grc'],
    certs:[{cls:'soc2',l:'SOC 2 Type II'},{cls:'iso27001',l:'ISO 27001'}],
    status:'g',statusLabel:'Confirmed · AI-Powered Platform',date:'Starting at $797/month · 24h (Type I)',
    kicker:'🇺🇸 San Francisco · 25+ Frameworks · 4,000+ Companies · 99%+ Satisfaction',
@@ -2594,7 +2591,7 @@ const CO=[
    body:`Comp AI is an <strong>AI-powered compliance automation platform</strong> listed on soc2certification.com, supporting 25+ frameworks with ultra-fast timelines — <strong>24 hours for Type I, 14 days for Type II</strong>. Frameworks: SOC 2, ISO 27001, ISO 42001, HIPAA, GDPR, PCI DSS. <strong>Starting price: $797/month.</strong> Trusted by 4,000+ companies with 99%+ customer satisfaction and 1:1 Slack support. Comp AI itself holds SOC 2 Type II.`,
    link:'https://www.soc2certification.com/comp-ai'}
   ,{name:'Strike Graph',sector:'GRC · AI Compliance Automation · Evidence Collection',malta:false,
-   tags:['soc2','confirmed','tech'],
+   tags:['soc2','confirmed','tech','grc'],
    certs:[{cls:'soc2',l:'SOC 2 Type II'},{cls:'iso27001',l:'ISO 27001'}],
    status:'g',statusLabel:'Confirmed · AI-Native Platform',date:'Starting at $9,000/year · 3-6 weeks',
    kicker:'🇺🇸 Seattle, WA · AI-Native · NIST · HITRUST · Multi-Framework',
@@ -3048,6 +3045,7 @@ function classifySector(c){
   if(/\bcrm\b|customer relationship|sales|marketing|customer support|customer engagement|helpdesk|customer success/.test(blob)) return 'CRM / Sales / Marketing';
   if(/design|whiteboard|creative|visual|prototyp|communication|messaging|video conferenc|\bvoice\b|\bsms\b|email api|telephony/.test(blob)) return 'Design, Creative & Comms';
   if(/work management|project management|productivity|workspace|collaboration|task management|workflow/.test(blob)) return 'Collaboration / Productivity';
+  if(tags.includes('grc') || /\bgrc\b|compliance automation|trust management|compliance platform/.test(blob)) return 'GRC & Compliance Automation';
   if(tags.includes('hosting') || tags.includes('tech')) return 'Other SaaS / Tech';
   return 'Other';
 }
@@ -3086,7 +3084,7 @@ function updateCharts(){
   });
 
   // Render sector chart (clickable) + Other Certifications bar
-  const sectorOrder = ['Cloud / Hosting & Data Centre','Data / DevOps Tools','CRM / Sales / Marketing','Collaboration / Productivity','Design, Creative & Comms','Accounting / Finance SaaS','Payroll / HR Tech','Cybersecurity','Payments','Crypto / Digital Assets','iGaming','Fund / Financial Svcs','Other SaaS / Tech','Other','Other Certifications'];
+  const sectorOrder = ['Cloud / Hosting & Data Centre','Data / DevOps Tools','CRM / Sales / Marketing','Collaboration / Productivity','Design, Creative & Comms','Accounting / Finance SaaS','Payroll / HR Tech','Cybersecurity','Payments','Crypto / Digital Assets','iGaming','Fund / Financial Svcs','GRC & Compliance Automation','Other SaaS / Tech','Other','Other Certifications'];
   renderBars('chartSector', sectorCounts, sectorOrder, 'sector', activeSector);
 
   // Totals
