@@ -527,13 +527,13 @@
   <div class="hero-inner">
     <h1>SOC &amp; ISAE Register</h1>
     <div class="stats-row">
-      <div class="stat"><div class="stat-num" id="statTotal">240</div><div class="stat-label">Companies</div></div>
+      <div class="stat"><div class="stat-num" id="statTotal">255</div><div class="stat-label">Companies</div></div>
       <div class="stat" onclick="activeFilters.has('malta')?(activeFilters.delete('malta'),this.querySelector('.stat-label').style.color=''):(activeFilters.add('malta'),this.querySelector('.stat-label').style.color='var(--red)');filterTable();" style="cursor:pointer;" title="Click to filter Malta-based companies">
         <div class="stat-num" id="statMalta">18</div>
         <div class="stat-label" style="text-decoration:underline;text-underline-offset:3px;">🇲🇹 Malta-Based</div>
       </div>
       <div class="stat" onclick="setTagFilter('soc')" style="cursor:pointer;" title="Click to filter SOC-certified companies">
-        <div class="stat-num" id="statSoc">205</div>
+        <div class="stat-num" id="statSoc">213</div>
         <div class="stat-label" id="statSocLabel" style="text-decoration:underline;text-underline-offset:3px;">With SOC</div>
       </div>
       <div class="stat" onclick="setTagFilter('isae')" style="cursor:pointer;" title="Click to filter ISAE-certified companies">
@@ -576,7 +576,7 @@
         <svg class="search-icon" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="11" cy="11" r="8"></circle><path d="m21 21-4.35-4.35"></path></svg>
         <input type="text" id="searchInput" placeholder="Search name, sector, cert, auditor, source domain…" oninput="filterTable()">
       </div>
-      <span id="resultsCount" style="font-size:.78rem;font-weight:600;color:var(--grey-4);white-space:nowrap;">240 companies</span>
+      <span id="resultsCount" style="font-size:.78rem;font-weight:600;color:var(--grey-4);white-space:nowrap;">255 companies</span>
     </div>
 
     <!-- INSIGHTS CHARTS — react to active filters/search -->
@@ -2379,59 +2379,59 @@ const CO=[
   ,{name:'Deloitte',sector:'Audit · Advisory · Tax · Consulting',malta:false,
    tags:['iso27001','finance','othercert'],
    certs:[{cls:'iso27001',l:'ISO 27001'},{cls:'iso27001',l:'SOC Issuer (Big Four)'}],
-   status:'a',statusLabel:'ISO 27001 · SOC Issuer not recipient',date:'Annual',
+   status:'a',statusLabel:'SOC 2 Audit Firm · ISO 27001',date:'Starting at $150,000+ · 8-12 weeks',
    kicker:'🌐 Global · Big Four · 457,000+ professionals · 150+ countries',
-   auditor:'N/A',
-   body:`Deloitte holds <strong>ISO 27001</strong> certification for its internal systems and client-facing technology platforms (Deloitte Connect, Cascade, etc). As one of the Big Four, Deloitte <em>issues</em> SOC 1, SOC 2, and ISAE 3402 reports to clients rather than holding them as a service organisation. Deloitte's own technology products (Deloitte OneSite, Audit Command Language) maintain ISO 27001 as their primary assurance standard.`,
-   link:'https://www2.deloitte.com/global/en/pages/risk/topics/cyber-risk.html'}
+   auditor:'N/A — Deloitte issues SOC reports',
+   body:`Deloitte is a leading <strong>SOC 2 audit firm</strong> (source: soc2certification.com), offering comprehensive SOC 1, SOC 2, and ISAE 3402 audit services with deep industry expertise. <strong>Starting price: $150,000+, typical timeline: 8–12 weeks.</strong> Frameworks covered: SOC 2, ISO 27001, HIPAA, GDPR, PCI DSS. As Big Four, Deloitte issues 3,000+ SOC reports annually and is one of the most recognised assurance providers globally for regulated financial institutions.`,
+   link:'https://www.soc2certification.com/deloitte'}
   ,{name:'PwC',sector:'Audit · Advisory · Tax · Consulting',malta:false,
    tags:['iso27001','finance','othercert'],
    certs:[{cls:'iso27001',l:'ISO 27001'},{cls:'iso27001',l:'SOC Issuer (Big Four)'}],
-   status:'a',statusLabel:'ISO 27001 · SOC Issuer not recipient',date:'Annual',
+   status:'a',statusLabel:'SOC 2 Audit Firm · ISO 27001',date:'Starting at $150,000+ · 8-12 weeks',
    kicker:'🌐 Global · Big Four · 364,000+ professionals · 151 countries',
-   auditor:'N/A',
-   body:`PwC holds <strong>ISO 27001</strong> for its internal systems and client platforms. As a Big Four firm, PwC <em>issues</em> SOC 1, SOC 2, and ISAE 3402 reports to clients — including many entries in this registry — rather than holding them as a service organisation. PwC's own managed platforms maintain ISO 27001 as the primary assurance framework.`,
-   link:'https://www.pwc.com/gx/en/services/risk-assurance.html'}
+   auditor:'N/A — PwC issues SOC reports',
+   body:`PwC is a leading <strong>SOC 2 audit firm</strong> (source: soc2certification.com), providing SOC 2 Type I and Type II audits with extensive experience across industries. <strong>Starting price: $150,000+, typical timeline: 8–12 weeks.</strong> Frameworks: SOC 2, ISO 27001, HIPAA, GDPR, PCI DSS. As Big Four, PwC issues thousands of SOC and ISAE 3402 reports annually — a primary assurance provider for regulated financial institutions, iGaming operators, and crypto/digital asset companies.`,
+   link:'https://www.soc2certification.com/pwc'}
   ,{name:'EY (Ernst & Young)',sector:'Audit · Advisory · Tax · Consulting',malta:false,
    tags:['iso27001','finance','othercert'],
    certs:[{cls:'iso27001',l:'ISO 27001'},{cls:'iso27001',l:'SOC Issuer (Big Four)'}],
-   status:'a',statusLabel:'ISO 27001 · SOC Issuer not recipient',date:'Annual',
-   kicker:'🌐 Global · Big Four · 390,000+ professionals · 150+ countries',
-   auditor:'N/A',
-   body:`EY holds <strong>ISO 27001</strong> for its internal operations and technology platforms. As a Big Four firm, EY <em>issues</em> SOC 1, SOC 2, and ISAE 3402 attestations — including for Fireblocks, Penta, and others in this registry — rather than holding them as a service organisation. EY's own platforms (EY Canvas, EY Helix) maintain ISO 27001 as primary assurance.`,
-   link:'https://www.ey.com/en_gl/services/technology-risk'}
+   status:'a',statusLabel:'SOC 2 Audit Firm · Global SOCR Leader',date:'Starting at $150,000+ · 8-12 weeks',
+   kicker:'🌐 Global · Big Four · 390,000+ professionals · 3,000+ SOC reports/year',
+   auditor:'N/A — EY issues SOC reports',
+   body:`EY is recognised as a global <strong>SOC 2 audit firm and SOCR leader</strong> (source: soc2certification.com), issuing <strong>3,000+ SOC reports annually</strong> across all industries. <strong>Starting price: $150,000+, typical timeline: 8–12 weeks.</strong> Frameworks: SOC 2, ISO 27001, HIPAA, GDPR, PCI DSS. EY is the auditor of record for Fireblocks, Penta, and other entries in this registry, and is a leading ISAE 3402 practitioner for fund administrators and financial institutions.`,
+   link:'https://www.soc2certification.com/ernst-young'}
   ,{name:'KPMG',sector:'Audit · Advisory · Tax · Consulting',malta:false,
    tags:['iso27001','finance','othercert'],
    certs:[{cls:'iso27001',l:'ISO 27001'},{cls:'iso27001',l:'SOC Issuer (Big Four)'}],
-   status:'a',statusLabel:'ISO 27001 · SOC Issuer not recipient',date:'Annual',
+   status:'a',statusLabel:'SOC 2 Audit Firm · ISO 27001',date:'Starting at $150,000+ · 8-12 weeks',
    kicker:'🌐 Global · Big Four · 265,000+ professionals · 143 countries',
-   auditor:'N/A',
-   body:`KPMG holds <strong>ISO 27001</strong> for its client-facing platforms and internal systems. As a Big Four firm, KPMG <em>issues</em> SOC 1, SOC 2, and ISAE 3402 reports to service organisations rather than holding them. KPMG's proprietary audit and advisory platforms maintain ISO 27001 as their primary security assurance standard.`,
-   link:'https://kpmg.com/xx/en/home/services/advisory/risk-consulting/it-and-information-security.html'}
+   auditor:'N/A — KPMG issues SOC reports',
+   body:`KPMG is a leading <strong>SOC 2 audit firm</strong> (source: soc2certification.com), offering SOC 2 audit and advisory services with global reach and industry specialisation. <strong>Starting price: $150,000+, typical timeline: 8–12 weeks.</strong> Frameworks: SOC 2, ISO 27001, HIPAA, GDPR. Provides SOC 1, SOC 2, and ISAE 3402 attestation services to financial institutions, technology companies, and regulated entities globally.`,
+   link:'https://www.soc2certification.com/kpmg'}
   ,{name:'BDO',sector:'Audit · Advisory · Tax · Accounting',malta:false,
    tags:['iso27001','finance','malta','othercert'],
    certs:[{cls:'iso27001',l:'ISO 27001'},{cls:'iso27001',l:'SOC Issuer'}],
-   status:'a',statusLabel:'ISO 27001 · SOC Issuer · BDO Malta active',date:'Annual',
+   status:'a',statusLabel:'SOC 2 Audit Firm · Malta Active',date:'Starting at $20,000+ · 8-12 weeks',
    kicker:'🌐 Global incl. 🇲🇹 Malta · 5th largest accountancy network · 111,000+ people',
-   auditor:'N/A',
-   body:`BDO holds <strong>ISO 27001</strong> at member firm level and <em>issues</em> SOC 1, SOC 2, and ISAE 3402 audit reports to clients. BDO Malta is one of the leading SOC and ISAE auditors on the island, providing assurance services to financial services, iGaming, and technology companies. BDO Malta is referenced as an assurance provider on the <a href="https://www.bdo.com.mt/en-gb/services/technology/it-risk-advisory/third-party-assurance/soc-assurance-reports" target="_blank">BDO Malta SOC page</a>.`,
-   link:'https://www.bdo.com.mt/en-gb/services/technology/it-risk-advisory/third-party-assurance/soc-assurance-reports'}
+   auditor:'N/A — BDO issues SOC reports',
+   body:`BDO is a prominent <strong>SOC 2 audit firm</strong> (source: soc2certification.com), offering SOC examinations with minimal disruption and actionable insights. <strong>Starting price: $20,000+, typical timeline: 8–12 weeks.</strong> Frameworks: SOC 2, ISO 27001, HIPAA, PCI DSS. <strong>BDO Malta</strong> is one of Malta's leading SOC and ISAE 3402 assurance providers, confirmed at <a href="https://www.bdo.com.mt/en-gb/services/technology/it-risk-advisory/third-party-assurance/soc-assurance-reports" target="_blank">bdo.com.mt</a>, serving financial services, iGaming, and technology companies on the island.`,
+   link:'https://www.soc2certification.com/bdo-usa'}
   ,{name:'Grant Thornton',sector:'Audit · Advisory · Tax · Consulting',malta:false,
    tags:['iso27001','finance','othercert'],
    certs:[{cls:'iso27001',l:'ISO 27001'},{cls:'iso27001',l:'SOC Issuer'}],
-   status:'a',statusLabel:'ISO 27001 · SOC Issuer not recipient',date:'Annual',
+   status:'a',statusLabel:'SOC 2 Audit Firm · SOC.x Automation',date:'Starting at $30,000+ · 3-5 months',
    kicker:'🌐 Global · 6th largest accountancy network · 68,000+ people',
-   auditor:'N/A',
-   body:`Grant Thornton holds <strong>ISO 27001</strong> at member firm level and <em>issues</em> SOC 1, SOC 2, and ISAE 3402 reports to clients. A major SOC audit provider globally, Grant Thornton member firms conduct SOC examinations for financial services and technology companies seeking third-party assurance.`,
-   link:'https://www.grantthornton.global/en/service/advisory/risk/cybersecurity/'}
+   auditor:'N/A — Grant Thornton issues SOC reports',
+   body:`Grant Thornton is a major <strong>SOC 2 audit firm</strong> (source: soc2certification.com), offering SOC services with industry-leading <strong>SOC.x automation technology</strong> and one of Chicago's largest audit practices. <strong>Starting price: $30,000+, typical timeline: 3–5 months.</strong> Frameworks: SOC 2, ISO 27001, HIPAA, Trust Services. Known for deep financial services and technology industry expertise.`,
+   link:'https://www.soc2certification.com/grant-thornton'}
   ,{name:'RSM',sector:'Audit · Advisory · Tax · Accounting',malta:false,
    tags:['iso27001','finance','othercert'],
    certs:[{cls:'iso27001',l:'ISO 27001'},{cls:'iso27001',l:'SOC Issuer'}],
-   status:'a',statusLabel:'ISO 27001 · SOC Issuer not recipient',date:'Annual',
+   status:'a',statusLabel:'SOC 2 Audit Firm · SOC 1/2/3',date:'Starting at $16,000+ · 6-10 weeks',
    kicker:'🌐 Global · 7th largest accountancy network · 64,000+ professionals',
-   auditor:'N/A',
-   body:`RSM holds <strong>ISO 27001</strong> at member firm level and <em>issues</em> SOC 1, SOC 2, and ISAE 3402 reports to service organisations globally. RSM is a major provider of third-party assurance services to financial technology, financial services, and iGaming companies seeking AICPA and IAASB-compliant audit attestations.`,
-   link:'https://rsmus.com/services/advisory/risk-advisory/cyber-risk.html'}
+   auditor:'N/A — RSM issues SOC reports',
+   body:`RSM is a leading <strong>SOC 2 audit firm</strong> (source: soc2certification.com), offering SOC 1, SOC 2, and SOC 3 services with proprietary methodology and specialised software. <strong>Starting price: $16,000+, typical timeline: 6–10 weeks.</strong> Frameworks: SOC 2, ISO 27001, HIPAA, SOC for Cybersecurity. RSM is recognised for its middle-market focus and technology-enabled audit approach, serving regulated financial services and technology companies.`,
+   link:'https://www.soc2certification.com/rsm-us'}
   ,{name:'Baker Tilly',sector:'Audit · Advisory · Tax · Consulting',malta:false,
    tags:['iso27001','finance','othercert'],
    certs:[{cls:'iso27001',l:'ISO 27001'},{cls:'iso27001',l:'SOC Issuer'}],
@@ -2480,6 +2480,127 @@ const CO=[
    auditor:'Not publicly disclosed',
    body:`NEC Corporation holds <strong>ISO 27001 and ISO 9001</strong> for its IT solutions and network infrastructure products. A major Japanese technology conglomerate providing IT infrastructure, biometrics, and public safety technology to government and enterprise clients globally. No public SOC 2 report found.`,
    link:'https://www.nec.com/en/global/solutions/security/'}
+
+  ,{name:'Schellman',sector:'SOC 2 Audit Firm · Compliance Assessment · Technology',malta:false,
+   tags:['iso27001','security','othercert'],
+   certs:[{cls:'iso27001',l:'SOC 2 Audit Firm'},{cls:'iso27001',l:'ISO 27001 Certifier'}],
+   status:'a',statusLabel:'SOC 2 Audit Firm · Specialist',date:'Starting at $15,000+ · 6-10 weeks',
+   kicker:'🇺🇸 Tampa, FL · Specialist SOC 2 Auditor · Technology Focus',
+   auditor:'N/A — Schellman issues SOC reports',
+   body:`Schellman is a specialised <strong>SOC 2 audit firm</strong> listed on soc2certification.com, focused on SOC 2, ISO, and security certifications for technology companies. <strong>Starting price: $15,000+, typical timeline: 6–10 weeks.</strong> Frameworks: SOC 2, ISO 27001, HIPAA, PCI DSS, GDPR. Schellman is recognised as one of the top specialist SOC 2 auditors, auditing DigitalOcean and other major technology companies listed in this registry.`,
+   link:'https://www.soc2certification.com/schellman'}
+  ,{name:'A-LIGN',sector:'SOC 2 Audit Firm · Compliance · Cybersecurity Assessment',malta:false,
+   tags:['iso27001','security','othercert'],
+   certs:[{cls:'iso27001',l:'SOC 2 Audit Firm'},{cls:'iso27001',l:'FedRAMP Assessor'}],
+   status:'a',statusLabel:'SOC 2 Audit Firm · Tech-Enabled',date:'Starting at $12,000+ · 6-8 weeks',
+   kicker:'🇺🇸 Tampa, FL · Technology-Enabled Compliance · FedRAMP 3PAO',
+   auditor:'N/A — A-LIGN issues SOC reports',
+   body:`A-LIGN is a technology-enabled <strong>SOC 2 audit firm</strong> listed on soc2certification.com, known for efficiency and customer experience in compliance assessments. <strong>Starting price: $12,000+, typical timeline: 6–8 weeks.</strong> Frameworks: SOC 2, ISO 27001, HIPAA, PCI DSS. Also an accredited FedRAMP Third Party Assessment Organization (3PAO) and HITRUST CSF Authorised Assessor.`,
+   link:'https://www.soc2certification.com/a-lign'}
+  ,{name:'Coalfire',sector:'SOC 2 Audit Firm · Cybersecurity · FedRAMP · Compliance',malta:false,
+   tags:['iso27001','security','othercert'],
+   certs:[{cls:'iso27001',l:'SOC 2 Audit Firm'},{cls:'iso27001',l:'FedRAMP 3PAO'}],
+   status:'a',statusLabel:'SOC 2 Audit Firm · 400+ Assessments/Year',date:'Starting at $18,000+ · 6-9 months',
+   kicker:'🇺🇸 Westminster, CO · 20+ Years Cybersecurity · 400+ SOC/year',
+   auditor:'N/A — Coalfire issues SOC reports',
+   body:`Coalfire is a specialist <strong>cybersecurity and SOC 2 audit firm</strong> listed on soc2certification.com, completing <strong>400+ SOC assessments annually</strong> with 20+ years of expertise. <strong>Starting price: $18,000+, typical timeline: 6–9 months.</strong> Frameworks: SOC 2, ISO 27001, HIPAA, PCI DSS, FedRAMP. Coalfire is an accredited FedRAMP 3PAO and one of the most active SOC audit firms in North America.`,
+   link:'https://www.soc2certification.com/coalfire'}
+  ,{name:'CliftonLarsonAllen (CLA)',sector:'SOC 2 Audit Firm · CPA · Advisory · Technology',malta:false,
+   tags:['iso27001','finance','othercert'],
+   certs:[{cls:'iso27001',l:'SOC 2 Audit Firm'},{cls:'iso27001',l:'SOC for Cybersecurity'}],
+   status:'a',statusLabel:'SOC 2 Audit Firm · National CPA',date:'Starting at $14,000+ · 6-10 weeks',
+   kicker:'🇺🇸 Minneapolis, MN · National CPA Firm · Multi-Industry SOC',
+   auditor:'N/A — CLA issues SOC reports',
+   body:`CliftonLarsonAllen (CLA) is a national CPA and advisory firm providing <strong>SOC 2 audit services</strong> listed on soc2certification.com, with expertise spanning industry, accounting, audit, security, and technology management. <strong>Starting price: $14,000+, typical timeline: 6–10 weeks.</strong> Frameworks: SOC 2, ISO 27001, HIPAA, Cybersecurity. One of the top 10 US accounting firms by revenue.`,
+   link:'https://www.soc2certification.com/cliftonlarsonallen'}
+  ,{name:'Cherry Bekaert',sector:'SOC 2 Audit Firm · CPA · Advisory · Cybersecurity',malta:false,
+   tags:['iso27001','finance','othercert'],
+   certs:[{cls:'iso27001',l:'SOC 2 Audit Firm'},{cls:'iso27001',l:'SOC for Cybersecurity'}],
+   status:'a',statusLabel:'SOC 2 Audit Firm · Hundreds of Reports/Year',date:'Starting at $15,000+ · 6-10 weeks',
+   kicker:'🇺🇸 Richmond, VA · SOC 1/2/3 · SOC for Cybersecurity',
+   auditor:'N/A — Cherry Bekaert issues SOC reports',
+   body:`Cherry Bekaert is a national CPA and advisory firm providing <strong>SOC 1, SOC 2, SOC 3, and SOC for Cybersecurity</strong> reporting services, listed on soc2certification.com, issuing hundreds of reports annually. <strong>Starting price: $15,000+, typical timeline: 6–10 weeks.</strong> Frameworks: SOC 2, SOC for Cybersecurity, ISO 27001, HIPAA. Known for deep technology and financial services sector expertise.`,
+   link:'https://www.soc2certification.com/cherry-bekaert'}
+  ,{name:'Linford & Company',sector:'SOC 2 Audit Firm · CPA · FedRAMP · HITRUST',malta:false,
+   tags:['iso27001','finance','othercert'],
+   certs:[{cls:'iso27001',l:'SOC 2 Audit Firm'},{cls:'iso27001',l:'FedRAMP Assessor'}],
+   status:'a',statusLabel:'SOC 2 Audit Firm · Ex-Big Four Partners',date:'Starting at $8,000+ · 4-8 weeks',
+   kicker:'🇺🇸 Denver, CO · Former Big Four Auditors · High Partner Involvement',
+   auditor:'N/A — Linford & Co issues SOC reports',
+   body:`Linford & Company is a Denver-based CPA firm listed on soc2certification.com, comprised of <strong>former Big Four auditors</strong> offering affordable SOC 2 audits with high partner involvement. <strong>Starting price: $8,000+, typical timeline: 4–8 weeks.</strong> Frameworks: SOC 2, ISO 27001, HIPAA, FedRAMP, HITRUST. Offers one of the most competitive pricing structures among qualified SOC 2 audit firms.`,
+   link:'https://www.soc2certification.com/linford-company'}
+  ,{name:'Carr, Riggs & Ingram (CRI / Auditwerx)',sector:'SOC 2 Audit Firm · CPA · IT Audit · Advisory',malta:false,
+   tags:['iso27001','finance','othercert'],
+   certs:[{cls:'iso27001',l:'SOC 2 Audit Firm'},{cls:'iso27001',l:'IT Audit'}],
+   status:'a',statusLabel:'SOC 2 Audit Firm · Top 25 National CPA',date:'Starting at $12,000+ · 6-10 weeks',
+   kicker:'🇺🇸 Birmingham, AL · Top 25 CPA Firm · Auditwerx SOC Practice',
+   auditor:'N/A — CRI issues SOC reports',
+   body:`Carr, Riggs & Ingram (CRI) is a top-25 nationally ranked CPA and advisory firm providing <strong>SOC 2 and IT audit services through its Auditwerx division</strong>, listed on soc2certification.com. <strong>Starting price: $12,000+, typical timeline: 6–10 weeks.</strong> Frameworks: SOC 2, ISO 27001, HIPAA, IT Audits. Multi-industry expertise across healthcare, financial services, and technology sectors.`,
+   link:'https://www.soc2certification.com/carr-riggs-ingram'}
+  ,{name:'Vanta',sector:'GRC · Compliance Automation · Trust Management Platform',malta:false,
+   tags:['soc2','confirmed','tech'],
+   certs:[{cls:'soc2',l:'SOC 2 Type II'},{cls:'iso27001',l:'ISO 27001'}],
+   status:'g',statusLabel:'Confirmed · Automation Platform',date:'Starting at $10,000/year · 2-4 weeks',
+   kicker:'🇺🇸 San Francisco · 12,000+ customers · Duolingo · GitHub · Atlassian',
+   auditor:'Not publicly disclosed',
+   body:`Vanta is an <strong>AI-powered Trust Management Platform</strong> listed on soc2certification.com, automating compliance for 35+ frameworks including SOC 2, ISO 27001, HIPAA, GDPR, ISO 42001, and PCI DSS. Trusted by 12,000+ customers including Duolingo, GitHub, and Atlassian. <strong>Starting price: $10,000/year, typical timeline: 2–4 weeks to SOC 2 readiness.</strong> Vanta itself also holds SOC 2 Type II and ISO 27001 for its own platform.`,
+   link:'https://www.soc2certification.com/vanta'}
+  ,{name:'Drata',sector:'GRC · Compliance Automation · Continuous Monitoring',malta:false,
+   tags:['soc2','confirmed','tech'],
+   certs:[{cls:'soc2',l:'SOC 2 Type II'},{cls:'iso27001',l:'ISO 27001'}],
+   status:'g',statusLabel:'Confirmed · Automation Platform',date:'Starting at $15,000/year · 2-4 weeks',
+   kicker:'🇺🇸 San Diego · AWS Security Competency · 200+ integrations',
+   auditor:'Not publicly disclosed',
+   body:`Drata is an <strong>AWS Security Competency compliance automation platform</strong> listed on soc2certification.com, offering continuous compliance monitoring for 20+ frameworks with 200+ integrations and AI-powered monitoring. Frameworks: SOC 2, ISO 27001, HIPAA, GDPR, PCI DSS. <strong>Starting price: $15,000/year, typical timeline: 2–4 weeks.</strong> Drata itself holds SOC 2 Type II and ISO 27001 for its own platform.`,
+   link:'https://www.soc2certification.com/drata'}
+  ,{name:'Secureframe',sector:'GRC · Compliance Automation · SOC 2 Platform',malta:false,
+   tags:['soc2','confirmed','tech'],
+   certs:[{cls:'soc2',l:'SOC 2 Type II'},{cls:'iso27001',l:'ISO 27001'}],
+   status:'g',statusLabel:'Confirmed · Automation Platform',date:'Starting at $7,500/year · 2-4 weeks',
+   kicker:'🇺🇸 San Francisco · 30+ In-House Experts · End-to-End Compliance',
+   auditor:'Not publicly disclosed',
+   body:`Secureframe is an <strong>AI-powered compliance automation platform</strong> listed on soc2certification.com, with 30+ in-house compliance experts. Frameworks: SOC 2, ISO 27001, HIPAA, GDPR, PCI DSS. <strong>Starting price: $7,500/year, typical timeline: 2–4 weeks.</strong> Trusted by small businesses to enterprises seeking end-to-end compliance automation. Secureframe itself holds SOC 2 Type II and ISO 27001.`,
+   link:'https://www.soc2certification.com/secureframe'}
+  ,{name:'Thoropass',sector:'GRC · Compliance Automation · Tech-Enabled Audit',malta:false,
+   tags:['soc2','confirmed','tech'],
+   certs:[{cls:'soc2',l:'SOC 2 Type II'},{cls:'iso27001',l:'ISO 27001'}],
+   status:'g',statusLabel:'Confirmed · Automation + Audit Platform',date:'Starting at $8,700/year · 4-6 weeks',
+   kicker:'🇺🇸 New York, NY · Compliance Automation + In-House Audit',
+   auditor:'Not publicly disclosed',
+   body:`Thoropass is a <strong>modern compliance and IT security audit platform</strong> listed on soc2certification.com, uniquely combining compliance automation with tech-enabled in-house audit services. Frameworks: SOC 2, ISO 27001, HIPAA, HITRUST, PCI DSS, GDPR. <strong>Starting price: $8,700/year, typical timeline: 4–6 weeks.</strong> Provides both the automation tooling and the auditor in one platform. Thoropass itself holds SOC 2 Type II.`,
+   link:'https://www.soc2certification.com/thoropass'}
+  ,{name:'Hyperproof',sector:'GRC · Intelligent Compliance · Risk Management Platform',malta:false,
+   tags:['soc2','confirmed','tech'],
+   certs:[{cls:'soc2',l:'SOC 2 Type II'},{cls:'iso27001',l:'ISO 27001'}],
+   status:'g',statusLabel:'Confirmed · GRC Platform',date:'Starting at $12,000/year · 3-5 weeks',
+   kicker:'🇺🇸 Bellevue, WA · 100+ Framework Templates · AI-Powered GRC',
+   auditor:'Not publicly disclosed',
+   body:`Hyperproof is an <strong>intelligent GRC platform with AI capabilities</strong> listed on soc2certification.com, offering 100+ framework templates and smart compliance management. Frameworks: SOC 2, ISO 27001, PCI DSS, GDPR, HIPAA, HITRUST, CCPA. <strong>Starting price: $12,000/year, typical timeline: 3–5 weeks.</strong> Used by enterprises for streamlined multi-framework compliance management. Hyperproof itself holds SOC 2 Type II.`,
+   link:'https://www.soc2certification.com/hyperproof'}
+  ,{name:'Sprinto',sector:'GRC · Compliance Automation · SaaS Compliance Platform',malta:false,
+   tags:['soc2','confirmed','tech'],
+   certs:[{cls:'soc2',l:'SOC 2 Type II'},{cls:'iso27001',l:'ISO 27001'}],
+   status:'g',statusLabel:'Confirmed · Automation Platform',date:'Starting at $4,000/year · 3-5 weeks',
+   kicker:'🇮🇳 Bangalore · Most affordable SOC 2 automation · 1,000+ SaaS companies',
+   auditor:'Not publicly disclosed',
+   body:`Sprinto is an <strong>automated compliance platform for modern SaaS companies</strong> listed on soc2certification.com, offering one of the most competitive price points in the market. Frameworks: SOC 2, ISO 27001, GDPR, HIPAA. <strong>Starting price: $4,000/year, typical timeline: 3–5 weeks.</strong> Trusted by 1,000+ SaaS companies globally. Sprinto itself holds SOC 2 Type II and ISO 27001.`,
+   link:'https://www.soc2certification.com/sprinto'}
+  ,{name:'Comp AI',sector:'GRC · AI Compliance Automation · Multi-Framework',malta:false,
+   tags:['soc2','confirmed','tech'],
+   certs:[{cls:'soc2',l:'SOC 2 Type II'},{cls:'iso27001',l:'ISO 27001'}],
+   status:'g',statusLabel:'Confirmed · AI-Powered Platform',date:'Starting at $797/month · 24h (Type I)',
+   kicker:'🇺🇸 San Francisco · 25+ Frameworks · 4,000+ Companies · 99%+ Satisfaction',
+   auditor:'Not publicly disclosed',
+   body:`Comp AI is an <strong>AI-powered compliance automation platform</strong> listed on soc2certification.com, supporting 25+ frameworks with ultra-fast timelines — <strong>24 hours for Type I, 14 days for Type II</strong>. Frameworks: SOC 2, ISO 27001, ISO 42001, HIPAA, GDPR, PCI DSS. <strong>Starting price: $797/month.</strong> Trusted by 4,000+ companies with 99%+ customer satisfaction and 1:1 Slack support. Comp AI itself holds SOC 2 Type II.`,
+   link:'https://www.soc2certification.com/comp-ai'}
+  ,{name:'Strike Graph',sector:'GRC · AI Compliance Automation · Evidence Collection',malta:false,
+   tags:['soc2','confirmed','tech'],
+   certs:[{cls:'soc2',l:'SOC 2 Type II'},{cls:'iso27001',l:'ISO 27001'}],
+   status:'g',statusLabel:'Confirmed · AI-Native Platform',date:'Starting at $9,000/year · 3-6 weeks',
+   kicker:'🇺🇸 Seattle, WA · AI-Native · NIST · HITRUST · Multi-Framework',
+   auditor:'Not publicly disclosed',
+   body:`Strike Graph is an <strong>AI-native compliance management platform</strong> listed on soc2certification.com, automating evidence collection for SOC 2, ISO 27001, and other frameworks. Frameworks: SOC 2, ISO 27001, HIPAA, GDPR, PCI DSS, NIST, HITRUST. <strong>Starting price: $9,000/year, typical timeline: 3–6 weeks.</strong> Strike Graph itself holds SOC 2 Type II.`,
+   link:'https://www.soc2certification.com/strike-graph'}
 ];
 
 /* ── RENDER ──────────────────────────────────────────────────── */
