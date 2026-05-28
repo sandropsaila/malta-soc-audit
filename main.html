@@ -3036,11 +3036,11 @@ function classifySector(c){
   if(tags.includes('igaming')) return 'iGaming';
   if(tags.includes('crypto') || /crypto|bitcoin|blockchain|digital asset|stablecoin|defi|custody.*digital|digital.*custody|exchange.*digital|digital.*exchange/.test(blob)) return 'Crypto / Digital Assets';
   if(tags.includes('payment') || /payment|psp|\bemi\b|e-money|electronic money|wallet|acquirer|remittance|card issuing/.test(blob)) return 'Payments';
-  if(tags.includes('mfsa') || tags.includes('fund') || tags.includes('mifid')) return 'Fund / Financial Svcs';
+  if(tags.includes('mfsa') || tags.includes('fund') || tags.includes('mifid') || /credit bureau|credit report|credit scoring/.test(blob)) return 'Fund / Financial Svcs';
   if(tags.includes('security') || /cyber|siem|endpoint|threat|penetration|firewall/.test(blob)) return 'Cybersecurity';
   if(/payroll|employer of record|\beor\b|workforce|human capital|\bhcm\b|\bhr\b/.test(blob)) return 'Payroll / HR Tech';
-  if(/accounting|erp|general ledger|financial management|expense|close management|fcrp|invoic|bookkeep|equity compensation|stock plan/.test(blob)) return 'Accounting / Finance SaaS';
-  if(/data centre|data center|colocation|co-location|colo|hyperscale|\baws\b|\bazure\b|google cloud|\bgcp\b|\boci\b|ibm cloud|alibaba cloud|\bcdn\b|edge|hosting|\bvps\b|dedicated server|cloud platform|developer cloud|iaas/.test(blob)) return 'Cloud / Hosting & Data Centre';
+  if(tags.includes('accounting') || /accounting|erp|general ledger|financial management|expense|close management|fcrp|invoic|bookkeep|equity compensation|stock plan|subscription billing|revenue automation|revenue management/.test(blob)) return 'Accounting / Finance SaaS';
+  if(tags.includes('hosting') || /data centre|data center|colocation|co-location|colo|hyperscale|\baws\b|\bazure\b|google cloud|\bgcp\b|\boci\b|ibm cloud|alibaba cloud|\bcdn\b|edge|hosting|\bvps\b|dedicated server|cloud platform|developer cloud|iaas|records management|data storage/.test(blob)) return 'Cloud / Hosting & Data Centre';
   if(/observability|monitoring|\bapm\b|aiops|analytics|business intelligence|data warehouse|data lakehouse|database|integration platform|api management/.test(blob)) return 'Data / DevOps Tools';
   if(/\bcrm\b|customer relationship|sales|marketing|customer support|customer engagement|helpdesk|customer success/.test(blob)) return 'CRM / Sales / Marketing';
   if(/design|whiteboard|creative|visual|prototyp|communication|messaging|video conferenc|\bvoice\b|\bsms\b|email api|telephony/.test(blob)) return 'Design, Creative & Comms';
@@ -3084,7 +3084,7 @@ function updateCharts(){
   });
 
   // Render sector chart (clickable) + Other Certifications bar
-  const sectorOrder = ['Cloud / Hosting & Data Centre','Data / DevOps Tools','CRM / Sales / Marketing','Collaboration / Productivity','Design, Creative & Comms','Accounting / Finance SaaS','Payroll / HR Tech','Cybersecurity','Payments','Crypto / Digital Assets','iGaming','Fund / Financial Svcs','GRC & Compliance Automation','Other SaaS / Tech','Other','Other Certifications'];
+  const sectorOrder = ['Cloud / Hosting & Data Centre','Data / DevOps Tools','CRM / Sales / Marketing','Collaboration / Productivity','Design, Creative & Comms','Accounting / Finance SaaS','Payroll / HR Tech','Cybersecurity','Payments','Crypto / Digital Assets','iGaming','Fund / Financial Svcs','GRC & Compliance Automation','Other SaaS / Tech','Other Certifications'];
   renderBars('chartSector', sectorCounts, sectorOrder, 'sector', activeSector);
 
   // Totals
