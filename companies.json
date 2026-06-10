@@ -6974,5 +6974,29 @@
     "auditor": "Not publicly disclosed",
     "body": "Strike Graph is an <strong>AI-native compliance management platform</strong> listed on soc2certification.com, automating evidence collection for SOC 2, ISO 27001, and other frameworks. Frameworks: SOC 2, ISO 27001, HIPAA, GDPR, PCI DSS, NIST, HITRUST. <strong>Starting price: $9,000/year, typical timeline: 3–6 weeks.</strong> Strike Graph itself holds SOC 2 Type II.",
     "link": "https://www.soc2certification.com/strike-graph"
+  },
+  {
+    "name": "Solutus Advisors Limited",
+    "sector": "Loan Servicing · Commercial Real Estate · Fund / Financial Svcs",
+    "malta": false,
+    "tags": [
+      "isae3402",
+      "confirmed",
+      "fund",
+      "finance"
+    ],
+    "certs": [
+      {
+        "cls": "isae3402",
+        "l": "ISAE 3402 (SAS70) Type II"
+      }
+    ],
+    "status": "g",
+    "statusLabel": "Confirmed",
+    "date": "Annual",
+    "kicker": "🇬🇧 UK · Commercial Primary Servicer · Fitch CPS2- · ~£8B AUM",
+    "auditor": "Grant Thornton",
+    "body": "Solutus Advisors performs an <strong>annual ISAE 3402 (SAS70) audit</strong> of its loan servicing procedures, conducted by <strong>Grant Thornton</strong> (confirmed on Solutus' Ratings & Accreditations page). A leading UK commercial loan servicer with assets under management approaching £8 billion across multiple UK and continental European jurisdictions, Solutus holds a Fitch Commercial Primary Servicer rating of CPS2- (outlook revised to Positive, Nov 2025). The ISAE 3402 report provides downstream control assurance to lenders, funds, and securitisation vehicles relying on Solutus for loan administration and financial reporting.",
+    "link": "https://www.solutus.co.uk/why-solutus/ratings-and-accreditations/"
   }
 ]
