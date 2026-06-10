@@ -624,6 +624,8 @@
 /* ── DATA ──────────────────────────────────────────────────── */
 // CO array loaded from companies.json at runtime (see loadCompanies below)
 let CO = [];
+let SECTOR_OF = [];
+let AUDITOR_OF = [];
 
 async function loadCompanies() {
   try {
@@ -637,6 +639,9 @@ async function loadCompanies() {
 
 function initRegistry(){
 /* ── RENDER ──────────────────────────────────────────────────── */
+// Compute sector/auditor maps now that CO is populated from companies.json
+SECTOR_OF = CO.map(classifySector);
+AUDITOR_OF = CO.map(classifyAuditor);
 const tbody=document.getElementById('tBody');
 
 function tagsHTML(certs){
@@ -1092,9 +1097,7 @@ function classifyAuditor(c){
   const bIdxA = rawAud.indexOf(' [');
   return bIdxA>-1 ? rawAud.slice(0,bIdxA) : rawAud;
 }
-// Pre-compute once — each company belongs to exactly one sector / one auditor
-const SECTOR_OF = CO.map(classifySector);
-const AUDITOR_OF = CO.map(classifyAuditor);
+// SECTOR_OF / AUDITOR_OF declared near top, computed in initRegistry()
 
 // Active chart-driven filters (null = none)
 let activeSector = null;
